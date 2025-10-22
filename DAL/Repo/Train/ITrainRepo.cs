@@ -11,7 +11,6 @@ namespace DAL.Repo.Train
         Task<IEnumerable<Entities.Train>> GetAllTrainsAsync();
         Task<Entities.Train?> GetTrainByIdAsync(int id);
         Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainNumber);
-
         Task<string> AddTrainAsync(Entities.Train train);
 
         Task<string> UpdateTrainAsync(Entities.Train train);
