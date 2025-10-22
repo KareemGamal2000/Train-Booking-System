@@ -19,6 +19,7 @@ namespace DAL.Entities
         [ForeignKey("TrainID")]
         public int TrainID { get; set; }
         public virtual Train Train { get; set; }
+
         [ForeignKey("ClassId")]
         public int ClassId { get; set; }
         public virtual Class Class { get; set; }

@@ -20,7 +20,6 @@ namespace DAL.Context
         public DbSet<Station> Stations { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Seat> Seats { get; set; }
-
         public DbSet<Ticket> Tickets { get; set; }
     }
 }
