@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Repo\Booking\" />
     <Folder Include="Repo\Class\" />
-    <Folder Include="Repo\Coach\" />
     <Folder Include="Repo\User\" />
     <Folder Include="Repo\Trip\" />
     <Folder Include="Repo\Ticket\" />

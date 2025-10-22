@@ -24,7 +24,7 @@ namespace DAL.Repo.Train
         }
         public async Task<Entities.Train?> GetTrainByIdAsync(int id)
         {
-            return await _context.Trains.FindAsync(id);
+            return await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id);
         }
         public async Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainNumber)
         {
@@ -44,7 +44,7 @@ namespace DAL.Repo.Train
         }
         public async Task<string> DeleteTrainAsync(int id)
         {
-            var train = await _context.Trains.FindAsync(id);
+            var train = await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id); ;
             if (train != null)
             {
                 _context.Trains.Remove(train);

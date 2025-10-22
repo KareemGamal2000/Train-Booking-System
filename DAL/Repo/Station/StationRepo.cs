@@ -23,7 +23,7 @@ namespace DAL.Repo.Station
 
         public async Task<Entities.Station?> GetStationByIdAsync(int id)
         {
-            return await _context.Stations.FindAsync(id);
+            return await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
         }
 
         public async Task<Entities.Station?> GetStationByCodeAsync(string stationCode)
@@ -56,7 +56,7 @@ namespace DAL.Repo.Station
 
         public async Task<string> DeleteStationByIdAsync(int id)
         {
-            var station = await _context.Stations.FindAsync(id);
+            var station = await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
             if (station != null)
             {
                 _context.Stations.Remove(station);
