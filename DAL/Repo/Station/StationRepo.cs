@@ -40,21 +40,21 @@ namespace DAL.Repo.Station
                             s.StationNameAR.Contains(normalizedName))
                 .ToListAsync();
         }
-        public async Task<string> AddTrainAsync(Entities.Station station)
+        public async Task<string> AddStationAsync(Entities.Station station)
         {
             await _context.Stations.AddAsync(station);
             await _context.SaveChangesAsync();
             return "Station added successfully";
         }
 
-        public async Task<string> UpdateStation(Entities.Station station)
+        public async Task<string> UpdateStationAsync(Entities.Station station)
         {
             _context.Stations.Update(station);
             await _context.SaveChangesAsync();
             return "Station updated successfully";
         }
 
-        public async Task<string> DeleteStationByIdAsync(int id)
+        public async Task<string> DeleteStationAsync(int id)
         {
             var station = await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
             if (station != null)

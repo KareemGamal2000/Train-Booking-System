@@ -12,8 +12,8 @@ namespace DAL.Repo.Station
         Task<Entities.Station?> GetStationByIdAsync(int id);
         Task<Entities.Station?> GetStationByCodeAsync(string stationCode);
         Task<IEnumerable<Entities.Station>> GetStationsByNameAsync(string name);
-        Task<string> AddTrainAsync(Entities.Station station);
-        Task<string> UpdateStation(Entities.Station station);
-        Task<string> DeleteStationByIdAsync(int id);
+        Task<string> AddStationAsync(Entities.Station station);
+        Task<string> UpdateStationAsync(Entities.Station station);
+        Task<string> DeleteStationAsync(int id);
     }
 }
