@@ -1,4 +1,4 @@
-﻿using DAL.Entities;
+﻿using DAL.Entities.Ticket;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

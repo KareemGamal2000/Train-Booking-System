@@ -1,4 +1,6 @@
 ﻿using DAL.Entities;
+using DAL.Entities.Ticket;
+using DAL.Entities.Trip;
 using DAL.EntityConfigrations;
 using Microsoft.EntityFrameworkCore;
 using System;
