@@ -30,13 +30,13 @@ namespace BLL.Services
             return _mapper.Map<IEnumerable<CoachDto>>(coaches);
         }
 
-        public async Task<CoachDto?> GetByIdAsync(int id)
+        public async Task<CoachDto?> GetByIdAsync(Guid id)
         {
             var coach = await _coachRepo.GetCoachByIdAsync(id);
             return _mapper.Map<CoachDto>(coach);
         }
 
-        public async Task<IEnumerable<CoachDto>> GetByTrainIdAsync(int trainId)
+        public async Task<IEnumerable<CoachDto>> GetByTrainIdAsync(Guid trainId)
         {
             var coaches = await _coachRepo.GetCoachesByTrainIdAsync(trainId);
             return _mapper.Map<IEnumerable<CoachDto>>(coaches);
@@ -54,7 +54,7 @@ namespace BLL.Services
             return await _coachRepo.UpdateCoachAsync(entity);
         }
 
-        public async Task<string> DeleteAsync(int id)
+        public async Task<string> DeleteAsync(Guid id)
         {
             return await _coachRepo.DeleteCoachAsync(id);
         }

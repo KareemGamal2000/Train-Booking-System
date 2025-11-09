@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities.Trips;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace DAL.Entities
     public class Station
     {
         [Key]
-        public int Station_ID { get; set; }
+        public Guid Station_ID { get; set; }= Guid.NewGuid();
         public string StationNameEN { get; set; }
         public string StationNameAR { get; set; }
         public string StationCode { get; set; }

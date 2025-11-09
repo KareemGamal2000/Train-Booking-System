@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities.Trips;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace DAL.Entities
     public class Train
     {
         [Key]
-        public int Train_ID { get; set; }
+        public Guid Train_ID { get; set; } = Guid.NewGuid();
 
         public string TrainNumber { get; set; } //950
         public string TrainDescriptionEN { get; set; }  // AC 3

@@ -10,7 +10,7 @@ namespace DAL.Entities
     public class Class
     {
         [Key]
-        public int Class_ID { get; set; }
+        public Guid Class_ID { get; set; }
         public string ClassNameEN { get; set; }
         public string ClassNameAR { get; set; }
         public virtual ICollection<Coach> Coaches { get; set; } = new HashSet<Coach>();

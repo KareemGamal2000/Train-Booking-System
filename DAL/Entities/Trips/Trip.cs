@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities.Trip
+namespace DAL.Entities.Trips
 {
    
     [EntityTypeConfiguration(typeof(TripConfigration))]
     public class Trip
     {
         [Key]
-        public int Trip_ID { get; set; }
+        public Guid Trip_ID { get; set; } = Guid.NewGuid();
         [ForeignKey("TrainID")]
-        public int TrainID { get; set; }
-        public int DepartureStationID { get; set; }   // محطة الاقلاع
-        public int ArrivalStationID { get; set; }   // محطة الوصول
+        public Guid TrainID { get; set; }
+        public Guid DepartureStationID { get; set; }   // محطة الاقلاع
+        public Guid ArrivalStationID { get; set; }   // محطة الوصول
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public decimal TicketPrice { get; set; }

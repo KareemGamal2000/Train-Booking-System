@@ -12,10 +12,10 @@ namespace BLL.Interfaces
     public interface ICoachService
     {
         Task<IEnumerable<CoachDto>> GetAllAsync();
-        Task<CoachDto?> GetByIdAsync(int id);
-        Task<IEnumerable<CoachDto>> GetByTrainIdAsync(int trainId);
+        Task<CoachDto?> GetByIdAsync(Guid id);
+        Task<IEnumerable<CoachDto>> GetByTrainIdAsync(Guid trainId);
         Task<string> AddAsync(CoachDto coach);
         Task<string> UpdateAsync(CoachDto coach);
-        Task<string> DeleteAsync(int id);
+        Task<string> DeleteAsync(Guid id);
     }
 }

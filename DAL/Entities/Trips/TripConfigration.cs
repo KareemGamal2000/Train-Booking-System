@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities.Trip
+namespace DAL.Entities.Trips
 {
     public class TripConfigration : IEntityTypeConfiguration<Trip>
     {

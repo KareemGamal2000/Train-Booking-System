@@ -21,7 +21,7 @@ namespace DAL.Repo.Station
             return await _context.Stations.ToListAsync();
         }
 
-        public async Task<Entities.Station?> GetStationByIdAsync(int id)
+        public async Task<Entities.Station?> GetStationByIdAsync(Guid id)
         {
             return await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
         }
@@ -54,7 +54,7 @@ namespace DAL.Repo.Station
             return "Station updated successfully";
         }
 
-        public async Task<string> DeleteStationAsync(int id)
+        public async Task<string> DeleteStationAsync(Guid id)
         {
             var station = await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
             if (station != null)

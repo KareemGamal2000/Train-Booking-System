@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Primitives;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,18 +9,44 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class User
+    public class User : IdentityUser<Guid>
     {
-        [Key]
-        public int User_ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        [StringLength(50)]
+        [Required]
+        public string FirstName { get; set; }
 
-        public string PaymentInfo { get; set; }
-        public bool IsActive { get; set; }
+        [StringLength(50)]
+        [Required]
+        public string LastName { get; set; }
+
+        [StringLength(100)]
+        public string FullName => $"{FirstName} {LastName}";
+
+        [Required]
+        public DateTime? DateOfBirth { get; set; }
+
+        [StringLength(10)]
+        public string? Gender { get; set; }
+
+        [StringLength(50)]
+        [Required]
+        public string? PhoneNumber { get; set; }
+
+        [StringLength(500)]
+
+        public string? Address { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime? UpdatedAt { get; set; }
+
+        [StringLength(200)]
+        public string? ProfilePicture { get; set; }
+
+        public DateTime? LastLoginDate { get; set; }
+
+        [StringLength(10)]
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
     }

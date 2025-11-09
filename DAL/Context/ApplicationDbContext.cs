@@ -1,7 +1,9 @@
 ﻿using DAL.Entities;
-using DAL.Entities.Ticket;
-using DAL.Entities.Trip;
+using DAL.Entities.Tickets;
+using DAL.Entities.Trips;
 using DAL.EntityConfigrations;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Context
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid, IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Coach> Coaches { get; set; }

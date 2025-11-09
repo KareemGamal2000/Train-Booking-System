@@ -12,9 +12,9 @@ namespace BLL.Interfaces
     public interface ITrainService
     {
         Task<IEnumerable<TrainDto>> GetAllAsync();
-        Task<TrainDto?> GetByIdAsync(int id);
+        Task<TrainDto?> GetByIdAsync(Guid id);
         Task<string> AddAsync(TrainDto train);
         Task<string> UpdateAsync(TrainDto train);
-        Task<string> DeleteAsync(int id);
+        Task<string> DeleteAsync(Guid id);
     }
 }

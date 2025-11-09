@@ -22,7 +22,7 @@ namespace DAL.Repo.Train
         {
             return await _context.Trains.ToListAsync();
         }
-        public async Task<Entities.Train?> GetTrainByIdAsync(int id)
+        public async Task<Entities.Train?> GetTrainByIdAsync(Guid id)
         {
             return await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id);
         }
@@ -30,6 +30,7 @@ namespace DAL.Repo.Train
         {
             return await _context.Trains.FirstOrDefaultAsync(t => t.TrainNumber == trainNumber);
         }
+        // Replace the parameter type in AddTrainAsync from 'Train' to 'Entities.Train'
         public async Task<string> AddTrainAsync(Entities.Train train)
         {
             await _context.Trains.AddAsync(train);
@@ -42,7 +43,7 @@ namespace DAL.Repo.Train
             await _context.SaveChangesAsync();
             return "Train updated successfully";
         }
-        public async Task<string> DeleteTrainAsync(int id)
+        public async Task<string> DeleteTrainAsync(Guid id)
         {
             var train = await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id); ;
             if (train != null)

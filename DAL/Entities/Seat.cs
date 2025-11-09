@@ -11,10 +11,10 @@ namespace DAL.Entities
     public class Seat
     {
         [Key]
-        public int Seat_ID { get; set; }
+        public Guid Seat_ID { get; set; }= Guid.NewGuid();
         public string SeatNumber { get; set; }
         [ForeignKey("CoachID")]
-        public int CoachID { get; set; }
+        public Guid CoachID { get; set; }
         public virtual Coach Coach { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace BLL.Services
             return _mapper.Map<IEnumerable<StationDto>>(stations);
         }
 
-        public async Task<StationDto?> GetByIdAsync(int id)
+        public async Task<StationDto?> GetByIdAsync(Guid id)
         {
             var station = await _stationRepo.GetStationByIdAsync(id);
             return _mapper.Map<StationDto>(station);
@@ -48,7 +48,7 @@ namespace BLL.Services
             return await _stationRepo.UpdateStationAsync(entity);
         }
 
-        public async Task<string> DeleteStationAsync(int id)
+        public async Task<string> DeleteStationAsync(Guid id)
         {
             return await _stationRepo.DeleteStationAsync(id);
         }
