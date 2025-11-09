@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data.Repository.Coach
+{
+    public interface ICoachRepo
+    {
+        Task<IEnumerable<Entities.Coach>> GetCoachesAsync();
+        Task<Entities.Coach?> GetCoachByIdAsync(Guid id);
+        Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(Guid trainId);
+        Task<IEnumerable<Entities.Coach>> GetCoachClass(Entities.Coach coach);
+
+        Task<string> AddCoachAsync(Entities.Coach coach);
+
+        Task<string> UpdateCoachAsync(Entities.Coach coach);
+
+        Task<string> DeleteCoachAsync(Guid id);
+    }
+}

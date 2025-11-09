@@ -1,11 +1,11 @@
 
-using BLL.Interfaces;
-using BLL.Mapping;
-using BLL.Services;
-using DAL.Context;
-using DAL.Repo.Coach;
-using DAL.Repo.Station;
-using DAL.Repo.Train;
+using Domain.Interfaces;
+using Domain.Mapping;
+using Domain.Services;
+using Data.Context;
+using Data.Repository.Coach;
+using Data.Repository.Station;
+using Data.Repository.Train;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
@@ -16,23 +16,20 @@ namespace API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-            builder.Services.AddDbContext<ApplicationDbContext>(opt=>
-            opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            builder.Services.AddScoped<ITrainRepo, TrainRepo>();
-            builder.Services.AddScoped<ICoachRepo, CoachRepo>();
-            builder.Services.AddScoped<IStationRepo, StationRepo>();
-
-            // BLL
-            builder.Services.AddScoped<ITrainService, TrainService>();
-            builder.Services.AddScoped<ICoachService, CoachService>();
-            builder.Services.AddScoped<IStationService, StationService>();
-
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddApplicationServices(builder.Configuration);
 
             builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    policyBuilder =>
+                    {
+                        policyBuilder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -49,7 +46,9 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

@@ -1,7 +1,7 @@
-﻿using DAL.Entities;
-using DAL.Entities.Tickets;
-using DAL.Entities.Trips;
-using DAL.EntityConfigrations;
+﻿using Data.Entities;
+using Data.Entities.Tickets;
+using Data.Entities.Trips;
+using Data.EntityConfigrations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Context
+namespace Data.Context
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid, IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {

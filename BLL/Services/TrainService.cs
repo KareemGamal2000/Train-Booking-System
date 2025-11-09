@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using BLL.Dtos;
-using BLL.Interfaces;
-using DAL.Entities;
-using DAL.Repo.Train;
+using Domain.Dtos;
+using Domain.Interfaces;
+using Data.Entities;
+using Data.Repository.Train;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BLL.Services
+namespace Domain.Services
 {
     public class TrainService : ITrainService
     {

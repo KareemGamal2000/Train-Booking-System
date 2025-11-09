@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using BLL.Dtos;
-using BLL.Interfaces;
-using DAL.Entities;
-using DAL.Repo.Station;
+using Domain.Dtos;
+using Domain.Interfaces;
+using Data.Entities;
+using Data.Repository.Station;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BLL.Services
+namespace Domain.Services
 {
     public class StationService : IStationService
     {

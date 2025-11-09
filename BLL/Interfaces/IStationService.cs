@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BLL.Dtos;
+using Domain.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BLL.Interfaces
+namespace Domain.Interfaces
 {
     public interface IStationService
     {
