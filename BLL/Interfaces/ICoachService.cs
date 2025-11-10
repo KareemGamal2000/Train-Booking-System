@@ -12,10 +12,10 @@ namespace Domain.Interfaces
     public interface ICoachService
     {
         Task<IEnumerable<CoachDto>> GetAllAsync();
-        Task<CoachDto?> GetByIdAsync(Guid id);
-        Task<IEnumerable<CoachDto>> GetByTrainIdAsync(Guid trainId);
+        Task<CoachDto?> GetByIdAsync(long id);
+        Task<IEnumerable<CoachDto>> GetByTrainIdAsync(long trainId);
         Task<string> AddAsync(CoachDto coach);
         Task<string> UpdateAsync(CoachDto coach);
-        Task<string> DeleteAsync(Guid id);
+        Task<string> DeleteAsync(long id);
     }
 }

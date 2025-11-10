@@ -64,7 +64,8 @@ namespace Data.Migrations
                 name: "Classes",
                 columns: table => new
                 {
-                    Class_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Class_ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ClassNameEN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClassNameAR = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -94,7 +95,8 @@ namespace Data.Migrations
                 name: "Trains",
                 columns: table => new
                 {
-                    Train_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Train_ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TrainNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrainDescriptionEN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrainDescriptionAR = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -214,13 +216,14 @@ namespace Data.Migrations
                 name: "Coaches",
                 columns: table => new
                 {
-                    Coach_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Coach_ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CoachNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TotalSeats = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     NoSeatsFlag = table.Column<bool>(type: "bit", nullable: false),
-                    TrainID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TrainID = table.Column<long>(type: "bigint", nullable: false),
+                    ClassId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -244,7 +247,7 @@ namespace Data.Migrations
                 columns: table => new
                 {
                     Trip_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TrainID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TrainID = table.Column<long>(type: "bigint", nullable: false),
                     DepartureStationID = table.Column<long>(type: "bigint", nullable: false),
                     ArrivalStationID = table.Column<long>(type: "bigint", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -279,9 +282,10 @@ namespace Data.Migrations
                 name: "Seats",
                 columns: table => new
                 {
-                    Seat_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Seat_ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SeatNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoachID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CoachID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -330,8 +334,8 @@ namespace Data.Migrations
                     TicketReference = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BookingID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TripID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SeatID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClassID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    SeatID = table.Column<long>(type: "bigint", nullable: false),
+                    ClassID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {

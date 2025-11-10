@@ -22,7 +22,7 @@ namespace Data.Repository.Train
         {
             return await _context.Trains.ToListAsync();
         }
-        public async Task<Entities.Train?> GetTrainByIdAsync(Guid id)
+        public async Task<Entities.Train?> GetTrainByIdAsync(long id)
         {
             return await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id);
         }
@@ -42,7 +42,7 @@ namespace Data.Repository.Train
             await _context.SaveChangesAsync();
             return "Train updated successfully";
         }
-        public async Task<string> DeleteTrainAsync(Guid id)
+        public async Task<string> DeleteTrainAsync(long id)
         {
             var train = await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id); ;
             if (train != null)

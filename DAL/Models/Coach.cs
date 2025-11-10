@@ -11,17 +11,17 @@ namespace Data.Entities
     public class Coach
     {
         [Key]
-        public Guid Coach_ID { get; set; }= Guid.NewGuid();
+        public long Coach_ID { get; set; } 
         public string CoachNumber { get; set; }
         public int TotalSeats { get; set; }
         public bool IsActive { get; set; }
         public bool NoSeatsFlag { get; set; }
         [ForeignKey("TrainID")]
-        public Guid TrainID { get; set; }
+        public long TrainID { get; set; }
         public virtual Train Train { get; set; }
 
         [ForeignKey("ClassId")]
-        public Guid ClassId { get; set; }
+        public long ClassId { get; set; }
         public virtual Class Class { get; set; }
 
         public virtual ICollection<Seat> Seats { get; set; } = new HashSet<Seat>();

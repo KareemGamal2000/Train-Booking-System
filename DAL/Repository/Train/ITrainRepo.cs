@@ -9,11 +9,11 @@ namespace Data.Repository.Train
     public interface ITrainRepo
     {
         Task<IEnumerable<Entities.Train>> GetAllTrainsAsync();
-        Task<Entities.Train?> GetTrainByIdAsync(Guid id);
+        Task<Entities.Train?> GetTrainByIdAsync(long id);
         Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainNumber);
         Task<string> AddTrainAsync(Entities.Train train);
 
         Task<string> UpdateTrainAsync(Entities.Train train);
-        Task<string> DeleteTrainAsync(Guid id);
+        Task<string> DeleteTrainAsync(long id);
     }
 }

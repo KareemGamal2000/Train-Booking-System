@@ -11,8 +11,7 @@ namespace Data.Entities
     public class Train
     {
         [Key]
-        public Guid Train_ID { get; set; } = Guid.NewGuid();
-
+        public long Train_ID { get; set; } 
         public string TrainNumber { get; set; } //950
         public string TrainDescriptionEN { get; set; }  // AC 3
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251110124031_intialmigration")]
+    [Migration("20251110143411_intialmigration")]
     partial class intialmigration
     {
         /// <inheritdoc />
@@ -58,9 +58,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Class", b =>
                 {
-                    b.Property<Guid>("Class_ID")
+                    b.Property<long>("Class_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Class_ID"));
 
                     b.Property<string>("ClassNameAR")
                         .IsRequired()
@@ -77,12 +79,14 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Coach", b =>
                 {
-                    b.Property<Guid>("Coach_ID")
+                    b.Property<long>("Coach_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("ClassId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Coach_ID"));
+
+                    b.Property<long>("ClassId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CoachNumber")
                         .IsRequired()
@@ -97,8 +101,8 @@ namespace Data.Migrations
                     b.Property<int>("TotalSeats")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("TrainID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("TrainID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Coach_ID");
 
@@ -111,12 +115,14 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Seat", b =>
                 {
-                    b.Property<Guid>("Seat_ID")
+                    b.Property<long>("Seat_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("CoachID")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Seat_ID"));
+
+                    b.Property<long>("CoachID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("SeatNumber")
                         .IsRequired()
@@ -170,11 +176,11 @@ namespace Data.Migrations
                     b.Property<Guid>("BookingID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClassID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("ClassID")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("SeatID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("SeatID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("TicketReference")
                         .IsRequired()
@@ -199,9 +205,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Train", b =>
                 {
-                    b.Property<Guid>("Train_ID")
+                    b.Property<long>("Train_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Train_ID"));
 
                     b.Property<string>("TrainDescriptionAR")
                         .IsRequired()
@@ -244,8 +252,8 @@ namespace Data.Migrations
                     b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("TrainID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("TrainID")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Trip_ID");
 

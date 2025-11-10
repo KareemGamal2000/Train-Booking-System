@@ -22,11 +22,11 @@ namespace Data.Repository.Coach
         {
             return await _context.Coaches.ToListAsync();
         }
-        public async Task<Entities.Coach?> GetCoachByIdAsync(Guid id)
+        public async Task<Entities.Coach?> GetCoachByIdAsync(long id)
         {
             return await _context.Coaches.FirstOrDefaultAsync(c => c.Coach_ID == id);
         }
-        public async Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(Guid trainId)
+        public async Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(long trainId)
         {
             return await _context.Coaches.Where(c => c.TrainID == trainId).ToListAsync();
         }
@@ -46,7 +46,7 @@ namespace Data.Repository.Coach
             await _context.SaveChangesAsync();
             return "Coach updated successfully";
         }
-        public async Task<string> DeleteCoachAsync(Guid id)
+        public async Task<string> DeleteCoachAsync(long id)
         {
             var coach = await _context.Coaches.FirstOrDefaultAsync(c => c.Coach_ID == id);
             if (coach != null)

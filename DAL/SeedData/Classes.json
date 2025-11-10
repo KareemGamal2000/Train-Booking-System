@@ -1,0 +1,92 @@
+﻿[
+  {
+    "Class_Class_ID": "1200000",
+    "ClassNameEN": null,
+    "ClassNameAR": null
+  },
+  {
+    "Class_ID": "1210000",
+    "ClassNameEN": "AC 1",
+    "ClassNameAR": "أولى مكيفة"
+  },
+  {
+    "Class_ID": "1210001",
+    "ClassNameEN": "AC 2",
+    "ClassNameAR": "ثانية مكيفة"
+  },
+  {
+    "Class_ID": "1210002",
+    "ClassNameEN": "Norm 1",
+    "ClassNameAR": "أولى عادية"
+  },
+  {
+    "Class_ID": "1210003",
+    "ClassNameEN": "Norm 2",
+    "ClassNameAR": "ثانية عادية"
+  },
+  {
+    "Class_ID": "1210004",
+    "ClassNameEN": "Norm 3",
+    "ClassNameAR": "تحيا مصر"
+  },
+  {
+    "Class_ID": "1210005",
+    "ClassNameEN": "RClassNameENo 2",
+    "ClassNameAR": "ثانية مميزة"
+  },
+  {
+    "Class_ID": "1210006",
+    "ClassNameEN": "RClassNameENo 3",
+    "ClassNameAR": "ثالثة عادية محسنه"
+  },
+  {
+    "Class_ID": "1210007",
+    "ClassNameEN": "Dev 3",
+    "ClassNameAR": "ثالثة مطورة"
+  },
+  {
+    "Class_ID": "1210008",
+    "ClassNameEN": "Suburb",
+    "ClassNameAR": "ضواحي"
+  },
+  {
+    "Class_ID": "1210058",
+    "ClassNameEN": "G.A.L",
+    "ClassNameAR": "ثالثة تهوية بحري"
+  },
+  {
+    "Class_ID": "1210059",
+    "ClassNameEN": "GA 2",
+    "ClassNameAR": "ثالثة تهوية"
+  },
+  {
+    "Class_ID": "1210060",
+    "ClassNameEN": "Improved",
+    "ClassNameAR": "محسنة"
+  },
+  {
+    "Class_ID": "1210061",
+    "ClassNameEN": "AC 3",
+    "ClassNameAR": "ثالثة مكيفة"
+  },
+  {
+    "Class_ID": "1210062",
+    "ClassNameEN": "Norm 3 Tahia",
+    "ClassNameAR": "تحيا مصر"
+  },
+  {
+    "Class_ID": "928779217255072741",
+    "ClassNameEN": "AC 3 Bahri",
+    "ClassNameAR": "ثالثة مكيفة بحري"
+  },
+  {
+    "Class_ID": "1087711519230591973",
+    "ClassNameEN": "PRIMUM VIP",
+    "ClassNameAR": "PRIMUM VIP"
+  },
+  {
+    "Class_ID": "1095805278246807309",
+    "ClassNameEN": "AC 2 m",
+    "ClassNameAR": "ثانية مكيفةم"
+  }
+]

@@ -10,7 +10,7 @@ namespace Data.Entities
     public class Class
     {
         [Key]
-        public Guid Class_ID { get; set; }
+        public long Class_ID { get; set; }
         public string ClassNameEN { get; set; }
         public string ClassNameAR { get; set; }
         public virtual ICollection<Coach> Coaches { get; set; } = new HashSet<Coach>();

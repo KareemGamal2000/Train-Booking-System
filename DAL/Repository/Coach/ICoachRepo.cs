@@ -9,14 +9,14 @@ namespace Data.Repository.Coach
     public interface ICoachRepo
     {
         Task<IEnumerable<Entities.Coach>> GetCoachesAsync();
-        Task<Entities.Coach?> GetCoachByIdAsync(Guid id);
-        Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(Guid trainId);
+        Task<Entities.Coach?> GetCoachByIdAsync(long id);
+        Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(long trainId);
         Task<IEnumerable<Entities.Coach>> GetCoachClass(Entities.Coach coach);
 
         Task<string> AddCoachAsync(Entities.Coach coach);
 
         Task<string> UpdateCoachAsync(Entities.Coach coach);
 
-        Task<string> DeleteCoachAsync(Guid id);
+        Task<string> DeleteCoachAsync(long id);
     }
 }

@@ -20,8 +20,8 @@ namespace Data.Entities.Tickets
         public string TicketReference { get; set; }
         public Guid BookingID { get; set; }
         public Guid TripID { get; set; }
-        public Guid SeatID { get; set; }
-        public Guid ClassID { get; set; }
+        public long SeatID { get; set; }
+        public long ClassID { get; set; }
         public virtual Booking Booking { get; set; } // Ticket belongs to One Booking
         public virtual Trip Trip { get; set; }
         public virtual Seat Seat { get; set; }       // One-to-One: Ticket reserves One Seat

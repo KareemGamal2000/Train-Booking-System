@@ -11,10 +11,10 @@ namespace Data.Entities
     public class Seat
     {
         [Key]
-        public Guid Seat_ID { get; set; }= Guid.NewGuid();
+        public long Seat_ID { get; set; }
         public string SeatNumber { get; set; }
         [ForeignKey("CoachID")]
-        public Guid CoachID { get; set; }
+        public long CoachID { get; set; }
         public virtual Coach Coach { get; set; }
     }
 }

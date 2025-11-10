@@ -30,13 +30,13 @@ namespace Domain.Services
             return _mapper.Map<IEnumerable<CoachDto>>(coaches);
         }
 
-        public async Task<CoachDto?> GetByIdAsync(Guid id)
+        public async Task<CoachDto?> GetByIdAsync(long id)
         {
             var coach = await _coachRepo.GetCoachByIdAsync(id);
             return _mapper.Map<CoachDto>(coach);
         }
 
-        public async Task<IEnumerable<CoachDto>> GetByTrainIdAsync(Guid trainId)
+        public async Task<IEnumerable<CoachDto>> GetByTrainIdAsync(long trainId)
         {
             var coaches = await _coachRepo.GetCoachesByTrainIdAsync(trainId);
             return _mapper.Map<IEnumerable<CoachDto>>(coaches);
@@ -54,7 +54,7 @@ namespace Domain.Services
             return await _coachRepo.UpdateCoachAsync(entity);
         }
 
-        public async Task<string> DeleteAsync(Guid id)
+        public async Task<string> DeleteAsync(long id)
         {
             return await _coachRepo.DeleteCoachAsync(id);
         }
