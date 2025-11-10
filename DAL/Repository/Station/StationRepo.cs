@@ -21,9 +21,9 @@ namespace Data.Repository.Station
             return await _context.Stations.ToListAsync();
         }
 
-        public async Task<Entities.Station?> GetStationByIdAsync(Guid id)
+        public async Task<Entities.Station?> GetStationByIdAsync(long id)
         {
-            return await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
+            return await _context.Stations.FirstOrDefaultAsync(s => s.StationID == id);
         }
 
         public async Task<Entities.Station?> GetStationByCodeAsync(string stationCode)
@@ -54,9 +54,9 @@ namespace Data.Repository.Station
             return "Station updated successfully";
         }
 
-        public async Task<string> DeleteStationAsync(Guid id)
+        public async Task<string> DeleteStationAsync(long id)
         {
-            var station = await _context.Stations.FirstOrDefaultAsync(s => s.Station_ID == id);
+            var station = await _context.Stations.FirstOrDefaultAsync(s => s.StationID == id);
             if (station != null)
             {
                 _context.Stations.Remove(station);

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialMigration : Migration
+    public partial class intialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,15 +77,17 @@ namespace Data.Migrations
                 name: "Stations",
                 columns: table => new
                 {
-                    Station_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StationID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StationNameEN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StationNameAR = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StationCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ShortName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stations", x => x.Station_ID);
+                    table.PrimaryKey("PK_Stations", x => x.StationID);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,8 +245,8 @@ namespace Data.Migrations
                 {
                     Trip_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TrainID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DepartureStationID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ArrivalStationID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DepartureStationID = table.Column<long>(type: "bigint", nullable: false),
+                    ArrivalStationID = table.Column<long>(type: "bigint", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TicketPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -257,13 +259,13 @@ namespace Data.Migrations
                         name: "FK_Trips_Stations_ArrivalStationID",
                         column: x => x.ArrivalStationID,
                         principalTable: "Stations",
-                        principalColumn: "Station_ID",
+                        principalColumn: "StationID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Trips_Stations_DepartureStationID",
                         column: x => x.DepartureStationID,
                         principalTable: "Stations",
-                        principalColumn: "Station_ID",
+                        principalColumn: "StationID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Trips_Trains_TrainID",

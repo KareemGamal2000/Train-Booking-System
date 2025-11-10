@@ -1,0 +1,5346 @@
+﻿[
+  {
+    "StationID": "606535390819516493",
+    "StationNameAR": "المنيا",
+    "StationNameEN": "EL-MINIA",
+    "StationCode": "41912",
+    "ShortName": "ENR_678",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557971",
+    "StationNameAR": "راس الحكمه",
+    "StationNameEN": "RAS EL HEKMA",
+    "StationCode": "7585",
+    "ShortName": "ENR_134",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191743",
+    "StationNameAR": "الكوم الاحمر",
+    "StationNameEN": "EL KOM EL AHMStationNameAR",
+    "StationCode": "31763",
+    "ShortName": "ENR_564",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776015",
+    "StationNameAR": "جرجا",
+    "StationNameEN": "GIRGA",
+    "StationCode": "44160",
+    "ShortName": "ENR_730",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433426",
+    "StationNameAR": "شبين الكوم",
+    "StationNameEN": "SHEBEEN EL KOOM",
+    "StationCode": "22166",
+    "ShortName": "ENR_383",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433427",
+    "StationNameAR": "شنوان",
+    "StationNameEN": "SHENWAN",
+    "StationCode": "22193",
+    "ShortName": "ENR_384",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149114",
+    "StationNameAR": "غبريال",
+    "StationNameEN": "GABRIAL",
+    "StationCode": "9074",
+    "ShortName": "ENR_159",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433429",
+    "StationNameAR": "منوف",
+    "StationNameEN": "MENOUF",
+    "StationCode": "22255",
+    "ShortName": "ENR_386",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433435",
+    "StationNameAR": "سمادون",
+    "StationNameEN": "SEMADOON",
+    "StationCode": "22344",
+    "ShortName": "ENR_392",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830258",
+    "StationNameAR": "القناطر الخيريه",
+    "StationNameEN": "EL KANATER EL KHAYRYAH",
+    "StationCode": "23049",
+    "ShortName": "ENR_401",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557972",
+    "StationNameAR": "اطنوح",
+    "StationNameEN": "ATNOUH",
+    "StationCode": "7610",
+    "ShortName": "ENR_135",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557973",
+    "StationNameAR": "سيدي حنيش",
+    "StationNameEN": "SStationIDI HANEISH",
+    "StationCode": "7647",
+    "ShortName": "ENR_136",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557974",
+    "StationNameAR": "سيدي حنوش",
+    "StationNameEN": "SStationIDI HANOUSH",
+    "StationCode": "7674",
+    "ShortName": "ENR_137",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574469",
+    "StationNameAR": "كفر المسلميه",
+    "StationNameEN": "KAFR EL MESALMIA",
+    "StationCode": "13014",
+    "ShortName": "ENR_220",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645560",
+    "StationNameAR": "دار السـلام",
+    "StationNameEN": "DStationNameAR EL SALAM",
+    "StationCode": "34377",
+    "ShortName": "ENR_607",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776027",
+    "StationNameAR": "نجع حمادي",
+    "StationNameEN": "NAG HAMMADI",
+    "StationCode": "44437",
+    "ShortName": "ENR_742",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557952",
+    "StationNameAR": "العامريه",
+    "StationNameEN": "EL AMREYA",
+    "StationCode": "7138",
+    "ShortName": "ENR_115",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776008",
+    "StationNameAR": "سوهاج",
+    "StationNameEN": "SOHAG",
+    "StationCode": "43554",
+    "ShortName": "ENR_723",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775989",
+    "StationNameAR": "اسيوط",
+    "StationNameEN": "ASYUT",
+    "StationCode": "42671",
+    "ShortName": "ENR_704",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557960",
+    "StationNameAR": "الرويسات",
+    "StationNameEN": "EL ROWAYSAT",
+    "StationCode": "7343",
+    "ShortName": "ENR_123",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557961",
+    "StationNameAR": "العميد",
+    "StationNameEN": "EL AMEED",
+    "StationCode": "7370",
+    "ShortName": "ENR_124",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433422",
+    "StationNameAR": "البتانون",
+    "StationNameEN": "EL BATOON",
+    "StationCode": "22102",
+    "ShortName": "ENR_379",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557968",
+    "StationNameAR": "سيدي شبيب",
+    "StationNameEN": "SStationIDI SHBEEB",
+    "StationCode": "7503",
+    "ShortName": "ENR_131",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433433",
+    "StationNameAR": "رمله الانجب",
+    "StationNameEN": "RAMLA AL ANGAM",
+    "StationCode": "22317",
+    "ShortName": "ENR_390",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557975",
+    "StationNameAR": "جراوله",
+    "StationNameEN": "GRAWLA",
+    "StationCode": "7709",
+    "ShortName": "ENR_138",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229845",
+    "StationNameAR": "الشراونه",
+    "StationNameEN": "EL-SHStationNameARWNA",
+    "StationCode": "45212",
+    "ShortName": "ENR_786",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582724",
+    "StationNameAR": "الشبانات",
+    "StationNameEN": "EL-SHBANAT",
+    "StationCode": "16280",
+    "ShortName": "ENR_269",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582753",
+    "StationNameAR": "الضبعيه",
+    "StationNameEN": "EL  DABAA",
+    "StationCode": "17010",
+    "ShortName": "ENR_298",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396672",
+    "StationNameAR": "السويس",
+    "StationNameEN": "SUEZ",
+    "StationCode": "17430",
+    "ShortName": "ENR_315",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775990",
+    "StationNameAR": "شطب",
+    "StationNameEN": "SHATB",
+    "StationCode": "43018",
+    "ShortName": "ENR_705",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191753",
+    "StationNameAR": "الفيوم",
+    "StationNameEN": "EL FAYOUM",
+    "StationCode": "32164",
+    "ShortName": "ENR_574",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543638",
+    "StationNameAR": "كوم حماده",
+    "StationNameEN": "KOM HAMADA",
+    "StationCode": "31076",
+    "ShortName": "ENR_537",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776032",
+    "StationNameAR": "فاو",
+    "StationNameEN": "FAW",
+    "StationCode": "44553",
+    "ShortName": "ENR_747",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543644",
+    "StationNameAR": "الطيريه",
+    "StationNameEN": "EL TAYRAH",
+    "StationCode": "31192",
+    "ShortName": "ENR_543",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582755",
+    "StationNameAR": "سرابيوم",
+    "StationNameEN": "SERABYUM",
+    "StationCode": "17074",
+    "ShortName": "ENR_300",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557965",
+    "StationNameAR": "سيدي عبد الرحمن",
+    "StationNameEN": "SStationIDI ABD EL RAHMAN",
+    "StationCode": "7432",
+    "ShortName": "ENR_128",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557970",
+    "StationNameAR": "فوكه",
+    "StationNameEN": "FOKA",
+    "StationCode": "7558",
+    "ShortName": "ENR_133",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557969",
+    "StationNameAR": "جلال",
+    "StationNameEN": "GALAL",
+    "StationCode": "7521",
+    "ShortName": "ENR_132",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189603",
+    "StationNameAR": "الحضره",
+    "StationNameEN": "ALHADRAH",
+    "StationCode": "5792",
+    "ShortName": "ENR_100",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189574",
+    "StationNameAR": "عرب الرمل",
+    "StationNameEN": "StationNameARAB EL-RAMAL",
+    "StationCode": "5210",
+    "ShortName": "ENR_71",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516470",
+    "StationNameAR": "بني سويف",
+    "StationNameEN": "BENI SUEF",
+    "StationCode": "41225",
+    "ShortName": "ENR_655",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543636",
+    "StationNameAR": "صفط العنب",
+    "StationNameEN": "SAFT EL ENAB",
+    "StationCode": "31049",
+    "ShortName": "ENR_535",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191738",
+    "StationNameAR": "ذات الكوم",
+    "StationNameEN": "ZAT EL KOM",
+    "StationCode": "31647",
+    "ShortName": "ENR_559",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543647",
+    "StationNameAR": "البريجات",
+    "StationNameEN": "EL BRYGAT",
+    "StationCode": "31281",
+    "ShortName": "ENR_546",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543641",
+    "StationNameAR": "منشاه ابوريه",
+    "StationNameEN": "MANSHAT ABURAYAH",
+    "StationCode": "31165",
+    "ShortName": "ENR_540",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877956",
+    "StationNameAR": "اسوان",
+    "StationNameEN": "ASWAN",
+    "StationCode": "45829",
+    "ShortName": "ENR_819",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191735",
+    "StationNameAR": "القطا",
+    "StationNameEN": "EL QTA",
+    "StationCode": "31558",
+    "ShortName": "ENR_556",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191734",
+    "StationNameAR": "القطاالبلد",
+    "StationNameEN": "EL QTA EL BALAD",
+    "StationCode": "31521",
+    "ShortName": "ENR_555",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574457",
+    "StationNameAR": "شبين القناطر",
+    "StationNameEN": "SHEBEIN EL QANATER",
+    "StationCode": "12168",
+    "ShortName": "ENR_208",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574464",
+    "StationNameAR": "بلبيس",
+    "StationNameEN": "BELBEIS",
+    "StationCode": "12373",
+    "ShortName": "ENR_215",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574465",
+    "StationNameAR": "اولاد سيف",
+    "StationNameEN": "AWLAD SEIF",
+    "StationCode": "12408",
+    "ShortName": "ENR_216",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433420",
+    "StationNameAR": "تلا",
+    "StationNameEN": "TELLA",
+    "StationCode": "22040",
+    "ShortName": "ENR_377",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534779596177491",
+    "StationNameAR": "الزاويه الحمراء",
+    "StationNameEN": "EL ZAWYA EL HAMRA",
+    "StationCode": "3025",
+    "ShortName": "ENR_34",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582723",
+    "StationNameAR": "الزقازيق",
+    "StationNameEN": "EL-ZQAZYQ",
+    "StationCode": "16253",
+    "ShortName": "ENR_268",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478407",
+    "StationNameAR": "شربين",
+    "StationNameEN": "SHRBIN",
+    "StationCode": "27616",
+    "ShortName": "ENR_472",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433430",
+    "StationNameAR": "كفر السنابسه",
+    "StationNameEN": "KAFR EL SANABAH",
+    "StationCode": "22264",
+    "ShortName": "ENR_387",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557938",
+    "StationNameAR": "الاسكندريه",
+    "StationNameEN": "ALEXANDRIA",
+    "StationCode": "5818",
+    "ShortName": "ENR_101",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149113",
+    "StationNameAR": "السوق",
+    "StationNameEN": "EL SOUK",
+    "StationCode": "9047",
+    "ShortName": "ENR_158",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534187276566625",
+    "StationNameAR": "القاهره",
+    "StationNameEN": "CAIRO",
+    "StationCode": "108",
+    "ShortName": "ENR_1",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396700",
+    "StationNameAR": "النجيله",
+    "StationNameEN": "EL NEGILLA",
+    "StationCode": "19134",
+    "ShortName": "ENR_343",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877944",
+    "StationNameAR": "كوم امبو",
+    "StationNameEN": "KOM OMBO",
+    "StationCode": "45641",
+    "ShortName": "ENR_807",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557955",
+    "StationNameAR": "مطاربرج العرب",
+    "StationNameEN": "MATStationNameAR BORG EL StationNameARAB",
+    "StationCode": "7192",
+    "ShortName": "ENR_118",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396703",
+    "StationNameAR": "جلبانه",
+    "StationNameEN": "GELBANA",
+    "StationCode": "19189",
+    "ShortName": "ENR_346",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396701",
+    "StationNameAR": "بئر العبد",
+    "StationNameEN": "BEER EL ABD",
+    "StationCode": "19161",
+    "ShortName": "ENR_344",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396702",
+    "StationNameAR": "بالوظه",
+    "StationNameEN": "BALOZA",
+    "StationCode": "19170",
+    "ShortName": "ENR_345",
+    "IsActive": true
+  },
+  {
+    "StationID": "983398255377448963",
+    "StationNameAR": "السلام شرق",
+    "StationNameEN": "ELSALAM EAST",
+    "StationCode": null,
+    "ShortName": "ENR_936",
+    "IsActive": true
+  },
+  {
+    "StationID": "983398255413035011",
+    "StationNameAR": "30 يونيه",
+    "StationNameEN": "JUNE 30",
+    "StationCode": null,
+    "ShortName": "ENR_937",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396698",
+    "StationNameAR": "رمانه",
+    "StationNameEN": "ROMANA",
+    "StationCode": "19072",
+    "ShortName": "ENR_341",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396696",
+    "StationNameAR": "م القنطره شرق",
+    "StationNameEN": "EL QANTA5A SHStationNameARQ",
+    "StationCode": "19018",
+    "ShortName": "ENR_339",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543635",
+    "StationNameAR": "قليشان",
+    "StationNameEN": "QELYSHAN",
+    "StationCode": "31021",
+    "ShortName": "ENR_534",
+    "IsActive": true
+  },
+  {
+    "StationID": "985257658210526989",
+    "StationNameAR": "السادات",
+    "StationNameEN": "SADAT",
+    "StationCode": null,
+    "ShortName": "ENR_938",
+    "IsActive": true
+  },
+  {
+    "StationID": "985257658234119949",
+    "StationNameAR": "كفر الجزار",
+    "StationNameEN": "KAFR EL-GAZZStationNameAR",
+    "StationCode": null,
+    "ShortName": "ENR_939",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645575",
+    "StationNameAR": "الجيزه",
+    "StationNameEN": "EL-GIZA",
+    "StationCode": "40075",
+    "ShortName": "ENR_622",
+    "IsActive": true
+  },
+  {
+    "StationID": "985257658148595469",
+    "StationNameAR": "صعيد مصر",
+    "StationNameEN": "UPPER EGYPT",
+    "StationCode": null,
+    "ShortName": "ENR_935",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534779596177504",
+    "StationNameAR": "القلج البلد",
+    "StationNameEN": "EL QALAG EL BALAD",
+    "StationCode": "4024",
+    "ShortName": "ENR_47",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534779596177505",
+    "StationNameAR": "القلج",
+    "StationNameEN": "EL QALAG",
+    "StationCode": "4042",
+    "ShortName": "ENR_48",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534779596177506",
+    "StationNameAR": "الجبل الاصفر",
+    "StationNameEN": "EL GABAL EL ASFStationNameAR",
+    "StationCode": "4079",
+    "ShortName": "ENR_49",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189562",
+    "StationNameAR": "الشوبك",
+    "StationNameEN": "EL SHOBAK",
+    "StationCode": "4202",
+    "ShortName": "ENR_59",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189566",
+    "StationNameAR": "ميت حلفا",
+    "StationNameEN": "MEET HALFA",
+    "StationCode": "5050",
+    "ShortName": "ENR_63",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645595",
+    "StationNameAR": "كفر عمار",
+    "StationNameEN": "KAFR AMStationNameAR",
+    "StationCode": "40557",
+    "ShortName": "ENR_642",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478430",
+    "StationNameAR": "الحناوي",
+    "StationNameEN": "EL HENAWY",
+    "StationCode": "29187",
+    "ShortName": "ENR_495",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478431",
+    "StationNameAR": "البكاتوش",
+    "StationNameEN": "EL BAKATOOSH",
+    "StationCode": "29196",
+    "ShortName": "ENR_496",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478432",
+    "StationNameAR": "كفر الجزاير",
+    "StationNameEN": "KAFR EL GAZAYER",
+    "StationCode": "29212",
+    "ShortName": "ENR_497",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478434",
+    "StationNameAR": "المدينه",
+    "StationNameEN": "EL MADINAH",
+    "StationCode": "29258",
+    "ShortName": "ENR_499",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478435",
+    "StationNameAR": "جماجمون",
+    "StationNameEN": "GAMAGMON",
+    "StationCode": "29267",
+    "ShortName": "ENR_500",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478433",
+    "StationNameAR": "شباس",
+    "StationNameEN": "SHBASS",
+    "StationCode": "29221",
+    "ShortName": "ENR_498",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543603",
+    "StationNameAR": "الرحمانيه",
+    "StationNameEN": "EL RAHMANYH",
+    "StationCode": "29310",
+    "ShortName": "ENR_502",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543604",
+    "StationNameAR": "الفتح",
+    "StationNameEN": "EL FATH",
+    "StationCode": "29329",
+    "ShortName": "ENR_503",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543606",
+    "StationNameAR": "الهــــــــواريـه",
+    "StationNameEN": "EL HAWStationNameARYAH",
+    "StationCode": "29365",
+    "ShortName": "ENR_505",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543608",
+    "StationNameAR": "نفره",
+    "StationNameEN": "NAFRA",
+    "StationCode": "29409",
+    "ShortName": "ENR_507",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543609",
+    "StationNameAR": "كفر بني هلال",
+    "StationNameEN": "KAFR BANY HELAL",
+    "StationCode": "29436",
+    "ShortName": "ENR_508",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189572",
+    "StationNameAR": "سندهور",
+    "StationNameEN": "SINDNHOR",
+    "StationCode": "5176",
+    "ShortName": "ENR_69",
+    "IsActive": true
+  },
+  {
+    "StationID": "606534779596177503",
+    "StationNameAR": "23يوليه",
+    "StationNameEN": "23 JULY",
+    "StationCode": "4015",
+    "ShortName": "ENR_46",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189585",
+    "StationNameAR": "كفر الزيات",
+    "StationNameEN": "KAFR EL-ZAIAT",
+    "StationCode": "5416",
+    "ShortName": "ENR_82",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191740",
+    "StationNameAR": "الجلاتمه",
+    "StationNameEN": "EL GALATMA",
+    "StationCode": "31683",
+    "ShortName": "ENR_561",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189567",
+    "StationNameAR": "قليوب",
+    "StationNameEN": "QALYUB",
+    "StationCode": "5078",
+    "ShortName": "ENR_64",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189575",
+    "StationNameAR": "قويسنا",
+    "StationNameEN": "QUESNA",
+    "StationCode": "5238",
+    "ShortName": "ENR_72",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189565",
+    "StationNameAR": "شبرا الخيمه",
+    "StationNameEN": "SHUBRA EL-KHEIMA",
+    "StationCode": "5014",
+    "ShortName": "ENR_62",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189582",
+    "StationNameAR": "طنطا",
+    "StationNameEN": "TANTA",
+    "StationCode": "5354",
+    "ShortName": "ENR_79",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543650",
+    "StationNameAR": "الاخماس",
+    "StationNameEN": "EL AKHMAS",
+    "StationCode": "31370",
+    "ShortName": "ENR_549",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543642",
+    "StationNameAR": "الاتحاد",
+    "StationNameEN": "EL ETEHAD",
+    "StationCode": "31174",
+    "ShortName": "ENR_541",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543639",
+    "StationNameAR": "كفر بولين",
+    "StationNameEN": "KAFR BOLEIN",
+    "StationCode": "31101",
+    "ShortName": "ENR_538",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189579",
+    "StationNameAR": "ابو مشهور",
+    "StationNameEN": "ABU MASHHOUR",
+    "StationCode": "5292",
+    "ShortName": "ENR_76",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191736",
+    "StationNameAR": "برقاش",
+    "StationNameEN": "BERQASH",
+    "StationCode": "31585",
+    "ShortName": "ENR_557",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574485",
+    "StationNameAR": "السنبلاوين",
+    "StationNameEN": "EL SENBELAWEEN",
+    "StationCode": "13407",
+    "ShortName": "ENR_236",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557976",
+    "StationNameAR": "سملا",
+    "StationNameEN": "SAMLA",
+    "StationCode": "7736",
+    "ShortName": "ENR_139",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189573",
+    "StationNameAR": "بنها",
+    "StationNameEN": "BANHA",
+    "StationCode": "5194",
+    "ShortName": "ENR_70",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543643",
+    "StationNameAR": "الطيريه البلد",
+    "StationNameEN": "EL TAYRAH EL BALAD",
+    "StationCode": "31183",
+    "ShortName": "ENR_542",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557946",
+    "StationNameAR": "جنينه القباري",
+    "StationNameEN": "GUNENA EL QABStationNameARY",
+    "StationCode": "7012",
+    "ShortName": "ENR_109",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557949",
+    "StationNameAR": "م ـ المكس",
+    "StationNameEN": "M-EL MAX",
+    "StationCode": "7076",
+    "ShortName": "ENR_112",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557950",
+    "StationNameAR": "سيدي مرغب",
+    "StationNameEN": "SEYDI MERGHEB",
+    "StationCode": "7094",
+    "ShortName": "ENR_113",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557951",
+    "StationNameAR": "عبد القادر",
+    "StationNameEN": "ABD EL QADER",
+    "StationCode": "7101",
+    "ShortName": "ENR_114",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557962",
+    "StationNameAR": "جباسات العميد",
+    "StationNameEN": "GABASAT EL AMEED",
+    "StationCode": "7389",
+    "ShortName": "ENR_125",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189592",
+    "StationNameAR": "دمنهور",
+    "StationNameEN": "DAMNHOUR",
+    "StationCode": "5578",
+    "ShortName": "ENR_89",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557964",
+    "StationNameAR": "تل العيس",
+    "StationNameEN": "TAL EL ABAS",
+    "StationCode": "7414",
+    "ShortName": "ENR_127",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557966",
+    "StationNameAR": "غزال",
+    "StationNameEN": "GHAZAL",
+    "StationCode": "7469",
+    "ShortName": "ENR_129",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189598",
+    "StationNameAR": "كفر الدوار",
+    "StationNameEN": "KAFR EL-DAUWStationNameAR",
+    "StationCode": "5694",
+    "ShortName": "ENR_95",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191732",
+    "StationNameAR": "ابو غالب",
+    "StationNameEN": "ABU GHALEB",
+    "StationCode": "31496",
+    "ShortName": "ENR_553",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191730",
+    "StationNameAR": "بني سلامه",
+    "StationNameEN": "BANI SALAMA",
+    "StationCode": "31432",
+    "ShortName": "ENR_551",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543649",
+    "StationNameAR": "الطرانه",
+    "StationNameEN": "EL TRANA",
+    "StationCode": "31343",
+    "ShortName": "ENR_548",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149112",
+    "StationNameAR": "الظاهريه",
+    "StationNameEN": "EL ZAHERIA",
+    "StationCode": "9010",
+    "ShortName": "ENR_157",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149115",
+    "StationNameAR": "الرمل",
+    "StationNameEN": "EL RAML",
+    "StationCode": "9109",
+    "ShortName": "ENR_160",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149116",
+    "StationNameAR": "النقراشي باشا",
+    "StationNameEN": "EL NOKRASHY PASHA",
+    "StationCode": "9136",
+    "ShortName": "ENR_161",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149118",
+    "StationNameAR": "العصافره",
+    "StationNameEN": "EL ASAFRA",
+    "StationCode": "9172",
+    "ShortName": "ENR_163",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149119",
+    "StationNameAR": "المندره",
+    "StationNameEN": "EL MANDStationNameARA",
+    "StationCode": "9190",
+    "ShortName": "ENR_164",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149120",
+    "StationNameAR": "المنتزه",
+    "StationNameEN": "EL MONTAZA",
+    "StationCode": "9225",
+    "ShortName": "ENR_165",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149121",
+    "StationNameAR": "الاصلاح",
+    "StationNameEN": "EL ESLAH",
+    "StationCode": "9252",
+    "ShortName": "ENR_166",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149125",
+    "StationNameAR": "الكليه البحريه",
+    "StationNameEN": "EL KOLIA EL BAHStationNameARIA",
+    "StationCode": "10017",
+    "ShortName": "ENR_170",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149126",
+    "StationNameAR": "الطابيه",
+    "StationNameEN": "EL TABYA",
+    "StationCode": "10026",
+    "ShortName": "ENR_171",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149127",
+    "StationNameAR": "سماد ابوقير",
+    "StationNameEN": "SEMAD ABU QEER",
+    "StationCode": "10035",
+    "ShortName": "ENR_172",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149128",
+    "StationNameAR": "الطرح",
+    "StationNameEN": "EL TStationNameARH",
+    "StationCode": "10044",
+    "ShortName": "ENR_173",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149129",
+    "StationNameAR": "المعديه",
+    "StationNameEN": "EL MADIA",
+    "StationCode": "10071",
+    "ShortName": "ENR_174",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191745",
+    "StationNameAR": "بشتيل",
+    "StationNameEN": "BASHTEEL",
+    "StationCode": "31825",
+    "ShortName": "ENR_566",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543645",
+    "StationNameAR": "ابو الخاوي",
+    "StationNameEN": "ABU EL KHAWY",
+    "StationCode": "31227",
+    "ShortName": "ENR_544",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543629",
+    "StationNameAR": "منشيه البدراوي",
+    "StationNameEN": "MANSHEYET EL BADTRAWY",
+    "StationCode": "30460",
+    "ShortName": "ENR_528",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543634",
+    "StationNameAR": "المجديه",
+    "StationNameEN": "EL MAGDEYA",
+    "StationCode": "31012",
+    "ShortName": "ENR_533",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543632",
+    "StationNameAR": "بسنديله",
+    "StationNameEN": "BASANDILAH",
+    "StationCode": "30522",
+    "ShortName": "ENR_531",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478428",
+    "StationNameAR": "قلـــين البــــلد",
+    "StationNameEN": "KALEEN EL BALAD",
+    "StationCode": "29150",
+    "ShortName": "ENR_493",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543640",
+    "StationNameAR": "واقد",
+    "StationNameEN": "WAQED",
+    "StationCode": "31138",
+    "ShortName": "ENR_539",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543637",
+    "StationNameAR": "النقيدي",
+    "StationNameEN": "EL NQYEDY",
+    "StationCode": "31058",
+    "ShortName": "ENR_536",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478422",
+    "StationNameAR": "ابشواي غربيه",
+    "StationNameEN": "EBSHWAY GHStationNameARIBA",
+    "StationCode": "29043",
+    "ShortName": "ENR_487",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149130",
+    "StationNameAR": "الابعديه",
+    "StationNameEN": "EL ABADIA",
+    "StationCode": "10099",
+    "ShortName": "ENR_175",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149131",
+    "StationNameAR": "بحيره ادكو",
+    "StationNameEN": "BOHAYRET EDKO",
+    "StationCode": "10106",
+    "ShortName": "ENR_176",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149132",
+    "StationNameAR": "الدمياطي المستجده",
+    "StationNameEN": "EL DOMYATTY EL MOSTAGADA",
+    "StationCode": "10124",
+    "ShortName": "ENR_177",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149133",
+    "StationNameAR": "ادكو",
+    "StationNameEN": "EDKO",
+    "StationCode": "10133",
+    "ShortName": "ENR_178",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149134",
+    "StationNameAR": "مياح",
+    "StationNameEN": "MYAH",
+    "StationCode": "10142",
+    "ShortName": "ENR_179",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149135",
+    "StationNameAR": "منشيه الامل",
+    "StationNameEN": "MANSHEYET EL AML",
+    "StationCode": "10151",
+    "ShortName": "ENR_180",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149136",
+    "StationNameAR": "البصيلي",
+    "StationNameEN": "EL BESILY",
+    "StationCode": "10160",
+    "ShortName": "ENR_181",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149137",
+    "StationNameAR": "الزراعه",
+    "StationNameEN": "EL ZERAAH",
+    "StationCode": "10179",
+    "ShortName": "ENR_182",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149138",
+    "StationNameAR": "برج رشيد",
+    "StationNameEN": "BORG RASHEED",
+    "StationCode": "10197",
+    "ShortName": "ENR_183",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149140",
+    "StationNameAR": "الحماد",
+    "StationNameEN": "EL HAMAD",
+    "StationCode": "11016",
+    "ShortName": "ENR_185",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149141",
+    "StationNameAR": "محله الامير",
+    "StationNameEN": "MAHALET EL AMIR",
+    "StationCode": "11025",
+    "ShortName": "ENR_186",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149142",
+    "StationNameAR": "تقاطع ادفينا",
+    "StationNameEN": "TAQATO EDFEENA",
+    "StationCode": "11034",
+    "ShortName": "ENR_187",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149143",
+    "StationNameAR": "ادفينا الجديده",
+    "StationNameEN": "EDFEENA EL GADEEDA",
+    "StationCode": "11043",
+    "ShortName": "ENR_188",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149144",
+    "StationNameAR": "مطوبس",
+    "StationNameEN": "MATOBAS",
+    "StationCode": "11070",
+    "ShortName": "ENR_189",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149145",
+    "StationNameAR": "الخيريه",
+    "StationNameEN": "EL KHAYRIA",
+    "StationCode": "11089",
+    "ShortName": "ENR_190",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149146",
+    "StationNameAR": "شمشيره",
+    "StationNameEN": "SHAMSHIRA",
+    "StationCode": "11105",
+    "ShortName": "ENR_191",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149149",
+    "StationNameAR": "منيه الاشراف",
+    "StationNameEN": "MENYET EL ASHRAF",
+    "StationCode": "11178",
+    "ShortName": "ENR_194",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149150",
+    "StationNameAR": "قبريط",
+    "StationNameEN": "QABREET",
+    "StationCode": "11196",
+    "ShortName": "ENR_195",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574455",
+    "StationNameAR": "طحانوب",
+    "StationNameEN": "TAHANOUB",
+    "StationCode": "12104",
+    "ShortName": "ENR_206",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149151",
+    "StationNameAR": "السلميه بحري",
+    "StationNameEN": "EL SELMIA EL BAHStationNameARIA",
+    "StationCode": "11221",
+    "ShortName": "ENR_196",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149152",
+    "StationNameAR": "محله مالك",
+    "StationNameEN": "MAHLET MALEK",
+    "StationCode": "11258",
+    "ShortName": "ENR_197",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149153",
+    "StationNameAR": "السعاده",
+    "StationNameEN": "EL SAADA",
+    "StationCode": "11267",
+    "ShortName": "ENR_198",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149154",
+    "StationNameAR": "الدوايده",
+    "StationNameEN": "EL DAWAYDA",
+    "StationCode": "11276",
+    "ShortName": "ENR_199",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149155",
+    "StationNameAR": "ابو غنيمه",
+    "StationNameEN": "ABU GHENIMA",
+    "StationCode": "11285",
+    "ShortName": "ENR_200",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574450",
+    "StationNameAR": "القصابي بحري",
+    "StationNameEN": "EL QASABY BAHStationNameARY",
+    "StationCode": "11310",
+    "ShortName": "ENR_201",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574451",
+    "StationNameAR": "كفر رماده",
+    "StationNameEN": "KAFR RAMADA",
+    "StationCode": "12015",
+    "ShortName": "ENR_202",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574453",
+    "StationNameAR": "الزهويين",
+    "StationNameEN": "EL ZAHAWEEN",
+    "StationCode": "12079",
+    "ShortName": "ENR_204",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574454",
+    "StationNameAR": "كفر طحا",
+    "StationNameEN": "KAFR TAHA",
+    "StationCode": "12088",
+    "ShortName": "ENR_205",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574456",
+    "StationNameAR": "كفر شبين",
+    "StationNameEN": "KAFR SHEBEIN",
+    "StationCode": "12131",
+    "ShortName": "ENR_207",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574458",
+    "StationNameAR": "منشاه الكرام",
+    "StationNameEN": "MANSHEYET EL KERAM",
+    "StationCode": "12195",
+    "ShortName": "ENR_209",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574460",
+    "StationNameAR": "سلمنت",
+    "StationNameEN": "SELMENT",
+    "StationCode": "12257",
+    "ShortName": "ENR_211",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574462",
+    "StationNameAR": "بير عماره",
+    "StationNameEN": "BEER AMStationNameARAH",
+    "StationCode": "12319",
+    "ShortName": "ENR_213",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574463",
+    "StationNameAR": "تل روزن",
+    "StationNameEN": "TAL ROSEN",
+    "StationCode": "12346",
+    "ShortName": "ENR_214",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574452",
+    "StationNameAR": "نوي",
+    "StationNameEN": "NOWY",
+    "StationCode": "12042",
+    "ShortName": "ENR_203",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645593",
+    "StationNameAR": "المتانيه",
+    "StationNameEN": "EL-MATANIA",
+    "StationCode": "40495",
+    "ShortName": "ENR_640",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574468",
+    "StationNameAR": "العصلوجي",
+    "StationNameEN": "EL ASLOOGY",
+    "StationCode": "12462",
+    "ShortName": "ENR_219",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149139",
+    "StationNameAR": "رشيد",
+    "StationNameEN": "RASHEED",
+    "StationCode": "10222",
+    "ShortName": "ENR_184",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478391",
+    "StationNameAR": "سمنود",
+    "StationNameEN": "SAMNOOD",
+    "StationCode": "27250",
+    "ShortName": "ENR_456",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478396",
+    "StationNameAR": "طلخا",
+    "StationNameEN": "TALHA",
+    "StationCode": "27376",
+    "ShortName": "ENR_461",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478416",
+    "StationNameAR": "كفر البطيخ",
+    "StationNameEN": "KAFR EL BATEEKH",
+    "StationCode": "27821",
+    "ShortName": "ENR_481",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478417",
+    "StationNameAR": "بساتين كفر البطيخ",
+    "StationNameEN": "BASATEEN KAFR EL BATEEKH",
+    "StationCode": "27830",
+    "ShortName": "ENR_482",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574470",
+    "StationNameAR": "هـــريه رزنـــه",
+    "StationNameEN": "HERYET RESNA",
+    "StationCode": "13023",
+    "ShortName": "ENR_221",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574471",
+    "StationNameAR": "العداويه",
+    "StationNameEN": "EL ADAWYA",
+    "StationCode": "13041",
+    "ShortName": "ENR_222",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574475",
+    "StationNameAR": "ابو ياسين",
+    "StationNameEN": "ABU YASSEIN",
+    "StationCode": "13112",
+    "ShortName": "ENR_226",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574476",
+    "StationNameAR": "ابو كبير",
+    "StationNameEN": "ABU KEBEER",
+    "StationCode": "13130",
+    "ShortName": "ENR_227",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574477",
+    "StationNameAR": "نزله خيال",
+    "StationNameEN": "NEZLET EL KHAYAL",
+    "StationCode": "13167",
+    "ShortName": "ENR_228",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574478",
+    "StationNameAR": "البوها",
+    "StationNameEN": "EL BOOHA",
+    "StationCode": "13194",
+    "ShortName": "ENR_229",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574479",
+    "StationNameAR": "كفر صقر",
+    "StationNameEN": "KAFR SAQR",
+    "StationCode": "13229",
+    "ShortName": "ENR_230",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574480",
+    "StationNameAR": "بدوي",
+    "StationNameEN": "BADAWY",
+    "StationCode": "13256",
+    "ShortName": "ENR_231",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574481",
+    "StationNameAR": "ابو الشقوق",
+    "StationNameEN": "ABU EL SHEQOQ",
+    "StationCode": "13283",
+    "ShortName": "ENR_232",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574482",
+    "StationNameAR": "هيكل باشا",
+    "StationNameEN": "HEIKAL PASHA",
+    "StationCode": "13318",
+    "ShortName": "ENR_233",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574484",
+    "StationNameAR": "طرانيس العرب",
+    "StationNameEN": "TStationNameARANEES EL StationNameARAB",
+    "StationCode": "13372",
+    "ShortName": "ENR_235",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574486",
+    "StationNameAR": "شبرا قباله",
+    "StationNameEN": "SHOBRA QEBALA",
+    "StationCode": "13434",
+    "ShortName": "ENR_237",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574487",
+    "StationNameAR": "الزريقي",
+    "StationNameEN": "EL ZOREEKY",
+    "StationCode": "13452",
+    "ShortName": "ENR_238",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574488",
+    "StationNameAR": "البقليه",
+    "StationNameEN": "EL BAQLIA",
+    "StationCode": "13461",
+    "ShortName": "ENR_239",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574489",
+    "StationNameAR": "شاوه",
+    "StationNameEN": "SHAW",
+    "StationCode": "13498",
+    "ShortName": "ENR_240",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574490",
+    "StationNameAR": "سندوب",
+    "StationNameEN": "SANDOUB",
+    "StationCode": "13505",
+    "ShortName": "ENR_241",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574492",
+    "StationNameAR": "خلفالله",
+    "StationNameEN": "KHALAF ALLAH",
+    "StationCode": "14022",
+    "ShortName": "ENR_243",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574493",
+    "StationNameAR": "الفدادنه",
+    "StationNameEN": "EL FADADNA",
+    "StationCode": "14040",
+    "ShortName": "ENR_244",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574494",
+    "StationNameAR": "البيروم",
+    "StationNameEN": "EL BAIROUM",
+    "StationCode": "14077",
+    "ShortName": "ENR_245",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574496",
+    "StationNameAR": "جهينه",
+    "StationNameEN": "GUHAYNA",
+    "StationCode": "14111",
+    "ShortName": "ENR_247",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574497",
+    "StationNameAR": "كفر الحاج عمر",
+    "StationNameEN": "KAFR EL HAG OMStationNameAR",
+    "StationCode": "14139",
+    "ShortName": "ENR_248",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574499",
+    "StationNameAR": "الدراكه",
+    "StationNameEN": "EL DRAKA",
+    "StationCode": "14175",
+    "ShortName": "ENR_250",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396661",
+    "StationNameAR": "فايد",
+    "StationNameEN": "FAYED",
+    "StationCode": "17136",
+    "ShortName": "ENR_304",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582706",
+    "StationNameAR": "اباظه",
+    "StationNameEN": "ABAZA",
+    "StationCode": "14193",
+    "ShortName": "ENR_251",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582708",
+    "StationNameAR": "الكبايشه",
+    "StationNameEN": "EL KABAYSHA",
+    "StationCode": "14246",
+    "ShortName": "ENR_253",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582710",
+    "StationNameAR": "اشكر",
+    "StationNameEN": "ASHKOR",
+    "StationCode": "15012",
+    "ShortName": "ENR_255",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582711",
+    "StationNameAR": "الشهيد عبدالمنعم رياص",
+    "StationNameEN": "EL SHAHEED ABD EL MONIEM REYAD",
+    "StationCode": "15021",
+    "ShortName": "ENR_256",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582712",
+    "StationNameAR": "الســــــعادنه",
+    "StationNameEN": "EL SAADNA",
+    "StationCode": "15030",
+    "ShortName": "ENR_257",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582713",
+    "StationNameAR": "السماعنه",
+    "StationNameEN": "EL SAMAANA",
+    "StationCode": "15049",
+    "ShortName": "ENR_258",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574495",
+    "StationNameAR": "فاقوس",
+    "StationNameEN": "FAKOUS",
+    "StationCode": "14102",
+    "ShortName": "ENR_246",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582716",
+    "StationNameAR": "العزيزيه",
+    "StationNameEN": "EL-AZIZIA",
+    "StationCode": "16075",
+    "ShortName": "ENR_261",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582743",
+    "StationNameAR": "البلاح",
+    "StationNameEN": "EL-BALAH",
+    "StationCode": "16708",
+    "ShortName": "ENR_288",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582746",
+    "StationNameAR": "التينه",
+    "StationNameEN": "EL-TENNA",
+    "StationCode": "16799",
+    "ShortName": "ENR_291",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396663",
+    "StationNameAR": "قمه فايد",
+    "StationNameEN": "QMET FAYED",
+    "StationCode": "17163",
+    "ShortName": "ENR_306",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396664",
+    "StationNameAR": "فناره",
+    "StationNameEN": "FANStationNameARAH",
+    "StationCode": "17190",
+    "ShortName": "ENR_307",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582731",
+    "StationNameAR": "القصاصين",
+    "StationNameEN": "EL-KSASIN",
+    "StationCode": "16468",
+    "ShortName": "ENR_276",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582751",
+    "StationNameAR": "بورسعيد",
+    "StationNameEN": "PORT SAStationID",
+    "StationCode": "16879",
+    "ShortName": "ENR_296",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582719",
+    "StationNameAR": "منيه القمح",
+    "StationNameEN": "MNYH ALQMH",
+    "StationCode": "16137",
+    "ShortName": "ENR_264",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582729",
+    "StationNameAR": "التل الكبير",
+    "StationNameEN": "EL-TAL EL-KABEER",
+    "StationCode": "16404",
+    "ShortName": "ENR_274",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582740",
+    "StationNameAR": "الشيخ زايد",
+    "StationNameEN": "EL-SHIKH ZAYED",
+    "StationCode": "16655",
+    "ShortName": "ENR_285",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582748",
+    "StationNameAR": "راس العش",
+    "StationNameEN": "RAS EL-ESH",
+    "StationCode": "16824",
+    "ShortName": "ENR_293",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396665",
+    "StationNameAR": "كسفريت",
+    "StationNameEN": "KASFREET",
+    "StationCode": "17225",
+    "ShortName": "ENR_308",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396667",
+    "StationNameAR": "ابو حلب",
+    "StationNameEN": "ABU HALAB",
+    "StationCode": "17289",
+    "ShortName": "ENR_310",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396668",
+    "StationNameAR": "شلوفه",
+    "StationNameEN": "SHLOUFA",
+    "StationCode": "17314",
+    "ShortName": "ENR_311",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396669",
+    "StationNameAR": "الجناين",
+    "StationNameEN": "EL GANAYEN",
+    "StationCode": "17341",
+    "ShortName": "ENR_312",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396670",
+    "StationNameAR": "عامـــــر",
+    "StationNameEN": "AMER",
+    "StationCode": "17378",
+    "ShortName": "ENR_313",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543630",
+    "StationNameAR": "بلقاس",
+    "StationNameEN": "BELKASS",
+    "StationCode": "30497",
+    "ShortName": "ENR_529",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396684",
+    "StationNameAR": "كيلو 15",
+    "StationNameEN": "KILO 15",
+    "StationCode": "18073",
+    "ShortName": "ENR_327",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396685",
+    "StationNameAR": "درب الحاج",
+    "StationNameEN": "DStationNameARB EL HAG",
+    "StationCode": "18108",
+    "ShortName": "ENR_328",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396687",
+    "StationNameAR": "الربيكي",
+    "StationNameEN": "EL REBEEKY",
+    "StationCode": "18135",
+    "ShortName": "ENR_330",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396688",
+    "StationNameAR": "وادي السيل",
+    "StationNameEN": "WADI EL SEIL",
+    "StationCode": "18153",
+    "ShortName": "ENR_331",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396689",
+    "StationNameAR": "جبل الجفره",
+    "StationNameEN": "GABAL EL GAFRA",
+    "StationCode": "18162",
+    "ShortName": "ENR_332",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582745",
+    "StationNameAR": "الكاب",
+    "StationNameEN": "EL-KAB",
+    "StationCode": "16762",
+    "ShortName": "ENR_290",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433400",
+    "StationNameAR": "وروره",
+    "StationNameEN": "WStationNameARWStationNameARAH",
+    "StationCode": "20015",
+    "ShortName": "ENR_357",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433401",
+    "StationNameAR": "دملو",
+    "StationNameEN": "DEMLO",
+    "StationCode": "20024",
+    "ShortName": "ENR_358",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433402",
+    "StationNameAR": "ميت الحوفيين",
+    "StationNameEN": "MEET EL HOFEYEEN",
+    "StationCode": "20042",
+    "ShortName": "ENR_359",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433403",
+    "StationNameAR": "ميت بره",
+    "StationNameEN": "MEET BStationNameARA",
+    "StationCode": "20079",
+    "ShortName": "ENR_360",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433404",
+    "StationNameAR": "ه.بقسا",
+    "StationNameEN": "BEQSA",
+    "StationCode": "20088",
+    "ShortName": "ENR_361",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433405",
+    "StationNameAR": "شبرابخوم",
+    "StationNameEN": "SHOBRABAKHOM",
+    "StationCode": "20104",
+    "ShortName": "ENR_362",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433406",
+    "StationNameAR": "تفهنا العزب",
+    "StationNameEN": "TAFEHNA EL AZAB",
+    "StationCode": "20131",
+    "ShortName": "ENR_363",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433407",
+    "StationNameAR": "ميت الحارون",
+    "StationNameEN": "MEET EL HStationNameAROON",
+    "StationCode": "20168",
+    "ShortName": "ENR_364",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433408",
+    "StationNameAR": "سعد باشا زغلول",
+    "StationNameEN": "SAAD PASHA ZAGLOUL",
+    "StationCode": "20195",
+    "ShortName": "ENR_365",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433409",
+    "StationNameAR": "اسماعيل باشا صدقي",
+    "StationNameEN": "ISMAEEL PASHA SEDKY",
+    "StationCode": "20220",
+    "ShortName": "ENR_366",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433410",
+    "StationNameAR": "منصور باشا",
+    "StationNameEN": "MANSOUR PASHA",
+    "StationCode": "20257",
+    "ShortName": "ENR_367",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433411",
+    "StationNameAR": "كفر بطا",
+    "StationNameEN": "KAFR BATTA",
+    "StationCode": "21014",
+    "ShortName": "ENR_368",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433412",
+    "StationNameAR": "اسطنها",
+    "StationNameEN": "ESTANHA",
+    "StationCode": "21041",
+    "ShortName": "ENR_369",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433413",
+    "StationNameAR": "ميت الوسطي",
+    "StationNameEN": "MEET EL WASTA",
+    "StationCode": "21078",
+    "ShortName": "ENR_370",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433414",
+    "StationNameAR": "سبك الضحاك",
+    "StationNameEN": "SOBK EL DAHAK",
+    "StationCode": "21103",
+    "ShortName": "ENR_371",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433415",
+    "StationNameAR": "الباجور",
+    "StationNameEN": "EL BAGOOR",
+    "StationCode": "21130",
+    "ShortName": "ENR_372",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433416",
+    "StationNameAR": "جروان",
+    "StationNameEN": "GERWAN",
+    "StationCode": "21167",
+    "ShortName": "ENR_373",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433417",
+    "StationNameAR": "كفر شبرا زنجي",
+    "StationNameEN": "KAFR SHOBRA ZENGY",
+    "StationCode": "21185",
+    "ShortName": "ENR_374",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433418",
+    "StationNameAR": "سرس الليانه",
+    "StationNameEN": "SERS EL LAYANA",
+    "StationCode": "21194",
+    "ShortName": "ENR_375",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433419",
+    "StationNameAR": "كفر سليم",
+    "StationNameEN": "KAFR SELEEM",
+    "StationCode": "22013",
+    "ShortName": "ENR_376",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433421",
+    "StationNameAR": "كفر طبلوها",
+    "StationNameEN": "KAFR TABLOHA",
+    "StationCode": "22077",
+    "ShortName": "ENR_378",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433423",
+    "StationNameAR": "كفرالبتانون وخليل",
+    "StationNameEN": "KAFR EL ALBATOON WA KHALIL",
+    "StationCode": "22111",
+    "ShortName": "ENR_380",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433431",
+    "StationNameAR": "كمشوش",
+    "StationNameEN": "KAMSHOUSH",
+    "StationCode": "22282",
+    "ShortName": "ENR_388",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433434",
+    "StationNameAR": "جامع بدر",
+    "StationNameEN": "GAMEEA BADR",
+    "StationCode": "22326",
+    "ShortName": "ENR_391",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433438",
+    "StationNameAR": "الحلواصي",
+    "StationNameEN": "EL HALWASY",
+    "StationCode": "22406",
+    "ShortName": "ENR_395",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433439",
+    "StationNameAR": "الحلواصي بلد",
+    "StationNameEN": "EL HELWASY BALAD",
+    "StationCode": "22415",
+    "ShortName": "ENR_396",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433437",
+    "StationNameAR": "محلة سبك",
+    "StationNameEN": "MEHALSABEK",
+    "StationCode": "22399",
+    "ShortName": "ENR_394",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433440",
+    "StationNameAR": "شطانوف",
+    "StationNameEN": "SHATANOOF",
+    "StationCode": "22433",
+    "ShortName": "ENR_397",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433441",
+    "StationNameAR": "كفر صراوه",
+    "StationNameEN": "KAFR SStationNameARAWAH",
+    "StationCode": "22442",
+    "ShortName": "ENR_398",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433442",
+    "StationNameAR": "دروه",
+    "StationNameEN": "DERWAH",
+    "StationCode": "22460",
+    "ShortName": "ENR_399",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830259",
+    "StationNameAR": "شلقان",
+    "StationNameEN": "SHELFAN",
+    "StationCode": "23076",
+    "ShortName": "ENR_402",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830260",
+    "StationNameAR": "قليوب البلد",
+    "StationNameEN": "QALYUB EL BALAD",
+    "StationCode": "23101",
+    "ShortName": "ENR_403",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830261",
+    "StationNameAR": "سانجرج",
+    "StationNameEN": "SAGEREG",
+    "StationCode": "24011",
+    "ShortName": "ENR_404",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830262",
+    "StationNameAR": "منشيه سلطان",
+    "StationNameEN": "MANSHEYET SULTAN",
+    "StationCode": "24048",
+    "ShortName": "ENR_405",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830263",
+    "StationNameAR": "العراقيه",
+    "StationNameEN": "EL ERAQYA",
+    "StationCode": "24075",
+    "ShortName": "ENR_406",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830264",
+    "StationNameAR": "عشما",
+    "StationNameEN": "ASHMA",
+    "StationCode": "24100",
+    "ShortName": "ENR_407",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830265",
+    "StationNameAR": "الشهداء",
+    "StationNameEN": "EL SHOHADAA",
+    "StationCode": "24137",
+    "ShortName": "ENR_408",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830266",
+    "StationNameAR": "دنشواي",
+    "StationNameEN": "DENSHWAY",
+    "StationCode": "24164",
+    "ShortName": "ENR_409",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830267",
+    "StationNameAR": "دناصور",
+    "StationNameEN": "DAYNASOUR",
+    "StationCode": "24191",
+    "ShortName": "ENR_410",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830268",
+    "StationNameAR": "زاويه البقلي",
+    "StationNameEN": "ZAWYA EL BAKLY",
+    "StationCode": "24226",
+    "ShortName": "ENR_411",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830269",
+    "StationNameAR": "بشتامي",
+    "StationNameEN": "BESHTAMY",
+    "StationCode": "24253",
+    "ShortName": "ENR_412",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830270",
+    "StationNameAR": "عمروس",
+    "StationNameEN": "AMROOS",
+    "StationCode": "24280",
+    "ShortName": "ENR_413",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830272",
+    "StationNameAR": "طنوب",
+    "StationNameEN": "TANOUB",
+    "StationCode": "24315",
+    "ShortName": "ENR_415",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830273",
+    "StationNameAR": "عزبه الحطيم",
+    "StationNameEN": "EZBET EL HATIIM",
+    "StationCode": "24342",
+    "ShortName": "ENR_416",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830274",
+    "StationNameAR": "مشلا",
+    "StationNameEN": "MESHLA",
+    "StationCode": "24379",
+    "ShortName": "ENR_417",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830275",
+    "StationNameAR": "كفر مشله",
+    "StationNameEN": "KAFR MESHLA",
+    "StationCode": "24388",
+    "ShortName": "ENR_418",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830276",
+    "StationNameAR": "قصر نصر الدين",
+    "StationNameEN": "QASR NASR EL DEEN",
+    "StationCode": "24404",
+    "ShortName": "ENR_419",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830277",
+    "StationNameAR": "الدلجمون",
+    "StationNameEN": "EL DELGAMOON",
+    "StationCode": "24431",
+    "ShortName": "ENR_420",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830278",
+    "StationNameAR": "ميت حبيش القبليه",
+    "StationNameEN": "MEET HEBESH EL QEBLYA",
+    "StationCode": "25010",
+    "ShortName": "ENR_421",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830279",
+    "StationNameAR": "شبرا قاص",
+    "StationNameEN": "SHOBRA QAS",
+    "StationCode": "25047",
+    "ShortName": "ENR_422",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830281",
+    "StationNameAR": "المنشاه الكبري",
+    "StationNameEN": "ELMANSHYET EL KOBRA",
+    "StationCode": "25109",
+    "ShortName": "ENR_424",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830282",
+    "StationNameAR": "السملاويه",
+    "StationNameEN": "ELSAMALAWAYA",
+    "StationCode": "25118",
+    "ShortName": "ENR_425",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830283",
+    "StationNameAR": "نهطاي",
+    "StationNameEN": "NAHTAY",
+    "StationCode": "25136",
+    "ShortName": "ENR_426",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830286",
+    "StationNameAR": "كوم النور",
+    "StationNameEN": "KOM EL NOOR",
+    "StationCode": "25216",
+    "ShortName": "ENR_429",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830289",
+    "StationNameAR": "كفر الوزير",
+    "StationNameEN": "KAFR EL WAZEER",
+    "StationCode": "25243",
+    "ShortName": "ENR_432",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830290",
+    "StationNameAR": "ميت القرش",
+    "StationNameEN": "MEET EL QERSH",
+    "StationCode": "25252",
+    "ShortName": "ENR_433",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775998",
+    "StationNameAR": "مشطا",
+    "StationNameEN": "MASHTAA",
+    "StationCode": "43250",
+    "ShortName": "ENR_713",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775999",
+    "StationNameAR": "شطوره",
+    "StationNameEN": "SHATOORA",
+    "StationCode": "43287",
+    "ShortName": "ENR_714",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830291",
+    "StationNameAR": "ميتابوعربي",
+    "StationNameEN": "MEET ABU StationNameARABI",
+    "StationCode": "25261",
+    "ShortName": "ENR_434",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830292",
+    "StationNameAR": "ام الزين",
+    "StationNameEN": "OM EL ZEIN",
+    "StationCode": "25289",
+    "ShortName": "ENR_435",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830293",
+    "StationNameAR": "الحلبي",
+    "StationNameEN": "ELHALABY",
+    "StationCode": "25298",
+    "ShortName": "ENR_436",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830294",
+    "StationNameAR": "النخاس",
+    "StationNameEN": "EL NAKHAS",
+    "StationCode": "25314",
+    "ShortName": "ENR_437",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830284",
+    "StationNameAR": "زفتي",
+    "StationNameEN": "ZEFTA",
+    "StationCode": "25163",
+    "ShortName": "ENR_427",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830280",
+    "StationNameAR": "السنطه",
+    "StationNameEN": "EL SANTA",
+    "StationCode": "25074",
+    "ShortName": "ENR_423",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830295",
+    "StationNameAR": "كفرالاشراف",
+    "StationNameEN": "KAFR EL ASHRAF",
+    "StationCode": "25323",
+    "ShortName": "ENR_438",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830296",
+    "StationNameAR": "شيبه النكاريه",
+    "StationNameEN": "SHABEEH EL NAKStationNameARYAH",
+    "StationCode": "25341",
+    "ShortName": "ENR_439",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830297",
+    "StationNameAR": "القرشيه",
+    "StationNameEN": "EL QERSHEYAH",
+    "StationCode": "26019",
+    "ShortName": "ENR_440",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830298",
+    "StationNameAR": "منيه البندره",
+    "StationNameEN": "MENYAH EL BANDStationNameARAH",
+    "StationCode": "26046",
+    "ShortName": "ENR_441",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830299",
+    "StationNameAR": "الجميزه",
+    "StationNameEN": "EL GEMEIZAH",
+    "StationCode": "26073",
+    "ShortName": "ENR_442",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830300",
+    "StationNameAR": "شندلات",
+    "StationNameEN": "SHANDALAT",
+    "StationCode": "26108",
+    "ShortName": "ENR_443",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830302",
+    "StationNameAR": "الرجديه",
+    "StationNameEN": "EL-RAGDIA",
+    "StationCode": "27018",
+    "ShortName": "ENR_445",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830303",
+    "StationNameAR": "شبشير الحصه",
+    "StationNameEN": "SHIBSHIR EL-HSA",
+    "StationCode": "27045",
+    "ShortName": "ENR_446",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830305",
+    "StationNameAR": "صفط تراب",
+    "StationNameEN": "SAFT TRAB",
+    "StationCode": "27107",
+    "ShortName": "ENR_448",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830306",
+    "StationNameAR": "منيه شنتذا عياش",
+    "StationNameEN": "MENYAT SHANTAZAH AYASH",
+    "StationCode": "27134",
+    "ShortName": "ENR_449",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516513",
+    "StationNameAR": "منفلوط",
+    "StationNameEN": "MANFALUT",
+    "StationCode": "42555",
+    "ShortName": "ENR_698",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478399",
+    "StationNameAR": "ميت عنتر",
+    "StationNameEN": "MEET ANTStationNameAR",
+    "StationCode": "27438",
+    "ShortName": "ENR_464",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478400",
+    "StationNameAR": "شرنقاش",
+    "StationNameEN": "SHERNKASH",
+    "StationCode": "27447",
+    "ShortName": "ENR_465",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478401",
+    "StationNameAR": "الطويله",
+    "StationNameEN": "EL TAWEELAH",
+    "StationCode": "27465",
+    "ShortName": "ENR_466",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478402",
+    "StationNameAR": "ديسط",
+    "StationNameEN": "DEESET",
+    "StationCode": "27492",
+    "ShortName": "ENR_467",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478403",
+    "StationNameAR": "بطره",
+    "StationNameEN": "BATRAH",
+    "StationCode": "27527",
+    "ShortName": "ENR_468",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478404",
+    "StationNameAR": "ه.الحاج خليل",
+    "StationNameEN": "EL HAG KHALIL",
+    "StationCode": "27545",
+    "ShortName": "ENR_469",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478405",
+    "StationNameAR": "كفر الحطبه",
+    "StationNameEN": "KAFT EL HATABAH",
+    "StationCode": "27554",
+    "ShortName": "ENR_470",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478406",
+    "StationNameAR": "كفر الدبوس",
+    "StationNameEN": "KAFR EL DABOOS",
+    "StationCode": "27581",
+    "ShortName": "ENR_471",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478408",
+    "StationNameAR": "السعادوه",
+    "StationNameEN": "EL SAADWAH",
+    "StationCode": "27643",
+    "ShortName": "ENR_473",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478409",
+    "StationNameAR": "الصبريه",
+    "StationNameEN": "EL SABRYA",
+    "StationCode": "27670",
+    "ShortName": "ENR_474",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478411",
+    "StationNameAR": "جمصه",
+    "StationNameEN": "GAMASA",
+    "StationCode": "27723",
+    "ShortName": "ENR_476",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478412",
+    "StationNameAR": "السوالم",
+    "StationNameEN": "EL SAWALEM",
+    "StationCode": "27732",
+    "ShortName": "ENR_477",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478413",
+    "StationNameAR": "كفر سعد البلد",
+    "StationNameEN": "KAFR SAAD EL BALAD",
+    "StationCode": "27769",
+    "ShortName": "ENR_478",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478414",
+    "StationNameAR": "كفر سعد",
+    "StationNameEN": "KAFRSAAD",
+    "StationCode": "27796",
+    "ShortName": "ENR_479",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478423",
+    "StationNameAR": "الابراهيميه",
+    "StationNameEN": "EL IBRAHIMYA",
+    "StationCode": "29070",
+    "ShortName": "ENR_488",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478424",
+    "StationNameAR": "قطور",
+    "StationNameEN": "KATOOR",
+    "StationCode": "29105",
+    "ShortName": "ENR_489",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478425",
+    "StationNameAR": "حوين",
+    "StationNameEN": "HEWEEN",
+    "StationCode": "29114",
+    "ShortName": "ENR_490",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478427",
+    "StationNameAR": "عزبه جوده",
+    "StationNameEN": "EZBAT GOUDA",
+    "StationCode": "29141",
+    "ShortName": "ENR_492",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478429",
+    "StationNameAR": "قلين",
+    "StationNameEN": "KELEEN",
+    "StationCode": "29169",
+    "ShortName": "ENR_494",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543611",
+    "StationNameAR": "المنشاه الصغري",
+    "StationNameEN": "EL MANSHYA EL SOGHRA",
+    "StationCode": "30031",
+    "ShortName": "ENR_510",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543612",
+    "StationNameAR": "الحميديه",
+    "StationNameEN": "EL HAMStationIDYAH",
+    "StationCode": "30040",
+    "ShortName": "ENR_511",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543614",
+    "StationNameAR": "رزقه اماي",
+    "StationNameEN": "REZKA AMAY",
+    "StationCode": "30086",
+    "ShortName": "ENR_513",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543615",
+    "StationNameAR": "سخا",
+    "StationNameEN": "SAKHA",
+    "StationCode": "30102",
+    "ShortName": "ENR_514",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543619",
+    "StationNameAR": "دقميره",
+    "StationNameEN": "DEKMEERA",
+    "StationCode": "30228",
+    "ShortName": "ENR_518",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543620",
+    "StationNameAR": "السلام",
+    "StationNameEN": "EL SALAM",
+    "StationCode": "30246",
+    "ShortName": "ENR_519",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543648",
+    "StationNameAR": "كفر داود",
+    "StationNameEN": "KAFR DAWOD",
+    "StationCode": "31316",
+    "ShortName": "ENR_547",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191733",
+    "StationNameAR": "الجزيره الوسطانيه",
+    "StationNameEN": "EL GEZIRA EL WESTANIA",
+    "StationCode": "31503",
+    "ShortName": "ENR_554",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191764",
+    "StationNameAR": "مثلث سندوب",
+    "StationNameEN": "MOTHALATH SANDOUB",
+    "StationCode": "34055",
+    "ShortName": "ENR_585",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191766",
+    "StationNameAR": "الدنابيق",
+    "StationNameEN": "EL DANABEEK",
+    "StationCode": "34073",
+    "ShortName": "ENR_587",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191767",
+    "StationNameAR": "سلامون",
+    "StationNameEN": "SLAMOUN",
+    "StationCode": "34082",
+    "ShortName": "ENR_588",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191768",
+    "StationNameAR": "شها",
+    "StationNameEN": "SHAHA",
+    "StationCode": "34091",
+    "ShortName": "ENR_589",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191769",
+    "StationNameAR": "محـله دمنـه",
+    "StationNameEN": "MAHALA DMNA",
+    "StationCode": "34108",
+    "ShortName": "ENR_590",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191770",
+    "StationNameAR": "ميت ضافر",
+    "StationNameEN": "MEET DAFER",
+    "StationCode": "34117",
+    "ShortName": "ENR_591",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191771",
+    "StationNameAR": "الخشاشنه",
+    "StationNameEN": "EL KHSHASHNA",
+    "StationCode": "34126",
+    "ShortName": "ENR_592",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191772",
+    "StationNameAR": "دكرنس",
+    "StationNameEN": "DEKERNES",
+    "StationCode": "34144",
+    "ShortName": "ENR_593",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191773",
+    "StationNameAR": "ميت شــرف",
+    "StationNameEN": "MEET SHStationNameARAF",
+    "StationCode": "34153",
+    "ShortName": "ENR_594",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191774",
+    "StationNameAR": "اشمون الرمان",
+    "StationNameEN": "ASHMON EL ROMAN",
+    "StationCode": "34162",
+    "ShortName": "ENR_595",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191775",
+    "StationNameAR": "ميت الخولي",
+    "StationNameEN": "MEET EL KHOLY",
+    "StationCode": "34171",
+    "ShortName": "ENR_596",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191776",
+    "StationNameAR": "منشاه عاصم",
+    "StationNameEN": "MANSHAT ASSEM",
+    "StationCode": "34180",
+    "ShortName": "ENR_597",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191777",
+    "StationNameAR": "كفر علام",
+    "StationNameEN": "KAFR ALLAM",
+    "StationCode": "34199",
+    "ShortName": "ENR_598",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191778",
+    "StationNameAR": "الرياض",
+    "StationNameEN": "EL RYAD",
+    "StationCode": "34206",
+    "ShortName": "ENR_599",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191779",
+    "StationNameAR": "ميت حديد",
+    "StationNameEN": "MEET HADEED",
+    "StationCode": "34215",
+    "ShortName": "ENR_600",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645555",
+    "StationNameAR": "ميت سلسيل",
+    "StationNameEN": "MEET SALSEEL",
+    "StationCode": "34251",
+    "ShortName": "ENR_602",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645556",
+    "StationNameAR": "ميت مرجا سلسيل",
+    "StationNameEN": "MEET MRGA SALSEEL",
+    "StationCode": "34279",
+    "ShortName": "ENR_603",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645557",
+    "StationNameAR": "الجماليه",
+    "StationNameEN": "EL GAMALIA",
+    "StationCode": "34297",
+    "ShortName": "ENR_604",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645558",
+    "StationNameAR": "ميت خضير",
+    "StationNameEN": "MEET KHODEIR",
+    "StationCode": "34313",
+    "ShortName": "ENR_605",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645559",
+    "StationNameAR": "المنزله",
+    "StationNameEN": "EL MANZALA",
+    "StationCode": "34340",
+    "ShortName": "ENR_606",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645561",
+    "StationNameAR": "العصافره دقهليه",
+    "StationNameEN": "EL ASAFRA DAQAHLIA",
+    "StationCode": "34402",
+    "ShortName": "ENR_608",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645562",
+    "StationNameAR": "المطريه دقهليه",
+    "StationNameEN": "EL MATTStationNameARIA DAQAHLIA",
+    "StationCode": "34439",
+    "ShortName": "ENR_609",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191748",
+    "StationNameAR": "الروس",
+    "StationNameEN": "EL ROUS",
+    "StationCode": "32048",
+    "ShortName": "ENR_569",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191749",
+    "StationNameAR": "الناصريه",
+    "StationNameEN": "EL NASERIA",
+    "StationCode": "32075",
+    "ShortName": "ENR_570",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191751",
+    "StationNameAR": "العدوه",
+    "StationNameEN": "EL ADWA",
+    "StationCode": "32137",
+    "ShortName": "ENR_572",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645563",
+    "StationNameAR": "التفرع",
+    "StationNameEN": "EL TFRA",
+    "StationCode": "7110",
+    "ShortName": "ENR_610",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645588",
+    "StationNameAR": "المزغونه",
+    "StationNameEN": "EL-MAZGHONA",
+    "StationCode": "40342",
+    "ShortName": "ENR_635",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645597",
+    "StationNameAR": "الرقه",
+    "StationNameEN": "EL-RIQA",
+    "StationCode": "40619",
+    "ShortName": "ENR_644",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645596",
+    "StationNameAR": "القطوري",
+    "StationNameEN": "EL-QATOORI",
+    "StationCode": "40584",
+    "ShortName": "ENR_643",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645600",
+    "StationNameAR": "الواسطي",
+    "StationNameEN": "EL-WASTY",
+    "StationCode": "40673",
+    "ShortName": "ENR_647",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645601",
+    "StationNameAR": "قمن العروس",
+    "StationNameEN": "QAMN EL-StationNameAROOS",
+    "StationCode": "41010",
+    "ShortName": "ENR_648",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645602",
+    "StationNameAR": "بني حدير",
+    "StationNameEN": "BANI HODEER",
+    "StationCode": "41047",
+    "ShortName": "ENR_649",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645603",
+    "StationNameAR": "الميمون",
+    "StationNameEN": "EL-MAIMOON",
+    "StationCode": "41074",
+    "ShortName": "ENR_650",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516466",
+    "StationNameAR": "اشمنت",
+    "StationNameEN": "ASHMANT",
+    "StationCode": "41109",
+    "ShortName": "ENR_651",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516467",
+    "StationNameAR": "الزيتون قبلي",
+    "StationNameEN": "EL-ZYTOON QIBLI",
+    "StationCode": "41136",
+    "ShortName": "ENR_652",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516468",
+    "StationNameAR": "ناصر",
+    "StationNameEN": "NASER",
+    "StationCode": "41163",
+    "ShortName": "ENR_653",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516469",
+    "StationNameAR": "شريف باشا",
+    "StationNameEN": "SHREEF BASHA",
+    "StationCode": "41190",
+    "ShortName": "ENR_654",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645592",
+    "StationNameAR": "العياط",
+    "StationNameEN": "EL-AIAT",
+    "StationCode": "40468",
+    "ShortName": "ENR_639",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645581",
+    "StationNameAR": "الحوامديه",
+    "StationNameEN": "EL-HAWAMDIA",
+    "StationCode": "40226",
+    "ShortName": "ENR_628",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645584",
+    "StationNameAR": "المرازيق",
+    "StationNameEN": "EL-MStationNameARAZIQ",
+    "StationCode": "40280",
+    "ShortName": "ENR_631",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191746",
+    "StationNameAR": "كوم ابو راضي",
+    "StationNameEN": "KOM ABU RADY",
+    "StationCode": "32011",
+    "ShortName": "ENR_567",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645594",
+    "StationNameAR": "ميت القائد",
+    "StationNameEN": "MEET EL-QAStationID",
+    "StationCode": "40520",
+    "ShortName": "ENR_641",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516471",
+    "StationNameAR": "تزمنت",
+    "StationNameEN": "TAZMONT",
+    "StationCode": "41252",
+    "ShortName": "ENR_656",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516473",
+    "StationNameAR": "طحا البيشه",
+    "StationNameEN": "TAHA EL-BEESHA",
+    "StationCode": "41314",
+    "ShortName": "ENR_658",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516474",
+    "StationNameAR": "ببا",
+    "StationNameEN": "BIBA",
+    "StationCode": "41341",
+    "ShortName": "ENR_659",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516475",
+    "StationNameAR": "سدس",
+    "StationNameEN": "SODS",
+    "StationCode": "41378",
+    "ShortName": "ENR_660",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516477",
+    "StationNameAR": "الفشن",
+    "StationNameEN": "EL-FASHN",
+    "StationCode": "41430",
+    "ShortName": "ENR_662",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516480",
+    "StationNameAR": "ملاطيه",
+    "StationNameEN": "MALATIA",
+    "StationCode": "41529",
+    "ShortName": "ENR_665",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516484",
+    "StationNameAR": "بني مزار",
+    "StationNameEN": "BANI MAZStationNameAR",
+    "StationCode": "41645",
+    "ShortName": "ENR_669",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516486",
+    "StationNameAR": "مطاي",
+    "StationNameEN": "MATAI",
+    "StationCode": "41707",
+    "ShortName": "ENR_671",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516487",
+    "StationNameAR": "قلوصنا",
+    "StationNameEN": "QLOWSNA",
+    "StationCode": "41734",
+    "ShortName": "ENR_672",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516488",
+    "StationNameAR": "سمالوط",
+    "StationNameEN": "SAMALUT",
+    "StationCode": "41761",
+    "ShortName": "ENR_673",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516494",
+    "StationNameAR": "مصنع الغزل",
+    "StationNameEN": "MASNA EL-GAZL",
+    "StationCode": "41921",
+    "ShortName": "ENR_679",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516495",
+    "StationNameAR": "بني احمد",
+    "StationNameEN": "BANI AHMED",
+    "StationCode": "42019",
+    "ShortName": "ENR_680",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516496",
+    "StationNameAR": "منسافيس",
+    "StationNameEN": "MINSAFEES",
+    "StationCode": "42046",
+    "ShortName": "ENR_681",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516497",
+    "StationNameAR": "ابيوها",
+    "StationNameEN": "ABIOHA",
+    "StationCode": "42073",
+    "ShortName": "ENR_682",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516498",
+    "StationNameAR": "ابو قرقاص",
+    "StationNameEN": "ABU QORGAS",
+    "StationCode": "42108",
+    "ShortName": "ENR_683",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516499",
+    "StationNameAR": "اتليدم",
+    "StationNameEN": "ATLEEDM",
+    "StationCode": "42135",
+    "ShortName": "ENR_684",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516500",
+    "StationNameAR": "المحرص",
+    "StationNameEN": "EL-MAHRASS",
+    "StationCode": "42162",
+    "ShortName": "ENR_685",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516501",
+    "StationNameAR": "الروضه",
+    "StationNameEN": "EL-RODA",
+    "StationCode": "42199",
+    "ShortName": "ENR_686",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516502",
+    "StationNameAR": "ملوي",
+    "StationNameEN": "MALLAWI",
+    "StationCode": "42224",
+    "ShortName": "ENR_687",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516503",
+    "StationNameAR": "معصره ملوي",
+    "StationNameEN": "MASSRA MALLAWI",
+    "StationCode": "42251",
+    "ShortName": "ENR_688",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516504",
+    "StationNameAR": "تل العمارنه",
+    "StationNameEN": "TAL EL-AMStationNameARNA",
+    "StationCode": "42288",
+    "ShortName": "ENR_689",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516505",
+    "StationNameAR": "دير مواس",
+    "StationNameEN": "DEER MWASS",
+    "StationCode": "42313",
+    "ShortName": "ENR_690",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516506",
+    "StationNameAR": "الجرف",
+    "StationNameEN": "EL-GStationNameARF",
+    "StationCode": "42340",
+    "ShortName": "ENR_691",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516507",
+    "StationNameAR": "ديروط",
+    "StationNameEN": "DAIRUT",
+    "StationCode": "42377",
+    "ShortName": "ENR_692",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516508",
+    "StationNameAR": "صنبو",
+    "StationNameEN": "SANBOW",
+    "StationCode": "42402",
+    "ShortName": "ENR_693",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516482",
+    "StationNameAR": "ابا الوقف",
+    "StationNameEN": "ABA EL-WAQF",
+    "StationCode": "41583",
+    "ShortName": "ENR_667",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202697",
+    "StationNameAR": "منيه شبين القناطر",
+    "StationNameEN": "MNYH SHEBIN AL KANATER",
+    "StationCode": "4239",
+    "ShortName": "ENR_925",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516481",
+    "StationNameAR": "مغاغه",
+    "StationNameEN": "MAGHAGHA",
+    "StationCode": "41556",
+    "ShortName": "ENR_666",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516510",
+    "StationNameAR": "القوصيه",
+    "StationNameEN": "EL-QOSIAH",
+    "StationCode": "42466",
+    "ShortName": "ENR_695",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516511",
+    "StationNameAR": "بني قره",
+    "StationNameEN": "BANI QORA",
+    "StationCode": "42493",
+    "ShortName": "ENR_696",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516512",
+    "StationNameAR": "بني شقير",
+    "StationNameEN": "BANI SHOQEER",
+    "StationCode": "42528",
+    "ShortName": "ENR_697",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516514",
+    "StationNameAR": "الحواتكه",
+    "StationNameEN": "EL-HWATKA",
+    "StationCode": "42582",
+    "ShortName": "ENR_699",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516515",
+    "StationNameAR": "نجع سبع",
+    "StationNameEN": "NAGA SABAH",
+    "StationCode": "42608",
+    "ShortName": "ENR_700",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775986",
+    "StationNameAR": "بني حسين",
+    "StationNameEN": "BANI HUSSIN",
+    "StationCode": "42617",
+    "ShortName": "ENR_701",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775987",
+    "StationNameAR": "منقباد",
+    "StationNameEN": "MANGBAD",
+    "StationCode": "42644",
+    "ShortName": "ENR_702",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775988",
+    "StationNameAR": "الفوسفات",
+    "StationNameEN": "EL-PHOSPHAT",
+    "StationCode": "42653",
+    "ShortName": "ENR_703",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775991",
+    "StationNameAR": "المطيعه",
+    "StationNameEN": "EL-MATIAA",
+    "StationCode": "43045",
+    "ShortName": "ENR_706",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775992",
+    "StationNameAR": "باقور",
+    "StationNameEN": "BAQOOR",
+    "StationCode": "43072",
+    "ShortName": "ENR_707",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775993",
+    "StationNameAR": "ابو تيج",
+    "StationNameEN": "ABU TIG",
+    "StationCode": "43107",
+    "ShortName": "ENR_708",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775994",
+    "StationNameAR": "النخيله",
+    "StationNameEN": "EL-NIKHEELA",
+    "StationCode": "43134",
+    "ShortName": "ENR_709",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775995",
+    "StationNameAR": "صدفا",
+    "StationNameEN": "SStationIDFA",
+    "StationCode": "43161",
+    "ShortName": "ENR_710",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775996",
+    "StationNameAR": "اولاد الياس",
+    "StationNameEN": "AWLAD ALYAS",
+    "StationCode": "43198",
+    "ShortName": "ENR_711",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776000",
+    "StationNameAR": "بنجا",
+    "StationNameEN": "BANGA",
+    "StationCode": "43312",
+    "ShortName": "ENR_715",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776002",
+    "StationNameAR": "الصوامعه",
+    "StationNameEN": "EL-SWAMAA",
+    "StationCode": "43376",
+    "ShortName": "ENR_717",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776003",
+    "StationNameAR": "الشهيد السايح",
+    "StationNameEN": "EL-SHAHEED EL-SAYEH",
+    "StationCode": "43401",
+    "ShortName": "ENR_718",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776004",
+    "StationNameAR": "المراغه",
+    "StationNameEN": "EL-MStationNameARAGHA",
+    "StationCode": "43438",
+    "ShortName": "ENR_719",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776005",
+    "StationNameAR": "شندويل البلد",
+    "StationNameEN": "SHANDWEEL EL-BALAD",
+    "StationCode": "43465",
+    "ShortName": "ENR_720",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776006",
+    "StationNameAR": "ج شندويل",
+    "StationNameEN": "GEZEERAT SHANDWEEL",
+    "StationCode": "43492",
+    "ShortName": "ENR_721",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776007",
+    "StationNameAR": "الحماديه",
+    "StationNameEN": "EL HAMADIA",
+    "StationCode": "43527",
+    "ShortName": "ENR_722",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776009",
+    "StationNameAR": "بلصفوره",
+    "StationNameEN": "BILSAFORA",
+    "StationCode": "44017",
+    "ShortName": "ENR_724",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776010",
+    "StationNameAR": "العيسويه",
+    "StationNameEN": "EL-ESAWIA",
+    "StationCode": "44026",
+    "ShortName": "ENR_725",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776011",
+    "StationNameAR": "المنشاه",
+    "StationNameEN": "EL-MONSHAA",
+    "StationCode": "44044",
+    "ShortName": "ENR_726",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776016",
+    "StationNameAR": "مزاتا غرب",
+    "StationNameEN": "MIZATA GStationNameARB",
+    "StationCode": "44197",
+    "ShortName": "ENR_731",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364775997",
+    "StationNameAR": "طما",
+    "StationNameEN": "TEMA",
+    "StationCode": "43223",
+    "ShortName": "ENR_712",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776001",
+    "StationNameAR": "طهطا",
+    "StationNameEN": "TAHTA",
+    "StationCode": "43349",
+    "ShortName": "ENR_716",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776018",
+    "StationNameAR": "الساحل القبلي",
+    "StationNameEN": "EL-SAHL-QIBLI",
+    "StationCode": "44231",
+    "ShortName": "ENR_733",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776019",
+    "StationNameAR": "البلينا",
+    "StationNameEN": "EL-BALYANA",
+    "StationCode": "44259",
+    "ShortName": "ENR_734",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776020",
+    "StationNameAR": "بني حميل",
+    "StationNameEN": "BANI GAMEEL",
+    "StationCode": "44268",
+    "ShortName": "ENR_735",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776021",
+    "StationNameAR": "ابو شوشه",
+    "StationNameEN": "ABU SHOSHA",
+    "StationCode": "44286",
+    "ShortName": "ENR_736",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776022",
+    "StationNameAR": "سمهود",
+    "StationNameEN": "SAMHOOD",
+    "StationCode": "44302",
+    "ShortName": "ENR_737",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776023",
+    "StationNameAR": "ابوطشت",
+    "StationNameEN": "ABU TISHT",
+    "StationCode": "44311",
+    "ShortName": "ENR_738",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776024",
+    "StationNameAR": "رفاعه",
+    "StationNameEN": "REEFAA",
+    "StationCode": "44348",
+    "ShortName": "ENR_739",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776025",
+    "StationNameAR": "فرشوط",
+    "StationNameEN": "FStationNameARSHUT",
+    "StationCode": "44375",
+    "ShortName": "ENR_740",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776026",
+    "StationNameAR": "بهجوره",
+    "StationNameEN": "BAHGOURA",
+    "StationCode": "44400",
+    "ShortName": "ENR_741",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776029",
+    "StationNameAR": "السلميه قبلي",
+    "StationNameEN": "EL-SALMIA QIBLI",
+    "StationCode": "44464",
+    "ShortName": "ENR_744",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776030",
+    "StationNameAR": "الرحمانيه قبلي",
+    "StationNameEN": "EL-RAHMANIA QIBLI",
+    "StationCode": "44491",
+    "ShortName": "ENR_745",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776031",
+    "StationNameAR": "الياسينيه",
+    "StationNameEN": "EL-YASENIA",
+    "StationCode": "44526",
+    "ShortName": "ENR_746",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776033",
+    "StationNameAR": "دشنا",
+    "StationNameEN": "DISHNA",
+    "StationCode": "44580",
+    "ShortName": "ENR_748",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776034",
+    "StationNameAR": "المراشده",
+    "StationNameEN": "EL-MStationNameARASHDA",
+    "StationCode": "44599",
+    "ShortName": "ENR_749",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776035",
+    "StationNameAR": "السمطا",
+    "StationNameEN": "EL-SAMTA",
+    "StationCode": "44615",
+    "ShortName": "ENR_750",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229811",
+    "StationNameAR": "اولاد عمرو",
+    "StationNameEN": "AWLAAD AMRO",
+    "StationCode": "44642",
+    "ShortName": "ENR_752",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229812",
+    "StationNameAR": "القناويه",
+    "StationNameEN": "EL-QENAWIA",
+    "StationCode": "44660",
+    "ShortName": "ENR_753",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229813",
+    "StationNameAR": "المخادمه",
+    "StationNameEN": "EL-MAKHADMA",
+    "StationCode": "44688",
+    "ShortName": "ENR_754",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229814",
+    "StationNameAR": "الجزيريه",
+    "StationNameEN": "EL-GIZEERIA",
+    "StationCode": "44697",
+    "ShortName": "ENR_755",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582722",
+    "StationNameAR": "الزنكلون",
+    "StationNameEN": "EL-ZNKALOON",
+    "StationCode": "16226",
+    "ShortName": "ENR_267",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229816",
+    "StationNameAR": "الاشراف القبليه",
+    "StationNameEN": "EL-ASHRAF EL-QIBLIA",
+    "StationCode": "44722",
+    "ShortName": "ENR_757",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229817",
+    "StationNameAR": "الاشراف",
+    "StationNameEN": "EL-ASHRAF",
+    "StationCode": "44740",
+    "ShortName": "ENR_758",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229818",
+    "StationNameAR": "ابنود",
+    "StationNameEN": "ABNOOD",
+    "StationCode": "44768",
+    "ShortName": "ENR_759",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229819",
+    "StationNameAR": "البراهمه",
+    "StationNameEN": "EL-BRAHMA",
+    "StationCode": "44786",
+    "ShortName": "ENR_760",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229820",
+    "StationNameAR": "قفط",
+    "StationNameEN": "QIFT",
+    "StationCode": "44802",
+    "ShortName": "ENR_761",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229821",
+    "StationNameAR": "الكرتيه",
+    "StationNameEN": "EL-KRTIA",
+    "StationCode": "44820",
+    "ShortName": "ENR_762",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229822",
+    "StationNameAR": "قوص",
+    "StationNameEN": "QUS",
+    "StationCode": "44848",
+    "ShortName": "ENR_763",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396666",
+    "StationNameAR": "جنيفه",
+    "StationNameEN": "GENEFAH",
+    "StationCode": "17252",
+    "ShortName": "ENR_309",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189595",
+    "StationNameAR": "ابو حمص",
+    "StationNameEN": "ABU HOMOSS",
+    "StationCode": "5630",
+    "ShortName": "ENR_92",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229823",
+    "StationNameAR": "الشيخ عامر",
+    "StationNameEN": "EL-SHEEKH AMMR",
+    "StationCode": "44857",
+    "ShortName": "ENR_764",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229824",
+    "StationNameAR": "الشنهوريه",
+    "StationNameEN": "EL-SHANHORIA",
+    "StationCode": "44866",
+    "ShortName": "ENR_765",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229825",
+    "StationNameAR": "العيايشه",
+    "StationNameEN": "ALIYAYSHA",
+    "StationCode": "44875",
+    "ShortName": "ENR_766",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229826",
+    "StationNameAR": "خزام",
+    "StationNameEN": "KHOZAM",
+    "StationCode": "44884",
+    "ShortName": "ENR_767",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229827",
+    "StationNameAR": "الزيتيه",
+    "StationNameEN": "ALZYTYH",
+    "StationCode": "44893",
+    "ShortName": "ENR_768",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229828",
+    "StationNameAR": "الكرنك",
+    "StationNameEN": "ALKRNK",
+    "StationCode": "44900",
+    "ShortName": "ENR_769",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229830",
+    "StationNameAR": "الرضوانيه",
+    "StationNameEN": "EL-RADWANIA",
+    "StationCode": "44946",
+    "ShortName": "ENR_771",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229831",
+    "StationNameAR": "البغدادي",
+    "StationNameEN": "EL-BAGDADI",
+    "StationCode": "45016",
+    "ShortName": "ENR_772",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229832",
+    "StationNameAR": "الوحده",
+    "StationNameEN": "EL-WIHDA",
+    "StationCode": "45025",
+    "ShortName": "ENR_773",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229833",
+    "StationNameAR": "الطود",
+    "StationNameEN": "EL-TAWD",
+    "StationCode": "45034",
+    "ShortName": "ENR_774",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229834",
+    "StationNameAR": "ارمنت",
+    "StationNameEN": "StationNameARMNT",
+    "StationCode": "45043",
+    "ShortName": "ENR_775",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229835",
+    "StationNameAR": "العديسات",
+    "StationNameEN": "AL-ODISSAT",
+    "StationCode": "45052",
+    "ShortName": "ENR_776",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229836",
+    "StationNameAR": "ه.نجع الجسور",
+    "StationNameEN": "NAG EL-GOSOOR",
+    "StationCode": "45061",
+    "ShortName": "ENR_777",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229837",
+    "StationNameAR": "الشغب",
+    "StationNameEN": "AL-SHAGB",
+    "StationCode": "45070",
+    "ShortName": "ENR_778",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229838",
+    "StationNameAR": "المعله",
+    "StationNameEN": "EL-MAALA",
+    "StationCode": "45098",
+    "ShortName": "ENR_779",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229839",
+    "StationNameAR": "نجع ابو سعيد",
+    "StationNameEN": "NAG ABU SAStationID",
+    "StationCode": "45105",
+    "ShortName": "ENR_780",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229840",
+    "StationNameAR": "المطاعنه",
+    "StationNameEN": "AL-MATANA",
+    "StationCode": "45132",
+    "ShortName": "ENR_781",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229841",
+    "StationNameAR": "الدير",
+    "StationNameEN": "AL-DEER",
+    "StationCode": "45150",
+    "ShortName": "ENR_782",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229843",
+    "StationNameAR": "الكلابيه",
+    "StationNameEN": "EL-KLABIA",
+    "StationCode": "45187",
+    "ShortName": "ENR_784",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229844",
+    "StationNameAR": "جزيره راجح",
+    "StationNameEN": "GEZEERAT RAGH",
+    "StationCode": "45196",
+    "ShortName": "ENR_785",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582715",
+    "StationNameAR": "شبلنجه",
+    "StationNameEN": "SHABLANGA",
+    "StationCode": "16048",
+    "ShortName": "ENR_260",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229846",
+    "StationNameAR": "السباعيه",
+    "StationNameEN": "EL-SIBAIYA",
+    "StationCode": "45221",
+    "ShortName": "ENR_787",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229848",
+    "StationNameAR": "الخوي",
+    "StationNameEN": "EL-KHWI",
+    "StationCode": "45258",
+    "ShortName": "ENR_789",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229850",
+    "StationNameAR": "الفوسفات  الجديدة",
+    "StationNameEN": "EL-FOSFAT ELGADEDA",
+    "StationCode": "45294",
+    "ShortName": "ENR_791",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229851",
+    "StationNameAR": "الكلح",
+    "StationNameEN": "EL-KALH",
+    "StationCode": "45310",
+    "ShortName": "ENR_792",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229852",
+    "StationNameAR": "الدومريه",
+    "StationNameEN": "EL-DOMRIA",
+    "StationCode": "45338",
+    "ShortName": "ENR_793",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229853",
+    "StationNameAR": "العطواني",
+    "StationNameEN": "EL-ATWANI",
+    "StationCode": "45347",
+    "ShortName": "ENR_794",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229855",
+    "StationNameAR": "الفوزه",
+    "StationNameEN": "EL-FOOZA",
+    "StationCode": "45409",
+    "ShortName": "ENR_796",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229856",
+    "StationNameAR": "الرديسيه",
+    "StationNameEN": "AL-RODISAT",
+    "StationCode": "45436",
+    "ShortName": "ENR_797",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229857",
+    "StationNameAR": "السراج",
+    "StationNameEN": "EL-SORAG",
+    "StationCode": "45463",
+    "ShortName": "ENR_798",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229858",
+    "StationNameAR": "الرمادي",
+    "StationNameEN": "EL-RAMADI",
+    "StationCode": "45472",
+    "ShortName": "ENR_799",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229859",
+    "StationNameAR": "جعفر الصادق",
+    "StationNameEN": "GAAFR EL-SADIQ",
+    "StationCode": "45490",
+    "ShortName": "ENR_800",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877938",
+    "StationNameAR": "سلوا",
+    "StationNameEN": "SELWA",
+    "StationCode": "45525",
+    "ShortName": "ENR_801",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877939",
+    "StationNameAR": "السيد سعيد",
+    "StationNameEN": "EL-SAYED SAStationID",
+    "StationCode": "45534",
+    "ShortName": "ENR_802",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877941",
+    "StationNameAR": "كلابشه",
+    "StationNameEN": "KLABSHA",
+    "StationCode": "45561",
+    "ShortName": "ENR_804",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877942",
+    "StationNameAR": "جبل السلسله",
+    "StationNameEN": "GABL EL-SILSLA",
+    "StationCode": "45589",
+    "ShortName": "ENR_805",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877943",
+    "StationNameAR": "الرغامه",
+    "StationNameEN": "EL-RGHAMA",
+    "StationCode": "45614",
+    "ShortName": "ENR_806",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229854",
+    "StationNameAR": "ادفو",
+    "StationNameEN": "StationIDFU",
+    "StationCode": "45374",
+    "ShortName": "ENR_795",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877945",
+    "StationNameAR": "الشطب البلد",
+    "StationNameEN": "SHATB EL-BALAD",
+    "StationCode": "45650",
+    "ShortName": "ENR_808",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877946",
+    "StationNameAR": "دراو",
+    "StationNameEN": "DStationNameARAW",
+    "StationCode": "45678",
+    "ShortName": "ENR_809",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877947",
+    "StationNameAR": "السلام النوبيه",
+    "StationNameEN": "EL-SALAM EL-NOBIA",
+    "StationCode": "45687",
+    "ShortName": "ENR_810",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877949",
+    "StationNameAR": "الجعافره",
+    "StationNameEN": "EL-GAAFRA",
+    "StationCode": "45703",
+    "ShortName": "ENR_812",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877950",
+    "StationNameAR": "الاعقاب",
+    "StationNameEN": "EL-AAQAB",
+    "StationCode": "45730",
+    "ShortName": "ENR_813",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877951",
+    "StationNameAR": "الاعقاب قبلي",
+    "StationNameEN": "EL-AAQAB QIBLI",
+    "StationCode": "45749",
+    "ShortName": "ENR_814",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877952",
+    "StationNameAR": "الخطاره",
+    "StationNameEN": "EL-KHATStationNameARA",
+    "StationCode": "45767",
+    "ShortName": "ENR_815",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877953",
+    "StationNameAR": "الشديدة",
+    "StationNameEN": "EL-SHADEDA",
+    "StationCode": "45776",
+    "ShortName": "ENR_816",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877954",
+    "StationNameAR": "ابو الريش قبلي",
+    "StationNameEN": "ABU EL-REESH QIBLI",
+    "StationCode": "45794",
+    "ShortName": "ENR_817",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877957",
+    "StationNameAR": "الشيخ هارون",
+    "StationNameEN": "EL-SHIKH HStationNameAROON",
+    "StationCode": "45838",
+    "ShortName": "ENR_820",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877958",
+    "StationNameAR": "كيما",
+    "StationNameEN": "KEEMA",
+    "StationCode": "45847",
+    "ShortName": "ENR_821",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877959",
+    "StationNameAR": "الصداقه",
+    "StationNameEN": "EL-SADAQA",
+    "StationCode": "45874",
+    "ShortName": "ENR_822",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557977",
+    "StationNameAR": "مرسي مطروح",
+    "StationNameEN": "MStationNameARSA MATROUH",
+    "StationCode": "7763",
+    "ShortName": "ENR_140",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877948",
+    "StationNameAR": "بلانه",
+    "StationNameEN": "BLANA",
+    "StationCode": "45696",
+    "ShortName": "ENR_811",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877940",
+    "StationNameAR": "كاجوج",
+    "StationNameEN": "KAGOOG",
+    "StationCode": "45552",
+    "ShortName": "ENR_803",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557939",
+    "StationNameAR": "محرم بك",
+    "StationNameEN": "MUHStationNameARAM BEK",
+    "StationCode": "6013",
+    "ShortName": "ENR_102",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582714",
+    "StationNameAR": "منيه السباع",
+    "StationNameEN": "MEYET EL SEBAA",
+    "StationCode": "16011",
+    "ShortName": "ENR_259",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229829",
+    "StationNameAR": "الاقصر",
+    "StationNameEN": "LUXOR",
+    "StationCode": "44919",
+    "ShortName": "ENR_770",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478397",
+    "StationNameAR": "المنصوره",
+    "StationNameEN": "EL-MNSOURA",
+    "StationCode": "27401",
+    "ShortName": "ENR_462",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557959",
+    "StationNameAR": "الحمام",
+    "StationNameEN": "EL HAMAM",
+    "StationCode": "7316",
+    "ShortName": "ENR_122",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229842",
+    "StationNameAR": "اسنا",
+    "StationNameEN": "ISNA",
+    "StationCode": "45169",
+    "ShortName": "ENR_783",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229815",
+    "StationNameAR": "قنا",
+    "StationNameEN": "QENA",
+    "StationCode": "44704",
+    "ShortName": "ENR_756",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393008943171",
+    "StationNameAR": "بلوك 3 الجزيريه",
+    "StationNameEN": "BLOK 3",
+    "StationCode": "55014",
+    "ShortName": "ENR_868",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393008943202",
+    "StationNameAR": "منشيه الجبل الاصفر",
+    "StationNameEN": "MSNSHIA EL GABAL EL ASFStationNameAR",
+    "StationCode": "4051",
+    "ShortName": "ENR_899",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393008943203",
+    "StationNameAR": "اللواء عبدالستار هـ",
+    "StationNameEN": "EL LEWA ABD EL SATStationNameAR",
+    "StationCode": "25083",
+    "ShortName": "ENR_901",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202676",
+    "StationNameAR": "برج العرب الجديدة",
+    "StationNameEN": "BORG ELStationNameARAB ELGDEDA",
+    "StationCode": "7156",
+    "ShortName": "ENR_904",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191747",
+    "StationNameAR": "كيلو973ر9 ابوراضي",
+    "StationNameEN": "KILO 9.973 ABU RADY",
+    "StationCode": "32020",
+    "ShortName": "ENR_568",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191752",
+    "StationNameAR": "عامريه الفيوم",
+    "StationNameEN": "AMRYET EL FAYOUM",
+    "StationCode": "32146",
+    "ShortName": "ENR_573",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202684",
+    "StationNameAR": "كيلو 64",
+    "StationNameEN": "KILO 64",
+    "StationCode": "17298",
+    "ShortName": "ENR_912",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202685",
+    "StationNameAR": "الشروق",
+    "StationNameEN": "EL-SHEROK",
+    "StationCode": "18117",
+    "ShortName": "ENR_913",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202686",
+    "StationNameAR": "دمـاريــس",
+    "StationNameEN": "DAMStationNameAREES",
+    "StationCode": "41896",
+    "ShortName": "ENR_914",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202687",
+    "StationNameAR": "جامعة الأزهر",
+    "StationNameEN": "AZHStationNameAR UNIVERSITY",
+    "StationCode": "42662",
+    "ShortName": "ENR_915",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202688",
+    "StationNameAR": "الطوناب   هـ",
+    "StationNameEN": "EL-TONAB H",
+    "StationCode": "45445",
+    "ShortName": "ENR_916",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191742",
+    "StationNameAR": "اوسيم",
+    "StationNameEN": "OSEEM",
+    "StationCode": "31736",
+    "ShortName": "ENR_563",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202689",
+    "StationNameAR": "الرتاج  هـ.",
+    "StationNameEN": "EL-RETAG H",
+    "StationCode": "45697",
+    "ShortName": "ENR_917",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202695",
+    "StationNameAR": "غزالة عبدون",
+    "StationNameEN": "GAZALET ABDOON",
+    "StationCode": "15058",
+    "ShortName": "ENR_923",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202698",
+    "StationNameAR": "العجرود الجديده",
+    "StationNameEN": "NEW AGROUD",
+    "StationCode": "18260",
+    "ShortName": "ENR_926",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202699",
+    "StationNameAR": "جامعة الزقازيق",
+    "StationNameEN": "GAMAA ZAQAZEQ",
+    "StationCode": "25336",
+    "ShortName": "ENR_927",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202704",
+    "StationNameAR": "الفردية",
+    "StationNameEN": "EL-FStationNameARDIA",
+    "StationCode": "7530",
+    "ShortName": "ENR_932",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202705",
+    "StationNameAR": "المشتل",
+    "StationNameEN": "EL-MASHTAL",
+    "StationCode": "1498",
+    "ShortName": "ENR_933",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202706",
+    "StationNameAR": "الخزان",
+    "StationNameEN": "EL KHAZAN",
+    "StationCode": "29347",
+    "ShortName": "ENR_934",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191750",
+    "StationNameAR": "سيلا",
+    "StationNameEN": "SELA",
+    "StationCode": "32100",
+    "ShortName": "ENR_571",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645582",
+    "StationNameAR": "البدرشين",
+    "StationNameEN": "EL-BADRASHEEN",
+    "StationCode": "40253",
+    "ShortName": "ENR_629",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396659",
+    "StationNameAR": "ابو سلطان",
+    "StationNameEN": "ABU SULTAN",
+    "StationCode": "17109",
+    "ShortName": "ENR_302",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645590",
+    "StationNameAR": "البليده",
+    "StationNameEN": "EL-BLEEDA",
+    "StationCode": "40404",
+    "ShortName": "ENR_637",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645598",
+    "StationNameAR": "اطواب",
+    "StationNameEN": "ATWAB",
+    "StationCode": "40646",
+    "ShortName": "ENR_645",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189578",
+    "StationNameAR": "بركه السبع",
+    "StationNameEN": "BIRKAT EL-SABA",
+    "StationCode": "5274",
+    "ShortName": "ENR_75",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582717",
+    "StationNameAR": "كوم حلين",
+    "StationNameEN": "KOUM HELEEN",
+    "StationCode": "16093",
+    "ShortName": "ENR_262",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543610",
+    "StationNameAR": "نشرت",
+    "StationNameEN": "NASHRET",
+    "StationCode": "30013",
+    "ShortName": "ENR_509",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189571",
+    "StationNameAR": "طوخ",
+    "StationNameEN": "TUKH",
+    "StationCode": "5158",
+    "ShortName": "ENR_68",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830304",
+    "StationNameAR": "محله روح",
+    "StationNameEN": "MAHLET ROUH",
+    "StationCode": "27072",
+    "ShortName": "ENR_447",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189587",
+    "StationNameAR": "ايتاي البارود",
+    "StationNameEN": "ITAI EL-BStationNameARUD",
+    "StationCode": "5470",
+    "ShortName": "ENR_84",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574473",
+    "StationNameAR": "ههيا",
+    "StationNameEN": "HIHHYA",
+    "StationCode": "13078",
+    "ShortName": "ENR_224",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582720",
+    "StationNameAR": "الجديده",
+    "StationNameEN": "EL-GADStationIDA",
+    "StationCode": "16164",
+    "ShortName": "ENR_265",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478410",
+    "StationNameAR": "راس الخليج",
+    "StationNameEN": "RAS EL KHALIG",
+    "StationCode": "27705",
+    "ShortName": "ENR_475",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582721",
+    "StationNameAR": "القراقره",
+    "StationNameEN": "EL-KStationNameARAKRA",
+    "StationCode": "16191",
+    "ShortName": "ENR_266",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478418",
+    "StationNameAR": "دمياط",
+    "StationNameEN": "DAMIETTA",
+    "StationCode": "27858",
+    "ShortName": "ENR_483",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535393554202675",
+    "StationNameAR": "25يناير",
+    "StationNameEN": "25 JANUStationNameARY",
+    "StationCode": "7147",
+    "ShortName": "ENR_903",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582727",
+    "StationNameAR": "ابو حماد",
+    "StationNameEN": "ABO HAMAD",
+    "StationCode": "16379",
+    "ShortName": "ENR_272",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189602",
+    "StationNameAR": "سيدي جابر",
+    "StationNameEN": "SStationIDI GABER",
+    "StationCode": "5774",
+    "ShortName": "ENR_99",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582735",
+    "StationNameAR": "ابو صوير",
+    "StationNameEN": "ABO SOWER",
+    "StationCode": "16520",
+    "ShortName": "ENR_280",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582744",
+    "StationNameAR": "القنطره غرب",
+    "StationNameEN": "ALQNTRH GHStationNameARB",
+    "StationCode": "16735",
+    "ShortName": "ENR_289",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582739",
+    "StationNameAR": "الاسماعيليه",
+    "StationNameEN": "EL ESMAILIYAH",
+    "StationCode": "16646",
+    "ShortName": "ENR_284",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574466",
+    "StationNameAR": "بردين",
+    "StationNameEN": "BERDEEN",
+    "StationCode": "12435",
+    "ShortName": "ENR_217",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574459",
+    "StationNameAR": "مشتول",
+    "StationNameEN": "MASHTOOL",
+    "StationCode": "12220",
+    "ShortName": "ENR_210",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830285",
+    "StationNameAR": "ميت غمر",
+    "StationNameEN": "MEET GHAAMR",
+    "StationCode": "25190",
+    "ShortName": "ENR_428",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830288",
+    "StationNameAR": "تفـــــهنا الاشـــراف",
+    "StationNameEN": "TAFAHNA EL ASHRAF",
+    "StationCode": "25234",
+    "ShortName": "ENR_431",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535392467877960",
+    "StationNameAR": "السد العالي",
+    "StationNameEN": "EL-SAD EL-ALY",
+    "StationCode": "45892",
+    "ShortName": "ENR_823",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391914229849",
+    "StationNameAR": "المحاميد",
+    "StationNameEN": "EL-MAHAMEED",
+    "StationCode": "45285",
+    "ShortName": "ENR_790",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543625",
+    "StationNameAR": "ابشان",
+    "StationNameEN": "EBSHAN",
+    "StationCode": "30371",
+    "ShortName": "ENR_524",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582709",
+    "StationNameAR": "الصالحيه",
+    "StationNameEN": "EL SALHEIA",
+    "StationCode": "14255",
+    "ShortName": "ENR_254",
+    "IsActive": true
+  },
+  {
+    "StationID": "673618280706998260",
+    "StationNameAR": "عدلي منصور",
+    "StationNameEN": "ADLY MANSOUR",
+    "StationCode": "5164",
+    "ShortName": "ENR_5164",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191731",
+    "StationNameAR": "وردان",
+    "StationNameEN": "WStationNameARDAN",
+    "StationCode": "31469",
+    "ShortName": "ENR_552",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543607",
+    "StationNameAR": "سنهور",
+    "StationNameEN": "SENHOUR",
+    "StationCode": "29374",
+    "ShortName": "ENR_506",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433428",
+    "StationNameAR": "الحامول",
+    "StationNameEN": "EL HAMOOL",
+    "StationCode": "22228",
+    "ShortName": "ENR_385",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574483",
+    "StationNameAR": "برقين",
+    "StationNameEN": "BStationNameARKEEN",
+    "StationCode": "13345",
+    "ShortName": "ENR_234",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189586",
+    "StationNameAR": "التوفيقيه",
+    "StationNameEN": "EL-TAWFIKIA",
+    "StationCode": "5452",
+    "ShortName": "ENR_83",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191744",
+    "StationNameAR": "بشتيل البلد",
+    "StationNameEN": "BASHTEEL EL BALAD",
+    "StationCode": "31790",
+    "ShortName": "ENR_565",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557967",
+    "StationNameAR": "الضبعه",
+    "StationNameEN": "EL DABAA",
+    "StationCode": "7496",
+    "ShortName": "ENR_130",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557963",
+    "StationNameAR": "العلمين",
+    "StationNameEN": "EL ALAMEIN",
+    "StationCode": "7405",
+    "ShortName": "ENR_126",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478415",
+    "StationNameAR": "التوفيقيه البلد",
+    "StationNameEN": "EL TAWFIKYA EL BALAD",
+    "StationCode": "27812",
+    "ShortName": "ENR_480",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543623",
+    "StationNameAR": "الكراكات",
+    "StationNameEN": "EL KStationNameARAKAT",
+    "StationCode": "30317",
+    "ShortName": "ENR_522",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543616",
+    "StationNameAR": "كفر الشيخ",
+    "StationNameEN": "KAFR EL SHEIKH",
+    "StationCode": "30139",
+    "ShortName": "ENR_515",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543621",
+    "StationNameAR": "سيدي غازي",
+    "StationNameEN": "MAGDY GHAZY",
+    "StationCode": "30255",
+    "ShortName": "ENR_520",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543613",
+    "StationNameAR": "محله موسي",
+    "StationNameEN": "MAHLA MOUSSA",
+    "StationCode": "30077",
+    "ShortName": "ENR_512",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478426",
+    "StationNameAR": "الشين",
+    "StationNameEN": "EL SHEEN",
+    "StationCode": "29132",
+    "ShortName": "ENR_491",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543624",
+    "StationNameAR": "كوم الحجنه",
+    "StationNameEN": "KOM EL HAGNA",
+    "StationCode": "30344",
+    "ShortName": "ENR_523",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543627",
+    "StationNameAR": "كفر الجرايده",
+    "StationNameEN": "KAFR EL GStationNameARAYDAH",
+    "StationCode": "30433",
+    "ShortName": "ENR_526",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543628",
+    "StationNameAR": "بهوت",
+    "StationNameEN": "BAHOOT",
+    "StationCode": "30442",
+    "ShortName": "ENR_527",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191739",
+    "StationNameAR": "المناشي",
+    "StationNameEN": "EL MANASHY",
+    "StationCode": "31674",
+    "ShortName": "ENR_560",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390282645554",
+    "StationNameAR": "الكردي",
+    "StationNameEN": "EL KORDY",
+    "StationCode": "34233",
+    "ShortName": "ENR_601",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543622",
+    "StationNameAR": "الكوم الطويل",
+    "StationNameEN": "EL KOM EL TAWEEL",
+    "StationCode": "30282",
+    "ShortName": "ENR_521",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433436",
+    "StationNameAR": "اشمون",
+    "StationNameEN": "ASHMOON",
+    "StationCode": "22371",
+    "ShortName": "ENR_393",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582726",
+    "StationNameAR": "الصوه",
+    "StationNameEN": "EL-SOUA",
+    "StationCode": "16342",
+    "ShortName": "ENR_271",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149122",
+    "StationNameAR": "المعموره",
+    "StationNameEN": "EL MAMOURA",
+    "StationCode": "9289",
+    "ShortName": "ENR_167",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149147",
+    "StationNameAR": "سيدي معروف",
+    "StationNameEN": "SStationIDI MAStationNameAROF",
+    "StationCode": "11132",
+    "ShortName": "ENR_192",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574474",
+    "StationNameAR": "شرشيمه",
+    "StationNameEN": "SHERSHEMA",
+    "StationCode": "13103",
+    "ShortName": "ENR_225",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582707",
+    "StationNameAR": "العزازي",
+    "StationNameEN": "EL AZZAZY",
+    "StationCode": "14228",
+    "ShortName": "ENR_252",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574498",
+    "StationNameAR": "اكياد",
+    "StationNameEN": "AKYAD",
+    "StationCode": "14166",
+    "ShortName": "ENR_249",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574491",
+    "StationNameAR": "الغابه",
+    "StationNameEN": "EL GHABA",
+    "StationCode": "14013",
+    "ShortName": "ENR_242",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582718",
+    "StationNameAR": "ميت يزيد",
+    "StationNameEN": "MEET YAZED",
+    "StationCode": "16100",
+    "ShortName": "ENR_263",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582725",
+    "StationNameAR": "صفط الحنه",
+    "StationNameEN": "SAFT EL-HEENA",
+    "StationCode": "16315",
+    "ShortName": "ENR_270",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582728",
+    "StationNameAR": "محجر ابو حماد",
+    "StationNameEN": "MHGStationNameAR ABO HAMAD",
+    "StationCode": "16388",
+    "ShortName": "ENR_273",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582730",
+    "StationNameAR": "البعالوه",
+    "StationNameEN": "EL-BAALOU",
+    "StationCode": "16431",
+    "ShortName": "ENR_275",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385769574461",
+    "StationNameAR": "انشاص",
+    "StationNameEN": "ANSHAS",
+    "StationCode": "12284",
+    "ShortName": "ENR_212",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582732",
+    "StationNameAR": "المحسمه",
+    "StationNameEN": "EL-MHASMA",
+    "StationCode": "16486",
+    "ShortName": "ENR_277",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582750",
+    "StationNameAR": "الرسوه",
+    "StationNameEN": "EL-RSWA",
+    "StationCode": "16851",
+    "ShortName": "ENR_295",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582754",
+    "StationNameAR": "عين غصين",
+    "StationNameEN": "EIN GHASEN",
+    "StationCode": "17047",
+    "ShortName": "ENR_299",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396660",
+    "StationNameAR": "السعيديه",
+    "StationNameEN": "EL SAEEDYAH",
+    "StationCode": "17118",
+    "ShortName": "ENR_303",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396662",
+    "StationNameAR": "فايد الجديده",
+    "StationNameEN": "FAYED EL GEDStationIDAH",
+    "StationCode": "17145",
+    "ShortName": "ENR_305",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776012",
+    "StationNameAR": "الاحايوه",
+    "StationNameEN": "EL-AHIWA",
+    "StationCode": "44071",
+    "ShortName": "ENR_727",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776013",
+    "StationNameAR": "العسيرات",
+    "StationNameEN": "EL-OSIRAT",
+    "StationCode": "44106",
+    "ShortName": "ENR_728",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776014",
+    "StationNameAR": "البندار",
+    "StationNameEN": "EL-BENDStationNameAR",
+    "StationCode": "44133",
+    "ShortName": "ENR_729",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557957",
+    "StationNameAR": "برج العرب",
+    "StationNameEN": "BORG EL StationNameARAB",
+    "StationCode": "7254",
+    "ShortName": "ENR_120",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189555",
+    "StationNameAR": "الخانكه",
+    "StationNameEN": "EL KHANKA",
+    "StationCode": "4104",
+    "ShortName": "ENR_52",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189557",
+    "StationNameAR": "ابو زعبل البلد",
+    "StationNameEN": "ABU ZAABAL",
+    "StationCode": "4131",
+    "ShortName": "ENR_54",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189558",
+    "StationNameAR": "محاجر ابو زعبل",
+    "StationNameEN": "MAHAGER ABU ZAABAL",
+    "StationCode": "4168",
+    "ShortName": "ENR_55",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191741",
+    "StationNameAR": "برطس",
+    "StationNameEN": "BORTOS",
+    "StationCode": "31709",
+    "ShortName": "ENR_562",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189570",
+    "StationNameAR": "قها",
+    "StationNameEN": "QAHA",
+    "StationCode": "5130",
+    "ShortName": "ENR_67",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830271",
+    "StationNameAR": "كوم مازن",
+    "StationNameEN": "KOM MAZEN",
+    "StationCode": "24299",
+    "ShortName": "ENR_414",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830307",
+    "StationNameAR": "منشيه البكري",
+    "StationNameEN": "MENSHEYET EL BAKRY",
+    "StationCode": "27143",
+    "ShortName": "ENR_450",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478387",
+    "StationNameAR": "غزل المحله",
+    "StationNameEN": "GHAZAL EL MAHATA",
+    "StationCode": "27170",
+    "ShortName": "ENR_452",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478388",
+    "StationNameAR": "محله ابو علي القنطره",
+    "StationNameEN": "MAHALAT ABU ALY EL QANTStationNameARA",
+    "StationCode": "27198",
+    "ShortName": "ENR_453",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478389",
+    "StationNameAR": "الراهبين",
+    "StationNameEN": "AL RAHBEEN",
+    "StationCode": "27223",
+    "ShortName": "ENR_454",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478392",
+    "StationNameAR": "ميت خلف",
+    "StationNameEN": "MEET KHALAF",
+    "StationCode": "27287",
+    "ShortName": "ENR_457",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478393",
+    "StationNameAR": "ميت عساس",
+    "StationNameEN": "MEET ASSAS",
+    "StationCode": "27312",
+    "ShortName": "ENR_458",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478394",
+    "StationNameAR": "كفر العرب",
+    "StationNameEN": "KAFR EL StationNameARAB",
+    "StationCode": "27321",
+    "ShortName": "ENR_459",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478395",
+    "StationNameAR": "ميت الكرما",
+    "StationNameEN": "MEET EL KStationNameARMA",
+    "StationCode": "27349",
+    "ShortName": "ENR_460",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478398",
+    "StationNameAR": "سماد طلخا",
+    "StationNameEN": "SEMAD TALKHA",
+    "StationCode": "27429",
+    "ShortName": "ENR_463",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543602",
+    "StationNameAR": "دسوق",
+    "StationNameEN": "DESOUK",
+    "StationCode": "29285",
+    "ShortName": "ENR_501",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433425",
+    "StationNameAR": "شبين الكوم الجديده",
+    "StationNameEN": "SHEBEEN EL KOM EL GEDStationIDA",
+    "StationCode": "22148",
+    "ShortName": "ENR_382",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189561",
+    "StationNameAR": "العليقات",
+    "StationNameEN": "EL ALYQAT",
+    "StationCode": "4195",
+    "ShortName": "ENR_58",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557953",
+    "StationNameAR": "ايكنجي مريوط",
+    "StationNameEN": "KING MStationNameARRIOT",
+    "StationCode": "7165",
+    "ShortName": "ENR_116",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557954",
+    "StationNameAR": "مريوط",
+    "StationNameEN": "MStationNameARRIOT",
+    "StationCode": "7174",
+    "ShortName": "ENR_117",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557956",
+    "StationNameAR": "بهيج",
+    "StationNameEN": "BAHEEG",
+    "StationCode": "7227",
+    "ShortName": "ENR_119",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557958",
+    "StationNameAR": "الغربانيات",
+    "StationNameEN": "EL GHStationNameARBANIAT",
+    "StationCode": "7281",
+    "ShortName": "ENR_121",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149117",
+    "StationNameAR": "سيدي بشر",
+    "StationNameEN": "SStationIDI BESHR",
+    "StationCode": "9163",
+    "ShortName": "ENR_162",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535385199149148",
+    "StationNameAR": "فوه",
+    "StationNameEN": "FOUH",
+    "StationCode": "11169",
+    "ShortName": "ENR_193",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433432",
+    "StationNameAR": "شما",
+    "StationNameEN": "SHMA",
+    "StationCode": "22291",
+    "ShortName": "ENR_389",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516479",
+    "StationNameAR": "الفنت",
+    "StationNameEN": "EL-FANT",
+    "StationCode": "41494",
+    "ShortName": "ENR_664",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516509",
+    "StationNameAR": "فزاره",
+    "StationNameEN": "FAZStationNameARA",
+    "StationCode": "42439",
+    "ShortName": "ENR_694",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535391364776017",
+    "StationNameAR": "برديس",
+    "StationNameEN": "BStationNameARDEES",
+    "StationCode": "44222",
+    "ShortName": "ENR_732",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535384603557947",
+    "StationNameAR": "المتراس",
+    "StationNameEN": "EL METRAS",
+    "StationCode": "7049",
+    "ShortName": "ENR_110",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830301",
+    "StationNameAR": "بلكيم",
+    "StationNameEN": "BALKIIM",
+    "StationCode": "26117",
+    "ShortName": "ENR_444",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478386",
+    "StationNameAR": "المحله الكبري",
+    "StationNameEN": "EL MAHALA EL KOBRA",
+    "StationCode": "27161",
+    "ShortName": "ENR_451",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543631",
+    "StationNameAR": "المحفوظه",
+    "StationNameEN": "EL MAHFOOZA",
+    "StationCode": "30504",
+    "ShortName": "ENR_530",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543633",
+    "StationNameAR": "كفر الشناوي",
+    "StationNameEN": "KAFR EL SHENAWY",
+    "StationCode": "30540",
+    "ShortName": "ENR_532",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543646",
+    "StationNameAR": "مديريه التحرير",
+    "StationNameEN": "MUDERET EL TAHRIR",
+    "StationCode": "31254",
+    "ShortName": "ENR_545",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543651",
+    "StationNameAR": "الخطاطبه",
+    "StationNameEN": "EL KHATATBA",
+    "StationCode": "31405",
+    "ShortName": "ENR_550",
+    "IsActive": true
+  },
+  {
+    "StationID": "673619743512461300",
+    "StationNameAR": "بدر",
+    "StationNameEN": "BAADR",
+    "StationCode": "461",
+    "ShortName": "ENR_461001",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543626",
+    "StationNameAR": "بيلا",
+    "StationNameEN": "BILAH",
+    "StationCode": "30406",
+    "ShortName": "ENR_525",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388638478421",
+    "StationNameAR": "سجين",
+    "StationNameEN": "SEGEEN",
+    "StationCode": "29016",
+    "ShortName": "ENR_486",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396658",
+    "StationNameAR": "10 رمضان",
+    "StationNameEN": "10 RAMADAN",
+    "StationCode": "17083",
+    "ShortName": "ENR_301",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535390819516472",
+    "StationNameAR": "طنسا",
+    "StationNameEN": "TANSAA",
+    "StationCode": "41289",
+    "ShortName": "ENR_657",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389179543618",
+    "StationNameAR": "المرابعين",
+    "StationNameEN": "EL MERABEEN",
+    "StationCode": "30193",
+    "ShortName": "ENR_517",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582733",
+    "StationNameAR": "الشهيد محمد البغدادى",
+    "StationNameEN": "EL-SHAHEED MOHAMED EL-BGHDADY",
+    "StationCode": "16495",
+    "ShortName": "ENR_278",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582734",
+    "StationNameAR": "ابو جريش",
+    "StationNameEN": "ABU GRESH",
+    "StationCode": "16502",
+    "ShortName": "ENR_279",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582736",
+    "StationNameAR": "الواصفيه",
+    "StationNameEN": "EL-WASFIA",
+    "StationCode": "16557",
+    "ShortName": "ENR_281",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582737",
+    "StationNameAR": "نفيشه",
+    "StationNameEN": "NFISHA",
+    "StationCode": "16584",
+    "ShortName": "ENR_282",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582738",
+    "StationNameAR": "معسكر الجلاء",
+    "StationNameEN": "MASKStationNameAR EL-GALAA",
+    "StationCode": "16619",
+    "ShortName": "ENR_283",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386352582741",
+    "StationNameAR": "الفردان",
+    "StationNameEN": "EL-FRDAN",
+    "StationCode": "16673",
+    "ShortName": "ENR_286",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433424",
+    "StationNameAR": "طنبدي",
+    "StationNameEN": "TANYDI",
+    "StationCode": "22139",
+    "ShortName": "ENR_381",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535387493433443",
+    "StationNameAR": "القناطر الخيريه القديمه",
+    "StationNameEN": "EL QANATER EL KHAYRYAH EL KADEEMAH",
+    "StationCode": "23012",
+    "ShortName": "ENR_400",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535386931396691",
+    "StationNameAR": "جبل عويبد",
+    "StationNameEN": "GABAL OBEStationID",
+    "StationCode": "18199",
+    "ShortName": "ENR_334",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535388084830287",
+    "StationNameAR": "دنديط",
+    "StationNameEN": "DENDEET",
+    "StationCode": "25225",
+    "ShortName": "ENR_430",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535383991189556",
+    "StationNameAR": "الطيران",
+    "StationNameEN": "EL TAYStationNameARAN",
+    "StationCode": "4113",
+    "ShortName": "ENR_53",
+    "IsActive": true
+  },
+  {
+    "StationID": "606535389733191737",
+    "StationNameAR": "نكلا",
+    "StationNameEN": "NAKLA",
+    "StationCode": "31610",
+    "ShortName": "ENR_558",
+    "IsActive": true
+  }
+]

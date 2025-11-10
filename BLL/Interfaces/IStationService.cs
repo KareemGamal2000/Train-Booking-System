@@ -12,9 +12,9 @@ namespace Domain.Interfaces
     public interface IStationService
     {
         Task<IEnumerable<StationDto>> GetAllAsync();
-        Task<StationDto?> GetByIdAsync(Guid id);
+        Task<StationDto?> GetByIdAsync(long id);
         Task<string> AddStationAsync(StationDto station);
         Task<string> UpdateStationAsync(StationDto station);
-        Task<string> DeleteStationAsync(Guid id);
+        Task<string> DeleteStationAsync(long id);
     }
 }

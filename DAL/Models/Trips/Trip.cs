@@ -17,8 +17,8 @@ namespace Data.Entities.Trips
         public Guid Trip_ID { get; set; } = Guid.NewGuid();
         [ForeignKey("TrainID")]
         public Guid TrainID { get; set; }
-        public Guid DepartureStationID { get; set; }   // محطة الاقلاع
-        public Guid ArrivalStationID { get; set; }   // محطة الوصول
+        public long DepartureStationID { get; set; }   // محطة الاقلاع
+        public long ArrivalStationID { get; set; }   // محطة الوصول
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public decimal TicketPrice { get; set; }

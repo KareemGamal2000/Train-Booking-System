@@ -30,7 +30,7 @@ namespace Domain.Services
             return _mapper.Map<IEnumerable<StationDto>>(stations);
         }
 
-        public async Task<StationDto?> GetByIdAsync(Guid id)
+        public async Task<StationDto?> GetByIdAsync(long id)
         {
             var station = await _stationRepo.GetStationByIdAsync(id);
             return _mapper.Map<StationDto>(station);
@@ -48,7 +48,7 @@ namespace Domain.Services
             return await _stationRepo.UpdateStationAsync(entity);
         }
 
-        public async Task<string> DeleteStationAsync(Guid id)
+        public async Task<string> DeleteStationAsync(long id)
         {
             return await _stationRepo.DeleteStationAsync(id);
         }

@@ -11,12 +11,17 @@ namespace Data.Entities
     public class Station
     {
         [Key]
-        public Guid Station_ID { get; set; }= Guid.NewGuid();
+        public long StationID { get; set; } 
+
         public string StationNameEN { get; set; }
+
         public string StationNameAR { get; set; }
+
         public string StationCode { get; set; }
 
-        public string City { get; set; }
+        public string ShortName { get; set; } 
+       
+        public bool IsActive { get; set; }
 
         public virtual ICollection<Trip> DepartureTrips { get; set; } = new HashSet<Trip>();
         public virtual ICollection<Trip> ArrivalTrips { get; set; } = new HashSet<Trip>();
