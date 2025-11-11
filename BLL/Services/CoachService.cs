@@ -36,12 +36,6 @@ namespace Domain.Services
             return _mapper.Map<CoachDto>(coach);
         }
 
-        public async Task<IEnumerable<CoachDto>> GetByTrainIdAsync(long trainId)
-        {
-            var coaches = await _coachRepo.GetCoachesByTrainIdAsync(trainId);
-            return _mapper.Map<IEnumerable<CoachDto>>(coaches);
-        }
-
         public async Task<string> AddAsync(CoachDto coach)
         {
             var entity = _mapper.Map<Coach>(coach);

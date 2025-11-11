@@ -1,4 +1,5 @@
 ﻿using Data.Entities.Trips;
+using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,8 @@ namespace Data.Entities
        
         public bool IsActive { get; set; }
 
+        // خاصية ملاحة جديدة: ربط المحطة بجميع التوقفات التي تحدث فيها (TripStops)
+        public virtual ICollection<TripStop> Stops { get; set; } = new HashSet<TripStop>();
         public virtual ICollection<Trip> DepartureTrips { get; set; } = new HashSet<Trip>();
         public virtual ICollection<Trip> ArrivalTrips { get; set; } = new HashSet<Trip>();
 

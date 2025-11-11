@@ -1,0 +1,345 @@
+[
+  {
+    "Coach_ID": 656112925819273174,
+    "TotalSeats": 88,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210004
+  },
+  {
+    "Coach_ID": 824578948489805818,
+    "TotalSeats": 74,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210061
+  },
+  {
+    "Coach_ID": 606535886313619527,
+    "TotalSeats": 200,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210004
+  },
+  {
+    "Coach_ID": 657960763712864242,
+    "TotalSeats": 88,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210003
+  },
+  {
+    "Coach_ID": 606535880659697760,
+    "TotalSeats": 88,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210004
+  },
+  {
+    "Coach_ID": 606535878642237494,
+    "TotalSeats": 200,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210004
+  },
+  {
+    "Coach_ID": 606535882454859835,
+    "TotalSeats": 80,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210008
+  },
+  {
+    "Coach_ID": 9044,
+    "TotalSeats": 2,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210062
+  },
+  {
+    "Coach_ID": 924657693258416189,
+    "TotalSeats": 62,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 950751353545491429,
+    "TotalSeats": 44,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 950753799231964133,
+    "TotalSeats": 60,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 981175470971880421,
+    "TotalSeats": 60,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210061
+  },
+  {
+    "Coach_ID": 960877071335629498,
+    "TotalSeats": 0,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535883318886479,
+    "TotalSeats": 76,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210005
+  },
+  {
+    "Coach_ID": 606535884161941561,
+    "TotalSeats": 88,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210060
+  },
+  {
+    "Coach_ID": 960864519518823098,
+    "TotalSeats": 0,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 960980059149968058,
+    "TotalSeats": 62,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 1087712343120937957,
+    "TotalSeats": 47,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1087711519230591973
+  },
+  {
+    "Coach_ID": 1098961122045271651,
+    "TotalSeats": 36,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1095805278246807309
+  },
+  {
+    "Coach_ID": 1105483405625074362,
+    "TotalSeats": 64,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535880231878712,
+    "TotalSeats": 1,
+    "IsSeatless": true,
+    "CoachType": "COACH_WITHOUT_SEATS",
+    "ClassId": 1210004
+  },
+  {
+    "Coach_ID": 1106910109108928515,
+    "TotalSeats": 88,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210061
+  },
+  {
+    "Coach_ID": 606535483110981689,
+    "TotalSeats": 60,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535874930278457,
+    "TotalSeats": 44,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535875756556340,
+    "TotalSeats": 56,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535877019041880,
+    "TotalSeats": 80,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535877832736838,
+    "TotalSeats": 36,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535881611804758,
+    "TotalSeats": 44,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535882031235154,
+    "TotalSeats": 25,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535882891067483,
+    "TotalSeats": 36,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535885445398615,
+    "TotalSeats": 82,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210059
+  },
+  {
+    "Coach_ID": 656112980286504920,
+    "TotalSeats": 88,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210061
+  },
+  {
+    "Coach_ID": 606535884589760609,
+    "TotalSeats": 88,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210059
+  },
+  {
+    "Coach_ID": 658405141430403053,
+    "TotalSeats": 78,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210059
+  },
+  {
+    "Coach_ID": 606535875345514549,
+    "TotalSeats": 47,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535874502459461,
+    "TotalSeats": 36,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535876599611464,
+    "TotalSeats": 64,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 606535878239584314,
+    "TotalSeats": 44,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 606535876171792444,
+    "TotalSeats": 60,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 758332240592633843,
+    "TotalSeats": 40,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210061
+  },
+  {
+    "Coach_ID": 717090370785116120,
+    "TotalSeats": 32,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 717088827469987802,
+    "TotalSeats": 44,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 717089183352487917,
+    "TotalSeats": 42,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 717090067323092954,
+    "TotalSeats": 27,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 717088279907794925,
+    "TotalSeats": 6,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 950753034885661669,
+    "TotalSeats": 64,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 960866049721246394,
+    "TotalSeats": 0,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  },
+  {
+    "Coach_ID": 950753799288521701,
+    "TotalSeats": 47,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210000
+  },
+  {
+    "Coach_ID": 960885156572570298,
+    "TotalSeats": 62,
+    "IsSeatless": false,
+    "CoachType": "COACH",
+    "ClassId": 1210001
+  }
+]

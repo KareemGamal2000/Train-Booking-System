@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Models.Trips;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Data.Entities
         public string ClassNameEN { get; set; }
         public string ClassNameAR { get; set; }
         public virtual ICollection<Coach> Coaches { get; set; } = new HashSet<Coach>();
+
+        public virtual ICollection<TripSegmentPrice> SegmentPrices { get; set; } = new HashSet<TripSegmentPrice>();
     }
 }
 

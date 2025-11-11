@@ -13,11 +13,7 @@ namespace Data.EntityConfigrations
     {
         public void Configure(EntityTypeBuilder<Ticket> builder)
         {
-            builder.HasOne(t => t.Trip)
-                   .WithMany() 
-                   .HasForeignKey(t => t.TripID)
-                   .OnDelete(DeleteBehavior.Restrict);
-
+         
             builder.HasOne(t => t.Booking)
                    .WithMany(b => b.Tickets)
                    .HasForeignKey(t => t.BookingID)

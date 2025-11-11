@@ -13,6 +13,7 @@ namespace Data.Entities
         [Key]
         public long Seat_ID { get; set; }
         public string SeatNumber { get; set; }
+
         [ForeignKey("CoachID")]
         public long CoachID { get; set; }
         public virtual Coach Coach { get; set; }

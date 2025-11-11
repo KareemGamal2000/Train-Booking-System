@@ -13,7 +13,6 @@ namespace Domain.Interfaces
     {
         Task<IEnumerable<CoachDto>> GetAllAsync();
         Task<CoachDto?> GetByIdAsync(long id);
-        Task<IEnumerable<CoachDto>> GetByTrainIdAsync(long trainId);
         Task<string> AddAsync(CoachDto coach);
         Task<string> UpdateAsync(CoachDto coach);
         Task<string> DeleteAsync(long id);

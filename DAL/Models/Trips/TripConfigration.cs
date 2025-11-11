@@ -21,6 +21,15 @@ namespace Data.Entities.Trips
                    .WithMany(s => s.ArrivalTrips)
                    .HasForeignKey(t => t.ArrivalStationID)
                    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(t => t.Stops)
+                   .WithOne(ts => ts.Trip)
+                   .HasForeignKey(ts => ts.TripID)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(t => t.SegmentPrices)
+                   .WithOne(tsp => tsp.Trip)
+                   .HasForeignKey(tsp => tsp.TripID)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

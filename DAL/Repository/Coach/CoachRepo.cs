@@ -26,10 +26,6 @@ namespace Data.Repository.Coach
         {
             return await _context.Coaches.FirstOrDefaultAsync(c => c.Coach_ID == id);
         }
-        public async Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(long trainId)
-        {
-            return await _context.Coaches.Where(c => c.TrainID == trainId).ToListAsync();
-        }
         public async Task<IEnumerable<Entities.Coach>> GetCoachClass(Entities.Coach coach)
         {
             return await _context.Coaches.Include(c => c.Class).Where(c => c.Coach_ID == coach.Coach_ID).ToListAsync();

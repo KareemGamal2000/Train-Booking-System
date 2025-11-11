@@ -19,7 +19,15 @@ namespace Data.SeedData
             string fileNameStations = @"../TeainBookingSystem.Data/SeedData/Stations.json";
             string jsonStringstations = File.ReadAllText(fileNameStations);
             var stations = JsonSerializer.Deserialize<List<Station>>(jsonStringstations);
+
+
+            string fileNameClasses = @"../TeainBookingSystem.Data/SeedData/Classes.json";
+            string jsonStringClasses = File.ReadAllText(fileNameClasses);
+            var classes = JsonSerializer.Deserialize<List<Class>>(jsonStringClasses);
+
+
             context.Stations.AddRange(stations!);
+            context.Classes.AddRange(classes!);
             context.SaveChanges();
 
         }

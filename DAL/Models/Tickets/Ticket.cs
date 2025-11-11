@@ -1,5 +1,6 @@
 ﻿using Data.Entities.Trips;
 using Data.EntityConfigrations;
+using Data.Models.Trips;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace Data.Entities.Tickets
         public Guid Ticket_ID { get; set; } = Guid.NewGuid();
         public string TicketReference { get; set; }
         public Guid BookingID { get; set; }
-        public Guid TripID { get; set; }
-        public long SeatID { get; set; }
-        public long ClassID { get; set; }
         public virtual Booking Booking { get; set; } // Ticket belongs to One Booking
-        public virtual Trip Trip { get; set; }
+        public long SeatID { get; set; }
         public virtual Seat Seat { get; set; }       // One-to-One: Ticket reserves One Seat
+        public long ClassID { get; set; }
         public virtual Class Class { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+
     }
 }

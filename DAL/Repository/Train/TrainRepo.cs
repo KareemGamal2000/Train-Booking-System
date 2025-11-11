@@ -26,9 +26,9 @@ namespace Data.Repository.Train
         {
             return await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id);
         }
-        public async Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainNumber)
+        public async Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainName)
         {
-            return await _context.Trains.FirstOrDefaultAsync(t => t.TrainNumber == trainNumber);
+            return await _context.Trains.FirstOrDefaultAsync(t => t.TrainName == trainName);
         }
         public async Task<string> AddTrainAsync(Entities.Train train)
         {

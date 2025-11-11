@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251110143411_intialmigration")]
+    [Migration("20251111162336_intialmigration")]
     partial class intialmigration
     {
         /// <inheritdoc />
@@ -31,6 +31,9 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("ArrivalStopID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
@@ -38,16 +41,23 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("DepartureStopID")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("TripID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("TripID")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Booking_ID");
+
+                    b.HasIndex("ArrivalStopID");
+
+                    b.HasIndex("DepartureStopID");
 
                     b.HasIndex("TripID");
 
@@ -88,27 +98,19 @@ namespace Data.Migrations
                     b.Property<long>("ClassId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("CoachNumber")
+                    b.Property<string>("CoachType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("NoSeatsFlag")
+                    b.Property<bool>("IsSeatless")
                         .HasColumnType("bit");
 
                     b.Property<int>("TotalSeats")
                         .HasColumnType("int");
 
-                    b.Property<long>("TrainID")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Coach_ID");
 
                     b.HasIndex("ClassId");
-
-                    b.HasIndex("TrainID");
 
                     b.ToTable("Coaches");
                 });
@@ -179,15 +181,15 @@ namespace Data.Migrations
                     b.Property<long>("ClassID")
                         .HasColumnType("bigint");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
                     b.Property<long>("SeatID")
                         .HasColumnType("bigint");
 
                     b.Property<string>("TicketReference")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("TripID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Ticket_ID");
 
@@ -197,8 +199,6 @@ namespace Data.Migrations
 
                     b.HasIndex("SeatID")
                         .IsUnique();
-
-                    b.HasIndex("TripID");
 
                     b.ToTable("Tickets");
                 });
@@ -211,15 +211,7 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Train_ID"));
 
-                    b.Property<string>("TrainDescriptionAR")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TrainDescriptionEN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TrainNumber")
+                    b.Property<string>("TrainName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -230,27 +222,17 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Trips.Trip", b =>
                 {
-                    b.Property<Guid>("Trip_ID")
+                    b.Property<int>("Trip_ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Trip_ID"));
 
                     b.Property<long>("ArrivalStationID")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("ArrivalTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("AvailableSeatsTotal")
-                        .HasColumnType("int");
-
                     b.Property<long>("DepartureStationID")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DepartureTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long>("TrainID")
                         .HasColumnType("bigint");
@@ -371,6 +353,109 @@ namespace Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Data.Models.TrainCoach", b =>
+                {
+                    b.Property<long>("TrainCoach_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TrainCoach_ID"));
+
+                    b.Property<int>("AvailableSeats")
+                        .HasColumnType("int");
+
+                    b.Property<long>("CoachID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CoachNumber")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("TrainID")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("TrainCoach_ID");
+
+                    b.HasIndex("CoachID");
+
+                    b.HasIndex("TrainID");
+
+                    b.ToTable("TrainCoach");
+                });
+
+            modelBuilder.Entity("Data.Models.Trips.TripSegmentPrice", b =>
+                {
+                    b.Property<long>("SegmentPriceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SegmentPriceID"));
+
+                    b.Property<long>("ClassID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("EndStopID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("StartStopID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripID")
+                        .HasColumnType("int");
+
+                    b.HasKey("SegmentPriceID");
+
+                    b.HasIndex("ClassID");
+
+                    b.HasIndex("EndStopID");
+
+                    b.HasIndex("StartStopID");
+
+                    b.HasIndex("TripID");
+
+                    b.ToTable("TripSegmentPrice");
+                });
+
+            modelBuilder.Entity("Data.Models.Trips.TripStop", b =>
+                {
+                    b.Property<int>("TripStopID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TripStopID"));
+
+                    b.Property<TimeSpan?>("ArrivalTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan?>("DepartureTime")
+                        .HasColumnType("time");
+
+                    b.Property<decimal?>("DistanceFromStartKM")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("StationID")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("StopSequence")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TripID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TripStopID");
+
+                    b.HasIndex("StationID");
+
+                    b.HasIndex("TripID");
+
+                    b.ToTable("TripStop");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -506,6 +591,18 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.Booking", b =>
                 {
+                    b.HasOne("Data.Models.Trips.TripStop", "ArrivalStop")
+                        .WithMany()
+                        .HasForeignKey("ArrivalStopID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.Trips.TripStop", "DepartureStop")
+                        .WithMany()
+                        .HasForeignKey("DepartureStopID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Data.Entities.Trips.Trip", "Trip")
                         .WithMany("Bookings")
                         .HasForeignKey("TripID")
@@ -517,6 +614,10 @@ namespace Data.Migrations
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ArrivalStop");
+
+                    b.Navigation("DepartureStop");
 
                     b.Navigation("Trip");
 
@@ -531,15 +632,7 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Entities.Train", "Train")
-                        .WithMany("Coaches")
-                        .HasForeignKey("TrainID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Class");
-
-                    b.Navigation("Train");
                 });
 
             modelBuilder.Entity("Data.Entities.Seat", b =>
@@ -573,19 +666,11 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Data.Entities.Trips.Trip", "Trip")
-                        .WithMany()
-                        .HasForeignKey("TripID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Booking");
 
                     b.Navigation("Class");
 
                     b.Navigation("Seat");
-
-                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("Data.Entities.Trips.Trip", b =>
@@ -613,6 +698,79 @@ namespace Data.Migrations
                     b.Navigation("Departure_Station");
 
                     b.Navigation("Train");
+                });
+
+            modelBuilder.Entity("Data.Models.TrainCoach", b =>
+                {
+                    b.HasOne("Data.Entities.Coach", "Coach")
+                        .WithMany("TrainCoaches")
+                        .HasForeignKey("CoachID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Train", "Train")
+                        .WithMany("TrainCoaches")
+                        .HasForeignKey("TrainID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coach");
+
+                    b.Navigation("Train");
+                });
+
+            modelBuilder.Entity("Data.Models.Trips.TripSegmentPrice", b =>
+                {
+                    b.HasOne("Data.Entities.Class", "Class")
+                        .WithMany("SegmentPrices")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.Trips.TripStop", "EndStop")
+                        .WithMany()
+                        .HasForeignKey("EndStopID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.Trips.TripStop", "StartStop")
+                        .WithMany()
+                        .HasForeignKey("StartStopID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Trips.Trip", "Trip")
+                        .WithMany("SegmentPrices")
+                        .HasForeignKey("TripID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("EndStop");
+
+                    b.Navigation("StartStop");
+
+                    b.Navigation("Trip");
+                });
+
+            modelBuilder.Entity("Data.Models.Trips.TripStop", b =>
+                {
+                    b.HasOne("Data.Entities.Station", "Station")
+                        .WithMany("Stops")
+                        .HasForeignKey("StationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Trips.Trip", "Trip")
+                        .WithMany("Stops")
+                        .HasForeignKey("TripID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Station");
+
+                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -674,11 +832,15 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entities.Class", b =>
                 {
                     b.Navigation("Coaches");
+
+                    b.Navigation("SegmentPrices");
                 });
 
             modelBuilder.Entity("Data.Entities.Coach", b =>
                 {
                     b.Navigation("Seats");
+
+                    b.Navigation("TrainCoaches");
                 });
 
             modelBuilder.Entity("Data.Entities.Station", b =>
@@ -686,11 +848,13 @@ namespace Data.Migrations
                     b.Navigation("ArrivalTrips");
 
                     b.Navigation("DepartureTrips");
+
+                    b.Navigation("Stops");
                 });
 
             modelBuilder.Entity("Data.Entities.Train", b =>
                 {
-                    b.Navigation("Coaches");
+                    b.Navigation("TrainCoaches");
 
                     b.Navigation("Trips");
                 });
@@ -698,6 +862,10 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entities.Trips.Trip", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("SegmentPrices");
+
+                    b.Navigation("Stops");
                 });
 
             modelBuilder.Entity("Data.Entities.User", b =>

@@ -10,7 +10,6 @@ namespace Data.Repository.Coach
     {
         Task<IEnumerable<Entities.Coach>> GetCoachesAsync();
         Task<Entities.Coach?> GetCoachByIdAsync(long id);
-        Task<IEnumerable<Entities.Coach>> GetCoachesByTrainIdAsync(long trainId);
         Task<IEnumerable<Entities.Coach>> GetCoachClass(Entities.Coach coach);
 
         Task<string> AddCoachAsync(Entities.Coach coach);

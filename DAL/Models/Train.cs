@@ -1,4 +1,5 @@
 ﻿using Data.Entities.Trips;
+using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,12 +13,9 @@ namespace Data.Entities
     {
         [Key]
         public long Train_ID { get; set; } 
-        public string TrainNumber { get; set; } //950
-        public string TrainDescriptionEN { get; set; }  // AC 3
-
-        public string TrainDescriptionAR { get; set; } // ثالثة مكيفة
+        public string TrainName { get; set; } //950
 
         public virtual ICollection<Trip> Trips { get; set; } = new HashSet<Trip>();
-        public virtual ICollection<Coach> Coaches { get; set; } = new HashSet<Coach>();
+        public virtual ICollection<TrainCoach> TrainCoaches { get; set; } = new HashSet<TrainCoach>();
     }
 }
