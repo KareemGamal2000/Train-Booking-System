@@ -9,10 +9,8 @@ namespace Domain.Interfaces
 {
     public interface IPassengerService
     {
-        Task<IEnumerable<PassengerDto>> GetAllAsync();
-        Task<PassengerDto?> GetByIdAsync(int id);
-        Task<string> AddAsync(CreatePassengerDto passengerDto);
-        Task<string> UpdateAsync(UpdatePassengerDto passengerDto);
-        Task<string> DeleteAsync(int id);
+    Task<IEnumerable<PassengerDto>> GetAllAsync();
+    Task<PassengerDto?> GetByIdAsync(int id);
+    Task<string> DeleteAsync(int id);
     }
 }

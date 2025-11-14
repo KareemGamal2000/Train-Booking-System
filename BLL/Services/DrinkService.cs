@@ -16,28 +16,36 @@ namespace Domain.Services
             new DrinkDto { Id = Guid.NewGuid(), Name = "Coffee", Price = 25, IsAvailable = true },
             new DrinkDto { Id = Guid.NewGuid(), Name = "Juice", Price = 20, IsAvailable = true }
         };
-
-        // عرض كل المشروبات المتاحة
         public Task<IEnumerable<DrinkDto>> GetAllDrinksAsync()
         {
             return Task.FromResult<IEnumerable<DrinkDto>>(_drinks);
         }
-
-        // البحث عن مشروب معيّن
         public Task<DrinkDto> GetDrinkByIdAsync(Guid id)
         {
             var drink = _drinks.FirstOrDefault(d => d.Id == id);
             return Task.FromResult(drink);
         }
 
-        // تنفيذ مشروب أثناء الرحلة
+        // البحث عن مشروب معيّن
         public Task<bool> OrderDrinksAsync(OrderDrinkDto order)
         {
-            var drink = _drinks.FirstOrDefault(d => d.Id == order.DrinkId);
-            if (drink == null || !drink.IsAvailable)
+            // لو مفيش مشروبات يبقى خطأ
+            if (order.DrinkIds == null || !order.DrinkIds.Any())
                 return Task.FromResult(false);
 
-            Console.WriteLine($"Passenger {order.PassengerId} ordered {drink.Name} for seat {order.SeatNumber}.");
+            // نجيب المشروبات المطلوبة
+            var selectedDrinks = _drinks
+                .Where(d => order.DrinkIds.Contains(d.Id) && d.IsAvailable)
+                .ToList();
+
+            if (!selectedDrinks.Any())
+                return Task.FromResult(false);
+
+            // حساب السعر
+            order.TotalPrice = selectedDrinks.Sum(d => d.Price);
+
+            Console.WriteLine($"Passenger {order.PassengerId} ordered {selectedDrinks.Count} drinks for seat {order.SeatNumber}.");
+
             return Task.FromResult(true);
         }
     }

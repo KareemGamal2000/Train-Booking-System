@@ -10,8 +10,8 @@ namespace Domain.Dtos
     {
         public Guid OrderId { get; set; } 
         public Guid PassengerId { get; set; } 
-        public Guid TrainId { get; set; }  
-        public Guid DrinkId { get; set; }  
+        public Guid TrainId { get; set; }
+        public List<Guid> DrinkIds { get; set; }
         public DateTime OrderTime { get; set; }   
         public decimal TotalPrice { get; set; }
         public int SeatNumber { get; set; }

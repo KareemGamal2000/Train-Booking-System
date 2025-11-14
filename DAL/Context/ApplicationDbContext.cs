@@ -2,6 +2,7 @@
 using Data.Entities.Tickets;
 using Data.Entities.Trips;
 using Data.EntityConfigrations;
+using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -30,5 +31,9 @@ namespace Data.Context
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<TripSegmentPrice> TripSegmentPrices { get; set; }
+
+        public DbSet<TripStop> TripStops { get; set; }
     }
 }

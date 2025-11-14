@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Data.Entities;
-using Data.Repository.Passenger;
+using Data.Repository.Passengers;
 using Domain.Dtos;
 using Domain.Interfaces;
+
 
 namespace Domain.Services
 {
@@ -32,18 +32,6 @@ namespace Domain.Services
         {
             var passenger = await _repo.GetByIdAsync(id);
             return _mapper.Map<PassengerDto>(passenger);
-        }
-
-        public async Task<string> AddAsync(CreatePassengerDto dto)
-        {
-            var passenger = _mapper.Map<Passenger>(dto);
-            return await _repo.AddAsync(passenger);
-        }
-
-        public async Task<string> UpdateAsync(UpdatePassengerDto dto)
-        {
-            var passenger = _mapper.Map<Passenger>(dto);
-            return await _repo.UpdateAsync(passenger);
         }
 
         public async Task<string> DeleteAsync(int id)

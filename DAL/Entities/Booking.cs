@@ -1,7 +1,6 @@
 ﻿using Data.Entities;
 using Data.Entities.Tickets;
 using Data.Entities.Trips;
-using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

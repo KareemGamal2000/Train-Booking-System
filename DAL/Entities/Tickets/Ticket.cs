@@ -1,6 +1,5 @@
 ﻿using Data.Entities.Trips;
 using Data.EntityConfigrations;
-using Data.Models.Trips;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

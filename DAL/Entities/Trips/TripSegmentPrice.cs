@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Models.Trips
+namespace Data.Entities.Trips
 {
     public class TripSegmentPrice
     {

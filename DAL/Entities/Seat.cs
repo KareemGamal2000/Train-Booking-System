@@ -17,5 +17,6 @@ namespace Data.Entities
         [ForeignKey("CoachID")]
         public long CoachID { get; set; }
         public virtual Coach Coach { get; set; }
+        public bool IsReserved { get; set; } = false;
     }
 }
