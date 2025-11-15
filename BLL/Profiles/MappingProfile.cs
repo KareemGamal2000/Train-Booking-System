@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Domain.Dtos;
 using Domain.Dtos.TrainDtos;
+using Domain.Dtos.StationDtos;
 
 namespace Domain.Mapping
 {
@@ -18,7 +19,7 @@ namespace Domain.Mapping
         {
             CreateMap<Train, TrainReadDto>().ReverseMap();
             CreateMap<Coach, CoachDto>().ReverseMap();
-            CreateMap<Station, StationDto>().ReverseMap();
+            CreateMap<Station, StationReadDto>().ReverseMap();
         }
     }
 }

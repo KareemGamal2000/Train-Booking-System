@@ -60,7 +60,7 @@ namespace Data.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Class", b =>
@@ -79,7 +79,7 @@ namespace Data.Migrations
 
                     b.HasKey("Class_ID");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Classes", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Coach", b =>
@@ -107,7 +107,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.ToTable("Coaches");
+                    b.ToTable("Coaches", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Seat", b =>
@@ -128,7 +128,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CoachID");
 
-                    b.ToTable("Seats");
+                    b.ToTable("Seats", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Station", b =>
@@ -159,7 +159,7 @@ namespace Data.Migrations
 
                     b.HasKey("StationID");
 
-                    b.ToTable("Stations");
+                    b.ToTable("Stations", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Tickets.Ticket", b =>
@@ -193,7 +193,7 @@ namespace Data.Migrations
                     b.HasIndex("Seat_ID")
                         .IsUnique();
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Train", b =>
@@ -209,7 +209,7 @@ namespace Data.Migrations
 
                     b.HasKey("TrainID");
 
-                    b.ToTable("Trains");
+                    b.ToTable("Trains", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.TrainCoach", b =>
@@ -238,7 +238,7 @@ namespace Data.Migrations
 
                     b.HasIndex("Coach_ID");
 
-                    b.ToTable("TrainCoaches");
+                    b.ToTable("TrainCoaches", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Trips.Trip", b =>
@@ -268,7 +268,7 @@ namespace Data.Migrations
 
                     b.HasIndex("TrainID");
 
-                    b.ToTable("Trips");
+                    b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Trips.TripSegmentPrice", b =>
@@ -304,7 +304,7 @@ namespace Data.Migrations
 
                     b.HasIndex("TripID");
 
-                    b.ToTable("TripSegmentPrices");
+                    b.ToTable("TripSegmentPrices", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Trips.TripStop", b =>
@@ -339,7 +339,7 @@ namespace Data.Migrations
 
                     b.HasIndex("TripID");
 
-                    b.ToTable("TripStops");
+                    b.ToTable("TripStops", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.User", b =>

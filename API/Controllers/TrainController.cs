@@ -84,17 +84,17 @@ namespace API.Controllers
 
         // PUT: api/Train/100
         [HttpPut("{trainId}")]
-        public async Task<IActionResult> UpdateTrain(long trainId, [FromBody] TrainCreateDto trainDto)
+        public async Task<IActionResult> UpdateTrain(string trainName, [FromBody] TrainCreateDto trainDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var success = await _trainService.UpdateTrainAsync(trainId, trainDto);
+            var success = await _trainService.UpdateTrainAsync(trainName, trainDto);
             if (!success)
             {
-                return NotFound($"لم يتم العثور على قطار برقم {trainId} للتحديث.");
+                return NotFound($"لم يتم العثور على قطار برقم {trainName} للتحديث.");
             }
 
             return NoContent();

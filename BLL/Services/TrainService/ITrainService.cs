@@ -18,7 +18,7 @@ namespace Domain.Services.TrainService
 
         Task<TrainCreateDto> CreateTrainAsync(TrainCreateDto trainDto);
 
-        Task<bool> UpdateTrainAsync(long trainId, TrainCreateDto trainDto);
+        Task<bool> UpdateTrainAsync(string trainName, TrainCreateDto trainDto);
 
         Task<bool> DeleteTrainAsync(long trainId);
 

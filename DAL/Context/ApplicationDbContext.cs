@@ -1,13 +1,14 @@
-﻿using Data.Models;
+﻿using Data.EntityConfigrations;
+using Data.Models;
 using Data.Models.Tickets;
 using Data.Models.Trips;
-using Data.EntityConfigrations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,11 @@ namespace Data.Context
                   .HasForeignKey(tc => tc.CoachID)
                   .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Station>()
+                  .Property(s => s.StationNameAR)
+                  .HasAnnotation("SqlServer:IsFullTextIndexed", true)
+                  .HasAnnotation("SqlServer:FullTextLanguage", "Arabic");
+                  
             builder.Entity<Trip>()
                 .HasOne(t => t.Train)
                 .WithMany(t => t.Trips)

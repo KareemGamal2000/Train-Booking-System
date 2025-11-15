@@ -23,7 +23,12 @@ namespace Data.Repository.Station
 
         public async Task<Data.Models.Station?> GetStationBynameAsync(string stationname)
         {
-            return await GetFirstOrDefaultAsync(s => s.StationNameAR == stationname);
+            var station = await _dbSet
+                .Where(s => EF.Functions.FreeText(s.StationNameAR, stationname))
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+
+            return station;
         }
 
     }

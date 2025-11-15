@@ -70,9 +70,9 @@ namespace Domain.Services.TrainService
             return trainModel.ToTrainCreateDto();
         }
 
-        public async Task<bool> UpdateTrainAsync(long trainId, TrainCreateDto trainDto)
+        public async Task<bool> UpdateTrainAsync(string trainName, TrainCreateDto trainDto)
         {
-            var trainToUpdate = await _unitOfWork.Train.GetByIdAsync(trainId);
+            var trainToUpdate = await _unitOfWork.Train.GetTrainByTrainNameAsync(trainName);
             if (trainToUpdate == null) return false;
 
             trainToUpdate.TrainName = trainDto.TrainName;
