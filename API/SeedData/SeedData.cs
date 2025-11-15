@@ -4,88 +4,246 @@ using Data.Models.Trips;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Data.SeedData
+
+
+namespace API.SeedData
 {
     public static class SeedData
     {
-        public static void Seed(ApplicationDbContext context)
-        {
+        // تم تخفيض حجم الدفعة (BatchSize) إلى 100
+        private const int BatchSize = 100;
 
+        public static async Task Seed(ApplicationDbContext context)
+        {
             try
             {
                 var basePath = Directory.GetCurrentDirectory();
                 var seedDataPath = Path.Combine(basePath, "SeedData");
 
-                // إضافة خيارات Json مرنة
                 var jsonOptions = new JsonSerializerOptions
                 {
-                    // هذا الخيار يسمح بقراءة الأرقام من تنسيق النص إذا كانت محاطة بعلامات اقتباس
                     NumberHandling = JsonNumberHandling.AllowReadingFromString,
-                    PropertyNameCaseInsensitive = true // قد يساعد في تطابق أسماء الحقول
+                    PropertyNameCaseInsensitive = true
                 };
 
-                // قراءة ملف Stations.json
-                string fileNameStations = Path.Combine(seedDataPath, "Stations.json");
-                string jsonStringstations = File.ReadAllText(fileNameStations);
-                var stations = JsonSerializer.Deserialize<List<Station>>(jsonStringstations, jsonOptions);
 
-                // قراءة ملف Classes.json
-                string fileNameClasses = Path.Combine(seedDataPath, "Classes.json");
-                string jsonStringClasses = File.ReadAllText(fileNameClasses);
-                var classes = JsonSerializer.Deserialize<List<Class>>(jsonStringClasses, jsonOptions);
+                if (!await context.Classes.AnyAsync())
+                {
+                    Console.WriteLine("Starting Classes Seeding...");
+                    await BatchSeedFile<Class>(context, seedDataPath, "Classes.json", context.Classes, "Classes", jsonOptions);
+                    Console.WriteLine("Classes seeded successfully.");
+                }
+                else { Console.WriteLine("Classes table already contains data. Skipping."); }
 
-                // قراءة ملف Coaches.json
-                string fileNameCoaches = Path.Combine(seedDataPath, "Coaches.json");
-                string jsonStringCoaches = File.ReadAllText(fileNameCoaches);
-                var coaches = JsonSerializer.Deserialize<List<Coach>>(jsonStringCoaches, jsonOptions);
+                // TrainCoaches لديه مفتاح مركب (TrainID, Coach_ID)، يجب ضمان عدم التكرار يدوياً عبر GroupBy.
+                if (!await context.TrainCoaches.AnyAsync())
+                {
+                    Console.WriteLine("Starting TrainCoaches Seeding...");
 
-                // قراءة ملف Train.json
-                string fileNameTrains = Path.Combine(seedDataPath, "Train.json");
-                string jsonStringTrains = File.ReadAllText(fileNameTrains);
-                var trains = JsonSerializer.Deserialize<List<Train>>(jsonStringTrains, jsonOptions);
+                    var trainCoaches = await LoadAndDeserializeAsync<TrainCoach>(seedDataPath, "TrainCoach.json", jsonOptions);
 
-                // قراءة ملف TrainCoach.json
-                string fileNameTrainCoaches = Path.Combine(seedDataPath, "TrainCoach.json");
-                string jsonStringTrainCoach = File.ReadAllText(fileNameTrainCoaches);
-                // السطر 46 بعد التعديل:
-                var traincoaches = JsonSerializer.Deserialize<List<TrainCoach>>(jsonStringTrainCoach, jsonOptions);
+                    // تطبيق منطق ضمان التفرد باستخدام المفتاح المركب
+                    var distinctTrainCoaches = trainCoaches
+                        .GroupBy(tc => new { tc.TrainID, tc.Coach_ID }) // التجميع حسب المفتاح المركب
+                        .Select(g => g.First())                       // اختيار أول عنصر من كل مجموعة (لضمان التفرد)
+                        .ToList();
 
-                // قراءة ملف Trip.json
-                string fileNameTrips = Path.Combine(seedDataPath, "Trip.json");
-                string jsonStringTrips = File.ReadAllText(fileNameTrips);
-                var trips = JsonSerializer.Deserialize<List<Trip>>(jsonStringTrips, jsonOptions);
+                    // استخدام الدالة الجديدة للحفظ على دفعات
+                    await BatchSeedList<TrainCoach>(context, distinctTrainCoaches, context.TrainCoaches, "TrainCoaches");
 
-                // قراءة ملف TripStop.json
-                string fileNameTripStops = Path.Combine(seedDataPath, "TripStop.json");
-                string jsonStringTripStopss = File.ReadAllText(fileNameTripStops);
-                var tripstopss = JsonSerializer.Deserialize<List<TripStop>>(jsonStringTripStopss, jsonOptions);
+                    Console.WriteLine("TrainCoaches seeded successfully.");
+                }
+                else { Console.WriteLine("TrainCoaches table already contains data. Skipping."); }
 
-                // *** 3. الإضافة والحفظ في قاعدة البيانات ***
-                context.Stations.AddRange(stations!);
-                context.Classes.AddRange(classes!);
-                context.Coaches.AddRange(coaches!);
-                context.Trains.AddRange(trains!);
-                context.TrainCoaches.AddRange(traincoaches!);
-                context.Trips.AddRange(trips!);
-                context.TripStops.AddRange(tripstopss!);
+                if (!await context.Coaches.AnyAsync())
+                {
+                    Console.WriteLine("Starting Coaches Seeding...");
+                    await BatchSeedFile<Coach>(context, seedDataPath, "Coaches.json", context.Coaches, "Coaches", jsonOptions);
+                    Console.WriteLine("Coaches seeded successfully.");
+                }
+                else { Console.WriteLine("Coaches table already contains data. Skipping."); }
 
-                context.SaveChanges();
+                if (!await context.Trains.AnyAsync())
+                {
+                    Console.WriteLine("Starting Trains Seeding...");
+                    await BatchSeedFile<Train>(context, seedDataPath, "Train.json", context.Trains, "Trains", jsonOptions);
+                    Console.WriteLine("Trains seeded successfully.");
+                }
+                else { Console.WriteLine("Trains table already contains data. Skipping."); }
+
+                if (!await context.Stations.AnyAsync())
+                {
+                    Console.WriteLine("Starting Stations Seeding...");
+                    var stations = await LoadAndDeserializeAsync<Station>(seedDataPath, "Stations.json", jsonOptions);
+                    var distinctStations = stations
+                        .GroupBy(s => s.StationID)
+                        .Select(g => g.First())
+                        .ToList();
+                    // استخدام دالة الحفظ الجديدة
+                    await BatchSeedList<Station>(context, distinctStations, context.Stations, "Stations");
+                    Console.WriteLine($"Stations seeded successfully. Count: {distinctStations.Count}");
+                }
+                else { Console.WriteLine("Stations table already contains data. Skipping."); }
+
+                context.ChangeTracker.Clear();
+                Console.WriteLine("Change tracker cleared before Trips seeding.");
+
+
+                if (!await context.Trips.AnyAsync())
+                {
+                    // 1. تحميل بيانات الرحلات (Trips)
+                    Console.WriteLine("Starting Trips Seeding (Step 1/2: Saving Trips)...");
+                    var tripsToSeed = await LoadAndDeserializeAsync<Trip>(seedDataPath, "Trip.json", jsonOptions);
+
+                    // حفظ الرحلات أولاً
+                    await BatchSeedList<Trip>(context, tripsToSeed, context.Trips, "Trips");
+                    Console.WriteLine($"Trips seeded successfully. Count: {tripsToSeed.Count}");
+
+                    context.ChangeTracker.Clear();
+
+                    Console.WriteLine("Starting TripStops Seeding (Step 2/2: Linking Stops)...");
+                    var allTripStopsData = await LoadAndDeserializeAsync<TripStop>(seedDataPath, "TripStop.json", jsonOptions);
+
+                    var stopsLookup = allTripStopsData
+                        .GroupBy(ts => ts.TripID)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+                    List<TripStop> finalStops = new List<TripStop>();
+
+                    // تعديل الـ TripID بناءً على الـ IDs الجديدة المُنشأة في قاعدة البيانات
+                    for (int i = 0; i < tripsToSeed.Count; i++)
+                    {
+                        var newTrip = tripsToSeed[i];
+                        int oldHardcodedTripId = i + 1;
+
+                        if (stopsLookup.TryGetValue(oldHardcodedTripId, out var stopsForThisTrip))
+                        {
+                            foreach (var stop in stopsForThisTrip)
+                            {
+                                stop.TripID = newTrip.TripID;
+                                finalStops.Add(stop);
+                            }
+                        }
+                    }
+
+                    // استخدام الدالة الجديدة للحفظ على دفعات
+                    await BatchSeedList<TripStop>(context, finalStops, context.TripStops, "TripStops");
+
+                    Console.WriteLine("TripStops seeded successfully.");
+
+                }
+                else { Console.WriteLine("Trips and TripStops tables already contain data. Skipping."); }
+
+                context.ChangeTracker.Clear();
+
+
+                if (!await context.Seats.AnyAsync())
+                {
+                    Console.WriteLine("Starting Seats Seeding...");
+                    await BatchSeedFile<Seat>(context, seedDataPath, "Seat.json", context.Seats, "Seats", jsonOptions);
+                    Console.WriteLine("Seats seeded successfully.");
+                }
+                else { Console.WriteLine("Seats table already contains data. Skipping."); }
+
+                if (!await context.TripSegmentPrices.AnyAsync())
+                {
+                    Console.WriteLine("Starting TripSegmentPrices Seeding...");
+                    await BatchSeedFile<TripSegmentPrice>(context, seedDataPath, "TripSegmentPrice.json", context.TripSegmentPrices, "TripSegmentPrices", jsonOptions);
+                    Console.WriteLine("TripSegmentPrices seeded successfully.");
+                }
+                else { Console.WriteLine("TripSegmentPrices table already contains data. Skipping."); }
+
+
             }
             catch (Exception ex)
             {
-                // إذا فشلت عملية الـ Seeding، سجل الخطأ بوضوح.
-                // هذا الخطأ سيتم تسجيله بواسطة الـ Logger في Program.cs
-                throw new Exception("Seeding failed due to a file or deserialization error.", ex);
+                Console.WriteLine($"An error occurred during database migration or seeding. Error: {ex.Message}");
+                throw new Exception("Seeding failed due to a file, deserialization, or batching error.", ex);
             }
+        }
+
+        /// <summary>
+        /// دالة مساعدة لتحميل وفك تسلسل ملف JSON صغير إلى قائمة.
+        /// </summary>
+        private static async Task<List<T>> LoadAndDeserializeAsync<T>(string seedDataPath, string fileName, JsonSerializerOptions jsonOptions) where T : class
+        {
+            var filePath = Path.Combine(seedDataPath, fileName);
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine($"Error: Seed file not found at {filePath}");
+                return new List<T>();
+            }
+
+            try
+            {
+                using var stream = File.OpenRead(filePath);
+                return await JsonSerializer.DeserializeAsync<List<T>>(stream, jsonOptions) ?? new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deserializing {fileName}: {ex.Message}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// دالة مساعدة للتغذية على دفعات (Batch Seeding) لـ List&lt;T&gt; لتجنب مشاكل التتبع والحفظ.
+        /// يتم تقسيم القائمة وحفظها على دفعات مع مسح التتبع بعد كل دفعة.
+        /// </summary>
+        public static async Task BatchSeedList<T>(ApplicationDbContext context, List<T> entities, DbSet<T> dbSet, string entityName) where T : class
+        {
+            if (entities == null || !entities.Any())
+            {
+                Console.WriteLine($"Warning: No entities found for {entityName}. Skipping batch seed.");
+                return;
+            }
+
+            int totalCount = entities.Count;
+            Console.WriteLine($"Total entities to save for {entityName}: {totalCount}");
+
+            for (int i = 0; i < totalCount; i += BatchSize)
+            {
+                var batch = entities.Skip(i).Take(BatchSize).ToList();
+                dbSet.AddRange(batch);
+
+                // الحفظ ومسح التتبع لضمان عدم تتبع الكيانات القديمة في الدفعة التالية
+                await context.SaveChangesAsync();
+                context.ChangeTracker.Clear();
+
+                Console.WriteLine($"--- Saved batch up to index {Math.Min(i + BatchSize, totalCount)} of {totalCount} ({entityName}).");
+            }
+        }
+
+        /// <summary>
+        /// دالة مساعدة للتغذية على دفعات (Batch Seeding) من ملف JSON.
+        /// تقوم بتحميل البيانات ثم تمريرها إلى دالة BatchSeedList للحفظ على دفعات.
+        /// </summary>
+        public static async Task BatchSeedFile<T>(ApplicationDbContext context, string seedDataPath, string fileName, DbSet<T> dbSet, string entityName, JsonSerializerOptions jsonOptions) where T : class
+        {
+            var filePath = Path.Combine(seedDataPath, fileName);
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine($"Error: Seed file not found at {filePath}");
+                return;
+            }
+
+            Console.WriteLine($"Starting batch seed for {entityName} from {fileName}...");
+
+            // تحميل وفك التسلسل لجميع الكيانات
+            var entities = await LoadAndDeserializeAsync<T>(seedDataPath, fileName, jsonOptions);
+
+            // تمرير القائمة إلى دالة الحفظ على دفعات
+            await BatchSeedList(context, entities, dbSet, entityName);
+
+            Console.WriteLine($"Completed batch seed for {entityName}.");
         }
     }
 }

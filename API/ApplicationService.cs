@@ -17,6 +17,8 @@ using System.Text;
 using Domain.Services.TrainService;
 using Data.Repository.UnitOfWork;
 using Domain.Services.StationService;
+using Domain.Services.TripService;
+using Data.Repository.Trip;
 
 namespace API
 {
@@ -64,11 +66,12 @@ namespace API
 
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<ITrainService, TrainService>();
-            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITrainRepo, TrainRepo>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICoachRepo, CoachRepo>();
             services.AddScoped<IStationRepo, StationRepo>();
-            services.AddScoped<ITrainService, TrainService>();
+            services.AddScoped<ITripService, TripService>();
+            services.AddScoped<ITripRepo, TripRepo>();
             services.AddScoped<ICoachService, CoachService>();
             services.AddScoped<IStationService, StationService>();
             services.AddAutoMapper(typeof(MappingProfile));

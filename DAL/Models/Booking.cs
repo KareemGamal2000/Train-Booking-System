@@ -1,6 +1,6 @@
-﻿using Data.Models;
-using Data.Models.Tickets;
+﻿using Data.Models.Tickets;
 using Data.Models.Trips;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
+    [Index(nameof(UserID), nameof(TripID), IsUnique = false, Name = "IX_Bookings_UserID_TripID")]
+
     public class Booking
     {
         [Key]

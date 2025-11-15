@@ -232,14 +232,15 @@ namespace Data.Migrations
                 name: "Trips",
                 columns: table => new
                 {
-                    Trip_ID = table.Column<int>(type: "int", nullable: false),
+                    TripID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TrainID = table.Column<long>(type: "bigint", nullable: false),
                     DepartureStationID = table.Column<long>(type: "bigint", nullable: false),
                     ArrivalStationID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trips", x => x.Trip_ID);
+                    table.PrimaryKey("PK_Trips", x => x.TripID);
                     table.ForeignKey(
                         name: "FK_Trips_Stations_ArrivalStationID",
                         column: x => x.ArrivalStationID,
@@ -284,27 +285,21 @@ namespace Data.Migrations
                 name: "TrainCoaches",
                 columns: table => new
                 {
-                    CoachID = table.Column<long>(type: "bigint", nullable: false),
+                    Coach_ID = table.Column<long>(type: "bigint", nullable: false),
                     TrainID = table.Column<long>(type: "bigint", nullable: false),
                     TrainCoach_ID = table.Column<int>(type: "int", nullable: false),
                     AvailableSeats = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Coach_ID = table.Column<long>(type: "bigint", nullable: true)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrainCoaches", x => new { x.TrainID, x.CoachID });
-                    table.ForeignKey(
-                        name: "FK_TrainCoaches_Coaches_CoachID",
-                        column: x => x.CoachID,
-                        principalTable: "Coaches",
-                        principalColumn: "Coach_ID",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_TrainCoaches", x => new { x.TrainID, x.Coach_ID });
                     table.ForeignKey(
                         name: "FK_TrainCoaches_Coaches_Coach_ID",
                         column: x => x.Coach_ID,
                         principalTable: "Coaches",
-                        principalColumn: "Coach_ID");
+                        principalColumn: "Coach_ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TrainCoaches_Trains_TrainID",
                         column: x => x.TrainID,
@@ -338,7 +333,7 @@ namespace Data.Migrations
                         name: "FK_TripStops_Trips_TripID",
                         column: x => x.TripID,
                         principalTable: "Trips",
-                        principalColumn: "Trip_ID",
+                        principalColumn: "TripID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -380,7 +375,7 @@ namespace Data.Migrations
                         name: "FK_Bookings_Trips_TripID",
                         column: x => x.TripID,
                         principalTable: "Trips",
-                        principalColumn: "Trip_ID",
+                        principalColumn: "TripID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -421,7 +416,7 @@ namespace Data.Migrations
                         name: "FK_TripSegmentPrices_Trips_TripID",
                         column: x => x.TripID,
                         principalTable: "Trips",
-                        principalColumn: "Trip_ID",
+                        principalColumn: "TripID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -548,11 +543,6 @@ namespace Data.Migrations
                 name: "IX_TrainCoaches_Coach_ID",
                 table: "TrainCoaches",
                 column: "Coach_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrainCoaches_CoachID",
-                table: "TrainCoaches",
-                column: "CoachID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trips_ArrivalStationID",

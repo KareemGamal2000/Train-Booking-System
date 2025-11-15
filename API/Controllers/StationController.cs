@@ -84,7 +84,7 @@ namespace API.Controllers
                 return NotFound($"لم يتم العثور على محطة برقم {stationname} للتحديث.");
             }
 
-            return NoContent();
+            return Ok(new { message = $"تم تحديث المحطة '{stationname}' بنجاح." });
         }
 
         // DELETE: api/Station/1
@@ -97,7 +97,7 @@ namespace API.Controllers
                 return NotFound($"لم يتم العثور على محطة برقم {stationId} للحذف.");
             }
 
-            return NoContent();
+            return Ok(new { message = $"تم حذف المحطة بنجاح" });
         }
     }
 }

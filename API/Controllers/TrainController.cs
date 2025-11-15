@@ -29,16 +29,6 @@ namespace API.Controllers
             var trains = await _trainService.GetAllTrainsAsync();
             return Ok(trains);
         }
-        [HttpGet("AllTrainswithClasses")]
-        public async Task<IActionResult> GetAllTrainsWithAvailableClasses()
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var trains = await _trainService.GetAllTrainsWithClassesAsync();
-            return Ok(trains);
-        }
 
         // GET: api/Train/100
         [HttpGet("id/{trainId}")]
@@ -97,7 +87,7 @@ namespace API.Controllers
                 return NotFound($"لم يتم العثور على قطار برقم {trainName} للتحديث.");
             }
 
-            return NoContent();
+            return Ok(new { message = $"تم تحديث القطار '{trainName}' بنجاح." });
         }
 
         // DELETE: api/Train/100
@@ -110,7 +100,7 @@ namespace API.Controllers
                 return NotFound($"لم يتم العثور على قطار برقم {trainId} للحذف.");
             }
 
-            return NoContent();
+            return Ok(new { message = $"تم حذف القطار بنجاح" });
         }
 
     }

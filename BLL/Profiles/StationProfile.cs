@@ -28,6 +28,7 @@ namespace Domain.Profiles
             if (stationCreateDto == null) return null;
             return new Station
             {
+                StationID = stationCreateDto.StationID,
                 StationNameAR = stationCreateDto.StationNameAR,
                 StationNameEN = stationCreateDto.StationNameEN,
                 StationCode = stationCreateDto.StationCode,

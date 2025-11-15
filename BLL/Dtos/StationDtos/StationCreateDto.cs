@@ -10,6 +10,9 @@ namespace Domain.Dtos.StationDtos
     public class StationCreateDto
     {
         [Required]
+        public long StationID { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string StationNameAR { get; set; }
 

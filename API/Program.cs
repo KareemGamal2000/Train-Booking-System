@@ -4,7 +4,7 @@ using Data.Context;
 using Data.Repository.Coach;
 using Data.Repository.Station;
 using Data.Repository.Train;
-using Data.SeedData;
+using API.SeedData;
 using Domain.Interfaces;
 using Domain.Mapping;
 using Domain.Services;
@@ -14,7 +14,7 @@ namespace API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddApplicationServices(builder.Configuration);
@@ -48,8 +48,7 @@ namespace API
 
                     context.Database.Migrate();
 
-                    SeedData.Seed(context);
-
+                    await SeedData.SeedData.Seed(context);
                     Console.WriteLine("Database migration and seeding completed successfully.");
                 }
                 catch (Exception ex)

@@ -40,23 +40,23 @@ namespace Data.Context
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<TrainCoach>().HasKey(tc => new { tc.TrainID, tc.CoachID });
+            builder.Entity<Coach>().HasKey(c => c.Coach_ID);
+            builder.Entity<Trip>().HasKey(t => t.TripID);
+            builder.Entity<TrainCoach>().HasKey(tc => new { tc.TrainID, tc.Coach_ID });
 
-            builder.Entity<TrainCoach>().HasOne(tc => tc.Train).WithMany(t => t.TrainCoaches)
+            builder.Entity<TrainCoach>()
+                .HasOne(tc => tc.Train)
+                    .WithMany(t => t.TrainCoaches)
                    .HasForeignKey(tc => tc.TrainID)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<TrainCoach>()
                   .HasOne(tc => tc.Coach)
-                  .WithMany()
-                  .HasForeignKey(tc => tc.CoachID)
+                  .WithMany(c => c.TrainCoaches) 
+                  .HasForeignKey(tc => tc.Coach_ID)
+                  .IsRequired(true)
                   .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Station>()
-                  .Property(s => s.StationNameAR)
-                  .HasAnnotation("SqlServer:IsFullTextIndexed", true)
-                  .HasAnnotation("SqlServer:FullTextLanguage", "Arabic");
-                  
             builder.Entity<Trip>()
                 .HasOne(t => t.Train)
                 .WithMany(t => t.Trips)

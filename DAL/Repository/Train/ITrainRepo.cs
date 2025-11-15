@@ -9,6 +9,8 @@ namespace Data.Repository.Train
 {
     public interface ITrainRepo : IGenericRepo<Data.Models.Train>
     {
+        Task<IEnumerable<Data.Models.Train>> GetAllTrainsWithClassesAsync();
+        Task<Data.Models.Train?> GetTrainWithClassesByIdAsync(long trainId);
         Task<Data.Models.Train?> GetTrainByTrainNameAsync(string trainName);
     }
 }

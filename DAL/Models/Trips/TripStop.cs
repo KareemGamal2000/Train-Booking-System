@@ -1,5 +1,6 @@
 ﻿using Data.Models;
 using Data.Models.Trips;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models.Trips
 {
+    [Index(nameof(TripID), nameof(StopSequence), IsUnique = true, Name = "IX_TripStops_TripID_StopSequence")]
     public class TripStop
     {
         [Key]

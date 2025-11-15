@@ -1,5 +1,4 @@
-﻿using Data.Models.Trips;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,11 +10,11 @@ using System.Threading.Tasks;
 namespace Data.Models.Trips
 {
    
-    [EntityTypeConfiguration(typeof(TripConfigration))]
+    [EntityTypeConfiguration(typeof(TripConfigration))]    [Index(nameof(DepartureStationID), nameof(ArrivalStationID), IsUnique = false, Name = "IX_Trips_Departure_Arrival")]
     public class Trip
     {
         [Key]
-        public int Trip_ID { get; set; } 
+        public int TripID { get; set; } 
 
         [ForeignKey("TrainID")]
         [Required]

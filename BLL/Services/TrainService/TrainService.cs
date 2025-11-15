@@ -32,26 +32,19 @@ namespace Domain.Services.TrainService
         }
         public async Task<IEnumerable<TrainReadDto>> GetAllTrainsWithClassesAsync()
         {
-            var includes = new string[] { "TrainCoaches.Coach.Class" };
-            var trains = await _unitOfWork.Train.GetAllAsync(include: includes);
+            var trains = await _unitOfWork.Train.GetAllTrainsWithClassesAsync();
             return trains.Select(t => t.ToTrainReadDto()).ToList();
         }
 
         public async Task<TrainReadDto?> GetTrainByIdAsync(long trainId)
         {
-            var includes = new string[] { "TrainCoaches.Coach.Class" };
-            var train = await _unitOfWork.Train.GetFirstOrDefaultAsync(
-                t => t.TrainID == trainId,
-                include: includes);
+            var train = await _unitOfWork.Train.GetTrainWithClassesByIdAsync(trainId);
 
             return train?.ToTrainReadDto();
         }
         public async Task<TrainReadDto?> GetTrainByNameAsync(string trainName)
         {
-            var includes = new string[] { "TrainCoaches.Coach.Class" };
-            var train = await _unitOfWork.Train.GetFirstOrDefaultAsync(
-                t => t.TrainName == trainName, 
-                include: includes);
+            var train = await _unitOfWork.Train.GetTrainByTrainNameAsync(trainName);
 
             return train?.ToTrainReadDto();
         }

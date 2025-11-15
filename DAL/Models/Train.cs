@@ -1,5 +1,6 @@
-﻿using Data.Models.Trips;
-using Data.Models;
+﻿using Data.Models;
+using Data.Models.Trips;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
+    [Index(nameof(TrainName), IsUnique = false)]
     public class Train
     {
         [Key]

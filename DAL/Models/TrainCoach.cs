@@ -11,14 +11,9 @@ namespace Data.Models
 {
     public class TrainCoach
     {
-        [Key]
         public int TrainCoach_ID { get; set; }
-
-        [ForeignKey("CoachID")]
-        public long CoachID { get; set; }
+        public long Coach_ID { get; set; }
         public virtual Coach Coach { get; set; }
-
-        [ForeignKey("TrainID")]
         public long TrainID { get; set; }
         public virtual Train Train { get; set; }
         public int AvailableSeats { get; set; }
