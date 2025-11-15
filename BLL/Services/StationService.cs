@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Dtos;
 using Domain.Interfaces;
-using Data.Entities;
+using Data.Models;
 using Data.Repository.Station;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Domain.Dtos;
 
 namespace Domain.Services
 {
@@ -24,33 +24,41 @@ namespace Domain.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<StationDto>> GetAllAsync()
+        public async Task<IEnumerable<StationDto>> GetAllStationAsync()
         {
-            var stations = await _stationRepo.GetAllStationsAsync();
+            var stations = await _stationRepo.GetAllAsync();
             return _mapper.Map<IEnumerable<StationDto>>(stations);
         }
 
-        public async Task<StationDto?> GetByIdAsync(long id)
+        public async Task<StationDto?> GetStationByIdAsync(long id)
         {
-            var station = await _stationRepo.GetStationByIdAsync(id);
+            var station = await _stationRepo.GetByIdAsync(id);
             return _mapper.Map<StationDto>(station);
         }
 
         public async Task<string> AddStationAsync(StationDto stationDto)
         {
             var entity = _mapper.Map<Station>(stationDto);
-            return await _stationRepo.AddStationAsync(entity);
+            await _stationRepo.AddAsync(entity);
+            return "Station added successfully";
         }
 
         public async Task<string> UpdateStationAsync(StationDto stationDto)
         {
             var entity = _mapper.Map<Station>(stationDto);
-            return await _stationRepo.UpdateStationAsync(entity);
+            _stationRepo.Update(entity);
+            return "Station updated successfully";
         }
 
         public async Task<string> DeleteStationAsync(long id)
         {
-            return await _stationRepo.DeleteStationAsync(id);
+            var station = await _stationRepo.GetByIdAsync(id);
+            if (station == null)
+            {
+                return "Station not found";
+            }
+            _stationRepo.Delete(station);
+            return "Station deleted successfully";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repository.MainRepo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Train
 {
-    public interface ITrainRepo
+    public interface ITrainRepo : IGenericRepo<Data.Models.Train>
     {
-        Task<IEnumerable<Entities.Train>> GetAllTrainsAsync();
-        Task<Entities.Train?> GetTrainByIdAsync(long id);
-        Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainNumber);
-        Task<string> AddTrainAsync(Entities.Train train);
-
-        Task<string> UpdateTrainAsync(Entities.Train train);
-        Task<string> DeleteTrainAsync(long id);
+        Task<Data.Models.Train?> GetTrainByTrainNameAsync(string trainName);
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities.Trips
+namespace Data.Models.Trips
 {
     public class TripConfigration : IEntityTypeConfiguration<Trip>
     {

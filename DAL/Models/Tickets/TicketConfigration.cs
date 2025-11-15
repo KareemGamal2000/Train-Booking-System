@@ -1,4 +1,4 @@
-﻿using Data.Entities.Tickets;
+﻿using Data.Models.Tickets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,11 +16,11 @@ namespace Data.EntityConfigrations
          
             builder.HasOne(t => t.Booking)
                    .WithMany(b => b.Tickets)
-                   .HasForeignKey(t => t.BookingID)
+                   .HasForeignKey(t => t.Booking_ID)
                    .OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(t => t.Seat)
                    .WithOne()
-                   .HasForeignKey<Ticket>(t => t.SeatID)
+                   .HasForeignKey<Ticket>(t => t.Seat_ID)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(t => t.Class)

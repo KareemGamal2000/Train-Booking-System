@@ -1,5 +1,6 @@
 ﻿using Data.Context;
-using Data.Entities;
+using Data.Models;
+using Data.Repository.MainRepo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,49 +10,16 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Train
 {
-    public class TrainRepo : ITrainRepo
+    public class TrainRepo : GenericRepo<Data.Models.Train>, ITrainRepo
     {
         private readonly ApplicationDbContext _context;
 
-        public TrainRepo(ApplicationDbContext trainrepo)
-        {
-            _context = trainrepo;
-        }
+        public TrainRepo(ApplicationDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<Entities.Train>> GetAllTrainsAsync()
+
+        public async Task<Data.Models.Train?> GetTrainByTrainNameAsync(string trainName)
         {
-            return await _context.Trains.ToListAsync();
-        }
-        public async Task<Entities.Train?> GetTrainByIdAsync(long id)
-        {
-            return await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id);
-        }
-        public async Task<Entities.Train?> GetTrainByTrainNumberAsync(string trainName)
-        {
-            return await _context.Trains.FirstOrDefaultAsync(t => t.TrainName == trainName);
-        }
-        public async Task<string> AddTrainAsync(Entities.Train train)
-        {
-            await _context.Trains.AddAsync(train);
-            await _context.SaveChangesAsync();
-            return "Train added successfully";
-        }
-        public async Task<string> UpdateTrainAsync(Entities.Train train)
-        {
-            _context.Trains.Update(train);
-            await _context.SaveChangesAsync();
-            return "Train updated successfully";
-        }
-        public async Task<string> DeleteTrainAsync(long id)
-        {
-            var train = await _context.Trains.FirstOrDefaultAsync(t => t.Train_ID == id); ;
-            if (train != null)
-            {
-                _context.Trains.Remove(train);
-                await _context.SaveChangesAsync();
-                return "Train deleted successfully";
-            }
-            return "Train not found";
+            return await GetFirstOrDefaultAsync(t => t.TrainName == trainName);
         }
 
 

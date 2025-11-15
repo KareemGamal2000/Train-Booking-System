@@ -1,5 +1,4 @@
-﻿using Data.Entities.Trips;
-using Data.EntityConfigrations;
+﻿using Data.EntityConfigrations;
 using Data.Models.Trips;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities.Tickets
+namespace Data.Models.Tickets
 {
     [EntityTypeConfiguration(typeof(TicketConfigration))]
 
@@ -19,9 +18,9 @@ namespace Data.Entities.Tickets
         [Key]
         public Guid Ticket_ID { get; set; } = Guid.NewGuid();
         public string TicketReference { get; set; }
-        public Guid BookingID { get; set; }
+        public Guid Booking_ID { get; set; }
         public virtual Booking Booking { get; set; } // Ticket belongs to One Booking
-        public long SeatID { get; set; }
+        public int Seat_ID { get; set; }
         public virtual Seat Seat { get; set; }       // One-to-One: Ticket reserves One Seat
         public long ClassID { get; set; }
         public virtual Class Class { get; set; }

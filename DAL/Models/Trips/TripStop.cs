@@ -1,5 +1,5 @@
-﻿using Data.Entities;
-using Data.Entities.Trips;
+﻿using Data.Models;
+using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Data.Models.Trips
         public virtual Trip Trip { get; set; }
 
         [ForeignKey("StationID")]
-        public long StationID { get; set; }
+        public long? StationID { get; set; }
         public virtual Station Station { get; set; }
 
         // ترتيب المحطة فى مسار الرحلة
@@ -33,6 +33,7 @@ namespace Data.Models.Trips
         public TimeSpan? DepartureTime { get; set; }
 
         // المسافة المقطوعة من نقطة بداية الرحلة)
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal? DistanceFromStartKM { get; set; }
 
     }

@@ -15,6 +15,5 @@ namespace Domain.Interfaces
         Task<CoachDto?> GetByIdAsync(long id);
         Task<string> AddAsync(CoachDto coach);
         Task<string> UpdateAsync(CoachDto coach);
-        Task<string> DeleteAsync(long id);
     }
 }

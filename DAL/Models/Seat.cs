@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities
+namespace Data.Models
 {
     public class Seat
     {
+
         [Key]
-        public long Seat_ID { get; set; }
-        public string SeatNumber { get; set; }
+        public int Seat_ID { get; set; }
+        public int SeatNumber { get; set; }
 
         [ForeignKey("CoachID")]
         public long CoachID { get; set; }

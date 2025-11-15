@@ -1,6 +1,5 @@
-﻿using Data.Entities;
-using Data.Entities.Tickets;
-using Data.Entities.Trips;
+﻿using Data.Models;
+using Data.Models.Tickets;
 using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities
+namespace Data.Models
 {
     public class Booking
     {

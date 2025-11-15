@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repository.MainRepo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Coach
 {
-    public interface ICoachRepo
+    public interface ICoachRepo:IGenericRepo<Data.Models.Coach>
     {
-        Task<IEnumerable<Entities.Coach>> GetCoachesAsync();
-        Task<Entities.Coach?> GetCoachByIdAsync(long id);
-        Task<IEnumerable<Entities.Coach>> GetCoachClass(Entities.Coach coach);
+        Task<IEnumerable<Data.Models.Coach>> GetCoachesByClassIdAsync(long classId);
 
-        Task<string> AddCoachAsync(Entities.Coach coach);
+        Task<IEnumerable<Data.Models.Coach>> GetCoachesByClassNameAsync(string classname);
 
-        Task<string> UpdateCoachAsync(Entities.Coach coach);
+        Task<Data.Models.Coach?> GetCoachWithSeatsAndClassAsync(long coachId);
 
-        Task<string> DeleteCoachAsync(long id);
+
     }
 }

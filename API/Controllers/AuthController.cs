@@ -1,8 +1,9 @@
 ﻿using Domain.Dtos.IdentityDtos;
 using Domain.Services.Auth;
-using Data.Entities;
+using Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Data.Models;
 
 namespace API.Controllers
 {

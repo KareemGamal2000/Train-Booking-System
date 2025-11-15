@@ -1,4 +1,4 @@
-﻿using Data.Entities;
+﻿using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +12,7 @@ namespace Data.Models
     public class TrainCoach
     {
         [Key]
-        public long TrainCoach_ID { get; set; }
+        public int TrainCoach_ID { get; set; }
 
         [ForeignKey("CoachID")]
         public long CoachID { get; set; }
@@ -21,10 +21,9 @@ namespace Data.Models
         [ForeignKey("TrainID")]
         public long TrainID { get; set; }
         public virtual Train Train { get; set; }
-        public int CoachNumber { get; set; } 
         public int AvailableSeats { get; set; }
-
         public bool IsActive { get; set; } // حالة العربة في هذا القطار
-    
+    }
+
 }
-}
+

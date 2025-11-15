@@ -1,5 +1,4 @@
-﻿using Data.Entities.Trips;
-using Data.Models.Trips;
+﻿using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities
+namespace Data.Models
 {
     public class Station
     {
@@ -18,7 +17,7 @@ namespace Data.Entities
 
         public string StationNameAR { get; set; }
 
-        public string StationCode { get; set; }
+        public string? StationCode { get; set; }
 
         public string ShortName { get; set; } 
        

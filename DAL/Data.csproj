@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Repository\Booking\" />
     <Folder Include="Repository\User\" />
-    <Folder Include="Repository\Trip\" />
     <Folder Include="Repository\Ticket\" />
     <Folder Include="Repository\Seat\" />
   </ItemGroup>

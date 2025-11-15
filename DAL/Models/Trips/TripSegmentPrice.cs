@@ -1,5 +1,5 @@
-﻿using Data.Entities;
-using Data.Entities.Trips;
+﻿using Data.Models;
+using Data.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +13,7 @@ namespace Data.Models.Trips
     public class TripSegmentPrice
     {
         [Key]
-        public long SegmentPriceID { get; set; } 
+        public int SegmentPriceID { get; set; } 
 
         [ForeignKey("TripID")]
         public int TripID { get; set; }

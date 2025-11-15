@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities.Trips
+namespace Data.Models.Trips
 {
    
     [EntityTypeConfiguration(typeof(TripConfigration))]
@@ -25,13 +25,13 @@ namespace Data.Entities.Trips
         // محطة الاقلاع الاولى
         [ForeignKey("DepartureStationID")]
         [Required]
-        public long DepartureStationID { get; set; }
+        public long? DepartureStationID { get; set; }
         public virtual Station Departure_Station { get; set; }
 
         // محطة الوصول الرئيسية للرحلة 
         [ForeignKey("ArrivalStationID")]
         [Required]
-        public long ArrivalStationID { get; set; }
+        public long? ArrivalStationID { get; set; }
         public virtual Station Arrival_Station { get; set; }
 
         // ربط قائمة محطات التوقف 

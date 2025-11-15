@@ -4,7 +4,7 @@ using Domain.Services;
 using Domain.Services.Auth;
 using Domain.Third_Party.Token;
 using Data.Context;
-using Data.Entities;
+using Data.Models;
 using Data.Repository.Coach;
 using Data.Repository.Station;
 using Data.Repository.Train;
@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Domain.Services.TrainService;
+using Data.Repository.UnitOfWork;
 
 namespace API
 {
@@ -59,6 +61,8 @@ namespace API
                 };
             });
 
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<ITrainService, TrainService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITrainRepo, TrainRepo>();
             services.AddScoped<ICoachRepo, CoachRepo>();

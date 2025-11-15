@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repository.MainRepo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Station
 {
-    public interface IStationRepo
+    public interface IStationRepo : IGenericRepo<Data.Models.Station>
     {
-        Task<IEnumerable<Entities.Station>> GetAllStationsAsync();
-        Task<Entities.Station?> GetStationByIdAsync(long id);
-        Task<Entities.Station?> GetStationByCodeAsync(string stationCode);
-        Task<IEnumerable<Entities.Station>> GetStationsByNameAsync(string name);
-        Task<string> AddStationAsync(Entities.Station station);
-        Task<string> UpdateStationAsync(Entities.Station station);
-        Task<string> DeleteStationAsync(long id);
+        Task<IEnumerable<Data.Models.Station>> GetActiveStationsAsync();
+
+        Task<Data.Models.Station?> GetStationBynameAsync(string stationname);
     }
 }

@@ -7,6 +7,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="SeedData\Classes.json" />
+    <Content Remove="SeedData\Coaches.json" />
+    <Content Remove="SeedData\Stations.json" />
+    <Content Remove="SeedData\Train.json" />
+    <Content Remove="SeedData\TrainCoach.json" />
+    <Content Remove="SeedData\Trip.json" />
+    <Content Remove="SeedData\TripStop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SeedData\Classes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\Coaches.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\Stations.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\Train.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\TrainCoach.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\Trip.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SeedData\TripStop.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.21">
@@ -18,6 +52,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
 ﻿using Data.Context;
+using Data.Models;
+using Data.Repository.MainRepo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,63 +10,21 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Station
 {
-    public class StationRepo : IStationRepo
+    public class StationRepo : GenericRepo<Data.Models.Station> , IStationRepo
     {
-        private readonly ApplicationDbContext _context;
+        public StationRepo(ApplicationDbContext context) : base(context) { }
 
-        public StationRepo(ApplicationDbContext context)
+        public async Task<IEnumerable<Data.Models.Station>> GetActiveStationsAsync()
         {
-            _context = context;
-        }
-        public async Task<IEnumerable<Entities.Station>> GetAllStationsAsync()
-        {
-            return await _context.Stations.ToListAsync();
+            return await _dbSet.AsNoTracking()
+                               .Where(s => s.IsActive)
+                               .ToListAsync();
         }
 
-        public async Task<Entities.Station?> GetStationByIdAsync(long id)
+        public async Task<Data.Models.Station?> GetStationBynameAsync(string stationname)
         {
-            return await _context.Stations.FirstOrDefaultAsync(s => s.StationID == id);
+            return await GetFirstOrDefaultAsync(s => s.StationNameAR == stationname);
         }
 
-        public async Task<Entities.Station?> GetStationByCodeAsync(string stationCode)
-        {
-            return await _context.Stations.FirstOrDefaultAsync(s => s.StationCode == stationCode);
-        }
-
-        public async Task<IEnumerable<Entities.Station>> GetStationsByNameAsync(string name)
-        {
-            string normalizedName = name.ToLower();
-
-            return await _context.Stations
-                .Where(s => s.StationNameEN.ToLower().Contains(normalizedName) ||
-                            s.StationNameAR.Contains(normalizedName))
-                .ToListAsync();
-        }
-        public async Task<string> AddStationAsync(Entities.Station station)
-        {
-            await _context.Stations.AddAsync(station);
-            await _context.SaveChangesAsync();
-            return "Station added successfully";
-        }
-
-        public async Task<string> UpdateStationAsync(Entities.Station station)
-        {
-            _context.Stations.Update(station);
-            await _context.SaveChangesAsync();
-            return "Station updated successfully";
-        }
-
-        public async Task<string> DeleteStationAsync(long id)
-        {
-            var station = await _context.Stations.FirstOrDefaultAsync(s => s.StationID == id);
-            if (station != null)
-            {
-                _context.Stations.Remove(station);
-                await _context.SaveChangesAsync();
-                return "Station deleted successfully";
-            }
-            return "Station not found";
-
-        }
     }
 }

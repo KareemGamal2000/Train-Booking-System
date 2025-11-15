@@ -1,5 +1,8 @@
 ﻿using Domain.Dtos;
+
+using Domain.Dtos.TrainDtos;
 using Domain.Interfaces;
+using Domain.Services.TrainService;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,49 +18,100 @@ namespace API.Controllers
         {
             _trainService = trainService;
         }
-
+        // GET: api/Train
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllTrains()
         {
-            var trains = await _trainService.GetAllAsync();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var trains = await _trainService.GetAllTrainsAsync();
+            return Ok(trains);
+        }
+        [HttpGet("AllTrainswithClasses")]
+        public async Task<IActionResult> GetAllTrainsWithAvailableClasses()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var trains = await _trainService.GetAllTrainsWithClassesAsync();
             return Ok(trains);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        // GET: api/Train/100
+        [HttpGet("id/{trainId}")]
+        public async Task<IActionResult> GetTrainById(long trainId)
         {
-            var train = await _trainService.GetByIdAsync(id);
+            var train = await _trainService.GetTrainByIdAsync(trainId);
             if (train == null)
-                return NotFound("Train not found");
-
+            {
+                return NotFound($"لم يتم العثور على قطار برقم {trainId}");
+            }
+            return Ok(train);
+        }
+        [HttpGet("name/{trainname}")]
+        public async Task<IActionResult> GetTrainByName(string trainname)
+        {
+            var train = await _trainService.GetTrainByNameAsync(trainname);
+            if (train == null)
+            {
+                return NotFound($"لم يتم العثور على قطار برقم {trainname}");
+            }
             return Ok(train);
         }
 
+        // POST: api/Train
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] TrainDto train)
+        public async Task<IActionResult> CreateTrain([FromBody] TrainCreateDto trainDto)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
-            var result = await _trainService.AddAsync(train);
-            return Ok(result);
+            try
+            {
+                var createdTrain = await _trainService.CreateTrainAsync(trainDto);
+                return CreatedAtAction(nameof(GetTrainById), new { trainId = createdTrain.Train_ID }, createdTrain);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] TrainDto dto)
+        // PUT: api/Train/100
+        [HttpPut("{trainId}")]
+        public async Task<IActionResult> UpdateTrain(long trainId, [FromBody] TrainCreateDto trainDto)
         {
-            if (id != dto.Train_ID)
-                return BadRequest("Invalid train ID");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            var result = await _trainService.UpdateAsync(dto);
-            return Ok(result);
+            var success = await _trainService.UpdateTrainAsync(trainId, trainDto);
+            if (!success)
+            {
+                return NotFound($"لم يتم العثور على قطار برقم {trainId} للتحديث.");
+            }
+
+            return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        // DELETE: api/Train/100
+        [HttpDelete("{trainId}")]
+        public async Task<IActionResult> DeleteTrain(long trainId)
         {
-            var result = await _trainService.DeleteAsync(id);
-            return Ok(result);
+            var success = await _trainService.DeleteTrainAsync(trainId);
+            if (!success)
+            {
+                return NotFound($"لم يتم العثور على قطار برقم {trainId} للحذف.");
+            }
+
+            return NoContent();
         }
+
     }
 }
