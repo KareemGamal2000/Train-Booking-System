@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Trip
 {
-    public class TripRepo : GenericRepo<Data.Models.Trips.Trip> , ITripRepo
+    public class TripRepo : GenericRepo<Data.Models.Trips.Trip>, ITripRepo
     {
         public TripRepo(ApplicationDbContext context) : base(context) { }
 
@@ -28,12 +28,10 @@ namespace Data.Repository.Trip
                 .FirstOrDefaultAsync();
         }
 
-        //ميثود جلب كل الرحلات التي تمر بمحطة معينة
         public async Task<IEnumerable<Data.Models.Trips.Trip>> GetTripsByStationAsync(string stationName)
         {
-            var normalizedInput = NormalizeArabicName(stationName);
 
-            var candidateTrips = await _dbSet
+            var trips = await _dbSet
                 .AsNoTracking()
                 .Where(t => t.Stops.Any(ts =>
                     ts.Station.StationNameAR.ToLower().Contains(stationName.ToLower()) ||
@@ -47,63 +45,49 @@ namespace Data.Repository.Trip
                     .ThenInclude(ts => ts.Station)
                 .ToListAsync();
 
-            var finalTrips = candidateTrips.Where(t =>
-                t.Stops.Any(ts =>
-                    NormalizeArabicName(ts.Station.StationNameAR) == normalizedInput ||
-                    NormalizeArabicName(ts.Station.StationNameEN) == normalizedInput ||
-                    NormalizeArabicName(ts.Station.ShortName) == normalizedInput
-                )
-            ).ToList();
-
-            return finalTrips;
+            return trips;
 
         }
+
         public async Task<IEnumerable<Data.Models.Trips.Trip>> FindTripsWithTwoStationsAsync(string departureStationName, string arrivalStationName)
         {
-            var normalizedDep = NormalizeArabicName(departureStationName);
-            var normalizedArr = NormalizeArabicName(arrivalStationName);
 
-            var candidateTrips = await _dbSet.AsNoTracking()
-                .Where(t => t.Stops.Any(ts =>
-                    ts.Station.StationNameAR.ToLower().Contains(departureStationName.ToLower()) || ts.Station.StationNameEN.ToLower().Contains(departureStationName.ToLower())
-                ) && t.Stops.Any(ts =>
-                    ts.Station.StationNameAR.ToLower().Contains(arrivalStationName.ToLower()) || ts.Station.StationNameEN.ToLower().Contains(arrivalStationName.ToLower())
+            var tripIdsQuery = _context.Trips.AsNoTracking()
+                .Where(t => t.Stops.Any(tsDep =>
+                    (tsDep.Station.StationNameAR.ToLower().Contains(departureStationName.ToLower()) ||
+                     tsDep.Station.StationNameEN.ToLower().Contains(departureStationName.ToLower()) ||
+                     tsDep.Station.ShortName.ToLower().Contains(departureStationName.ToLower()))
+                    &&
+                    t.Stops.Any(tsArr =>
+                        (tsArr.Station.StationNameAR.ToLower().Contains(arrivalStationName.ToLower()) ||
+                         tsArr.Station.StationNameEN.ToLower().Contains(arrivalStationName.ToLower()) ||
+                         tsArr.Station.ShortName.ToLower().Contains(arrivalStationName.ToLower()))
+                        && tsDep.StopSequence < tsArr.StopSequence
+                    )
                 ))
+                .Select(t => t.TripID) // جلب الـ ID فقط!
+                .Distinct();
+
+            var tripIds = await tripIdsQuery.ToListAsync();
+            if (!tripIds.Any())
+            {
+                return Enumerable.Empty<Data.Models.Trips.Trip>();
+            }
+
+            var tripsQuery = _dbSet.AsNoTracking()
+                .Where(t => tripIds.Contains(t.TripID)) // فلترة باستخدام الـ IDs المفلترة
                 .Include(t => t.Train)
                 .Include(t => t.Departure_Station)
                 .Include(t => t.Arrival_Station)
                 .Include(t => t.Stops.OrderBy(ts => ts.StopSequence))
                     .ThenInclude(ts => ts.Station)
-                .ToListAsync(); // Fetch results to memory
+                .Include(t => t.SegmentPrices)
+                    .ThenInclude(p => p.Class);
 
-            var finalTrips = candidateTrips.Where(t =>
-            {
-                bool IsFuzzyMatch(Data.Models.Station station, string normalizedName)
-                {
-                    return NormalizeArabicName(station.StationNameAR) == normalizedName ||
-                           NormalizeArabicName(station.StationNameEN) == normalizedName ||
-                           NormalizeArabicName(station.ShortName) == normalizedName;
-                }
-
-                var departureStop = t.Stops.FirstOrDefault(ts => IsFuzzyMatch(ts.Station, normalizedDep));
-
-                var arrivalStop = t.Stops.FirstOrDefault(ts => IsFuzzyMatch(ts.Station, normalizedArr));
-
-                return departureStop != null && arrivalStop != null && departureStop.StopSequence < arrivalStop.StopSequence;
-            }).ToList();
+            var finalTrips = await tripsQuery.ToListAsync();
 
             return finalTrips;
 
-        }
-        private static string NormalizeArabicName(string name)
-        {
-            if (string.IsNullOrEmpty(name)) return name;
-
-            name = name.Replace('أ', 'ا').Replace('إ', 'ا').Replace('آ', 'ا');
-
-            name = name.Replace('ة', 'ه');
-
-            return name.Trim().ToLower();
         }
 
 

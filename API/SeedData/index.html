@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البحث عن رحلات القطار</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            min-height: 100vh;
+        }
+        .trip-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+        .trip-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* تصميم الخط الزمني في المودال */
+        .timeline {
+            position: relative;
+            margin-right: 15px; 
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .timeline-item {
+            position: relative;
+            padding-right: 20px;
+            padding-bottom: 15px;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            right: -8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #a5b4fc;
+            border: 3px solid white;
+            z-index: 10;
+        }
+        .timeline-start {
+            background-color: #3b82f6; /* أزرق داكن للانطلاق */
+        }
+        .timeline-end {
+            background-color: #ef4444; /* أحمر للوصول */
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* إخفاء افتراضيًا */
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+        
+        /* تنسيق الخط الزمني في البطاقة المختصرة */
+        .summary-timeline-line {
+            height: 4px; 
+            background-color: #f5f5f5;
+            position: relative;
+            border-radius: 9999px;
+            margin: 0 5px;
+        }
+        .summary-timeline-progress {
+            position: absolute;
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(to left, #ef4444, #3b82f6); 
+        }
+        .summary-timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            box-shadow: 0 0 0 3px white;
+        }
+        /* تصميم أزرار التبديل (Segmented Buttons) */
+        .segmented-control {
+            display: inline-flex;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db; /* gray-300 */
+            overflow: hidden;
+        }
+        .segmented-control-item {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+            background-color: white;
+            color: #4b5563; /* gray-600 */
+        }
+        .segmented-control-item:not(:last-child) {
+            border-left: 1px solid #d1d5db;
+        }
+        .segmented-control-item.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            border-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto"> 
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-6 text-center border-b-4 border-indigo-500 pb-2">
+            منظومة البحث عن رحلات القطار
+        </h1>
+
+        <!-- واجهة إدخال البحث مع زر التبديل -->
+        <div id="searchForm" class="bg-white p-6 rounded-xl shadow-2xl mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end relative">
+                
+                <div class="md:col-span-2">
+                    <label for="departureStation" class="block text-sm font-medium text-gray-700 mb-1">محطة المغادرة</label>
+                    <input type="text" id="departureStation" value="السويس"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required>
+                </div>
+
+                <!-- زر التبديل (Swap Button) -->
+                <div class="md:col-span-1 flex justify-center items-center h-full pt-6 md:pt-0 absolute md:relative w-full left-0 top-0">
+                    <button id="swapButton" title="تبديل المحطات"
+                            class="bg-indigo-500 text-white p-2.5 rounded-full shadow-lg hover:bg-indigo-600 transition duration-150 z-10">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m12 0l4 4m-4-4l4-4"></path></svg>
+                    </button>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="arrivalStation" class="block text-sm font-medium text-gray-700 mb-1">محطة الوصول</label>
+                    <input type="text" id="arrivalStation" value="القاهرة"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required>
+                </div>
+                
+                <div class="md:col-span-5 flex items-end">
+                    <button id="searchButton" 
+                            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-150 font-bold shadow-md">
+                        ابحث عن الرحلات
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- منطقة إظهار النتائج والتحكم في الفرز (تصميم احترافي) -->
+        <div id="resultsInfo" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 hidden bg-white p-4 rounded-xl shadow-md">
+            <span id="resultsCount" class="text-xl font-bold text-gray-800 mb-4 md:mb-0"></span>
+            
+            <div class="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+                <p class="text-sm font-medium text-gray-600 mr-2">فرز حسب:</p>
+
+                <!-- فرز المدة -->
+                <div class="segmented-control">
+                    <div id="duration_asc" data-sort-key="duration" data-sort-order="asc" class="segmented-control-item active">
+                        الأسرع
+                    </div>
+                    <div id="duration_desc" data-sort-key="duration" data-sort-order="desc" class="segmented-control-item">
+                        الأبطأ
+                    </div>
+                </div>
+
+                <!-- فرز الوقفات -->
+                <div class="segmented-control">
+                    <div id="stops_asc" data-sort-key="stops" data-sort-order="asc" class="segmented-control-item active">
+                        الأقل وقفات
+                    </div>
+                    <div id="stops_desc" data-sort-key="stops" data-sort-order="desc" class="segmented-control-item">
+                        الأكثر وقفات
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- منطقة عرض النتائج -->
+        <div id="resultsContainer" class="grid grid-cols-1 gap-6">
+            <div id="initialMessage" class="lg:col-span-1 text-center bg-blue-50 p-6 rounded-lg text-gray-600 border border-blue-200">
+                <p>يرجى إدخال محطتي المغادرة والوصول للبدء في البحث.</p>
+            </div>
+        </div>
+
+        <!-- شريط التحميل (Loading Indicator) -->
+        <div id="loadingIndicator" class="hidden text-center mt-10 lg:col-span-1">
+            <svg class="animate-spin h-10 w-10 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-indigo-600 mt-2 font-semibold">جاري البحث عن الرحلات... (قد يستغرق وقتاً طويلاً)</p>
+        </div>
+        
+        <!-- منطقة رسائل الخطأ -->
+        <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4 lg:col-span-1" role="alert">
+            <strong class="font-bold">خطأ في الجلب: </strong>
+            <span id="errorText" class="block sm:inline"></span>
+        </div>
+    </div>
+
+    <!-- نافذة المودال لعرض المسار التفصيلي -->
+    <div id="timelineModal" class="modal">
+        <div class="bg-white rounded-xl shadow-3xl w-full max-w-lg mx-4 p-6 relative">
+            <button id="closeModal" class="absolute top-4 left-4 text-gray-500 hover:text-gray-800 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-2" id="modalTitle">مسار الرحلة التفصيلي</h2>
+            <div id="modalContent" class="max-h-96 overflow-y-auto">
+                <!-- سيتم تحميل الخط الزمني هنا -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تخزين بيانات الرحلات المجلوبة لاستخدامها في المودال وللفرز
+        let fetchedTrips = [];
+        
+        // حالة الفرز الحالية
+        let currentSort = {
+            duration: 'asc', // asc: أسرع, desc: أبطأ
+            stops: 'asc'     // asc: أقل وقفات, desc: أكثر وقفات
+        };
+
+        const normalize = (name) => {
+            return name ? name.trim().toLowerCase() : ''; 
+        };
+
+        function formatTime(timeString) {
+            if (!timeString) return '---';
+            const parts = timeString.split(':');
+            if (parts.length < 2) return timeString;
+            
+            let hours = parseInt(parts[0], 10);
+            const minutes = parts[1];
+            const ampm = hours >= 12 ? 'م' : 'ص';
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            
+            return `${hours.toString().padStart(2, '0')}:${minutes}${ampm}`;
+        }
+
+        function calculateDuration(startTime, endTime) {
+            if (!startTime || !endTime) return { formatted: 'N/A', totalMinutes: Infinity };
+
+            try {
+                const startParts = startTime.split(':').map(Number);
+                const endParts = endTime.split(':').map(Number);
+
+                let startMinutes = startParts[0] * 60 + startParts[1];
+                let endMinutes = endParts[0] * 60 + endParts[1];
+
+                if (endMinutes < startMinutes) {
+                    endMinutes += 24 * 60; 
+                }
+
+                const durationMinutes = endMinutes - startMinutes;
+                const hours = Math.floor(durationMinutes / 60);
+                const minutes = durationMinutes % 60;
+                
+                let formatted = 'N/A';
+                if (hours === 0 && minutes === 0) {
+                    formatted = `أقل من دقيقة`;
+                } else if (hours === 0) {
+                    formatted = `${minutes} د`;
+                } else if (minutes === 0) {
+                        formatted = `${hours} س`;
+                } else {
+                    formatted = `${hours} س و ${minutes} د`;
+                }
+                return { formatted, totalMinutes: durationMinutes };
+                
+            } catch (e) {
+                return { formatted: 'N/A', totalMinutes: Infinity };
+            }
+        }
+
+
+        function mapClassIdToName(classId) {
+            switch (String(classId)) {
+                case '610731671846468763': return 'درجة أولى (VIP)';
+                case '950751353545491429': return 'درجة ثانية';
+                case '1087712343120937957': return 'نوم';
+                default: return 'فئة غير معروفة';
+            }
+        }
+        
+        function createTimelineContent(trip, depName, arrName) {
+            const stops = trip.stops || [];
+            if (stops.length === 0) return 'لا تتوفر بيانات توقفات مفصلة.';
+            
+            const normalizedDep = normalize(depName);
+            const normalizedArr = normalize(arrName);
+
+            const depStop = stops.find(s => 
+                s && (normalize(s.stationNameAR) === normalizedDep || normalize(s.stationNameEN) === normalizedDep || normalize(s.shortName) === normalizedDep)
+            );
+            const arrStop = stops.find(s => 
+                s && (normalize(s.stationNameAR) === normalizedArr || normalize(s.stationNameEN) === normalizedArr || normalize(s.shortName) === normalizedArr)
+            );
+
+            const depSequence = depStop ? depStop.stopSequence : -1;
+            const arrSequence = arrStop ? arrStop.stopSequence : Infinity;
+
+            const filteredStops = stops
+                .filter(s => s.stopSequence >= depSequence && s.stopSequence <= arrSequence)
+                .sort((a, b) => a.stopSequence - b.stopSequence);
+
+            
+            const timelineHtml = filteredStops.map((stop, index) => {
+                const isDeparturePoint = depStop && stop.stopSequence === depStop.stopSequence;
+                const isArrivalPoint = arrStop && stop.stopSequence === arrStop.stopSequence;
+
+                let dotClass = 'timeline-dot';
+                let stationDetail = '';
+                
+                if (isDeparturePoint) {
+                    dotClass = 'timeline-dot timeline-start';
+                    stationDetail = `<span class="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full mr-2">نقطة الانطلاق</span>`;
+                } else if (isArrivalPoint) {
+                    dotClass = 'timeline-dot timeline-end';
+                    stationDetail = `<span class="text-xs font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded-full mr-2">نقطة الوصول</span>`;
+                } else {
+                    dotClass = 'timeline-dot timeline-active bg-gray-500';
+                }
+
+                const stationName = stop.stationNameAR || 'N/A'; 
+
+                const arrivalTimeFormatted = formatTime(stop.arrivalTime);
+                const departureTimeFormatted = formatTime(stop.departureTime);
+                
+                const timeInfo = isDeparturePoint 
+                    ? `<span class="font-bold text-gray-700 flex items-center">
+                            <svg class="w-4 h-4 ml-1 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ${departureTimeFormatted} مغادرة
+                        </span>`
+                    : isArrivalPoint
+                    ? `<span class="font-bold text-gray-700 flex items-center">
+                            <svg class="w-4 h-4 ml-1 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ${arrivalTimeFormatted} وصول
+                        </span>`
+                    : `<span class="text-gray-500 flex items-center space-x-4 rtl:space-x-reverse">
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 ml-1 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ${arrivalTimeFormatted} وصول
+                        </span>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 ml-1 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            ${departureTimeFormatted} مغادرة
+                        </span>
+                    </span>`;
+
+
+                return `
+                    <div class="timeline-item">
+                        <div class="${dotClass}"></div>
+                        <div class="flex flex-col items-start pb-4 border-b border-gray-100">
+                            <div class="flex items-center mb-1">
+                                <p class="font-semibold text-gray-800">${stationName}</p>
+                                ${stationDetail}
+                            </div>
+                            <p class="text-sm text-gray-600">${timeInfo}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            return `<div class="timeline p-3 border-l border-gray-200">${timelineHtml.replace(/border-b border-gray-100 pb-4/g, 'pb-4')}</div>`;
+        }
+
+        /**
+         * ينشئ البطاقة المختصرة لعرض النتائج (مثل الصورة)
+         */
+        function createSummaryCard(trip, depName, arrName) {
+            const stops = trip.stops || [];
+
+            const normalizedDep = normalize(depName);
+            const normalizedArr = normalize(arrName);
+
+            const depStop = stops.find(s => 
+                s && (normalize(s.stationNameAR) === normalizedDep || normalize(s.stationNameEN) === normalizedDep || normalize(s.shortName) === normalizedDep)
+            );
+            const arrStop = stops.find(s => 
+                s && (normalize(s.stationNameAR) === normalizedArr || normalize(s.stationNameEN) === normalizedArr || normalize(s.shortName) === normalizedArr)
+            );
+
+            // حساب البيانات الأساسية (تم حسابها مسبقًا في دالة renderTrips)
+            const duration = { formatted: trip.formattedDuration, totalMinutes: trip.durationMinutes };
+            const stopsCount = trip.stopsCount;
+            
+            let startDepartureTime = depStop ? depStop.departureTime : null;
+            let endArrivalTime = arrStop ? arrStop.arrivalTime : null;
+            
+            const formattedDepartureTime = formatTime(startDepartureTime);
+            const formattedArrivalTime = formatTime(endArrivalTime);
+
+            // تحديد الفئة والسعر الأقل
+            const prices = trip.segmentPrices || [];
+            const cheapestPrice = prices.reduce((min, p) => p.price < min.price ? p : min, { price: Infinity, classNameAR: 'N/A', classID: '0' });
+            const cheapestClass = cheapestPrice.classNameAR && cheapestPrice.classNameAR !== 'N/A' 
+                                  ? cheapestPrice.classNameAR 
+                                  : mapClassIdToName(cheapestPrice.classID);
+
+
+            // بناء هيكل البطاقة المختصرة (تنسيق يشبه الصورة)
+            return `
+                <div class="trip-card p-4 rounded-xl shadow-lg border-2 border-gray-100 flex flex-col justify-between w-full" 
+                     data-duration="${duration.totalMinutes}" data-stops="${stopsCount}">
+                    
+                    <!-- الصف العلوي (رقم القطار والوقفات) -->
+                    <div class="flex justify-between items-center text-sm font-semibold text-gray-700 pb-2">
+                        
+                        <!-- اليسار: عدد الوقفات -->
+                        <div class="flex items-center space-x-1 rtl:space-x-reverse text-indigo-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                            <span class="text-sm font-bold text-gray-500">${stopsCount} وقفة</span>
+                        </div>
+
+                        <!-- اليمين: رقم القطار -->
+                        <div class="flex items-center space-x-1 rtl:space-x-reverse text-indigo-700">
+                            <span class="text-sm font-bold text-gray-500 mr-1">قطار</span>
+                            <span class="text-lg font-bold">${trip.trainName || '---'}</span>
+                        </div>
+                    </div>
+
+                    <!-- المسار الزمني الخطي (الوصول/المغادرة) -->
+                    <div class="relative flex items-center justify-between px-2 pt-2 pb-6">
+                        
+                        <!-- حاوية وقت الوصول والمحطة (اليسار/أحمر) -->
+                        <div class="absolute left-0 top-0 flex flex-col items-start text-red-600">
+                            <span class="text-2xl font-extrabold">${formattedArrivalTime.replace(' م', 'م').replace(' ص', 'ص')}</span>
+                            <span class="text-xs text-gray-900 mt-1.5">${arrName}</span>
+                        </div>
+                        
+                        <!-- حاوية وقت المغادرة والمحطة (اليمين/أزرق) -->
+                        <div class="absolute right-0 top-0 flex flex-col items-end text-blue-600">
+                            <span class="text-2xl font-extrabold">${formattedDepartureTime.replace(' م', 'م').replace(' ص', 'ص')}</span>
+                            <span class="text-xs text-gray-900 mt-1.5">${depName}</span>
+                        </div>
+
+                        <!-- الخط والمدة -->
+                        <div class="w-full h-1 bg-gray-300 rounded-full my-6 relative"> 
+                            <div class="summary-timeline-progress bg-green-500" style="width:100%; background: linear-gradient(to left, #ef4444, #3b82f6);"></div>
+                            
+                            <!-- المدة في المنتصف -->
+                            <span class="absolute inset-x-0 mx-auto w-max text-sm font-bold text-gray-700 top-[-24px] bg-white px-2">
+                                ${duration.formatted}
+                            </span>
+                            
+                            <!-- النقاط -->
+                            <span class="summary-timeline-dot bg-blue-600 right-0"></span>
+                            <span class="summary-timeline-dot bg-red-600 left-0"></span>
+                        </div>
+                    </div>
+
+                    <!-- السعر الأدنى والفئة -->
+                    <div class="flex justify-between items-center text-sm pt-4 mt-2 border-t border-gray-100">
+                        <div class="flex flex-col items-start">
+                            <p class="text-xs text-gray-500">الفئة الأقل سعراً</p>
+                            <p class="text-green-600 font-bold">${cheapestClass}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500">السعر يبدأ من</p>
+                            <p class="text-green-600 text-lg font-bold">${cheapestPrice.price !== Infinity ? cheapestPrice.price.toFixed(2) + ' ج.م' : 'N/A'}</p>
+                        </div>
+                    </div>
+                    
+
+                     <!-- زر عرض المسار التفصيلي -->
+                    <button class="mt-4 bg-gray-100 text-indigo-600 py-1.5 rounded-lg text-sm font-semibold hover:bg-gray-200 transition duration-150 shadow-sm"
+                            onclick="event.stopPropagation(); showTimelineModal(${trip.trip_ID}, '${depName}', '${arrName}')">
+                        عرض المسار بالكامل
+                    </button>
+                </div>
+            `;
+        }
+
+        /**
+         * دالة عرض النتائج وفرزها
+         */
+        function renderTrips(trips) {
+            const departure = document.getElementById('departureStation').value.trim();
+            const arrival = document.getElementById('arrivalStation').value.trim();
+            
+            // قراءة حالة الفرز من الأزرار
+            const durationSortOrder = document.querySelector('.segmented-control:nth-child(2) .active').getAttribute('data-sort-order');
+            const stopsSortOrder = document.querySelector('.segmented-control:nth-child(3) .active').getAttribute('data-sort-order');
+
+            // 1. حساب البيانات الأساسية (المدة والوقفات)
+            const processed = trips.map(trip => {
+                const stops = trip.stops || [];
+                
+                // تحديد محطات المغادرة والوصول الفعلية في القائمة 
+                const depStop = stops.find(s => normalize(s.stationNameAR) === normalize(departure));
+                const arrStop = stops.find(s => normalize(s.stationNameAR) === normalize(arrival));
+
+                const durationData = calculateDuration(
+                    depStop ? depStop.departureTime : null,
+                    arrStop ? arrStop.arrivalTime : null
+                );
+                
+                // حساب عدد الوقفات (المحطات بين نقطة الانطلاق والوصول)
+                const depSequence = depStop ? depStop.stopSequence : -1;
+                const arrSequence = arrStop ? arrStop.stopSequence : Infinity;
+
+                const totalStopsCount = stops.filter(s => s.stopSequence >= depSequence && s.stopSequence <= arrSequence).length;
+                const stopsCount = totalStopsCount > 1 ? totalStopsCount - 2 : 0;
+                
+                return {
+                    ...trip,
+                    durationMinutes: durationData.totalMinutes,
+                    formattedDuration: durationData.formatted, // حفظ التنسيق
+                    stopsCount: stopsCount
+                };
+            });
+            
+            // 2. تطبيق الفرز
+            processed.sort((a, b) => {
+                // الفرز الرئيسي: المدة
+                let durationComparison = a.durationMinutes - b.durationMinutes;
+                if (durationSortOrder === 'desc') {
+                    durationComparison *= -1;
+                }
+                
+                // الفرز الثانوي: الوقفات (في حالة تساوي المدة)
+                let stopsComparison = a.stopsCount - b.stopsCount;
+                if (stopsSortOrder === 'desc') {
+                    stopsComparison *= -1;
+                }
+                
+                // تطبيق الفرز المزدوج: حسب المدة أولاً، ثم الوقفات
+                return durationComparison !== 0 ? durationComparison : stopsComparison;
+            });
+            
+            // 3. تحديث واجهة العرض
+            const resultsHtml = processed.map(trip => createSummaryCard(trip, departure, arrival)).join('');
+            document.getElementById('resultsContainer').innerHTML = resultsHtml;
+            
+            // 4. عرض عدد النتائج
+            document.getElementById('resultsCount').textContent = `تم العثور على ${processed.length} رحلة`;
+            document.getElementById('resultsInfo').classList.remove('hidden');
+        }
+
+
+        // ... (باقي كود الإعدادات) ...
+        document.addEventListener('DOMContentLoaded', () => {
+            const departureInput = document.getElementById('departureStation');
+            const arrivalInput = document.getElementById('arrivalStation');
+            const searchButton = document.getElementById('searchButton');
+            const swapButton = document.getElementById('swapButton');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const errorMessageDiv = document.getElementById('errorMessage');
+            const modal = document.getElementById('timelineModal');
+            const closeModalButton = document.getElementById('closeModal');
+            
+            const API_BASE_URL = 'https://localhost:7192'; 
+
+            // --- دوال المبادلة ---
+            const handleSwap = () => {
+                const temp = departureInput.value;
+                departureInput.value = arrivalInput.value;
+                arrivalInput.value = temp;
+                if(fetchedTrips.length > 0) {
+                   // إعادة البحث تلقائيا عند التبديل
+                   searchButton.click(); 
+                }
+            };
+            swapButton.addEventListener('click', handleSwap);
+            
+            // --- دوال المودال ---
+            closeModalButton.onclick = () => modal.style.display = 'none';
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+            // ---------------------
+
+            // جعل الدالة متاحة عالمياً (Global) لاستخدامها من زر البطاقة
+            window.showTimelineModal = (tripId, depName, arrName) => {
+                const trip = fetchedTrips.find(t => t.trip_ID === tripId);
+                if (!trip) return;
+
+                document.getElementById('modalTitle').textContent = `مسار الرحلة ${trip.trainName} من ${depName} إلى ${arrName}`;
+                document.getElementById('modalContent').innerHTML = createTimelineContent(trip, depName, arrName);
+                modal.style.display = 'flex';
+            };
+
+            // --- منطق أزرار الفرز (Segmented Controls) ---
+            document.querySelectorAll('.segmented-control-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const group = this.closest('.segmented-control');
+                    
+                    // إزالة الفئة النشطة من جميع الأزرار في نفس المجموعة
+                    group.querySelectorAll('.segmented-control-item').forEach(btn => btn.classList.remove('active'));
+                    
+                    // إضافة الفئة النشطة للزر الحالي
+                    this.classList.add('active');
+                    
+                    // إعادة الفرز
+                    if (fetchedTrips.length > 0) {
+                        renderTrips(fetchedTrips);
+                    }
+                });
+            });
+
+
+            searchButton.addEventListener('click', async () => {
+                const departure = departureInput.value.trim();
+                const arrival = arrivalInput.value.trim();
+
+                if (!departure || !arrival) {
+                    document.getElementById('errorText').textContent = 'يرجى إدخال محطتي المغادرة والوصول.';
+                    errorMessageDiv.classList.remove('hidden');
+                    return;
+                }
+
+                errorMessageDiv.classList.add('hidden');
+                document.getElementById('initialMessage')?.classList.add('hidden');
+                document.getElementById('resultsContainer').innerHTML = '';
+                loadingIndicator.classList.remove('hidden');
+                document.getElementById('resultsInfo').classList.add('hidden');
+
+                const url = `${API_BASE_URL}/api/Trip/search/alltrips?departureStationName=${encodeURIComponent(departure)}&arrivalStationName=${encodeURIComponent(arrival)}`;
+
+                try {
+                    const response = await fetch(url);
+                    loadingIndicator.classList.add('hidden');
+                    
+                    const responseText = await response.text();
+                    
+                    if (!response.ok) {
+                        let errorMsg = `فشل جلب البيانات. رمز الخطأ: ${response.status}.`;
+                        if (response.status === 0) {
+                           errorMsg = `فشل الاتصال بالخادم (Network Error/CORS). تأكد من تشغيل API ومن تهيئة CORS.`;
+                        } else {
+                            try {
+                                const errorData = JSON.parse(responseText);
+                                errorMsg = errorData.title || errorMsg;
+                            } catch {
+                                errorMsg += " الخادم أرجع استجابة غير متوقعة. (JSON Parse Failed)";
+                            }
+                        }
+                        document.getElementById('errorText').textContent = errorMsg;
+                        errorMessageDiv.classList.remove('hidden');
+                        return;
+                    }
+                    
+                    if (!responseText || responseText.trim() === '[]') {
+                        document.getElementById('resultsContainer').innerHTML = `<div class="lg:col-span-1 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg" role="alert"><p class="font-bold">عفواً!</p><p>لم يتم العثور على رحلات بين المحطتين المحددة.</p></div>`;
+                        return;
+                    }
+                    
+                    const trips = JSON.parse(responseText);
+
+                    if (trips.length === 0) {
+                        document.getElementById('resultsContainer').innerHTML = `<div class="lg:col-span-1 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg" role="alert"><p class="font-bold">عفواً!</p><p>لم يتم العثور على رحلات بين المحطتين المحددة.</p></div>`;
+                        return;
+                    }
+
+                    // حفظ الرحلات المجلوبة لاستخدامها في المودال والفرز
+                    fetchedTrips = trips;
+
+                    // عرض النتائج باستخدام الفرز الافتراضي (الأقل زمناً)
+                    renderTrips(fetchedTrips);
+
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                    loadingIndicator.classList.add('hidden');
+                    document.getElementById('errorText').textContent = `حدث خطأ غير متوقع أثناء معالجة البيانات المرتجعة. (${error.message})`;
+                    errorMessageDiv.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
