@@ -19,7 +19,7 @@ namespace Data.Models.Tickets
         public string TicketReference { get; set; }
         public Guid Booking_ID { get; set; }
         public virtual Booking Booking { get; set; } // Ticket belongs to One Booking
-        public int Seat_ID { get; set; }
+        public int SeatID { get; set; }
         public virtual Seat Seat { get; set; }       // One-to-One: Ticket reserves One Seat
         public long ClassID { get; set; }
         public virtual Class Class { get; set; }

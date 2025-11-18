@@ -12,7 +12,7 @@ namespace Data.Models
     {
 
         [Key]
-        public int Seat_ID { get; set; }
+        public int SeatID { get; set; }
         public int SeatNumber { get; set; }
 
         [ForeignKey("CoachID")]
