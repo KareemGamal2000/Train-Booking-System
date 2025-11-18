@@ -20,7 +20,7 @@ namespace Data.EntityConfigrations
                    .OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(t => t.Seat)
                    .WithOne()
-                   .HasForeignKey<Ticket>(t => t.Seat_ID)
+                   .HasForeignKey<Ticket>(t => t.SeatID)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(t => t.Class)
