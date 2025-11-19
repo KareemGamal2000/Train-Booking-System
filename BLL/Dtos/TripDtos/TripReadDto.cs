@@ -19,6 +19,9 @@ namespace Domain.Dtos.TripDtos
 
         public ICollection<TripStopDto> Stops { get; set; } = new List<TripStopDto>();
 
+        public ICollection<TripClassDto> AvailableClasses { get; set; } = new List<TripClassDto>();
+
+
         public ICollection<TripSegmentPriceDto> SegmentPrices { get; set; } = new List<TripSegmentPriceDto>();
     }
 }

@@ -185,7 +185,7 @@
   },
   {
     "TripID": 2,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "05:36:00",
     "DepartureTime": "05:37:00",
@@ -2801,7 +2801,7 @@
   },
   {
     "TripID": 15,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "07:16:00",
     "DepartureTime": "07:17:00",
@@ -3209,7 +3209,7 @@
   },
   {
     "TripID": 22,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "08:02:00",
     "DepartureTime": "08:03:00",
@@ -3457,7 +3457,7 @@
   },
   {
     "TripID": 25,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "09:16:00",
     "DepartureTime": "09:17:00",
@@ -3625,7 +3625,7 @@
   },
   {
     "TripID": 26,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "11:21:00",
     "DepartureTime": "11:22:00",
@@ -3793,7 +3793,7 @@
   },
   {
     "TripID": 27,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "12:16:00",
     "DepartureTime": "12:17:00",
@@ -3961,7 +3961,7 @@
   },
   {
     "TripID": 28,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "14:02:00",
     "DepartureTime": "14:03:00",
@@ -4129,7 +4129,7 @@
   },
   {
     "TripID": 29,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "14:46:00",
     "DepartureTime": "14:47:00",
@@ -4537,7 +4537,7 @@
   },
   {
     "TripID": 34,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "16:22:00",
     "DepartureTime": "16:23:00",
@@ -4705,7 +4705,7 @@
   },
   {
     "TripID": 35,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "17:46:00",
     "DepartureTime": "17:47:00",
@@ -5913,7 +5913,7 @@
   },
   {
     "TripID": 46,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "20:46:00",
     "DepartureTime": "20:47:00",
@@ -6081,7 +6081,7 @@
   },
   {
     "TripID": 47,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "18:32:00",
     "DepartureTime": "18:33:00",
@@ -6361,7 +6361,7 @@
   },
   {
     "TripID": 50,
-    "StationID": 606535386931396661,
+    "StationID": 606535386931396662,
     "StopSequence": 10,
     "ArrivalTime": "22:23:00",
     "DepartureTime": "22:24:00",

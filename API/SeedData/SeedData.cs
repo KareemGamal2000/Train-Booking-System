@@ -51,10 +51,9 @@ namespace API.SeedData
                     // تطبيق منطق ضمان التفرد باستخدام المفتاح المركب
                     var distinctTrainCoaches = trainCoaches
                         .GroupBy(tc => new { tc.TrainID, tc.Coach_ID }) // التجميع حسب المفتاح المركب
-                        .Select(g => g.First())                       // اختيار أول عنصر من كل مجموعة (لضمان التفرد)
+                        .Select(g => g.First())                      
                         .ToList();
 
-                    // استخدام الدالة الجديدة للحفظ على دفعات
                     await BatchSeedList<TrainCoach>(context, distinctTrainCoaches, context.TrainCoaches, "TrainCoaches");
 
                     Console.WriteLine("TrainCoaches seeded successfully.");
@@ -95,22 +94,53 @@ namespace API.SeedData
                 Console.WriteLine("Change tracker cleared before Trips seeding.");
 
 
+                List<Trip> tripsToSeed = new List<Trip>();
+
+                // ------------------------------------
+                // جزء التغذية لـ (Trips)
+                // ------------------------------------
                 if (!await context.Trips.AnyAsync())
                 {
-                    // 1. تحميل بيانات الرحلات (Trips)
-                    Console.WriteLine("Starting Trips Seeding (Step 1/2: Saving Trips)...");
-                    var tripsToSeed = await LoadAndDeserializeAsync<Trip>(seedDataPath, "Trip.json", jsonOptions);
+                    Console.WriteLine("Starting Trips Seeding (Step 1/3: Saving Trips)...");
+                    tripsToSeed = await LoadAndDeserializeAsync<Trip>(seedDataPath, "Trip.json", jsonOptions);
 
                     // حفظ الرحلات أولاً
                     await BatchSeedList<Trip>(context, tripsToSeed, context.Trips, "Trips");
                     Console.WriteLine($"Trips seeded successfully. Count: {tripsToSeed.Count}");
+                }
+                else
+                {
+                    Console.WriteLine("Trips table already contains data. Skipping seeding, but loading existing IDs for TripStops linking.");
+                    // إذا كانت البيانات موجودة، نقوم بتحميلها لأننا سنحتاجها في الخطوة التالية لتحديث TripID في TripStops
+                    tripsToSeed = await context.Trips.OrderBy(t => t.TripID).ToListAsync();
+                }
 
-                    context.ChangeTracker.Clear();
+                context.ChangeTracker.Clear();
 
-                    Console.WriteLine("Starting TripStops Seeding (Step 2/2: Linking Stops)...");
+                // ------------------------------------
+                // جزء التغذية لـ (TripStops) - يعتمد على IDs من Trips
+                // ------------------------------------
+                if (!await context.TripStops.AnyAsync() && tripsToSeed.Any())
+                {
+                    Console.WriteLine("Starting TripStops Seeding (Step 2/3: Linking Stops & Enforcing Uniqueness)...");
+
+                    // تأكد من أن لدينا بيانات Stations قبل المتابعة، أو أن البيانات موجودة في قاعدة البيانات
+                    if (!await context.Stations.AnyAsync())
+                    {
+                        // يفضل أن يتم التأكد من أن Stations محملة مسبقًا
+                        Console.WriteLine("Error: Cannot seed TripStops because Stations table is empty. Please ensure Stations are seeded first.");
+                    }
+
                     var allTripStopsData = await LoadAndDeserializeAsync<TripStop>(seedDataPath, "TripStop.json", jsonOptions);
 
-                    var stopsLookup = allTripStopsData
+                    // التعديل: ضمان تفرد محطات التوقف داخل كل رحلة باستخدام (TripID, StopOrder)
+                    var distinctTripStops = allTripStopsData
+                        .GroupBy(ts => new { ts.TripID, ts.StopSequence })
+                        .Select(g => g.First()) // اختيار أول عنصر من كل مجموعة (لضمان التفرد)
+                        .ToList();
+
+                    // التجميع بالرقم التعريفي القديم للرحلة (الموجود في ملف JSON)
+                    var stopsLookup = distinctTripStops
                         .GroupBy(ts => ts.TripID)
                         .ToDictionary(g => g.Key, g => g.ToList());
 
@@ -120,12 +150,14 @@ namespace API.SeedData
                     for (int i = 0; i < tripsToSeed.Count; i++)
                     {
                         var newTrip = tripsToSeed[i];
+                        // افتراض أن الرقم التعريفي القديم (في ملف JSON) كان يبدأ من 1 ويتزايد
                         int oldHardcodedTripId = i + 1;
 
                         if (stopsLookup.TryGetValue(oldHardcodedTripId, out var stopsForThisTrip))
                         {
                             foreach (var stop in stopsForThisTrip)
                             {
+                                // تحديث الرقم التعريفي للرحلة بالرقم الجديد المُنشأ
                                 stop.TripID = newTrip.TripID;
                                 finalStops.Add(stop);
                             }
@@ -136,9 +168,17 @@ namespace API.SeedData
                     await BatchSeedList<TripStop>(context, finalStops, context.TripStops, "TripStops");
 
                     Console.WriteLine("TripStops seeded successfully.");
+                    Console.WriteLine($"Total distinct TripStops saved: {finalStops.Count}");
 
                 }
-                else { Console.WriteLine("Trips and TripStops tables already contain data. Skipping."); }
+                else if (!tripsToSeed.Any())
+                {
+                    Console.WriteLine("TripStops seeding skipped. Cannot seed TripStops because Trips table is empty.");
+                }
+                else
+                {
+                    Console.WriteLine("TripStops table already contains data. Skipping.");
+                }
 
                 context.ChangeTracker.Clear();
 

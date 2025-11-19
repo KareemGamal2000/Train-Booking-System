@@ -56,13 +56,26 @@ namespace Domain.Profiles
                 return null;
             }
 
+            var availableClasses = trip.Train?.TrainCoaches
+                .Where(tc => tc.Coach != null && tc.Coach.Class != null)
+                .Select(tc => new TripClassDto
+                {
+                    ClassID = tc.Coach.Class.Class_ID,
+                    ClassNameAR = tc.Coach.Class.ClassNameAR
+                })
+
+                .Where(c => !string.IsNullOrEmpty(c.ClassNameAR))
+                .GroupBy(c => c.ClassID)
+                .Select(g => g.First())
+                .ToList();
+
             return new TripReadDto
             {
                 Trip_ID = trip.TripID,
 
                 TrainID = trip.TrainID,
                 TrainName = trip.Train?.TrainName ?? "غير محدد",
-
+                AvailableClasses = availableClasses ?? new List<TripClassDto>(),
                 DepartureStationID = trip.DepartureStationID.GetValueOrDefault(),
                 DepartureStationNameAR = trip.Departure_Station?.StationNameAR ?? "N/A",
                 ArrivalStationID = trip.ArrivalStationID.GetValueOrDefault(),

@@ -31,21 +31,38 @@ namespace Data.Repository.Trip
         public async Task<IEnumerable<Data.Models.Trips.Trip>> GetTripsByStationAsync(string stationName)
         {
 
-            var trips = await _dbSet
-                .AsNoTracking()
+            var tripIdsQuery = _context.Trips.AsNoTracking()
                 .Where(t => t.Stops.Any(ts =>
                     ts.Station.StationNameAR.ToLower().Contains(stationName.ToLower()) ||
                     ts.Station.StationNameEN.ToLower().Contains(stationName.ToLower()) ||
                     ts.Station.ShortName.ToLower().Contains(stationName.ToLower())
                 ))
+                .Select(t => t.TripID) // جلب الـ ID فقط!
+                .Distinct();
+
+            var tripIds = await tripIdsQuery.ToListAsync();
+
+            if (!tripIds.Any())
+            {
+                return Enumerable.Empty<Data.Models.Trips.Trip>();
+            }
+
+            var tripsQuery = _dbSet.AsNoTracking()
+                .Where(t => tripIds.Contains(t.TripID)) 
                 .Include(t => t.Train)
+                     .ThenInclude(tr => tr.TrainCoaches)
+                          .ThenInclude(tc => tc.Coach)
+                               .ThenInclude(c => c.Class)
                 .Include(t => t.Departure_Station)
                 .Include(t => t.Arrival_Station)
-                .Include(t => t.Stops)
+                .Include(t => t.Stops.OrderBy(ts => ts.StopSequence)) // ترتيب محطات التوقف
                     .ThenInclude(ts => ts.Station)
-                .ToListAsync();
+                .Include(t => t.SegmentPrices)
+                    .ThenInclude(p => p.Class);
 
-            return trips;
+            var finalTrips = await tripsQuery.ToListAsync();
+
+            return finalTrips;
 
         }
 
@@ -55,14 +72,12 @@ namespace Data.Repository.Trip
             var tripIdsQuery = _context.Trips.AsNoTracking()
                 .Where(t => t.Stops.Any(tsDep =>
                     (tsDep.Station.StationNameAR.ToLower().Contains(departureStationName.ToLower()) ||
-                     tsDep.Station.StationNameEN.ToLower().Contains(departureStationName.ToLower()) ||
-                     tsDep.Station.ShortName.ToLower().Contains(departureStationName.ToLower()))
+                     tsDep.Station.StationNameEN.ToLower().Contains(departureStationName.ToLower()))
                     &&
                     t.Stops.Any(tsArr =>
                         (tsArr.Station.StationNameAR.ToLower().Contains(arrivalStationName.ToLower()) ||
-                         tsArr.Station.StationNameEN.ToLower().Contains(arrivalStationName.ToLower()) ||
-                         tsArr.Station.ShortName.ToLower().Contains(arrivalStationName.ToLower()))
-                        && tsDep.StopSequence < tsArr.StopSequence
+                         tsArr.Station.StationNameEN.ToLower().Contains(arrivalStationName.ToLower()) )
+                    && tsDep.StopSequence < tsArr.StopSequence
                     )
                 ))
                 .Select(t => t.TripID) // جلب الـ ID فقط!
@@ -77,6 +92,9 @@ namespace Data.Repository.Trip
             var tripsQuery = _dbSet.AsNoTracking()
                 .Where(t => tripIds.Contains(t.TripID)) // فلترة باستخدام الـ IDs المفلترة
                 .Include(t => t.Train)
+                     .ThenInclude(tr => tr.TrainCoaches)
+                         .ThenInclude(tc => tc.Coach)
+                          .ThenInclude(c => c.Class)
                 .Include(t => t.Departure_Station)
                 .Include(t => t.Arrival_Station)
                 .Include(t => t.Stops.OrderBy(ts => ts.StopSequence))
