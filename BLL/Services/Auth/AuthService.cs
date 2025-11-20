@@ -21,22 +21,25 @@ namespace Domain.Services.Auth
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly JWT _jwt;
 
-        public AuthService(UserManager<User> userManager, IOptions<JWT> jwt)
+        public AuthService(
+            UserManager<User> userManager,
+            RoleManager<IdentityRole<Guid>> roleManager,
+            IOptions<JWT> jwt)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _jwt = jwt.Value;
         }
+        //REGISTER
         public async Task<AuthDto> RegisterAsync(RegisterDto newuser)
         {
             if (newuser == null)
-            {
-                return new AuthDto() { Message = "Registration data cannot be null" };
-            }
-            if (await _userManager.FindByEmailAsync(newuser.Email) is not null)
-            {
-                return new AuthDto() { Message = "Email is already registered" };
-            }
-            var user = new User()
+                return new AuthDto { Message = "Registration data cannot be null" };
+
+            if (await _userManager.FindByEmailAsync(newuser.Email) != null)
+                return new AuthDto { Message = "Email is already registered" };
+
+            var user = new User
             {
                 FirstName = newuser.FirstName,
                 LastName = newuser.LastName,
@@ -46,18 +49,19 @@ namespace Domain.Services.Auth
                 PhoneNumber = newuser.PhoneNumber,
                 Email = newuser.Email
             };
+
             var result = await _userManager.CreateAsync(user, newuser.Password);
+
             if (!result.Succeeded)
             {
-                var errors = string.Empty;
-                foreach (var error in result.Errors)
-                {
-                    errors += $"{error.Description},";
-                }
+                var errors = string.Join(",", result.Errors.Select(e => e.Description));
                 return new AuthDto { Message = errors };
             }
+
             await _userManager.AddToRoleAsync(user, "Student");
+
             var jwtSecurityToken = await CreateJwtToken(user);
+
             return new AuthDto
             {
                 Email = user.Email,
@@ -67,67 +71,72 @@ namespace Domain.Services.Auth
                 Message = "User Registered Successfully"
             };
         }
+        //LOGIN
         public async Task<AuthDto> LoginAsync(LoginDto login)
         {
             var user = await _userManager.FindByEmailAsync(login.Email);
-            if (user is null || !await _userManager.CheckPasswordAsync(user, login.Password))
-            {
+
+            if (user == null || !await _userManager.CheckPasswordAsync(user, login.Password))
                 return new AuthDto { Message = "Email Or Password Incorrect" };
-            }
-            var jwtSecuirtyToken = await CreateJwtToken(user);
+
+            var jwtSecurityToken = await CreateJwtToken(user);
             var roles = await _userManager.GetRolesAsync(user);
+
             return new AuthDto
             {
                 Email = user.Email,
                 UserName = user.UserName,
                 Role = roles.FirstOrDefault(),
                 IsAuthenticated = true,
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecuirtyToken),
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Message = "Login Successfully"
             };
         }
+        //ADD ROLE
         public async Task<string> AddRoleAsync(AddRoleDto role)
         {
             var user = await _userManager.FindByIdAsync(role.UserId.ToString());
-            if (user is null || !await _roleManager.RoleExistsAsync(role.RoleName))
-            {
-                return "Invalid user ID or Role";
-            }
-            if (await _userManager.IsInRoleAsync(user, role.RoleName))
-            {
-                return "User already assigned to this role";
-            }
-            var result = await _userManager.AddToRoleAsync(user, role.RoleName);
-            return result.Succeeded ? "Role added successfully" : "Failed to add role";
 
+            if (user == null)
+                return "Invalid user ID";
+
+            if (!await _roleManager.RoleExistsAsync(role.RoleName))
+                return "Role does not exist";
+
+            if (await _userManager.IsInRoleAsync(user, role.RoleName))
+                return "User already assigned to this role";
+
+            var result = await _userManager.AddToRoleAsync(user, role.RoleName);
+
+            return result.Succeeded ? "Role added successfully" : "Failed to add role";
         }
+        //CREATE JWT TOKEN
         private async Task<JwtSecurityToken> CreateJwtToken(User user)
         {
-            var claims = new List<Claim> {
+            var claims = new List<Claim>
+            {
                 new Claim(JwtRegisteredClaimNames.Sub , user.UserName),
-                new Claim (JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
-                new Claim (JwtRegisteredClaimNames.Email , user.Email),
-                new Claim("uid",user.Id.ToString())
+                new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email , user.Email),
+                new Claim("uid", user.Id.ToString())
             };
-            var userclaims = await _userManager.GetClaimsAsync(user);
-            claims.AddRange(userclaims);
+
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            claims.AddRange(userClaims);
 
             var roles = await _userManager.GetRolesAsync(user);
-            var rolesclaims = roles.Select(role => new Claim(ClaimTypes.Role, role));
-            claims.AddRange(rolesclaims);
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-            var jwtSecurityToken = new JwtSecurityToken(
-
+            return new JwtSecurityToken(
                 issuer: _jwt.Issuer,
                 audience: _jwt.Audience,
                 claims: claims,
                 expires: DateTime.Now.AddDays(_jwt.DurationInDays),
                 signingCredentials: signingCredentials
-              );
-            return jwtSecurityToken;
+            );
         }
     }
 }

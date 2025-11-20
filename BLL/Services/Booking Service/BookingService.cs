@@ -1,46 +1,36 @@
-﻿using AutoMapper;
-using Data.Models;
+﻿using Data.Models;
 using Data.Models.Tickets;
 using Data.Repository.UnitOfWork;
 using Domain.Dtos.BookingDto;
 using Domain.Dtos.BookingDtos;
+using Domain.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Profiles;
+
 
 namespace Domain.Services.Booking_Service
 {
     public class BookingService : IBookingService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public BookingService(IUnitOfWork unitOfWork, IMapper mapper)
+        public BookingService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
-        // ================ Create Booking =====================
+        // ===================== Create Booking =======================
         public async Task<Guid> CreateBookingAsync(BookingCreateDto dto)
         {
             var trip = await _unitOfWork.Trip.GetByIdAsync(dto.TripID);
             if (trip == null)
                 throw new Exception("Trip not found");
 
-            var newBooking = new Booking
-            {
-                Booking_ID = Guid.NewGuid(),
-                BookingDate = DateTime.UtcNow,
-                BookingStatus = "Pending",
-                UserID = dto.UserID,
-                TripID = dto.TripID,
-                DepartureStopID = dto.DepartureStopID,
-                ArrivalStopID = dto.ArrivalStopID,
-                TotalPrice = 0
-            };
+            var newBooking = dto.ToBookingModel();
 
             await _unitOfWork.Booking.AddBookingAsync(newBooking);
             await _unitOfWork.SaveChangesAsync();
@@ -48,7 +38,7 @@ namespace Domain.Services.Booking_Service
             return newBooking.Booking_ID;
         }
 
-        // ================= Cancel Booking =====================
+        // ===================== Cancel Booking =======================
         public async Task<bool> CancelBookingAsync(BookingCancelDto dto)
         {
             var booking = await _unitOfWork.Booking.GetBookingByIdAsync(dto.BookingId);
@@ -56,29 +46,28 @@ namespace Domain.Services.Booking_Service
                 return false;
 
             booking.BookingStatus = "Cancelled";
+
             return await _unitOfWork.SaveChangesAsync();
         }
 
-        // =================== Get Booking =======================
+        // ===================== Get Booking By ID =======================
         public async Task<BookingReadDto> GetBookingByIdAsync(Guid bookingId)
         {
             var booking = await _unitOfWork.Booking.GetBookingByIdAsync(bookingId);
-
-            if (booking == null)
-                return null;
-
-            return _mapper.Map<BookingReadDto>(booking);
+            return booking.ToBookingReadDto();
         }
 
-        // ============= Get All Bookings for a User =============
+        // ==================== Get User Bookings =========================
         public async Task<IEnumerable<BookingReadDto>> GetUserBookingsAsync(Guid userId)
         {
             var bookings = await _unitOfWork.Booking.GetBookingsByUserAsync(userId);
-            return bookings.Select(b => _mapper.Map<BookingReadDto>(b)).ToList();
+
+            return bookings
+                .Select(b => b.ToBookingReadDto())
+                .ToList();
         }
 
-        // =================== Select Seats =======================
-        // ⭐ بعد التعديل — مفيش BookingId جوا الـ DTO
+        // ===================== Select Seats ==============================
         public async Task<bool> SelectSeatsAsync(Guid bookingId, BookingSeatSelectionDto dto)
         {
             var booking = await _unitOfWork.Booking.GetBookingByIdAsync(bookingId);
@@ -92,7 +81,6 @@ namespace Domain.Services.Booking_Service
             foreach (var seatId in dto.SelectedSeatIDs)
             {
                 var seat = await _unitOfWork.Seat.GetSeatByIdAsync(seatId);
-
                 if (seat == null)
                     throw new Exception($"Seat {seatId} not found");
 
@@ -100,8 +88,8 @@ namespace Domain.Services.Booking_Service
                 {
                     Ticket_ID = Guid.NewGuid(),
                     Booking_ID = booking.Booking_ID,
-                    SeatID = seatId,   
-                    Price = dto.PricePerSeat
+                    SeatID = seatId,
+                    Price = dto.PricePerSeat,
                 });
 
                 total += dto.PricePerSeat;
@@ -113,20 +101,11 @@ namespace Domain.Services.Booking_Service
             return await _unitOfWork.SaveChangesAsync();
         }
 
-        // =================== Summary ============================
+        // ====================== Booking Summary ===========================
         public async Task<BookingSummaryDto> GetBookingSummaryAsync(Guid bookingId)
         {
             var booking = await _unitOfWork.Booking.GetBookingByIdAsync(bookingId);
-
-            if (booking == null)
-                return null;
-
-            var dto = _mapper.Map<BookingSummaryDto>(booking);
-
-            dto.Seats = booking.Tickets.Select(t => t.SeatID).ToList();  // ⭐ int
-            dto.NumberOfSeats = dto.Seats.Count;
-
-            return dto;
+            return booking.ToBookingSummaryDto();
         }
     }
 }
