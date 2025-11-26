@@ -74,7 +74,6 @@ namespace API
             services.AddScoped<ITripRepo, TripRepo>();
             services.AddScoped<ICoachService, CoachService>();
             services.AddScoped<IStationService, StationService>();
-            services.AddAutoMapper(typeof(MappingProfile));
 
 
 
