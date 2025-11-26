@@ -1,5 +1,15 @@
 ﻿[
   {
+    "Class_ID": 1,
+    "ClassNameEN": "Sleep-single",
+    "ClassNameAR": "نوم كابينة منفردة"
+  },
+  {
+    "Class_ID": 2,
+    "ClassNameEN": "Sleep-double",
+    "ClassNameAR": "نوم كابينة مزدوجة"
+  },
+  {
     "Class_ID": 1200000,
     "ClassNameEN": null,
     "ClassNameAR": null

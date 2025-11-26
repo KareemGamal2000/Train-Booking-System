@@ -1,4 +1,5 @@
 ﻿using Data.Models.Trips;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
+    [Index(nameof(StationNameAR), Name = "IX_Stations_StationNameAR")]
+    [Index(nameof(StationNameEN), Name = "IX_Stations_StationNameEN")]
+
     public class Station
     {
         [Key]

@@ -996,18 +996,6 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 606535876171792444,
-    "TrainID": 1113875511884316675,
-    "AvailableSeats": 60,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113540026268123139,
-    "AvailableSeats": 88,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 656112980286504920,
     "TrainID": 1113565912312905731,
     "AvailableSeats": 88,
@@ -1140,12 +1128,6 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113442456967774211,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 656112980286504920,
     "TrainID": 1113502939942027267,
     "AvailableSeats": 88,
@@ -1167,12 +1149,6 @@
     "Coach_ID": 950751353545491429,
     "TrainID": 1113528199428833283,
     "AvailableSeats": 44,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876171792444,
-    "TrainID": 1113528199428833283,
-    "AvailableSeats": 60,
     "IsActive": true
   },
   {
@@ -1446,12 +1422,6 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 606535875345514549,
-    "TrainID": 1113525465518571523,
-    "AvailableSeats": 47,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 606535874502459461,
     "TrainID": 1113558303750946819,
     "AvailableSeats": 36,
@@ -1464,12 +1434,6 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113560636920954883,
-    "AvailableSeats": 88,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 606535876171792444,
     "TrainID": 1113646316992331779,
     "AvailableSeats": 60,
@@ -1503,18 +1467,6 @@
     "Coach_ID": 606535876599611464,
     "TrainID": 1113505438931091459,
     "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950753034885661669,
-    "TrainID": 1113545812037992451,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535875345514549,
-    "TrainID": 1113545812037992451,
-    "AvailableSeats": 47,
     "IsActive": true
   },
   {
@@ -1611,12 +1563,6 @@
     "Coach_ID": 950753034885661669,
     "TrainID": 1113671477470560259,
     "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113502939942027267,
-    "AvailableSeats": 88,
     "IsActive": true
   },
   {
@@ -1635,30 +1581,6 @@
     "Coach_ID": 606535878239584314,
     "TrainID": 1113485514723491843,
     "AvailableSeats": 44,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876171792444,
-    "TrainID": 1113485514723491843,
-    "AvailableSeats": 60,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 717090067323092954,
-    "TrainID": 1113497899892015107,
-    "AvailableSeats": 27,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 717088827469987802,
-    "TrainID": 1113497899892015107,
-    "AvailableSeats": 44,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113505438931091459,
-    "AvailableSeats": 64,
     "IsActive": true
   },
   {
@@ -1818,39 +1740,9 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 950751353545491429,
-    "TrainID": 1113842669237108739,
-    "AvailableSeats": 44,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950753799231964133,
-    "TrainID": 1113842669237108739,
-    "AvailableSeats": 60,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 960885156572570298,
     "TrainID": 1113503202402238467,
     "AvailableSeats": 62,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876171792444,
-    "TrainID": 1113510541997178883,
-    "AvailableSeats": 60,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950751353545491429,
-    "TrainID": 1113510541997178883,
-    "AvailableSeats": 44,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113500354445443075,
-    "AvailableSeats": 88,
     "IsActive": true
   },
   {
@@ -1860,24 +1752,6 @@
     "IsActive": true
   },
   {
-    "Coach_ID": 606535875345514549,
-    "TrainID": 1113512964565696515,
-    "AvailableSeats": 47,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113880449883176963,
-    "AvailableSeats": 88,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113527617013809155,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
     "Coach_ID": 606535876599611464,
     "TrainID": 1113540836578689027,
     "AvailableSeats": 64,
@@ -1886,72 +1760,6 @@
   {
     "Coach_ID": 606535875345514549,
     "TrainID": 1113540836578689027,
-    "AvailableSeats": 47,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113565136099803139,
-    "AvailableSeats": 88,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 981175470971880421,
-    "TrainID": 1113565136099803139,
-    "AvailableSeats": 60,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 656112980286504920,
-    "TrainID": 1113475349704278019,
-    "AvailableSeats": 88,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950753799288521701,
-    "TrainID": 1113754700210569219,
-    "AvailableSeats": 47,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950753034885661669,
-    "TrainID": 1113754700210569219,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113835128241389571,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 717090067323092954,
-    "TrainID": 1113859811013165059,
-    "AvailableSeats": 27,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 717089183352487917,
-    "TrainID": 1113859811013165059,
-    "AvailableSeats": 42,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113453002226991107,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 606535876599611464,
-    "TrainID": 1113548263702134787,
-    "AvailableSeats": 64,
-    "IsActive": true
-  },
-  {
-    "Coach_ID": 950753799288521701,
-    "TrainID": 1113548263702134787,
     "AvailableSeats": 47,
     "IsActive": true
   }

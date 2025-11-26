@@ -834,7 +834,6 @@
                     let depName, arrName;
                     
                     if (isSegmentSearch) {
-                        // في حالة البحث المقسم، تكون محطة الانطلاق هي المحطة التي بدأ منها البحث
                         depName = currentSegmentStartStation;
                         // ومحطة الوصول هي المحطة النهائية للرحلة
                         arrName = trip.stops[trip.stops.length - 1]?.stationNameAR || 'المحطة الأخيرة';

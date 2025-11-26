@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251115202943_intialmigration")]
+    [Migration("20251124211843_intialmigration")]
     partial class intialmigration
     {
         /// <inheritdoc />
@@ -61,7 +61,7 @@ namespace Data.Migrations
 
                     b.HasIndex("TripID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex(new[] { "UserID", "TripID" }, "IX_Bookings_UserID_TripID");
 
                     b.ToTable("Bookings");
                 });
@@ -115,11 +115,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Seat", b =>
                 {
-                    b.Property<int>("Seat_ID")
+                    b.Property<int>("SeatID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Seat_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatID"));
 
                     b.Property<long>("CoachID")
                         .HasColumnType("bigint");
@@ -127,7 +127,7 @@ namespace Data.Migrations
                     b.Property<int>("SeatNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("Seat_ID");
+                    b.HasKey("SeatID");
 
                     b.HasIndex("CoachID");
 
@@ -180,7 +180,7 @@ namespace Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("Seat_ID")
+                    b.Property<int>("SeatID")
                         .HasColumnType("int");
 
                     b.Property<string>("TicketReference")
@@ -193,7 +193,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ClassID");
 
-                    b.HasIndex("Seat_ID")
+                    b.HasIndex("SeatID")
                         .IsUnique();
 
                     b.ToTable("Tickets");
@@ -208,9 +208,11 @@ namespace Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TrainID"));
 
                     b.Property<string>("TrainName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("TrainID");
+
+                    b.HasIndex("TrainName");
 
                     b.ToTable("Trains");
                 });
@@ -255,6 +257,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("bigint");
 
+                    b.Property<string>("TrainCategory")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("TrainID")
                         .HasColumnType("bigint");
 
@@ -262,9 +267,9 @@ namespace Data.Migrations
 
                     b.HasIndex("ArrivalStationID");
 
-                    b.HasIndex("DepartureStationID");
-
                     b.HasIndex("TrainID");
+
+                    b.HasIndex(new[] { "DepartureStationID", "ArrivalStationID" }, "IX_Trips_Departure_Arrival");
 
                     b.ToTable("Trips");
                 });
@@ -283,7 +288,7 @@ namespace Data.Migrations
                     b.Property<int>("EndStopID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("StartStopID")
@@ -300,7 +305,7 @@ namespace Data.Migrations
 
                     b.HasIndex("StartStopID");
 
-                    b.HasIndex("TripID");
+                    b.HasIndex(new[] { "TripID", "ClassID" }, "IX_TripSegmentPrices_TripID_ClassID");
 
                     b.ToTable("TripSegmentPrices");
                 });
@@ -335,7 +340,8 @@ namespace Data.Migrations
 
                     b.HasIndex("StationID");
 
-                    b.HasIndex("TripID");
+                    b.HasIndex(new[] { "TripID", "StopSequence" }, "IX_TripStops_TripID_StopSequence")
+                        .IsUnique();
 
                     b.ToTable("TripStops");
                 });
@@ -651,7 +657,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Models.Seat", "Seat")
                         .WithOne()
-                        .HasForeignKey("Data.Models.Tickets.Ticket", "Seat_ID")
+                        .HasForeignKey("Data.Models.Tickets.Ticket", "SeatID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

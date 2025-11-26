@@ -33,6 +33,8 @@ namespace Data.Models.Trips
         public long? ArrivalStationID { get; set; }
         public virtual Station Arrival_Station { get; set; }
 
+        public string? TrainCategory { get; set; } 
+
         // ربط قائمة محطات التوقف 
         public virtual ICollection<TripStop> Stops { get; set; } = new HashSet<TripStop>();
         public virtual ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();

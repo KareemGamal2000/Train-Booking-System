@@ -19,12 +19,14 @@ namespace Data.Repository.Trip
         {
             return await _dbSet
                 .Where(t => t.TripID == tripId)
+                .AsSplitQuery()
                 .Include(t => t.Train) // بيانات القطار
                 .Include(t => t.Departure_Station) // محطة المغادرة الرئيسية
                 .Include(t => t.Arrival_Station)   // محطة الوصول الرئيسية
                 .Include(t => t.Stops.OrderBy(ts => ts.StopSequence)) // محطات التوقف بالترتيب
                     .ThenInclude(ts => ts.Station) // بيانات المحطة لكل توقف
                 .Include(t => t.SegmentPrices) // أسعار مقاطع الرحلة
+                    .ThenInclude(p => p.Class) // بيانات الدرجة لكل سعر
                 .FirstOrDefaultAsync();
         }
 
@@ -48,7 +50,8 @@ namespace Data.Repository.Trip
             }
 
             var tripsQuery = _dbSet.AsNoTracking()
-                .Where(t => tripIds.Contains(t.TripID)) 
+                .Where(t => tripIds.Contains(t.TripID))
+                .AsSplitQuery()
                 .Include(t => t.Train)
                      .ThenInclude(tr => tr.TrainCoaches)
                           .ThenInclude(tc => tc.Coach)
@@ -69,18 +72,21 @@ namespace Data.Repository.Trip
         public async Task<IEnumerable<Data.Models.Trips.Trip>> FindTripsWithTwoStationsAsync(string departureStationName, string arrivalStationName)
         {
 
+            var lowerDeparture = departureStationName.ToLower();
+            var lowerArrival = arrivalStationName.ToLower();
+
             var tripIdsQuery = _context.Trips.AsNoTracking()
                 .Where(t => t.Stops.Any(tsDep =>
-                    (tsDep.Station.StationNameAR.ToLower().Contains(departureStationName.ToLower()) ||
-                     tsDep.Station.StationNameEN.ToLower().Contains(departureStationName.ToLower()))
+                    (tsDep.Station.StationNameAR.ToLower().StartsWith(lowerDeparture) ||
+                     tsDep.Station.StationNameEN.ToLower().StartsWith(lowerDeparture))
                     &&
                     t.Stops.Any(tsArr =>
-                        (tsArr.Station.StationNameAR.ToLower().Contains(arrivalStationName.ToLower()) ||
-                         tsArr.Station.StationNameEN.ToLower().Contains(arrivalStationName.ToLower()) )
+                        (tsArr.Station.StationNameAR.ToLower().StartsWith(lowerArrival) ||
+                         tsArr.Station.StationNameEN.ToLower().StartsWith(lowerArrival))
                     && tsDep.StopSequence < tsArr.StopSequence
                     )
                 ))
-                .Select(t => t.TripID) // جلب الـ ID فقط!
+                .Select(t => t.TripID)
                 .Distinct();
 
             var tripIds = await tripIdsQuery.ToListAsync();
@@ -90,7 +96,8 @@ namespace Data.Repository.Trip
             }
 
             var tripsQuery = _dbSet.AsNoTracking()
-                .Where(t => tripIds.Contains(t.TripID)) // فلترة باستخدام الـ IDs المفلترة
+                .Where(t => tripIds.Contains(t.TripID))
+                .AsSplitQuery()
                 .Include(t => t.Train)
                      .ThenInclude(tr => tr.TrainCoaches)
                          .ThenInclude(tc => tc.Coach)
@@ -99,10 +106,16 @@ namespace Data.Repository.Trip
                 .Include(t => t.Arrival_Station)
                 .Include(t => t.Stops.OrderBy(ts => ts.StopSequence))
                     .ThenInclude(ts => ts.Station)
-                .Include(t => t.SegmentPrices)
-                    .ThenInclude(p => p.Class);
-
-            var finalTrips = await tripsQuery.ToListAsync();
+               .Include(t => t.SegmentPrices)
+                   .ThenInclude(p => p.Class)
+               .Include(t => t.SegmentPrices)
+                   .ThenInclude(p => p.StartStop)
+                       .ThenInclude(ts => ts.Station)
+               .Include(t => t.SegmentPrices)
+                   .ThenInclude(p => p.EndStop)
+                       .ThenInclude(ts => ts.Station);
+               
+                           var finalTrips = await tripsQuery.ToListAsync();
 
             return finalTrips;
 

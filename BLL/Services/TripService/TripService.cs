@@ -52,7 +52,7 @@ namespace Domain.Services.TripService
         public async Task<IEnumerable<TripReadDto>> FindTripsWithTwoStationsAsync(string departureStationName, string arrivalStationName)
         {
             var trips = await _unitOfWork.Trip.FindTripsWithTwoStationsAsync(departureStationName, arrivalStationName);
-            return trips.Select(t => t.ToTripReadDto()).ToList();
+            return trips.Select(t => t.ToTripReadDto(departureStationName, arrivalStationName)).ToList();
         }
 
         public async Task<TripReadDto> CreateTripAsync(TripCreateDto tripDto)

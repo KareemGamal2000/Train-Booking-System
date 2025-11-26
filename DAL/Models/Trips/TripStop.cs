@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 namespace Data.Models.Trips
 {
     [Index(nameof(TripID), nameof(StopSequence), IsUnique = true, Name = "IX_TripStops_TripID_StopSequence")]
+    [Index(nameof(TripID), nameof(StationID), Name = "IX_TripStops_TripID_StationID")]
+    [Index(nameof(StationID), Name = "IX_TripStops_StationID")]
     public class TripStop
     {
         [Key]

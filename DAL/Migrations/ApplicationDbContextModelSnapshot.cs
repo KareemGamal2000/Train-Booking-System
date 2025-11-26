@@ -112,11 +112,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Seat", b =>
                 {
-                    b.Property<int>("Seat_ID")
+                    b.Property<int>("SeatID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Seat_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatID"));
 
                     b.Property<long>("CoachID")
                         .HasColumnType("bigint");
@@ -124,7 +124,7 @@ namespace Data.Migrations
                     b.Property<int>("SeatNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("Seat_ID");
+                    b.HasKey("SeatID");
 
                     b.HasIndex("CoachID");
 
@@ -151,13 +151,17 @@ namespace Data.Migrations
 
                     b.Property<string>("StationNameAR")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("StationNameEN")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("StationID");
+
+                    b.HasIndex(new[] { "StationNameAR" }, "IX_Stations_StationNameAR");
+
+                    b.HasIndex(new[] { "StationNameEN" }, "IX_Stations_StationNameEN");
 
                     b.ToTable("Stations");
                 });
@@ -177,7 +181,7 @@ namespace Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("Seat_ID")
+                    b.Property<int>("SeatID")
                         .HasColumnType("int");
 
                     b.Property<string>("TicketReference")
@@ -190,7 +194,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ClassID");
 
-                    b.HasIndex("Seat_ID")
+                    b.HasIndex("SeatID")
                         .IsUnique();
 
                     b.ToTable("Tickets");
@@ -254,6 +258,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("bigint");
 
+                    b.Property<string>("TrainCategory")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("TrainID")
                         .HasColumnType("bigint");
 
@@ -282,7 +289,7 @@ namespace Data.Migrations
                     b.Property<int>("EndStopID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("StartStopID")
@@ -332,7 +339,9 @@ namespace Data.Migrations
 
                     b.HasKey("TripStopID");
 
-                    b.HasIndex("StationID");
+                    b.HasIndex(new[] { "StationID" }, "IX_TripStops_StationID");
+
+                    b.HasIndex(new[] { "TripID", "StationID" }, "IX_TripStops_TripID_StationID");
 
                     b.HasIndex(new[] { "TripID", "StopSequence" }, "IX_TripStops_TripID_StopSequence")
                         .IsUnique();
@@ -651,7 +660,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Models.Seat", "Seat")
                         .WithOne()
-                        .HasForeignKey("Data.Models.Tickets.Ticket", "Seat_ID")
+                        .HasForeignKey("Data.Models.Tickets.Ticket", "SeatID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

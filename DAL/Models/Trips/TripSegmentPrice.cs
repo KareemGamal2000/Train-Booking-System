@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace Data.Models.Trips
 {
@@ -34,8 +35,7 @@ namespace Data.Models.Trips
         public long ClassID { get; set; }
         public virtual Class Class { get; set; }
 
-        [Required]
         [Column(TypeName = "decimal(18, 2)")] 
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
     }
 }

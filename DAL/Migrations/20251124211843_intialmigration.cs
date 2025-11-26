@@ -94,7 +94,7 @@ namespace Data.Migrations
                 columns: table => new
                 {
                     TrainID = table.Column<long>(type: "bigint", nullable: false),
-                    TrainName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TrainName = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,11 +232,11 @@ namespace Data.Migrations
                 name: "Trips",
                 columns: table => new
                 {
-                    TripID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TripID = table.Column<int>(type: "int", nullable: false),
                     TrainID = table.Column<long>(type: "bigint", nullable: false),
                     DepartureStationID = table.Column<long>(type: "bigint", nullable: false),
-                    ArrivalStationID = table.Column<long>(type: "bigint", nullable: false)
+                    ArrivalStationID = table.Column<long>(type: "bigint", nullable: false),
+                    TrainCategory = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -265,14 +265,13 @@ namespace Data.Migrations
                 name: "Seats",
                 columns: table => new
                 {
-                    Seat_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SeatID = table.Column<int>(type: "int", nullable: false),
                     SeatNumber = table.Column<int>(type: "int", nullable: false),
                     CoachID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Seats", x => x.Seat_ID);
+                    table.PrimaryKey("PK_Seats", x => x.SeatID);
                     table.ForeignKey(
                         name: "FK_Seats_Coaches_CoachID",
                         column: x => x.CoachID,
@@ -312,8 +311,7 @@ namespace Data.Migrations
                 name: "TripStops",
                 columns: table => new
                 {
-                    TripStopID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TripStopID = table.Column<int>(type: "int", nullable: false),
                     TripID = table.Column<int>(type: "int", nullable: false),
                     StationID = table.Column<long>(type: "bigint", nullable: true),
                     StopSequence = table.Column<int>(type: "int", nullable: false),
@@ -383,13 +381,12 @@ namespace Data.Migrations
                 name: "TripSegmentPrices",
                 columns: table => new
                 {
-                    SegmentPriceID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SegmentPriceID = table.Column<int>(type: "int", nullable: false),
                     TripID = table.Column<int>(type: "int", nullable: false),
                     StartStopID = table.Column<int>(type: "int", nullable: false),
                     EndStopID = table.Column<int>(type: "int", nullable: false),
                     ClassID = table.Column<long>(type: "bigint", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -427,7 +424,7 @@ namespace Data.Migrations
                     Ticket_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TicketReference = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Booking_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Seat_ID = table.Column<int>(type: "int", nullable: false),
+                    SeatID = table.Column<int>(type: "int", nullable: false),
                     ClassID = table.Column<long>(type: "bigint", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -447,10 +444,10 @@ namespace Data.Migrations
                         principalColumn: "Class_ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Tickets_Seats_Seat_ID",
-                        column: x => x.Seat_ID,
+                        name: "FK_Tickets_Seats_SeatID",
+                        column: x => x.SeatID,
                         principalTable: "Seats",
-                        principalColumn: "Seat_ID",
+                        principalColumn: "SeatID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -509,9 +506,9 @@ namespace Data.Migrations
                 column: "TripID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_UserID",
+                name: "IX_Bookings_UserID_TripID",
                 table: "Bookings",
-                column: "UserID");
+                columns: new[] { "UserID", "TripID" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Coaches_ClassId",
@@ -534,9 +531,9 @@ namespace Data.Migrations
                 column: "ClassID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tickets_Seat_ID",
+                name: "IX_Tickets_SeatID",
                 table: "Tickets",
-                column: "Seat_ID",
+                column: "SeatID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -545,14 +542,19 @@ namespace Data.Migrations
                 column: "Coach_ID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Trains_TrainName",
+                table: "Trains",
+                column: "TrainName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Trips_ArrivalStationID",
                 table: "Trips",
                 column: "ArrivalStationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trips_DepartureStationID",
+                name: "IX_Trips_Departure_Arrival",
                 table: "Trips",
-                column: "DepartureStationID");
+                columns: new[] { "DepartureStationID", "ArrivalStationID" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Trips_TrainID",
@@ -575,9 +577,9 @@ namespace Data.Migrations
                 column: "StartStopID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TripSegmentPrices_TripID",
+                name: "IX_TripSegmentPrices_TripID_ClassID",
                 table: "TripSegmentPrices",
-                column: "TripID");
+                columns: new[] { "TripID", "ClassID" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TripStops_StationID",
@@ -585,9 +587,10 @@ namespace Data.Migrations
                 column: "StationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TripStops_TripID",
+                name: "IX_TripStops_TripID_StopSequence",
                 table: "TripStops",
-                column: "TripID");
+                columns: new[] { "TripID", "StopSequence" },
+                unique: true);
         }
 
         /// <inheritdoc />
