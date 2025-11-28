@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>حجز مقعد - قطار</title>
+  <link rel="stylesheet" href="Seat.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>اختيار المقعد</h1>
+    <p class="sub">اختر مقعد واحد من مقاعد القطار (إجمالي 60 مقعد)</p>
+  </header>
+
+  <main class="main">
+    <section class="coach-info">
+      <div>
+        <strong>رقم القطار:</strong> 190
+      </div>
+      <div>
+        <strong>الدرجة:</strong> الدرجة العادية
+      </div>
+    </section>
+
+    <section class="screen">مدخل القطار</section>
+
+    <section class="seats-wrapper" aria-label="خريطة المقاعد">
+  
+      <div id="seatsGrid" class="seats-grid" role="grid" aria-readonly="false"></div>
+    </section>
+
+    <aside class="controls">
+      <div class="selected-info">
+        <span>المقعد المختار:</span>
+        <strong id="selectedSeat">—</strong>
+      </div>
+
+      <button id="bookBtn" class="btn" disabled>احجز المقعد</button>
+
+      <div class="legend">
+        <div><span class="legend-dot available"></span> متاح</div>
+        <div><span class="legend-dot selected"></span> مختار</div>
+        <div><span class="legend-dot booked"></span> محجوز</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <small>© 2025 قطارات مصر</small>
+  </footer>
+
+  <script>
+  
+    const TOTAL_SEATS = 60;
+
+    const preBooked = [3, 7, 15, 22, 30, 31];
+
+    const seatsGrid = document.getElementById('seatsGrid');
+    const selectedSeatElem = document.getElementById('selectedSeat');
+    const bookBtn = document.getElementById('bookBtn');
+
+    let selected = null;
+
+
+    for (let i = 1; i <= TOTAL_SEATS; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'seat';
+      btn.type = 'button';
+      btn.setAttribute('data-seat', i);
+      btn.setAttribute('aria-label', 'مقعد رقم ' + i);
+      btn.innerHTML = '<span class="seat-number">' + i + '</span>';
+
+  
+      if (preBooked.includes(i)) {
+        btn.classList.add('booked');
+        btn.disabled = true;
+        btn.setAttribute('aria-disabled', 'true');
+      }
+
+ 
+      btn.addEventListener('click', () => {
+  
+        if (btn.classList.contains('booked')) return;
+
+        const prev = seatsGrid.querySelector('.seat.selected');
+        if (prev) prev.classList.remove('selected');
+
+     
+        btn.classList.add('selected');
+        selected = i;
+        selectedSeatElem.textContent = selected;
+        bookBtn.disabled = false;
+      });
+
+
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+
+      seatsGrid.appendChild(btn);
+    }
+
+  
+    bookBtn.addEventListener('click', () => {
+      if (!selected) return;
+
+      const btn = seatsGrid.querySelector('.seat[data-seat="'+selected+'"]');
+      if (!btn) return;
+
+      btn.classList.remove('selected');
+      btn.classList.add('booked');
+      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+
+
+      selected = null;
+      selectedSeatElem.textContent = '—';
+      bookBtn.disabled = true;
+
+   
+      alert('تم حجز المقعد رقم ' + btn.getAttribute('data-seat') + ' بنجاح ✅');
+    });
+
+ 
+    window.addEventListener('load', () => {
+      const firstAvailable = seatsGrid.querySelector('.seat:not(.booked)');
+      if (firstAvailable) firstAvailable.focus();
+    });
+  </script>
+</body>
+</html>

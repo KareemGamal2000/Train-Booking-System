@@ -1,0 +1,143 @@
+
+
+/* Contact.css — Premium Timeline (style D, White background) */
+
+/* Base */
+*{box-sizing:border-box;font-family:Inter, sans-serif}
+html,body{height:100%;margin:0;padding:0;background:#ffffff;color:#222;direction:rtl}
+
+/* Header (same theme) */
+.header {
+    width: 100%;
+    background: #d4af37;
+    border-bottom: 1px solid #b38b2a;
+}
+
+.header-container {
+    max-width:1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    width:220px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Navbar */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.navbar a:hover { opacity: 0.8; }
+
+/* HERO */
+.contact-hero{padding:48px 18px 30px;position:relative;overflow:hidden}
+.hero-inner{max-width:1000px;margin:0 auto;text-align:center}
+.contact-hero h1{color:#d4af37;font-size:32px;margin:0 0 8px}
+.contact-hero .sub{color:#666;font-size:15px;margin:0}
+
+
+.hero-watermark{
+  position:absolute;inset:0;opacity:0.05;
+  background-image:url("/mnt/data/CSS-Ticket-Mockup.jpg");
+  background-position:center;background-repeat:no-repeat;background-size:cover;
+  filter:grayscale(80%) blur(1px);
+  pointer-events:none;
+}
+
+
+.timeline-wrapper{max-width:1000px;margin:30px auto 10px;padding:30px 20px;position:relative}
+.timeline-line{
+  position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(#d4af37,#b8922d);
+  transform:translateX(-50%);border-radius:4px;box-shadow:0 2px 8px rgba(212,175,55,0.12)
+}
+
+
+.timeline-card{
+  position:relative;width:100%;display:flex;justify-content:flex-end;margin:18px 0;
+  opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.2,.9,.2,1);
+}
+.timeline-card.in{opacity:1;transform:translateY(0)}
+
+.timeline-card:nth-child(odd){justify-content:flex-end}
+.timeline-card:nth-child(even){justify-content:flex-start}
+
+.card-dot{
+  width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid #d4af37;position:absolute;left:50%;top:18px;transform:translateX(-50%);
+  box-shadow:0 2px 6px rgba(0,0,0,0.08)
+}
+
+
+.card-panel{
+  width:46%;background:linear-gradient(180deg,rgba(255,255,255,0.95),#fff);
+  border-radius:12px;padding:16px;border:1px solid rgba(212,175,55,0.12);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+.timeline-card:nth-child(odd) .card-panel{ text-align:right; margin-right:28px }
+.timeline-card:nth-child(even) .card-panel{ text-align:left; margin-left:28px }
+
+.card-panel h3{margin:0 0 8px;color:#d4af37;font-size:18px}
+.card-panel p{margin:0;color:#444;line-height:1.5;font-size:14px}
+
+
+.contact-info{max-width:1000px;margin:30px auto;padding:20px}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact-box{background:#fff;border:1px solid rgba(212,175,55,0.08);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04);text-align:center}
+.contact-box h4{color:#d4af37;margin:0 0 8px}
+.contact-box .big{font-size:26px;font-weight:800;margin:6px 0}
+
+
+.contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6;margin-bottom:10px;font-size:14px}
+.contact-form textarea{resize:vertical;min-height:90px}
+
+
+.btn-gold{background:#d4af37;border:none;padding:12px 16px;border-radius:9px;color:#fff;font-weight:800;cursor:pointer}
+.btn-gold:hover{background:#b8922d}
+
+
+.footer{
+    background:#d4af37;
+    padding:20px;
+    color:#fff;
+    text-align:center;
+}
+.footer a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 8px;
+    font-weight:600;
+    transition:0.3s;
+}
+.footer a:hover{opacity:0.7;}
+
+@media (max-width:900px){
+    .header-container { flex-direction:column; gap:10px; }
+    .navbar ul { flex-direction: column; width:100%; text-align:center; }
+    .navbar a { width:100%; padding:10px 0; font-size:20px; }
+  .card-panel{width:70%}
+  .timeline-card:nth-child(odd) .card-panel, .timeline-card:nth-child(even) .card-panel{margin:0}
+  .timeline-line{left:20px;transform:none}
+  .card-dot{left:20px;transform:none}
+  .timeline-card{padding-left:48px;padding-right:18px}
+  .contact-grid{grid-template-columns:1fr}
+  .card-panel{margin-bottom:12px}
+
+}
