@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
+    
     public class Seat
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SeatID { get; set; }
         public int SeatNumber { get; set; }
 

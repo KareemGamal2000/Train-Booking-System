@@ -2,19 +2,19 @@
 using Domain.Dtos.BookingDtos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Services.Booking_Service
+namespace Domain.Services.BookingService
 {
     public interface IBookingService
     {
-        Task<Guid> CreateBookingAsync(BookingCreateDto dto);
+        Task<BookingConfirmationDto> CreateBookingAsync(Guid userId, BookingCreateDto dto);
         Task<bool> CancelBookingAsync(BookingCancelDto dto);
         Task<BookingReadDto> GetBookingByIdAsync(Guid bookingId);
         Task<IEnumerable<BookingReadDto>> GetUserBookingsAsync(Guid userId);
         Task<bool> SelectSeatsAsync(Guid bookingId, BookingSeatSelectionDto dto);
         Task<BookingSummaryDto> GetBookingSummaryAsync(Guid bookingId);
+        Task<bool> ConfirmBookingAsync(Guid bookingId); 
+        Task<AvailableSeatsDto> GetAvailableSeatsAsync(int tripId, long classId, int departureStopId, int arrivalStopId);
     }
 }

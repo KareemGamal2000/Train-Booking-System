@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Data.Repository.MainRepo
 {
@@ -24,6 +25,7 @@ namespace Data.Repository.MainRepo
         {
             return await _dbSet.FindAsync(id);
         }
+        // Get all without ordering
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null)
         {
             IQueryable<T> result = _dbSet.AsNoTracking();
@@ -31,6 +33,8 @@ namespace Data.Repository.MainRepo
             {
                 result = result.Where(filter);
             }
+            result = result.AsSplitQuery();
+
             if (include != null)
             {
                 foreach (var includeProperty in include)
@@ -40,6 +44,52 @@ namespace Data.Repository.MainRepo
             }
             return await result.ToListAsync();
         }
+        // Get all with ordering
+        public async Task<IEnumerable<T>> GetAllWithOrderingAsync(
+            Expression<Func<T, bool>>? filter = null,string[]? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+        {
+            IQueryable<T> result = _dbSet.AsNoTracking();
+
+            if (filter != null)
+            {
+                result = result.Where(filter);
+            }
+            result = result.AsSplitQuery();
+
+            if (include != null)
+            {
+                foreach (var includeProperty in include)
+                {
+                    result = result.Include(includeProperty);
+                }
+            }
+            if (orderBy != null)
+            {
+                result = orderBy(result);
+            }
+            return await result.ToListAsync();
+        }
+        public async Task<IEnumerable<R>> GetAllWithSelectAsync<R>(Expression<Func<T, bool>>? filter,Expression<Func<T, R>> selector,string[]? include = null)
+        {
+            IQueryable<T> result = _dbSet.AsNoTracking();
+
+            if (filter != null)
+            {
+                result = result.Where(filter);
+            }
+            result = result.AsSplitQuery();
+
+            if (include != null)
+            {
+                foreach (var includeProperty in include)
+                {
+                    result = result.Include(includeProperty);
+                }
+            }
+
+            return await result.Select(selector).ToListAsync();
+        }
         public async Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null)
         {
             IQueryable<T> query = _dbSet.AsNoTracking();
@@ -47,6 +97,7 @@ namespace Data.Repository.MainRepo
             {
                 query = query.Where(filter);
             }
+            query = query.AsSplitQuery();
             if (include != null)
             {
                 foreach (var includeProperty in include)
@@ -54,11 +105,30 @@ namespace Data.Repository.MainRepo
                     query = query.Include(includeProperty);
                 }
             }
+            
             return await query.FirstOrDefaultAsync();
         }
-        public async Task<int> CountAsync()
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>>? filter = null)
         {
-            return await _dbSet.CountAsync();
+            if (filter == null)
+            {
+                return await _dbSet.AnyAsync();
+            }
+            else
+            {
+                return await _dbSet.AnyAsync(filter);
+            }
+        }
+        public async Task<int> CountAsync(Expression<Func<T, bool>>? filter = null)
+        {
+            if (filter == null)
+            {
+                return await _dbSet.CountAsync();
+            }
+            else
+            {
+                return await _dbSet.CountAsync(filter);
+            }
         }
         public async Task AddAsync(T entity)
         {

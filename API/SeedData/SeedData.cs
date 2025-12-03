@@ -1,7 +1,8 @@
 ﻿using Data.Context;
 using Data.Models;
-using Data.Models.Trips;
 using Data.Models.Tickets;
+using Data.Models.Trips;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,105 @@ namespace API.SeedData
 {
     public static class SeedData
     {
-        // تم إلغاء استخدام IDENTITY INSERT والاعتماد على آلية الربط في الذاكرة لضمان الاستقرار
-        // يجب أن يكون حقل TripID في الـ Model مُجهزاً كـ Identity
+        public static async Task SeedRolesAsync(RoleManager<IdentityRole<Guid>> roleManager)
+        {
+            try
+            {
+                string[] roles = { "Admin", "User" };
+
+                foreach (var roleName in roles)
+                {
+                    if (!await roleManager.RoleExistsAsync(roleName))
+                    {
+                        var role = new IdentityRole<Guid>
+                        {
+                            Name = roleName,
+                            NormalizedName = roleName.ToUpper()
+                        };
+
+                        var result = await roleManager.CreateAsync(role);
+
+                        if (result.Succeeded)
+                        {
+                            Console.WriteLine($"Role '{roleName}' created successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"  Failed to create role '{roleName}': {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"   Role '{roleName}' already exists.");
+                    }
+                }
+
+                Console.WriteLine("  Roles seeding completed.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"  ERROR during roles seeding: {ex.Message}");
+            }
+        }
+
+        // دالة إنشاء مستخدم Admin افتراضي
+        public static async Task SeedAdminUserAsync(UserManager<User> userManager, RoleManager<IdentityRole<Guid>> roleManager)
+        {
+            try
+            {
+                var adminEmail = "admin@railway.com";
+                var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+                if (adminUser == null)
+                {
+                    var admin = new User
+                    {
+                        FirstName = "Admin",
+                        LastName = "admin",
+                        UserName = "admin",
+                        Email = adminEmail,
+                        NormalizedEmail = adminEmail.ToUpper(),
+                        NormalizedUserName = "ADMIN",
+                        PhoneNumber = "01000000000",
+                        DateOfBirth = new DateTime(1990, 1, 1),
+                        Gender = "Male",
+                        EmailConfirmed = true,
+                        IsActive = true,
+                        CreatedAt = DateTime.UtcNow,
+                        SecurityStamp = Guid.NewGuid().ToString()
+                    };
+
+                    var result = await userManager.CreateAsync(admin, "Admin@123");
+
+                    if (result.Succeeded)
+                    {
+                        // التأكد من وجود دور Admin
+                        if (!await roleManager.RoleExistsAsync("Admin"))
+                        {
+                            await roleManager.CreateAsync(new IdentityRole<Guid>("Admin"));
+                        }
+
+                        await userManager.AddToRoleAsync(admin, "Admin");
+                        Console.WriteLine($" Admin user created successfully.");
+                        Console.WriteLine($"   Email: {adminEmail}");
+                        Console.WriteLine($"   Password: Admin@123");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  Failed to create admin user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Admin user already exists.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ ERROR during admin user seeding: {ex.Message}");
+
+            }
+        }
         public static async Task Seed(ApplicationDbContext context)
         {
             try

@@ -19,20 +19,21 @@ namespace Domain.Profiles
 
             var groupedClasses = train.TrainCoaches?
                 .Where(tc => tc.Coach?.Class != null)
-                .GroupBy(tc => tc.Coach.Class.Class_ID)
+                .GroupBy(tc => tc.Coach.Class.Class_ID) 
                 .Select(g => new TrainWithClassesDto
                 {
-                    ClassID = g.Key,
+                    ClassID = g.Key.ToString(),
                     ClassNameAR = g.FirstOrDefault().Coach.Class.ClassNameAR,
                     ClassNameEN = g.FirstOrDefault().Coach.Class.ClassNameEN,
                     NumberOfCoaches = g.Count(),
                     TotalAvailableSeats = g.Sum(tc => tc.AvailableSeats)
                 })
+                 
                 .ToList() ?? new List<TrainWithClassesDto>();
 
             return new TrainReadDto
             {
-                Train_ID = train.TrainID,
+                Train_ID = train.TrainID.ToString(),
                 TrainName = train.TrainName,
                 AvailableClasses = groupedClasses
             };
@@ -46,7 +47,7 @@ namespace Domain.Profiles
 
             return new TrainCreateDto
             {
-                Train_ID = train.TrainID,
+                Train_ID = train.TrainID.ToString(),
                 TrainName = train.TrainName
                
             };
@@ -59,7 +60,7 @@ namespace Domain.Profiles
             }
             return new Train
             {
-                TrainID = trainCreateDto.Train_ID,
+                TrainID = long.Parse(trainCreateDto.Train_ID),
                 TrainName = trainCreateDto.TrainName
             };
         }

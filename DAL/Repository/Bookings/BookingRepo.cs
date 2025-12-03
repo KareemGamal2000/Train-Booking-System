@@ -1,49 +1,102 @@
 ﻿using Data.Context;
+using Data.Models;
+using Data.Models.Tickets;
+using Data.Repository.MainRepo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Data.Models;
-
 
 namespace Data.Repository.Bookings
 {
-    public class BookingRepo : IBookingRepo
+    public class BookingRepo : GenericRepo<Booking>, IBookingRepo
     {
-        private readonly ApplicationDbContext _context;
-
-        public BookingRepo(ApplicationDbContext context)
+        public BookingRepo(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<Booking> AddBookingAsync(Booking booking)
         {
-            await _context.Bookings.AddAsync(booking);
-            await _context.SaveChangesAsync();
+            await _dbSet.AddAsync(booking);
             return booking;
         }
-
-        public async Task<Booking?> GetBookingByIdAsync(Guid bookingId)
-        {
-            return await _context.Bookings
-                .Include(b => b.Tickets)      // ← صح
-                .FirstOrDefaultAsync(b => b.Booking_ID == bookingId);
-        }
-
+        
         public async Task<IEnumerable<Booking>> GetBookingsByUserAsync(Guid userId)
         {
-            return await _context.Bookings
-                .Where(b => b.UserID == userId)   // ← صح
-                .Include(b => b.Tickets)
-                .ToListAsync();
+            string[] includes = new string[]
+              {
+                 "Tickets.Seat",
+                 "Tickets.Class",
+                 "DepartureStop.Station",
+                 "ArrivalStop.Station"
+              };
+            return await GetAllWithOrderingAsync(
+                filter: b => b.UserID == userId,
+                include: includes,
+                orderBy: q => q.OrderByDescending(b => b.BookingDate)
+            );
+
+        }
+        
+        public async Task<Booking?> GetBookingWithDetailsAsync(Guid bookingId)
+        {
+            string[] includes = new string[]
+              {
+                 "User",
+                 "Trip.Train",
+                 "DepartureStop.Station",
+                 "ArrivalStop.Station",
+                 "Tickets.Seat",
+                 "Tickets.Class",
+                 "Payments"
+              };
+            return await GetFirstOrDefaultAsync(
+                filter: b => b.Booking_ID == bookingId,
+                include: includes
+            );
+        }
+        
+        public async Task<IEnumerable<Booking>> GetConfirmedBookingsByUserIdAsync(Guid userId)
+        {
+            string[] includes = new string[]
+              {
+                 "Trip",
+                 "Tickets.Seat",
+                 "Tickets.Class",
+              };
+            return await GetAllWithOrderingAsync(
+                filter: b => b.UserID == userId && b.BookingStatus == "Confirmed",
+                include: includes,
+                orderBy: q => q.OrderByDescending(b => b.BookingDate)
+             );
         }
 
+        public async Task<bool> CancelBookingAsync(Guid bookingId)
+        {
+            var booking = await _dbSet.FindAsync(bookingId);
+            if (booking == null || booking.BookingStatus == "Cancelled")
+                return false;
+
+            booking.BookingStatus = "Cancelled";
+            _dbSet.Update(booking);
+            return await _context.SaveChangesAsync() > 0;
+        }
+        
         public async Task<bool> UpdateBookingAsync(Booking booking)
         {
-            _context.Bookings.Update(booking);
+            _dbSet.Update(booking);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> ConfirmBookingAsync(Guid bookingId)
+        {
+            var booking = await _dbSet.FindAsync(bookingId);
+            if (booking == null)
+                return false;
+
+            booking.BookingStatus = "Confirmed";
+            _dbSet.Update(booking);
             return await _context.SaveChangesAsync() > 0;
         }
     }

@@ -12,7 +12,7 @@ namespace Domain.Services.TrainService
         Task<IEnumerable<TrainReadDto>> GetAllTrainsAsync();
 
         Task<IEnumerable<TrainReadDto>> GetAllTrainsWithClassesAsync();
-        Task<TrainReadDto?> GetTrainByIdAsync(long trainId);
+        Task<TrainReadDto?> GetTrainByIdAsync(string trainId);
 
         Task<TrainReadDto?> GetTrainByNameAsync(string trainName);
 

@@ -15,7 +15,7 @@ namespace Domain.Profiles
             if (station == null) return null;
             return new StationReadDto
             {
-                StationID = station.StationID,
+                StationID = station.StationID.ToString(),
                 StationNameAR = station.StationNameAR,
                 StationNameEN = station.StationNameEN,
                 StationCode = station.StationCode,
@@ -28,7 +28,7 @@ namespace Domain.Profiles
             if (stationCreateDto == null) return null;
             return new Station
             {
-                StationID = stationCreateDto.StationID,
+                StationID = long.Parse(stationCreateDto.StationID),
                 StationNameAR = stationCreateDto.StationNameAR,
                 StationNameEN = stationCreateDto.StationNameEN,
                 StationCode = stationCreateDto.StationCode,

@@ -57,18 +57,17 @@ namespace Domain.Profiles
                 return null;
             }
 
-            var availableClasses = trip.Train?.TrainCoaches
-                .Where(tc => tc.Coach != null && tc.Coach.Class != null)
-                .Select(tc => new TripClassDto
+            var availableClasses = trip.SegmentPrices?
+                .Where(sp => sp.Class != null)
+                .Select(sp => new TripClassDto
                 {
-                    ClassID = tc.Coach.Class.Class_ID,
-                    ClassNameAR = tc.Coach.Class.ClassNameAR
+                    ClassID = sp.Class.Class_ID,
+                    ClassNameAR = sp.Class.ClassNameAR
                 })
-
                 .Where(c => !string.IsNullOrEmpty(c.ClassNameAR))
                 .GroupBy(c => c.ClassID)
                 .Select(g => g.First())
-                .ToList();
+                .ToList() ?? new List<TripClassDto>();
 
             return new TripReadDto
             {
@@ -97,17 +96,17 @@ namespace Domain.Profiles
             }
 
             // 1. حساب الدرجات المتاحة
-            var availableClasses = trip.Train?.TrainCoaches
-                .Where(tc => tc.Coach != null && tc.Coach.Class != null)
-                .Select(tc => new TripClassDto
+            var availableClasses = trip.SegmentPrices?
+                .Where(sp => sp.Class != null)
+                .Select(sp => new TripClassDto
                 {
-                    ClassID = tc.Coach.Class.Class_ID,
-                    ClassNameAR = tc.Coach.Class.ClassNameAR
+                    ClassID = sp.Class.Class_ID,
+                    ClassNameAR = sp.Class.ClassNameAR
                 })
                 .Where(c => !string.IsNullOrEmpty(c.ClassNameAR))
                 .GroupBy(c => c.ClassID)
                 .Select(g => g.First())
-                .ToList();
+                .ToList() ?? new List<TripClassDto>();
 
             var lowerDeparture = departureStationName?.ToLower();
             var lowerArrival = arrivalStationName?.ToLower();

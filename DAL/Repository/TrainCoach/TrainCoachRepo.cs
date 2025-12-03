@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,30 +18,15 @@ namespace Data.Repository.TrainCoach
 
         public async Task<IEnumerable<Data.Models.TrainCoach>> GetTrainCoachesByTrainIdAsync(long trainId)
         {
-            return await _dbSet
-                .AsNoTracking()
-                .Where(tc => tc.TrainID == trainId)
-                .ToListAsync();
+            return await GetAllAsync(filter: tc => tc.TrainID == trainId, include: null);
         }
         public async Task<IEnumerable<Data.Models.TrainCoach>> GetTrainCoachesWithDetailsByTrainIdAsync(long trainId)
         {
-            return await _dbSet
-                .AsNoTracking()
-                .Where(tc => tc.TrainID == trainId)
-                .Include(tc => tc.Train)
-                .Include(tc => tc.Coach)
-                .ToListAsync();
+            return await GetAllAsync(filter: tc => tc.TrainID == trainId, include: new string[] { "Train", "Coach" });
         }
         public async Task<Data.Models.TrainCoach?> GetTrainCoachWithDetailsByIdAsync(int trainCoachId)
         {
-            return await _dbSet
-                .AsNoTracking()
-                .Where(tc => tc.TrainCoach_ID == trainCoachId)
-                // تضمين بيانات القطار
-                .Include(tc => tc.Train)
-                // تضمين بيانات العربة
-                .Include(tc => tc.Coach)
-                .FirstOrDefaultAsync();
+            return await GetFirstOrDefaultAsync(filter: tc => tc.TrainCoach_ID == trainCoachId, include: new string[] { "Train", "Coach" });
         }
 
     }

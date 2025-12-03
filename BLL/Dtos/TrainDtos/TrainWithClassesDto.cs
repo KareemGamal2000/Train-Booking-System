@@ -8,7 +8,7 @@ namespace Domain.Dtos.TrainDtos
 {
     public class TrainWithClassesDto
     {
-        public long ClassID { get; set; }
+        public string ClassID { get; set; }
         public string ClassNameAR { get; set; }
         public string ClassNameEN { get; set; }
         public int NumberOfCoaches { get; set; }

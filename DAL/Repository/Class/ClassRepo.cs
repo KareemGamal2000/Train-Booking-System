@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Data.Repository.MainRepo;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Data.Repository.Class
 {
@@ -16,21 +17,20 @@ namespace Data.Repository.Class
 
         public async Task<Data.Models.Class?> GetClassByNameAsync(string className)
         {
-            return await _dbSet.AsNoTracking()
-                               .Where(c => c.ClassNameEN.ToLower() == className.ToLower() ||
-                                           c.ClassNameAR.ToLower() == className.ToLower())
-                               .FirstOrDefaultAsync();
+            return await GetFirstOrDefaultAsync(filter: c => c.ClassNameEN.ToLower() == className.ToLower() || c.ClassNameAR.ToLower() == className.ToLower() , include: null);
         }
 
        
         public async Task<IEnumerable<Data.Models.Class>> GetAllClassesWithCoachesAsync()
         {
-            return await _dbSet.Include(c => c.Coaches).AsNoTracking().ToListAsync();
+            string[] includes = new string[]  {"Class.Coaches"};
+            return await GetAllAsync(filter: null ,include: includes);
         }
 
         public async Task<IEnumerable<Data.Models.Class>> GetAllClassesWithSegmentPricesAsync()
         {
-            return await _dbSet.Include(c => c.SegmentPrices).AsNoTracking().ToListAsync();
+            string[] includes = new string[] { "Class.SegmentPrices" };
+            return await GetAllAsync(filter: null, include: includes);
         }
 
 

@@ -16,11 +16,11 @@ namespace Data.Models.Tickets
     {
         [Key]
         public Guid Ticket_ID { get; set; } = Guid.NewGuid();
-        public string TicketReference { get; set; }
+        public string? TicketReference { get; set; }
         public Guid Booking_ID { get; set; }
         public virtual Booking Booking { get; set; } // Ticket belongs to One Booking
         public int SeatID { get; set; }
-        public virtual Seat Seat { get; set; }       // One-to-One: Ticket reserves One Seat
+        public virtual Seat Seat { get; set; }       // Ticket reserves One Seat
         public long ClassID { get; set; }
         public virtual Class Class { get; set; }
 

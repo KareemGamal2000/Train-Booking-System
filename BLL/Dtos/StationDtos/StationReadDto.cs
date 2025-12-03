@@ -8,7 +8,7 @@ namespace Domain.Dtos.StationDtos
 {
     public class StationReadDto
     {
-        public long StationID { get; set; }
+        public string StationID { get; set; }
         public string StationNameAR { get; set; }
         public string StationNameEN { get; set; }
         public string? StationCode { get; set; }

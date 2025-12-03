@@ -16,11 +16,8 @@ namespace Data.Repository.Trip.TripStop
        
         public async Task<IEnumerable<Data.Models.Trips.TripStop>> GetTripStopsByTripIdAsync(int tripId)
         {
-            return await _dbSet
-                .Where(ts => ts.TripID == tripId)
-                .Include(ts => ts.Station) 
-                .OrderBy(ts => ts.StopSequence) 
-                .ToListAsync();
+            return await GetAllWithOrderingAsync(filter: ts => ts.TripID == tripId,include: new string[] { "Station" },orderBy: q => q.OrderBy(ts => ts.StopSequence));  
+          
         }
 
     }

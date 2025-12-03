@@ -10,8 +10,7 @@ namespace Domain.Dtos.TrainDtos
     public class TrainCreateDto
     {
         [Required(ErrorMessage = "رقم القطار مطلوب.")]
-        [Range(1, long.MaxValue, ErrorMessage = "رقم القطار يجب أن يكون أكبر من الصفر.")]
-        public long Train_ID { get; set; } 
+        public string Train_ID { get; set; } 
 
         [Required(ErrorMessage = "اسم/رقم رحلة القطار مطلوب.")]
         [MaxLength(50)]

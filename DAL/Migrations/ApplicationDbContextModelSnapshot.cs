@@ -22,47 +22,6 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Data.Models.Booking", b =>
-                {
-                    b.Property<Guid>("Booking_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ArrivalStopID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("BookingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("BookingStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DepartureStopID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("TripID")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Booking_ID");
-
-                    b.HasIndex("ArrivalStopID");
-
-                    b.HasIndex("DepartureStopID");
-
-                    b.HasIndex("TripID");
-
-                    b.HasIndex(new[] { "UserID", "TripID" }, "IX_Bookings_UserID_TripID");
-
-                    b.ToTable("Bookings");
-                });
-
             modelBuilder.Entity("Data.Models.Class", b =>
                 {
                     b.Property<long>("Class_ID")
@@ -166,6 +125,95 @@ namespace Data.Migrations
                     b.ToTable("Stations");
                 });
 
+            modelBuilder.Entity("Data.Models.Tickets.Booking", b =>
+                {
+                    b.Property<Guid>("Booking_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ArrivalStopID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BookingStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DepartureStopID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("TripID")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Booking_ID");
+
+                    b.HasIndex("ArrivalStopID");
+
+                    b.HasIndex("DepartureStopID");
+
+                    b.HasIndex("TripID");
+
+                    b.HasIndex(new[] { "UserID", "TripID" }, "IX_Bookings_UserID_TripID");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("Data.Models.Tickets.Payment", b =>
+                {
+                    b.Property<Guid>("Payment_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<Guid>("BookingID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PaymobOrderID")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("PaymobTransactionID")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Payment_ID");
+
+                    b.HasIndex("BookingID");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Data.Models.Tickets.Ticket", b =>
                 {
                     b.Property<Guid>("Ticket_ID")
@@ -185,7 +233,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TicketReference")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Ticket_ID");
@@ -587,7 +634,29 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Data.Models.Booking", b =>
+            modelBuilder.Entity("Data.Models.Coach", b =>
+                {
+                    b.HasOne("Data.Models.Class", "Class")
+                        .WithMany("Coaches")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("Data.Models.Seat", b =>
+                {
+                    b.HasOne("Data.Models.Coach", "Coach")
+                        .WithMany("Seats")
+                        .HasForeignKey("CoachID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coach");
+                });
+
+            modelBuilder.Entity("Data.Models.Tickets.Booking", b =>
                 {
                     b.HasOne("Data.Models.Trips.TripStop", "ArrivalStop")
                         .WithMany()
@@ -622,31 +691,20 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data.Models.Coach", b =>
+            modelBuilder.Entity("Data.Models.Tickets.Payment", b =>
                 {
-                    b.HasOne("Data.Models.Class", "Class")
-                        .WithMany("Coaches")
-                        .HasForeignKey("ClassId")
+                    b.HasOne("Data.Models.Tickets.Booking", "Booking")
+                        .WithMany("Payments")
+                        .HasForeignKey("BookingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("Data.Models.Seat", b =>
-                {
-                    b.HasOne("Data.Models.Coach", "Coach")
-                        .WithMany("Seats")
-                        .HasForeignKey("CoachID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Coach");
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("Data.Models.Tickets.Ticket", b =>
                 {
-                    b.HasOne("Data.Models.Booking", "Booking")
+                    b.HasOne("Data.Models.Tickets.Booking", "Booking")
                         .WithMany("Tickets")
                         .HasForeignKey("Booking_ID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -820,11 +878,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Models.Booking", b =>
-                {
-                    b.Navigation("Tickets");
-                });
-
             modelBuilder.Entity("Data.Models.Class", b =>
                 {
                     b.Navigation("Coaches");
@@ -846,6 +899,13 @@ namespace Data.Migrations
                     b.Navigation("DepartureTrips");
 
                     b.Navigation("Stops");
+                });
+
+            modelBuilder.Entity("Data.Models.Tickets.Booking", b =>
+                {
+                    b.Navigation("Payments");
+
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Data.Models.Train", b =>

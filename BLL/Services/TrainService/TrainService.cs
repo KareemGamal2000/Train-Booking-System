@@ -4,7 +4,6 @@ using Data.Repository.Train;
 using Data.Repository.UnitOfWork;
 using Domain.Dtos;
 using Domain.Dtos.TrainDtos;
-using Domain.Interfaces;
 using Domain.Profiles;
 using System;
 using System.Collections.Generic;
@@ -36,9 +35,9 @@ namespace Domain.Services.TrainService
             return trains.Select(t => t.ToTrainReadDto()).ToList();
         }
 
-        public async Task<TrainReadDto?> GetTrainByIdAsync(long trainId)
+        public async Task<TrainReadDto?> GetTrainByIdAsync(string trainId)
         {
-            var train = await _unitOfWork.Train.GetTrainWithClassesByIdAsync(trainId);
+            var train = await _unitOfWork.Train.GetTrainWithClassesByIdAsync(long.Parse(trainId));
 
             return train?.ToTrainReadDto();
         }
@@ -50,7 +49,7 @@ namespace Domain.Services.TrainService
         }
         public async Task<TrainCreateDto> CreateTrainAsync(TrainCreateDto trainDto)
         {
-            var existingTrain = await _unitOfWork.Train.GetByIdAsync(trainDto.Train_ID);
+            var existingTrain = await _unitOfWork.Train.GetByIdAsync(long.Parse(trainDto.Train_ID));
             if (existingTrain != null)
             {
                 throw new InvalidOperationException($"القطار برقم {trainDto.Train_ID} موجود بالفعل.");

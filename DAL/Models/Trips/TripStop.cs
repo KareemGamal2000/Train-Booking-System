@@ -17,7 +17,7 @@ namespace Data.Models.Trips
     public class TripStop
     {
         [Key]
-        public int TripStopID { get; set; } // المفتاح الأساسي لتوقف الرحلة
+        public int TripStopID { get; set; } 
 
         [ForeignKey("TripID")]
         public int TripID { get; set; }
@@ -36,7 +36,6 @@ namespace Data.Models.Trips
         // Depaerture time froom station may be null when station is end
         public TimeSpan? DepartureTime { get; set; }
 
-        // المسافة المقطوعة من نقطة بداية الرحلة)
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? DistanceFromStartKM { get; set; }
 

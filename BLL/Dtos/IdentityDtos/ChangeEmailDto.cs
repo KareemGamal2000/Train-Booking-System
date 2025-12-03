@@ -1,0 +1,20 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Dtos.IdentityDtos
+{
+    public class ChangeEmailDto
+    {
+        [Required(ErrorMessage = "?????? ?????????? ?????? ?????")]
+        [EmailAddress(ErrorMessage = "?????? ?????????? ??? ????")]
+        public string NewEmail { get; set; }
+    }
+
+    public class ConfirmEmailChangeDto
+    {
+        [Required]
+        public string NewEmail { get; set; }
+
+        [Required]
+        public string Token { get; set; }
+    }
+}   

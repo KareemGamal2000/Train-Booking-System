@@ -16,19 +16,14 @@ namespace Data.Repository.Station
 
         public async Task<IEnumerable<Data.Models.Station>> GetActiveStationsAsync()
         {
-            return await _dbSet.AsNoTracking()
-                               .Where(s => s.IsActive)
-                               .ToListAsync();
+            return await GetAllAsync(filter: s => s.IsActive, include: null);
+            
         }
 
         public async Task<Data.Models.Station?> GetStationBynameAsync(string stationname)
         {
-            var station = await _dbSet
-                .Where(s => s.StationNameAR.Contains(stationname) || s.StationNameEN.Contains(stationname))
-                .AsNoTracking()
-                .FirstOrDefaultAsync();
-
-            return station;
+            return await GetFirstOrDefaultAsync(filter: s => s.StationNameAR.StartsWith(stationname) || s.StationNameEN.StartsWith(stationname), include: null);
+            
         }
 
     }

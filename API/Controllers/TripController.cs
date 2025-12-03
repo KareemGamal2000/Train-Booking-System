@@ -16,12 +16,23 @@ namespace API.Controllers
             _tripService = tripService;
         }
 
-        // GET: api/Trip
+        // GET: api/Trip?pageNumber=1&pageSize=10
         [HttpGet]
-        public async Task<IActionResult> GetAllTrips()
+        public async Task<IActionResult> GetAllTrips(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var trips = await _tripService.GetAllTripsAsync();
-            return Ok(trips);
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageSize < 1 || pageSize > 50) pageSize = 10; 
+
+            var pagedResult = await _tripService.GetAllTripsAsync(pageNumber, pageSize);
+
+            Response.Headers.Add("X-Total-Count", pagedResult.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", pagedResult.TotalPages.ToString());
+            Response.Headers.Add("X-Page-Number", pagedResult.PageNumber.ToString());
+            Response.Headers.Add("X-Page-Size", pagedResult.PageSize.ToString());
+
+            return Ok(pagedResult);
         }
 
         // GET: api/Trip/details/101

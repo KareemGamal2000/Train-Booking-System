@@ -1,18 +1,14 @@
 ﻿using Data.Context;
-using Data.Models;
-using Data.Models.Tickets;
-using Data.Models.Trips;
 using Data.Repository.Bookings;
 using Data.Repository.Class;
 using Data.Repository.Coach;
+using Data.Repository.Payment;
 using Data.Repository.Seats;
 using Data.Repository.Station;
+using Data.Repository.Ticket;
 using Data.Repository.Train;
 using Data.Repository.Trip;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Repository.UnitOfWork
@@ -27,11 +23,8 @@ namespace Data.Repository.UnitOfWork
         public ITripRepo Trip { get; private set; }
         public IBookingRepo Booking { get; private set; }
         public ISeatRepo Seat { get; private set; }
-
-
-
-
-
+        public IPaymentRepo Payment { get; private set; }
+        public ITicketRepo Ticket { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -43,8 +36,8 @@ namespace Data.Repository.UnitOfWork
             Trip = new TripRepo(_context);
             Booking = new BookingRepo(_context);
             Seat = new SeatRepo(context);
-
-
+            Payment = new PaymentRepo(_context);
+            Ticket = new TicketRepo(_context);
         }
 
         public async Task<bool> SaveChangesAsync()
@@ -56,6 +49,5 @@ namespace Data.Repository.UnitOfWork
         {
             _context.Dispose();
         }
-
     }
 }

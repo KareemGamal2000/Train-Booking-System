@@ -1,24 +1,27 @@
-﻿using Domain.Interfaces;
-using Domain.Mapping;
-using Domain.Services;
-using Domain.Services.Auth;
-using Domain.Third_Party.Token;
-using Data.Context;
+﻿using Data.Context;
 using Data.Models;
 using Data.Repository.Coach;
 using Data.Repository.Station;
 using Data.Repository.Train;
+using Data.Repository.Trip;
+using Data.Repository.UnitOfWork;
+using Domain.Mapping;
+using Domain.Services;
+using Domain.Services.Auth;
+using Domain.Services.Auth.Email;
+using Domain.Services.StationService;
+using Domain.Services.TrainService;
+using Domain.Services.TripService;
+using Domain.Services.Payment;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Domain.Services.TrainService;
-using Data.Repository.UnitOfWork;
-using Domain.Services.StationService;
-using Domain.Services.TripService;
-using Data.Repository.Trip;
+using Domain.Services.Booking_Service;
+using Domain.Helpers;
+using Domain.Services.BookingService;
 
 namespace API
 {
@@ -63,7 +66,8 @@ namespace API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWT:Key"]!))
                 };
             });
-
+            services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<ITrainService, TrainService>();
             services.AddScoped<ITrainRepo, TrainRepo>();
@@ -72,8 +76,11 @@ namespace API
             services.AddScoped<IStationRepo, StationRepo>();
             services.AddScoped<ITripService, TripService>();
             services.AddScoped<ITripRepo, TripRepo>();
-            services.AddScoped<ICoachService, CoachService>();
             services.AddScoped<IStationService, StationService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.Configure<PaymobSettings>(config.GetSection("PaymobSettings"));
+            services.AddHttpClient<IPaymentService, PaymentService>();
 
 
 

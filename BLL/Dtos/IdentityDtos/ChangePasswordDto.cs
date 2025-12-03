@@ -1,27 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Dtos.IdentityDtos
 {
     public class ChangePasswordDto
     {
-        [Required]
-        public Guid Id { get; set; }
+        [Required(ErrorMessage = "كلمة المرور الحالية مطلوبة")]
+        public string CurrentPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "كلمة المرور الجديدة مطلوبة")]
         [StringLength(100, MinimumLength = 6)]
-        public string CurrentPassword { get; set; } = string.Empty;
+        public string NewPassword { get; set; }
 
-        [Required]
-        [StringLength(100, MinimumLength = 6)]
-        public string NewPassword { get; set; } = string.Empty;
-
-        [Required]
-        [Compare("NewPassword")]
-        public string ConfirmNewPassword { get; set; } = string.Empty;
+        [Required(ErrorMessage = "تأكيد كلمة المرور مطلوب")]
+        [Compare("NewPassword", ErrorMessage = "كلمة المرور الجديدة وتأكيدها غير متطابقين")]
+        public string ConfirmPassword { get; set; }
     }
 }

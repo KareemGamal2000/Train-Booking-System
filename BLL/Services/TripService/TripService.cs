@@ -1,4 +1,5 @@
 ﻿using Data.Repository.UnitOfWork;
+using Domain.Dtos.Pagination;
 using Domain.Dtos.TripDtos;
 using Domain.Profiles;
 using System;
@@ -18,17 +19,20 @@ namespace Domain.Services.TripService
             _unitOfWork = unitOfWork;
         }
 
-        private static readonly string[] BasicIncludes = new string[]
-        {
-            "Train",
-            "Departure_Station",
-            "Arrival_Station"
-        };
 
-        public async Task<IEnumerable<TripReadDto>> GetAllTripsAsync()
+        public async Task<PageResultDto<TripReadDto>> GetAllTripsAsync(int pageNumber, int pageSize)
         {
-            var trips = await _unitOfWork.Trip.GetAllAsync(include: BasicIncludes);
-            return trips.Select(t => t.ToTripReadDto()).ToList();
+            var (trips, totalCount) = await _unitOfWork.Trip.GetAllTripsWithDetailsAsync(pageNumber, pageSize);
+
+            var tripDtos = trips.Select(t => t.ToTripReadDto()).ToList();
+
+            return new PageResultDto<TripReadDto>
+            {
+                Items = tripDtos,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<TripReadDto?> GetTripByIdAsync(int tripId)

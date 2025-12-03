@@ -1,7 +1,6 @@
 ﻿using Domain.Dtos;
 
 using Domain.Dtos.TrainDtos;
-using Domain.Interfaces;
 using Domain.Services.TrainService;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -32,7 +31,7 @@ namespace API.Controllers
 
         // GET: api/Train/100
         [HttpGet("id/{trainId}")]
-        public async Task<IActionResult> GetTrainById(long trainId)
+        public async Task<IActionResult> GetTrainById(string trainId)
         {
             var train = await _trainService.GetTrainByIdAsync(trainId);
             if (train == null)

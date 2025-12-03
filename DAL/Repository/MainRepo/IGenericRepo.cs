@@ -11,10 +11,12 @@ namespace Data.Repository.MainRepo
     {
         Task<T?> GetByIdAsync(object id);
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null);
+        Task<IEnumerable<T>> GetAllWithOrderingAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
 
         Task<T?> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? filter = null, string[]? include = null);
+        Task<bool> AnyAsync(Expression<Func<T, bool>>? filter = null);
 
-        Task<int> CountAsync();
+        Task<int> CountAsync(Expression<Func<T, bool>>? filter = null);
 
         Task AddAsync(T entity);
 

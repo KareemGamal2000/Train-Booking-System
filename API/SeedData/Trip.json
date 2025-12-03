@@ -3,7 +3,8 @@
         "TripID": 1,
         "TrainID": 1113708304037568576,
         "DepartureStationID": 606535383991189565,
-        "ArrivalStationID": 606535384603557938,
+      "ArrivalStationID": 606535384603557938,
+
         "TrainCategory": "روسي"
     },
     {
@@ -451,13 +452,13 @@
         "TripID": 65,
         "TrainID": 1113645318181656209,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 66,
         "TrainID": 1113794158428389712,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -465,13 +466,13 @@
         "TripID": 67,
         "TrainID": 1113854580252192781,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 68,
         "TrainID": 1113677335967018318,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -479,13 +480,13 @@
         "TripID": 69,
         "TrainID": 1113540704043940177,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 70,
         "TrainID": 1113125211995818451,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -493,13 +494,13 @@
         "TripID": 71,
         "TrainID": 1113134950346377987,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 72,
         "TrainID": 1113967812239454153,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -507,13 +508,13 @@
         "TripID": 73,
         "TrainID": 1113976856426462479,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 74,
         "TrainID": 1113501704944919598,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -521,27 +522,27 @@
         "TripID": 75,
         "TrainID": 1113333306911674395,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 76,
         "TrainID": 1113159955749372224,
         "DepartureStationID": 606535386931396672,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 77,
         "TrainID": 1113164998888045618,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 78,
         "TrainID": 1113707765942487227,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386931396672,
         "TrainCategory": "محسن"
     },
@@ -1144,20 +1145,20 @@
         "TripID": 164,
         "TrainID": 3131030724149208522,
         "DepartureStationID": 606535383991189573,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 165,
         "TrainID": 2032229184077662032,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535383991189573,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 166,
         "TrainID": 1114000000000000000,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582723,
         "TrainCategory": "محسن"
     },
@@ -1171,7 +1172,7 @@
     {
         "TripID": 168,
         "TrainID": 1032121836815203256,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535383991189573,
         "TrainCategory": "محسن"
     },
@@ -1179,13 +1180,13 @@
         "TripID": 169,
         "TrainID": 1114000000000000001,
         "DepartureStationID": 606535386352582723,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 170,
         "TrainID": 6058464894319982587,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582723,
         "TrainCategory": "محسن"
     },
@@ -1193,13 +1194,13 @@
         "TripID": 171,
         "TrainID": 6793549181621029064,
         "DepartureStationID": 606535386352582723,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 172,
         "TrainID": 2872962368535585190,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582723,
         "TrainCategory": "محسن"
     },
@@ -1207,13 +1208,13 @@
         "TripID": 173,
         "TrainID": 6247379157844892298,
         "DepartureStationID": 606535386352582723,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 174,
         "TrainID": 3978518483749822983,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582723,
         "TrainCategory": "محسن"
     },
@@ -1221,20 +1222,20 @@
         "TripID": 175,
         "TrainID": 8343712718030162228,
         "DepartureStationID": 606535386352582723,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 176,
         "TrainID": 4396287406818180554,
         "DepartureStationID": 606535386352582723,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 177,
         "TrainID": 5826442082995295220,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582751,
         "TrainCategory": "محسن"
     },
@@ -1242,13 +1243,13 @@
         "TripID": 178,
         "TrainID": 3726886315220276536,
         "DepartureStationID": 606535386352582751,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
         "TripID": 179,
         "TrainID": 7451069503900095317,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606535386352582751,
         "TrainCategory": "محسن"
     },
@@ -1256,7 +1257,7 @@
         "TripID": 180,
         "TrainID": 7548623725090317287,
         "DepartureStationID": 606535386352582751,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "محسن"
     },
     {
@@ -3285,7 +3286,7 @@
     {
         "TripID": 470,
         "TrainID": 1113649260388483075,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606534187276566625,
         "TrainCategory": "مكيف-روسي"
     },
@@ -3320,7 +3321,7 @@
     {
         "TripID": 475,
         "TrainID": 1113762340747411459,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606534187276566625,
         "TrainCategory": "مكيف-روسي"
     },
@@ -3349,7 +3350,7 @@
         "TripID": 479,
         "TrainID": 1113870508300500995,
         "DepartureStationID": 606534187276566625,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "مكيف-روسي"
     },
     {
@@ -3363,13 +3364,13 @@
         "TripID": 481,
         "TrainID": 1113839495612923907,
         "DepartureStationID": 606534187276566625,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "مكيف-روسي"
     },
     {
         "TripID": 482,
         "TrainID": 1113897829438586883,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606534187276566625,
         "TrainCategory": "مكيف-روسي"
     },
@@ -3377,7 +3378,7 @@
         "TripID": 483,
         "TrainID": 4276266629927518588,
         "DepartureStationID": 606534187276566625,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "روسي"
     },
     {
@@ -3803,7 +3804,7 @@
     {
         "TripID": 544,
         "TrainID": 1113426861501170792,
-        "DepartureStationID": 606535390819516480,
+        "DepartureStationID": 606535386352582739,
         "ArrivalStationID": 606534187276566625,
         "TrainCategory": "روسي"
     },
@@ -3811,7 +3812,7 @@
         "TripID": 545,
         "TrainID": 1113684029730390019,
         "DepartureStationID": 606534187276566625,
-        "ArrivalStationID": 606535390819516480,
+        "ArrivalStationID": 606535386352582739,
         "TrainCategory": "مكيف-روسي"
     },
     {

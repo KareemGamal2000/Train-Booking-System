@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,33 +19,27 @@ namespace Data.Repository.Coach
 
         public async Task<IEnumerable<Data.Models.Coach>> GetCoachesByClassIdAsync(long classId)
         {
-            return await _dbSet
-                .AsNoTracking()
-                .Where(c => c.ClassId == classId)
-                .Include(c => c.Class) 
-                .ToListAsync();
+
+            return await GetAllAsync(filter: c => c.ClassId == classId, include: new string[] { "Class" });
         }
 
         public async Task<IEnumerable<Data.Models.Coach>> GetCoachesByClassNameAsync(string classname)
         {
             var stationNameLower = classname.ToLower();
 
-            return await _dbSet
-                .AsNoTracking()
-                .Include(c => c.Class)
-                .Where(c => c.Class != null &&( c.Class.ClassNameAR.ToLower().Contains(stationNameLower) ||
-                   c.Class.ClassNameEN.ToLower().Contains(stationNameLower)))
-                .ToListAsync();
+            Expression<Func<Data.Models.Coach, bool>> filters =
+                c => c.Class != null && (c.Class.ClassNameAR.ToLower().StartsWith(stationNameLower) ||
+                   c.Class.ClassNameEN.ToLower().StartsWith(stationNameLower));
+
+            return await GetAllAsync(filter: filters, include: new string[] { "Class" });
+               
         }
 
 
         public async Task<Data.Models.Coach?> GetCoachWithSeatsAndClassAsync(long coachId)
         {
-            return await _dbSet
-                .AsNoTracking()
-                .Include(c => c.Class) 
-                .Include(c => c.Seats) 
-                .FirstOrDefaultAsync(c => c.Coach_ID == coachId);
+            return await GetFirstOrDefaultAsync(filter: c => c.Coach_ID == coachId, include: new string[] { "Class","Seats" });
+            
         }
     }
 }

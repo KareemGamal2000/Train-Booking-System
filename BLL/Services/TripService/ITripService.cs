@@ -1,4 +1,5 @@
-﻿using Domain.Dtos.TripDtos;
+﻿using Domain.Dtos.Pagination;
+using Domain.Dtos.TripDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Domain.Services.TripService
 {
     public interface ITripService
     {
-        Task<IEnumerable<TripReadDto>> GetAllTripsAsync();
+        Task<PageResultDto<TripReadDto>> GetAllTripsAsync(int pageNumber, int pageSize);
         Task<TripReadDto?> GetTripByIdAsync(int tripId);
         Task<TripReadDto?> GetTripDetailsAsync(int tripId);
         Task<IEnumerable<TripReadDto>> GetTripsByStationAsync(string stationName);

@@ -1,20 +1,10 @@
-﻿
-using API.SeedData;
-using AutoMapper;
+﻿using API.SeedData;
 using Data.Context;
 using Data.Models;
-using Data.Repository.Coach;
-using Data.Repository.Station;
-using Data.Repository.Train;
-using Domain.Interfaces;
-using Domain.Mapping;
-using Domain.Services;
-using Domain.Third_Party.Token;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace API
 {
@@ -24,81 +14,90 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services from extension method
-            builder.Services.AddApplicationServices(builder.Configuration);
-
-            // Bind JWT settings
-            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
-
-            // Identity
-            builder.Services.AddIdentity<User, IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
-            // JWT Authentication
-            var jwtSettings = builder.Configuration.GetSection("JWT").Get<JWT>();
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = jwtSettings.Issuer,
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                });
 
-                    ValidateAudience = true,
-                    ValidAudience = jwtSettings.Audience,
-
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-
-                    ValidateLifetime = true
-                };
-            });
-
-            builder.Services.AddControllers();
+            builder.Services.AddApplicationServices(builder.Configuration);
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
-                    policyBuilder =>
-                    {
-                        policyBuilder
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                    });
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
             });
 
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "أدخل JWT Token: Bearer {your-token}"
+                });
 
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+            });
 
-            // Build app
             var app = builder.Build();
 
-            // Run migrations + seed
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
                 try
                 {
+                    logger.LogInformation("🔄 Starting database setup...");
+
                     var context = services.GetRequiredService<ApplicationDbContext>();
-                    context.Database.Migrate();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+
+                    await context.Database.MigrateAsync();
+                    logger.LogInformation("✅ Migrations applied");
+
+                    await SeedData.SeedData.SeedRolesAsync(roleManager);
+                    logger.LogInformation("✅ Roles seeded");
+
+                    await SeedData.SeedData.SeedAdminUserAsync(userManager, roleManager);
+                    logger.LogInformation("✅ Admin user seeded");
 
                     await SeedData.SeedData.Seed(context);
-                    Console.WriteLine("Database migration and seeding completed successfully.");
+                    logger.LogInformation("✅ Data seeding completed");
+
+                    // توليد المقاعد تلقائياً للعربات التي لا تحتوي على مقاعد
+                    await SeedData.SeatGenerator.GenerateSeatsForCoachesAsync(context);
+                    logger.LogInformation("✅ Seats generated for coaches");
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred during database migration or seeding.");
+                    logger.LogError(ex, "❌ Error during seeding: {Message}", ex.Message);
                 }
             }
 
-            // Pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -107,11 +106,10 @@ namespace API
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllers();
+
             app.Run();
         }
     }

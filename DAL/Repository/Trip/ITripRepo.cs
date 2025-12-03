@@ -9,7 +9,8 @@ namespace Data.Repository.Trip
 {
     public interface ITripRepo : IGenericRepo<Data.Models.Trips.Trip>
     {
-        Task<Data.Models.Trips.Trip?> GetTripDetailsAsync(int tripId);
+       Task<(IEnumerable<Data.Models.Trips.Trip> Trips, int TotalCount)> GetAllTripsWithDetailsAsync(int pageNumber, int pageSize);
+       Task<Data.Models.Trips.Trip?> GetTripDetailsAsync(int tripId);
 
         Task<IEnumerable<Data.Models.Trips.Trip>> GetTripsByStationAsync(string stationName);
 

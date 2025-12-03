@@ -10,7 +10,7 @@ namespace Domain.Dtos.StationDtos
     public class StationCreateDto
     {
         [Required]
-        public long StationID { get; set; }
+        public string StationID { get; set; }
 
         [Required]
         [MaxLength(100)]

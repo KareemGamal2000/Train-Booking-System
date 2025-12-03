@@ -69,8 +69,8 @@ namespace API.Controllers
             }
         }
 
-        // PUT: api/Station/1
-        [HttpPut("Update/{stationId}")]
+        // PUT: api/Station/Update/{stationname}
+        [HttpPut("Update/{stationname}")]
         public async Task<IActionResult> UpdateStation(string stationname, [FromBody] StationUpdateDto stationDto)
         {
             if (!ModelState.IsValid)
@@ -81,7 +81,7 @@ namespace API.Controllers
             var success = await _stationService.UpdateStationAsync(stationname, stationDto);
             if (!success)
             {
-                return NotFound($"لم يتم العثور على محطة برقم {stationname} للتحديث.");
+                return NotFound($"لم يتم العثور على محطة باسم {stationname} للتحديث.");
             }
 
             return Ok(new { message = $"تم تحديث المحطة '{stationname}' بنجاح." });

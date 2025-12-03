@@ -1,5 +1,4 @@
-﻿using Data.Models.Tickets;
-using Data.Models.Trips;
+﻿using Data.Models.Trips;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Models
+namespace Data.Models.Tickets
 {
     [Index(nameof(UserID), nameof(TripID), IsUnique = false, Name = "IX_Bookings_UserID_TripID")]
 
@@ -40,5 +39,7 @@ namespace Data.Models
         public virtual TripStop ArrivalStop { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
+
+        public virtual ICollection<Payment> Payments { get; set; } = new HashSet<Payment>();
     }
 }

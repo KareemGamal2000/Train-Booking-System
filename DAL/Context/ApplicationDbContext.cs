@@ -29,12 +29,12 @@ namespace Data.Context
         public DbSet<Coach> Coaches { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Train> Trains { get; set; }
-
         public DbSet<TrainCoach> TrainCoaches { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -74,6 +74,15 @@ namespace Data.Context
                 .WithMany()
                 .HasForeignKey(b => b.ArrivalStopID)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Seat>(b =>
+            {
+                b.Property<int>("SeatID")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatID"));
+            });
         }
     }
 }

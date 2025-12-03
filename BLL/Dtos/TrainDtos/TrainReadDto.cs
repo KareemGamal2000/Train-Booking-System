@@ -8,7 +8,7 @@ namespace Domain.Dtos.TrainDtos
 {
     public class TrainReadDto
     {
-        public long Train_ID { get; set; }
+        public string Train_ID { get; set; }
         public string TrainName { get; set; }
         public ICollection<TrainWithClassesDto> AvailableClasses { get; set; } = new HashSet<TrainWithClassesDto>();
 

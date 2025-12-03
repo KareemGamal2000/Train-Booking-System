@@ -15,19 +15,42 @@ namespace Data.Repository.Trip
     {
         public TripRepo(ApplicationDbContext context) : base(context) { }
 
-        public async Task<Data.Models.Trips.Trip?> GetTripDetailsAsync(int tripId)
+        public async Task<(IEnumerable<Data.Models.Trips.Trip> Trips, int TotalCount)> GetAllTripsWithDetailsAsync(int pageNumber, int pageSize)
         {
-            return await _dbSet
-                .Where(t => t.TripID == tripId)
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageSize < 1) pageSize = 10; 
+
+            var query = _dbSet.AsNoTracking();
+
+            var totalCount = await query.CountAsync();
+
+            var trips = await query
+                .OrderBy(t => t.TripID) 
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .AsSplitQuery()
-                .Include(t => t.Train) // بيانات القطار
-                .Include(t => t.Departure_Station) // محطة المغادرة الرئيسية
-                .Include(t => t.Arrival_Station)   // محطة الوصول الرئيسية
-                .Include(t => t.Stops.OrderBy(ts => ts.StopSequence)) // محطات التوقف بالترتيب
-                    .ThenInclude(ts => ts.Station) // بيانات المحطة لكل توقف
+                .Include(t => t.Train)     
+                .Include(t => t.Departure_Station)
+                .Include(t => t.Arrival_Station)
+                .Include(t => t.Stops.OrderBy(ts => ts.StopSequence)) 
+                    .ThenInclude(ts => ts.Station)
                 .Include(t => t.SegmentPrices) // أسعار مقاطع الرحلة
                     .ThenInclude(p => p.Class) // بيانات الدرجة لكل سعر
-                .FirstOrDefaultAsync();
+                .ToListAsync();
+
+            return (trips, totalCount);
+        }
+        public async Task<Data.Models.Trips.Trip?> GetTripDetailsAsync(int tripId)
+        {
+            return await GetFirstOrDefaultAsync(filter: t => t.TripID == tripId, include: new string[]
+                {
+                    "Train",
+                    "Departure_Station",
+                    "Arrival_Station",
+                    "Stops.Station",
+                    "SegmentPrices.Class"
+                });
+
         }
 
         public async Task<IEnumerable<Data.Models.Trips.Trip>> GetTripsByStationAsync(string stationName)
@@ -39,7 +62,7 @@ namespace Data.Repository.Trip
                     ts.Station.StationNameEN.ToLower().Contains(stationName.ToLower()) ||
                     ts.Station.ShortName.ToLower().Contains(stationName.ToLower())
                 ))
-                .Select(t => t.TripID) // جلب الـ ID فقط!
+                .Select(t => t.TripID) 
                 .Distinct();
 
             var tripIds = await tripIdsQuery.ToListAsync();
@@ -48,23 +71,27 @@ namespace Data.Repository.Trip
             {
                 return Enumerable.Empty<Data.Models.Trips.Trip>();
             }
+            string[] includes = new string[]
+              {
+                   "Train.TrainCoaches.Coach.Class",
+                   "Departure_Station",
+                   "Arrival_Station",
+                   "Stops.Station",
+                   "SegmentPrices.Class",
+              };
 
-            var tripsQuery = _dbSet.AsNoTracking()
-                .Where(t => tripIds.Contains(t.TripID))
-                .AsSplitQuery()
-                .Include(t => t.Train)
-                     .ThenInclude(tr => tr.TrainCoaches)
-                          .ThenInclude(tc => tc.Coach)
-                               .ThenInclude(c => c.Class)
-                .Include(t => t.Departure_Station)
-                .Include(t => t.Arrival_Station)
-                .Include(t => t.Stops.OrderBy(ts => ts.StopSequence)) // ترتيب محطات التوقف
-                    .ThenInclude(ts => ts.Station)
-                .Include(t => t.SegmentPrices)
-                    .ThenInclude(p => p.Class);
+            var finalTrips = await GetAllAsync(
+                filter: t => tripIds.Contains(t.TripID),
+                include: includes
+            );
 
-            var finalTrips = await tripsQuery.ToListAsync();
-
+            foreach (var trip in finalTrips)
+            {
+                if (trip.Stops != null)
+                {
+                    trip.Stops = trip.Stops.OrderBy(ts => ts.StopSequence).ToList();
+                }
+            }
             return finalTrips;
 
         }
@@ -94,29 +121,29 @@ namespace Data.Repository.Trip
             {
                 return Enumerable.Empty<Data.Models.Trips.Trip>();
             }
+            string[] includes = new string[]
+               {
+                   "Train.TrainCoaches.Coach.Class",
+                   "Departure_Station",
+                   "Arrival_Station",
+                   "Stops.Station",
+                   "SegmentPrices.Class",
+                   "SegmentPrices.StartStop.Station", 
+                   "SegmentPrices.EndStop.Station"   
+               };
+              
+            var finalTrips = await GetAllAsync(
+                filter: t => tripIds.Contains(t.TripID),
+                include: includes
+            );
 
-            var tripsQuery = _dbSet.AsNoTracking()
-                .Where(t => tripIds.Contains(t.TripID))
-                .AsSplitQuery()
-                .Include(t => t.Train)
-                     .ThenInclude(tr => tr.TrainCoaches)
-                         .ThenInclude(tc => tc.Coach)
-                          .ThenInclude(c => c.Class)
-                .Include(t => t.Departure_Station)
-                .Include(t => t.Arrival_Station)
-                .Include(t => t.Stops.OrderBy(ts => ts.StopSequence))
-                    .ThenInclude(ts => ts.Station)
-               .Include(t => t.SegmentPrices)
-                   .ThenInclude(p => p.Class)
-               .Include(t => t.SegmentPrices)
-                   .ThenInclude(p => p.StartStop)
-                       .ThenInclude(ts => ts.Station)
-               .Include(t => t.SegmentPrices)
-                   .ThenInclude(p => p.EndStop)
-                       .ThenInclude(ts => ts.Station);
-               
-                           var finalTrips = await tripsQuery.ToListAsync();
-
+            foreach (var trip in finalTrips)
+            {
+                if (trip.Stops != null)
+                {
+                    trip.Stops = trip.Stops.OrderBy(ts => ts.StopSequence).ToList();
+                }
+            }
             return finalTrips;
 
         }
