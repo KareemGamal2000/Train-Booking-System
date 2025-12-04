@@ -1,5 +1,6 @@
 ﻿using Data.Context;
 using Data.Repository.MainRepo;
+using Data.Repository.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -14,6 +15,29 @@ namespace Data.Repository.Ticket
         {
         }
 
+        public async Task<Data.Models.Tickets.Ticket?> GetTicketByIdWithIncludesAsync(Guid ticketId)
+        {
+            string[] includes = new string[] { "Seat", "Class" };
+            Expression<Func<Data.Models.Tickets.Ticket, bool>> filter = t => t.Ticket_ID == ticketId;
+
+            return await GetFirstOrDefaultAsync(filter: filter, include: includes);
+        }
+
+        public async Task<IEnumerable<Data.Models.Tickets.Ticket>> GetTicketsByBookingIdWithIncludesAsync(Guid bookingId)
+        {
+            string[] includes = new string[] { "Seat", "Class" };
+            Expression<Func<Data.Models.Tickets.Ticket, bool>> filter = t => t.Booking_ID == bookingId;
+
+            return await GetAllAsync(filter: filter, include: includes);
+        }
+
+        public async Task<Data.Models.Tickets.Ticket?> GetTicketWithIncludesAsync(Guid ticketId)
+        {
+            string[] includes = new string[] { "Seat", "Class" };
+            Expression<Func<Data.Models.Tickets.Ticket, bool>> filter = t => t.Ticket_ID == ticketId;
+
+            return await GetFirstOrDefaultAsync(filter: filter, include: includes);
+        }
         public async Task<bool> IsSeatAvailableAsync(int seatId, int tripId)
         {
             Expression<Func<Data.Models.Tickets.Ticket, bool>> filter = t =>

@@ -173,7 +173,8 @@ namespace Domain.Services.Payment
             return await _unitOfWork.Payment.UpdatePaymentStatusAsync(paymentId, "Refunded");
         }
 
-        private async Task<PaymobIntentionResponse?> CreateIntentionAsync(decimal amount, Data.Models.Tickets.Booking booking, string paymentMethod, string merchantOrderId)
+        private async Task<PaymobIntentionResponse?> CreateIntentionAsync(decimal amount, Data.Models.Tickets.Booking booking,
+            string paymentMethod, string merchantOrderId)
         {
             try
             {

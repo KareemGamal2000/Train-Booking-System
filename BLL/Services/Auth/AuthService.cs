@@ -1,6 +1,7 @@
 ﻿using Data.Models;
 using Domain.Dtos.IdentityDtos;
 using Domain.Helpers;
+using Domain.Profiles;
 using Domain.Services.Auth.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -42,18 +43,7 @@ namespace Domain.Services.Auth
             if (await _userManager.FindByEmailAsync(newuser.Email) != null)
                 return new AuthDto { Message = "Email is already registered" };
 
-            var user = new User
-            {
-                FirstName = newuser.FirstName,
-                LastName = newuser.LastName,
-                UserName = newuser.FirstName + newuser.LastName,
-                DateOfBirth = newuser.DateOfBirth,
-                Gender = newuser.Gender,
-                PhoneNumber = newuser.PhoneNumber,
-                Email = newuser.Email,
-                IsActive = true
-
-            };
+            var user = newuser.ToUser();
 
             var result = await _userManager.CreateAsync(user, newuser.Password);
 

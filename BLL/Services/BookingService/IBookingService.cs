@@ -14,7 +14,7 @@ namespace Domain.Services.BookingService
         Task<IEnumerable<BookingReadDto>> GetUserBookingsAsync(Guid userId);
         Task<bool> SelectSeatsAsync(Guid bookingId, BookingSeatSelectionDto dto);
         Task<BookingSummaryDto> GetBookingSummaryAsync(Guid bookingId);
-        Task<bool> ConfirmBookingAsync(Guid bookingId); 
+        Task<bool> ConfirmBookingAsync(Guid bookingId);
         Task<AvailableSeatsDto> GetAvailableSeatsAsync(int tripId, long classId, int departureStopId, int arrivalStopId);
     }
 }

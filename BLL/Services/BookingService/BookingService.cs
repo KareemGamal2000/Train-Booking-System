@@ -5,15 +5,12 @@ using Domain.Dtos.BookingDto;
 using Domain.Dtos.BookingDtos;
 using Domain.Dtos.TicketDtos;
 using Domain.Profiles;
-using Domain.Services.BookingService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Domain.Services.Booking_Service
+namespace Domain.Services.BookingService  
 {
     public class BookingService : IBookingService
     {
@@ -56,7 +53,7 @@ namespace Domain.Services.Booking_Service
             if (classInfo == null)
                 throw new Exception("الدرجة غير موجودة");
 
-            // إنشاء الحجز
+            // إنشاء الحجز باستخدام manual mapping
             var booking = new Booking
             {
                 Booking_ID = Guid.NewGuid(),
@@ -95,10 +92,9 @@ namespace Domain.Services.Booking_Service
             await _unitOfWork.Booking.AddBookingAsync(booking);
             await _unitOfWork.SaveChangesAsync();
 
-            // ⭐ إعادة تحميل الحجز مع جميع البيانات المرتبطة (Seats & Class)
+           
             var savedBooking = await _unitOfWork.Booking.GetBookingWithDetailsAsync(booking.Booking_ID);
 
-            // إنشاء DTO للاستجابة
             return new BookingConfirmationDto
             {
                 BookingID = savedBooking.Booking_ID,
@@ -111,15 +107,7 @@ namespace Domain.Services.Booking_Service
                 DepartureTime = departureStop.DepartureTime ?? TimeSpan.Zero,
                 ArrivalTime = arrivalStop.ArrivalTime ?? TimeSpan.Zero,
                 ClassName = classInfo.ClassNameAR ?? "غير محدد",
-                Tickets = savedBooking.Tickets.Select(t => new TicketReadDto
-                {
-                    Ticket_ID = t.Ticket_ID,
-                    Seat_ID = t.SeatID,  // ⭐ الآن سيحتوي على القيمة الصحيحة
-                    SeatNumber = t.Seat?.SeatNumber ?? 0,  // ⭐ الآن سيحتوي على رقم المقعد الصحيح
-                    ClassID = t.ClassID,
-                    ClassName = t.Class?.ClassNameAR ?? classInfo.ClassNameAR ?? "غير محدد",
-                    Price = t.Price
-                }).ToList()
+                Tickets = savedBooking.Tickets?.Select(t => TicketProfile.ToTicketReadDto(t)).ToList() ?? new List<TicketReadDto>()
             };
         }
 
@@ -139,16 +127,19 @@ namespace Domain.Services.Booking_Service
         public async Task<BookingReadDto> GetBookingByIdAsync(Guid bookingId)
         {
             var booking = await _unitOfWork.Booking.GetBookingWithDetailsAsync(bookingId);
+            
+            if (booking == null)
+                return null;
+
             return booking.ToBookingReadDto();
         }
+
         // ==================== Get User Bookings =========================
         public async Task<IEnumerable<BookingReadDto>> GetUserBookingsAsync(Guid userId)
         {
             var bookings = await _unitOfWork.Booking.GetBookingsByUserAsync(userId);
 
-            return bookings
-                .Select(b => b.ToBookingReadDto())
-                .ToList();
+            return bookings.ToBookingReadDtoList();
         }
 
         // ===================== Select Seats ==============================
@@ -189,6 +180,10 @@ namespace Domain.Services.Booking_Service
         public async Task<BookingSummaryDto> GetBookingSummaryAsync(Guid bookingId)
         {
             var booking = await _unitOfWork.Booking.GetBookingWithDetailsAsync(bookingId);
+            
+            if (booking == null)
+                return null;
+
             return booking.ToBookingSummaryDto();
         }
 

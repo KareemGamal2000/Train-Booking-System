@@ -5,7 +5,6 @@ using Data.Repository.Station;
 using Data.Repository.Train;
 using Data.Repository.Trip;
 using Data.Repository.UnitOfWork;
-using Domain.Mapping;
 using Domain.Services;
 using Domain.Services.Auth;
 using Domain.Services.Auth.Email;
@@ -19,9 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Domain.Services.Booking_Service;
-using Domain.Helpers;
 using Domain.Services.BookingService;
+using Domain.Helpers;
 
 namespace API
 {
