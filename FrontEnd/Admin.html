@@ -1,0 +1,119 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإدارة - قطارات مصر</title>
+    <link rel="stylesheet" href="Admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/Logo.png" alt="Train Logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+               
+                    <li><a href="Admin.html">لوحة الإدارة</a></li>
+                    <li><a href="Contact.html">تواصل معنا</a></li>
+                    <li><a href="Login.html">تسجيل خروج</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="admin-section">
+        <div class="admin-content">
+            <h2>لوحة الإدارة</h2>
+
+            <div class="stats-container">
+
+                <div class="stat-box">
+                    <h3>عدد المسجلين</h3>
+                    <p id="total-users">1200</p>
+                </div>
+
+                <div class="stat-box small-chart-box">
+                    <h3>نسبة الحجز</h3>
+                    <canvas id="bookingChart"></canvas>
+                </div>
+
+                <div class="stat-box">
+                    <h3>توزيع النوع</h3>
+                    <canvas id="genderChart"></canvas>
+                </div>
+
+            </div>
+
+            <div class="table-container">
+                <h3>الرحلات</h3>
+            
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الرحلة</th>
+                            <th>الحالة</th>
+                            <th>التاريخ</th>
+                            <th>التحكم</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+            
+                        <tr>
+                            <td>الإسكندرية → القاهرة</td>
+                            <td class="status shown">معروضة</td>
+                            <td>2025-12-05</td>
+                            <td class="actions">
+                                <button class="edit-btn">✏️</button>
+                                <button class="delete-btn">🗑️</button>
+                            </td>
+                        </tr>
+            
+                        <tr>
+                            <td>القاهرة → الإسكندرية</td>
+                            <td class="status done">مكتملة</td>
+                            <td>2025-12-04</td>
+                            <td class="actions">
+                                <button class="edit-btn">✏️</button>
+                                <button class="delete-btn">🗑️</button>
+                            </td>
+                        </tr>
+            
+                        <tr>
+                            <td>القاهرة → المنصورة</td>
+                            <td class="status shown">معروضة</td>
+                            <td>2025-12-06</td>
+                            <td class="actions">
+                                <button class="edit-btn">✏️</button>
+                                <button class="delete-btn">🗑️</button>
+                            </td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            <p>تابعنا على:
+                <a href="#">فيسبوك</a> |
+                <a href="#">تويتر</a> |
+                <a href="#">انستجرام</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="Admin.js"></script>
+</body>
+</html>
