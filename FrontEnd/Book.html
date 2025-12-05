@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابحث عن الرحلات - قطارات مصر</title>
+    <link rel="stylesheet" href="Book.css">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/Logo.png" alt="Train Logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Home.html">الرئيسية</a></li>
+                    <li><a href="Login.html">تسجيل الدخول</a></li>
+                    <li><a href="Reg.html">تسجيل جديد</a></li>              
+                    <li><a href="Contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section class="search-section">
+        <div class="search-card">
+            <h2>ابحث عن رحلتك</h2>
+            <form class="search-form" id="search-form"> 
+
+                <label for="from-station-name">محطة الانطلاق</label>
+                <input type="text" id="from-station-name" list="stations" placeholder="اكتب اسم المحطة..." required>
+
+                <datalist id="stations"></datalist>
+
+
+                <label for="to-station-name">محطة الوصول</label>
+                <input type="text" id="to-station-name" list="stations" placeholder="اكتب اسم المحطة..." required>
+
+                <input type="hidden" id="to-station-id" name="toId">
+
+
+                <div id="search-message" class="error-msg" style="text-align: center; margin-top: 15px;"></div>
+
+                <button type="submit" class="btn-gold">ابحث عن رحلات</button>
+            </form>
+        </div>
+    </section>
+
+    
+    <footer class="footer">
+        <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+        <p>تابعنا على: 
+            <a href="#">فيسبوك</a> |
+            <a href="#">تويتر</a> |
+            <a href="#">انستجرام</a>
+        </p>
+    </footer>
+
+
+    <script src="Book.js"></script>
+</body>
+</html>
