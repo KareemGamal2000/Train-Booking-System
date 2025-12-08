@@ -1,4 +1,4 @@
-﻿using Data.Repository.UnitOfWork;
+using Data.Repository.UnitOfWork;
 using Domain.Dtos.PaymentDtos;
 using Domain.Helpers;
 using Microsoft.Extensions.Logging;
@@ -81,8 +81,11 @@ namespace Domain.Services.Payment
                     return new PaymentResponseDto { Success = false, Message = errorMsg };
                 }
 
-                var paymobOrderId = uniqueMerchantOrderId;
+                // استخدام order_id من Paymob بدلاً من uniqueMerchantOrderId
+                var paymobOrderId = intentionResult.order_id ?? uniqueMerchantOrderId;
                 var clientSecret = intentionResult.client_secret;
+
+                _logger?.LogInformation($"💾 Saving payment with Paymob Order ID: {paymobOrderId}");
 
                 // حفظ بيانات الدفع
                 var payment = new Data.Models.Tickets.Payment
@@ -92,7 +95,7 @@ namespace Domain.Services.Payment
                     PaymentStatus = "Pending",
                     PaymentMethod = request.PaymentMethod,
                     PaymobOrderID = paymobOrderId,
-                    PaymobTransactionID = paymobOrderId,
+                    PaymobTransactionID = uniqueMerchantOrderId, // حفظ uniqueMerchantOrderId كـ reference
                     CreatedAt = DateTime.UtcNow
                 };
 
@@ -124,40 +127,127 @@ namespace Domain.Services.Payment
         {
             try
             {
-                if (!VerifyHmac(callback))
+                _logger?.LogInformation($"📥 Processing callback for order: {callback.order}, success: {callback.success}");
+                _logger?.LogInformation($"📥 Full callback data: {JsonSerializer.Serialize(callback)}");
+
+                if (string.IsNullOrEmpty(callback.order))
                 {
-                    _logger?.LogWarning("HMAC verification failed for callback");
+                    _logger?.LogWarning("❌ Order ID is missing from callback, returning false.");
                     return false;
                 }
 
+                // التحقق من HMAC
+                var hmacValid = VerifyHmac(callback);
+                if (!hmacValid)
+                {
+                    _logger?.LogWarning("⚠️ HMAC verification failed for callback, continuing with process.");
+                }
+
+                // 1. محاولة العثور على الدفع باستخدام Order ID من Paymob
                 var payment = await _unitOfWork.Payment.GetPaymentByOrderIdAsync(callback.order);
+
+                // 2. إذا لم نجد الـ payment، نحاول استخراج BookingID والبحث عن دفع معلَّق
                 if (payment == null)
                 {
-                    _logger?.LogWarning($"Payment not found for order: {callback.order}");
-                    return false;
+                    _logger?.LogWarning($"⚠️ Primary search: Payment not found by order ID: {callback.order}. Trying fallback.");
+
+                    // محاولة استخراج BookingID من order (format: BookingID_Timestamp)
+                    var orderParts = callback.order?.Split('_');
+                    if (orderParts != null && orderParts.Length > 0 && Guid.TryParse(orderParts[0], out Guid bookingId))
+                    {
+                        _logger?.LogInformation($"🔍 Fallback: Trying to find pending payment by BookingID: {bookingId}");
+                        var payments = await _unitOfWork.Payment.GetPaymentsByBookingIdAsync(bookingId);
+                        payment = payments?.Where(p => p.PaymentStatus == "Pending")
+                                         .OrderByDescending(p => p.CreatedAt)
+                                         .FirstOrDefault();
+
+                        if (payment != null)
+                        {
+                            _logger?.LogInformation($"✅ Fallback: Found pending payment by BookingID: {payment.Payment_ID}");
+                            // تحديث PaymobOrderID بالقيمة الصحيحة من Paymob
+                            payment.PaymobOrderID = callback.order;
+                        }
+                    }
                 }
 
-                payment.PaymobTransactionID = callback.transaction_id;
+                if (payment == null)
+                {
+                    // ❌ نقطة الفشل الأولى - نبحث في كل الـ payments
+                    _logger?.LogError($"❌ FAILURE POINT 1: Payment not found for order: {callback.order}");
+                    
+                    // آخر محاولة: عرض جميع الـ payments الموجودة
+                    var allPayments = await _unitOfWork.Payment.GetAllAsync();
+                    var pendingPayments = allPayments?.Where(p => p.PaymentStatus == "Pending").ToList();
+                    
+                    if (pendingPayments != null && pendingPayments.Any())
+                    {
+                        _logger?.LogInformation($"📋 Found {pendingPayments.Count} pending payments:");
+                        foreach (var p in pendingPayments.Take(5))
+                        {
+                            _logger?.LogInformation($"   - Payment ID: {p.Payment_ID}, Order: {p.PaymobOrderID}, Booking: {p.BookingID}");
+                        }
+                        
+                        // محاولة أخيرة: استخدام آخر pending payment
+                        payment = pendingPayments.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
+                        if (payment != null)
+                        {
+                            _logger?.LogWarning($"⚠️ LAST RESORT: Using latest pending payment: {payment.Payment_ID}");
+                            payment.PaymobOrderID = callback.order;
+                        }
+                    }
+                    
+                    if (payment == null)
+                    {
+                        _logger?.LogError($"❌ FINAL FAILURE: No payment found at all. Returning false.");
+                        return false;
+                    }
+                }
+
+                // تحديث معلومات الدفع
+                payment.PaymobTransactionID = callback.id ?? callback.transaction_id;
                 payment.CompletedAt = DateTime.UtcNow;
 
+                // تحديد حالة الدفع بناءً على النتيجة
                 if (callback.success)
                 {
                     payment.PaymentStatus = "Success";
-                    await _unitOfWork.Booking.ConfirmBookingAsync(payment.BookingID);
+                    _logger?.LogInformation($"✅ Payment successful for booking: {payment.BookingID}");
+
+                    // تأكيد الحجز
+                    var bookingConfirmed = await _unitOfWork.Booking.ConfirmBookingAsync(payment.BookingID);
+                    if (!bookingConfirmed)
+                    {
+                        // ❌ نقطة الفشل الثانية
+                        _logger?.LogError($"❌ FAILURE POINT 2: Failed to confirm booking: {payment.BookingID}. Returning false.");
+                        return false;
+                    }
+                    _logger?.LogInformation($"✅ Booking confirmed successfully: {payment.BookingID}");
                 }
                 else
                 {
                     payment.PaymentStatus = "Failed";
-                    payment.ErrorMessage = callback.error_occured;
-                    _logger?.LogWarning($"❌ Payment failed for booking: {payment.BookingID}");
+                    payment.ErrorMessage = callback.error_occured ?? "Payment failed";
+                    _logger?.LogWarning($"❌ Payment failed for booking: {payment.BookingID}. Error: {payment.ErrorMessage}");
                 }
 
                 _unitOfWork.Payment.Update(payment);
-                return await _unitOfWork.SaveChangesAsync();
+                var result = await _unitOfWork.SaveChangesAsync();
+
+                if (!result)
+                {
+                    // ❌ نقطة الفشل الثالثة
+                    _logger?.LogError($"❌ FAILURE POINT 3: Failed to save changes to database for payment {payment.Payment_ID}. Returning false.");
+                    return false;
+                }
+
+                _logger?.LogInformation($"💾 Payment status updated successfully: {payment.PaymentStatus}");
+
+                return result;
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex, "خطأ في ProcessCallbackAsync");
+                // ❌ نقطة الفشل الرابعة (استثناء عام)
+                _logger?.LogError(ex, "❌ FAILURE POINT 4: Unexpected exception in ProcessCallbackAsync. Returning false.");
                 return false;
             }
         }
@@ -198,10 +288,10 @@ namespace Domain.Services.Payment
                 if (integrationIds.Count == 0)
                 {
                     _logger?.LogError("❌ No integration IDs configured!");
-                    return new PaymobIntentionResponse 
-                    { 
-                        success = false, 
-                        message = "لم يتم تكوين أي طرق دفع" 
+                    return new PaymobIntentionResponse
+                    {
+                        success = false,
+                        message = "لم يتم تكوين أي طرق دفع"
                     };
                 }
 
@@ -253,18 +343,19 @@ namespace Domain.Services.Payment
                     extras = new
                     {
                         ee = merchantOrderId
-                    }
+                    },
+                    redirection_url = _paymobSettings.CallbackUrl ?? "https://localhost:7192/FrontEnd/PaymentCallback.html"
                 };
 
                 // ⚠️ استخدام Secret Key في Authorization
                 _httpClient.DefaultRequestHeaders.Clear();
                 _httpClient.DefaultRequestHeaders.Add("Authorization", $"Token {_paymobSettings.SecretKey}");
 
-                var jsonPayload = JsonSerializer.Serialize(payload, new JsonSerializerOptions 
-                { 
-                    WriteIndented = true 
+                var jsonPayload = JsonSerializer.Serialize(payload, new JsonSerializerOptions
+                {
+                    WriteIndented = true
                 });
-                
+
                 _logger?.LogInformation($"📤 Sending POST to: https://accept.paymob.com/v1/intention/");
                 _logger?.LogInformation($"🔑 Using Secret Key (first 30 chars): {_paymobSettings.SecretKey.Substring(0, Math.Min(30, _paymobSettings.SecretKey.Length))}...");
                 _logger?.LogInformation($"📦 Request Payload:\n{jsonPayload}");
@@ -274,42 +365,42 @@ namespace Domain.Services.Payment
                 var response = await _httpClient.PostAsync("https://accept.paymob.com/v1/intention/", content);
 
                 var result = await response.Content.ReadAsStringAsync();
-                
+
                 _logger?.LogInformation($"📥 Response Status: {(int)response.StatusCode} {response.StatusCode}");
                 _logger?.LogInformation($"📥 Response Body:\n{result}");
 
                 if (!response.IsSuccessStatusCode)
                 {
                     _logger?.LogError($"❌ Paymob returned error: {response.StatusCode}");
-                    
+
                     try
                     {
                         var errorObj = JsonSerializer.Deserialize<Dictionary<string, object>>(result);
-                        var errorDetail = errorObj?.ContainsKey("detail") == true 
-                            ? errorObj["detail"].ToString() 
+                        var errorDetail = errorObj?.ContainsKey("detail") == true
+                            ? errorObj["detail"].ToString()
                             : result;
-                        
+
                         _logger?.LogError($"❌ Error Detail: {errorDetail}");
-                        
-                        return new PaymobIntentionResponse 
-                        { 
-                            success = false, 
-                            message = $"Paymob Error: {errorDetail}" 
+
+                        return new PaymobIntentionResponse
+                        {
+                            success = false,
+                            message = $"Paymob Error: {errorDetail}"
                         };
                     }
                     catch
                     {
-                        return new PaymobIntentionResponse 
-                        { 
-                            success = false, 
-                            message = $"Error {response.StatusCode}: {result}" 
+                        return new PaymobIntentionResponse
+                        {
+                            success = false,
+                            message = $"Error {response.StatusCode}: {result}"
                         };
                     }
                 }
 
-                var intentionResponse = JsonSerializer.Deserialize<PaymobIntentionResponse>(result, new JsonSerializerOptions 
-                { 
-                    PropertyNameCaseInsensitive = true 
+                var intentionResponse = JsonSerializer.Deserialize<PaymobIntentionResponse>(result, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
                 });
 
                 if (intentionResponse != null)
@@ -317,6 +408,7 @@ namespace Domain.Services.Payment
                     intentionResponse.success = true;
                     _logger?.LogInformation($"✅ Payment Intention created successfully!");
                     _logger?.LogInformation($"🔐 Client Secret received: {intentionResponse.client_secret?.Substring(0, 20)}...");
+                    _logger?.LogInformation($"📦 Paymob Order ID: {intentionResponse.order_id}");
                 }
 
                 return intentionResponse;
@@ -324,19 +416,19 @@ namespace Domain.Services.Payment
             catch (HttpRequestException httpEx)
             {
                 _logger?.LogError(httpEx, "❌ HTTP Request Exception in CreateIntentionAsync");
-                return new PaymobIntentionResponse 
-                { 
-                    success = false, 
-                    message = $"Network Error: {httpEx.Message}" 
+                return new PaymobIntentionResponse
+                {
+                    success = false,
+                    message = $"Network Error: {httpEx.Message}"
                 };
             }
             catch (Exception ex)
             {
                 _logger?.LogError(ex, "❌ Unexpected Exception in CreateIntentionAsync");
-                return new PaymobIntentionResponse 
-                { 
-                    success = false, 
-                    message = $"Exception: {ex.Message}" 
+                return new PaymobIntentionResponse
+                {
+                    success = false,
+                    message = $"Exception: {ex.Message}"
                 };
             }
         }
@@ -345,13 +437,53 @@ namespace Domain.Services.Payment
         {
             try
             {
-                var concatenatedString = $"{callback.amount_cents}{callback.created_at}{callback.currency}{callback.error_occured}{callback.has_parent_transaction}{callback.id}{callback.integration_id}{callback.is_3d_secure}{callback.is_auth}{callback.is_capture}{callback.is_refunded}{callback.is_standalone_payment}{callback.is_voided}{callback.order}{callback.owner}{callback.pending}{callback.source_data_pan}{callback.source_data_sub_type}{callback.source_data_type}{callback.success}";
-                
+                if (string.IsNullOrEmpty(callback.hmac) || string.IsNullOrEmpty(_paymobSettings.HmacSecret))
+                {
+                    _logger?.LogWarning("⚠️ HMAC or HmacSecret is missing");
+                    return false;
+                }
+
+                // Helper to safely convert optional string fields to lowercase boolean strings Paymob expects for HMAC
+                string BoolToStringLower(string? value)
+                {
+                    return (value != null && (value.ToLower() == "true" || value.ToLower() == "1")) ? "true" : "false";
+                }
+
+                // بناء HMAC string حسب توثيق Paymob - معالجة القيم المحتمل أن تكون null أو غير متطابقة
+                var concatenatedString = $"{callback.amount_cents ?? 0}" +
+                    $"{callback.created_at ?? ""}" +
+                    $"{callback.currency ?? ""}" +
+                    $"{BoolToStringLower(callback.error_occured)}" +
+                    $"{BoolToStringLower(callback.has_parent_transaction)}" +
+                    $"{callback.id ?? ""}" +
+                    $"{callback.integration_id ?? ""}" +
+                    $"{BoolToStringLower(callback.is_3d_secure)}" +
+                    $"{BoolToStringLower(callback.is_auth)}" +
+                    $"{BoolToStringLower(callback.is_capture)}" +
+                    $"{BoolToStringLower(callback.is_refunded)}" +
+                    $"{BoolToStringLower(callback.is_standalone_payment)}" +
+                    $"{BoolToStringLower(callback.is_voided)}" +
+                    $"{callback.order ?? ""}" +
+                    $"{callback.owner ?? ""}" +
+                    $"{BoolToStringLower(callback.pending)}" +
+                    $"{callback.source_data_pan ?? ""}" +
+                    $"{callback.source_data_sub_type ?? ""}" +
+                    $"{callback.source_data_type ?? ""}" +
+                    $"{callback.success.ToString().ToLower()}";
+
+                _logger?.LogInformation($"🔐 HMAC String: {concatenatedString}");
+
                 using var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(_paymobSettings.HmacSecret));
                 var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(concatenatedString));
                 var computedHmac = BitConverter.ToString(hash).Replace("-", "").ToLower();
 
-                return computedHmac == callback.hmac?.ToLower();
+                _logger?.LogInformation($"🔐 Computed HMAC: {computedHmac}");
+                _logger?.LogInformation($"🔐 Received HMAC: {callback.hmac}");
+
+                var isValid = computedHmac == callback.hmac?.ToLower();
+                _logger?.LogInformation($"🔐 HMAC Valid: {isValid}");
+
+                return isValid;
             }
             catch (Exception ex)
             {

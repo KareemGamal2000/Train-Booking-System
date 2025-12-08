@@ -226,6 +226,9 @@ namespace Data.Migrations
                     b.Property<long>("ClassID")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
@@ -233,7 +236,8 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TicketReference")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Ticket_ID");
 

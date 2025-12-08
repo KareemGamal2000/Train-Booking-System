@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - قطارات مصر</title>
+    <link rel="stylesheet" href="Profile.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="Images/Logo.png" alt="Train Logo">
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="Home.html">الرئيسية</a></li>
+                        <li><a href="Book.html">حجز تذكرة</a></li>
+                        <li><a href="Contact.html">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <div class="user-profile">
+                        <div class="profile-toggle" onclick="toggleProfileDropdown()">
+                            <div class="profile-avatar">
+                                <span id="userInitials">U</span>
+                            </div>
+                            <span class="profile-name" id="profileUserName">مستخدم</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <strong id="dropdownUserName">اسم المستخدم</strong>
+                                    <span id="dropdownUserEmail">email@example.com</span>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="Profile.html"><span class="icon">👤</span> الملف الشخصي</a></li>
+                                <li><a href="MyBookings.html"><span class="icon">🎫</span> حجوزاتي</a></li>
+                                <li><a href="ChangePassword.html"><span class="icon">🔒</span> تغيير كلمة السر</a></li>
+                                <li><a href="ChangeEmail.html"><span class="icon">✉️</span> تغيير البريد الإلكتروني</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="logout()" class="logout-link"><span class="icon">🚪</span> تسجيل الخروج</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar-large">
+                        <span id="userInitialsLarge">U</span>
+                    </div>
+                    <h1 id="profileTitle">الملف الشخصي</h1>
+                    <p id="profileSubtitle" class="text-muted">إدارة معلوماتك الشخصية</p>
+                </div>
+
+                <div class="profile-content">
+                    <!-- معلومات المستخدم -->
+                    <div class="info-card">
+                        <h2>المعلومات الشخصية</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">👤 الاسم الأول:</span>
+                                <span class="info-value" id="firstName">جاري التحميل...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">👤 الاسم الأخير:</span>
+                                <span class="info-value" id="lastName">جاري التحميل...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📧 البريد الإلكتروني:</span>
+                                <span class="info-value" id="email">جاري التحميل...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">📱 رقم الهاتف:</span>
+                                <span class="info-value" id="phoneNumber">غير متوفر</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎭 الدور:</span>
+                                <span class="info-value badge" id="role">مستخدم</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">✅ الحالة:</span>
+                                <span class="info-value badge badge-success" id="status">نشط</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الإجراءات السريعة -->
+                    <div class="actions-card">
+                        <h2>إجراءات سريعة</h2>
+                        <div class="actions-grid">
+                            <a href="ChangePassword.html" class="action-btn">
+                                <span class="action-icon">🔒</span>
+                                <div>
+                                    <strong>تغيير كلمة السر</strong>
+                                    <p>تحديث كلمة المرور الخاصة بك</p>
+                                </div>
+                            </a>
+                            <a href="ChangeEmail.html" class="action-btn">
+                                <span class="action-icon">✉️</span>
+                                <div>
+                                    <strong>تغيير البريد الإلكتروني</strong>
+                                    <p>تحديث عنوان بريدك الإلكتروني</p>
+                                </div>
+                            </a>
+                            <a href="MyBookings.html" class="action-btn">
+                                <span class="action-icon">🎫</span>
+                                <div>
+                                    <strong>حجوزاتي</strong>
+                                    <p>عرض وإدارة حجوزاتك</p>
+                                </div>
+                            </a>
+                            <a href="Book.html" class="action-btn">
+                                <span class="action-icon">🚄</span>
+                                <div>
+                                    <strong>حجز تذكرة جديدة</strong>
+                                    <p>ابحث عن رحلة واحجز الآن</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="Profile.js"></script>
+</body>
+</html>

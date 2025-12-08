@@ -28,7 +28,10 @@ namespace API
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    config.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions.CommandTimeout(120) // زيادة وقت تنفيذ الاستعلامات إلى 120 ثانية
+                ));
             services.AddIdentity<User, IdentityRole<Guid>>(options =>
             {
                 options.Password.RequireNonAlphanumeric = false;

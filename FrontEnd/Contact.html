@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تواصل معنا - تاريخ السكة الحديد</title>
+  <link rel="stylesheet" href="Contact.css" />
+</head>
+<body>
+
+  
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <img src="Images/Logo.png" alt="Train Logo">
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="Home.html">الرئيسية</a></li>
+          <li><a href="Login.html">تسجيل الدخول</a></li>
+          <li><a href="Reg.html">تسجيل جديد</a></li>
+          <li><a href="Contact.html" class="active">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="contact-hero">
+    <div class="hero-inner">
+      <h1>تاريخ السكة الحديد المصرية</h1>
+      <p class="sub">سرد تاريخي مُختصر وتفاعلي لأهم محطات تطوير شبكة السكك الحديدية في مصر</p>
+    </div>
+
+  
+
+  
+  <main class="timeline-wrapper">
+    <div class="timeline-line"></div>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>1851 — البذرة الأولى</h3>
+        <p>البداية الفعلية لمشروعات السكك الحديدية في مصر؛ بدء أعمال الدراسات والإنشاء</p>
+      </div>
+    </article>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>1854 — أول مسار عملي</h3>
+        <p>تشغيل أول خط بين الإسكندرية وكفر الزيات، بداية ربط المدن بخدمات سكك حديدية منتظمة.</p>
+      </div>
+    </article>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>1898 — التوسع إلى الوجه القبلي</h3>
+        <p>امتداد الشبكة جنوباً ووصولها إلى محافظات الوجه القبلي ورفع سعة النقل.</p>
+      </div>
+    </article>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>1970 — تحديث وتطوير</h3>
+        <p>دخول جرارات وأنظمة إشارات أكثر تطوراً وتحديث البنية التحتية تدريجياً.</p>
+      </div>
+    </article>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>2019 — مشاريع تحديثية</h3>
+        <p>برامج لتحديث الإشارات، عربات جديدة ورفع جودة الخدمة في عدة محاور.</p>
+      </div>
+    </article>
+
+    <article class="timeline-card" data-appear>
+      <div class="card-dot"></div>
+      <div class="card-panel">
+        <h3>2023 — التحول الحديث</h3>
+        <p>إطلاق عربات VIP ومشروعات تجديد شبكات لرفع مستوى الراحة والسلامة.</p>
+      </div>
+    </article>
+  </main>
+
+
+  <section class="contact-info">
+    <div class="contact-grid">
+      <div class="contact-box">
+        <h4>الخط الساخن</h4>
+        <p class="big">15047</p>
+        <p>متاح للدعم والاستعلام طوال أيام الأسبوع</p>
+      </div>
+
+
+      <div class="contact-box">
+        <h4>أرسل رسالة</h4>
+        <form id="contactForm" class="contact-form">
+          <input name="name" type="text" placeholder="الاسم" required>
+          <input name="email" type="email" placeholder="البريد الإلكتروني" required>
+          <textarea name="message" rows="4" placeholder="اكتب رسالتك..." required></textarea>
+          <button class="btn-gold" type="submit">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+      <p>تابعنا على:
+        <a href="#">فيسبوك</a> |
+        <a href="#">تويتر</a> |
+        <a href="#">انستجرام</a>
+      </p>
+    </div>
+  </footer>
+
+  
+  <script>
+    
+    (function(){
+      const items = document.querySelectorAll('[data-appear]');
+      const reveal = () => {
+        const trigger = window.innerHeight * 0.85;
+        items.forEach(it => {
+          const r = it.getBoundingClientRect();
+          if (r.top < trigger) it.classList.add('in');
+        });
+      };
+      window.addEventListener('scroll', reveal);
+      window.addEventListener('resize', reveal);
+      reveal();
+    })();
+
+  
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'جاري الإرسال...';
+      setTimeout(()=> {
+        btn.disabled = false;
+        btn.textContent = 'إرسال الرسالة';
+        alert('تم إرسال الرسالة — سنرد عليك قريباً');
+        this.reset();
+      }, 900);
+    });
+  </script>
+</body>
+</html>

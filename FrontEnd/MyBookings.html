@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجوزاتي - قطارات مصر</title>
+    <link rel="stylesheet" href="MyBookings.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="Images/Logo.png" alt="Train Logo">
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="Home.html">الرئيسية</a></li>
+                        <li><a href="Book.html">حجز تذكرة</a></li>
+                        <li><a href="Contact.html">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <div class="user-profile">
+                        <div class="profile-toggle" onclick="toggleProfileDropdown()">
+                            <div class="profile-avatar">
+                                <span id="userInitials">U</span>
+                            </div>
+                            <span class="profile-name" id="profileUserName">مستخدم</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <strong id="dropdownUserName">اسم المستخدم</strong>
+                                    <span id="dropdownUserEmail">email@example.com</span>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="Profile.html"><span class="icon">👤</span> الملف الشخصي</a></li>
+                                <li><a href="MyBookings.html"><span class="icon">🎫</span> حجوزاتي</a></li>
+                                <li><a href="ChangePassword.html"><span class="icon">🔒</span> تغيير كلمة السر</a></li>
+                                <li><a href="ChangeEmail.html"><span class="icon">✉️</span> تغيير البريد الإلكتروني</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="logout()" class="logout-link"><span class="icon">🚪</span> تسجيل الخروج</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="bookings-container">
+                <div class="page-header">
+                    <h1>🎫 حجوزاتي</h1>
+                    <p class="subtitle">عرض وإدارة حجوزاتك</p>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-status="all">الكل</button>
+                        <button class="filter-btn" data-status="confirmed">مؤكدة</button>
+                        <button class="filter-btn" data-status="pending">معلقة</button>
+                        <button class="filter-btn" data-status="cancelled">ملغية</button>
+                    </div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الحجوزات...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">📭</div>
+                    <h2>لا توجد حجوزات</h2>
+                    <p>لم تقم بأي حجوزات بعد</p>
+                    <a href="Book.html" class="btn-primary">احجز رحلتك الأولى</a>
+                </div>
+
+                <!-- Bookings List -->
+                <div id="bookingsList" class="bookings-list">
+                    <!-- Bookings will be loaded here dynamically -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Booking Details Modal -->
+    <div id="bookingDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تفاصيل الحجز</h2>
+                <button class="close-btn" onclick="closeDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="bookingDetailsContent">
+                <!-- Details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Booking Modal -->
+    <div id="cancelModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>تأكيد الإلغاء</h2>
+                <button class="close-btn" onclick="closeCancelModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكد من إلغاء هذا الحجز؟</p>
+                <p class="warning-text">⚠️ لن تتمكن من التراجع عن هذا الإجراء</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="closeCancelModal()">رجوع</button>
+                    <button class="btn-danger" id="confirmCancelBtn" onclick="confirmCancelBooking()">تأكيد الإلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="MyBookings.js"></script>
+</body>
+</html>

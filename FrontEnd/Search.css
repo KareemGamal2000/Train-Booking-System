@@ -1,0 +1,698 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', sans-serif;
+}
+
+/* الألوان الأصلية
+   اللون الأساسي (الذهبي): #d4af37
+   اللون الثانوي/الداكن: #b38b2a
+   لون الخلفية الفاتح للبطاقة: #fffdf5
+*/
+
+body{
+    background:#fff;
+    color:#222;
+    direction:rtl;
+}
+
+
+.header{
+    width:100%;
+    background:#d4af37; /* ذهبي */
+    border-bottom:1px solid #b38b2a;
+}
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+    padding:10px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.logo img{
+    width:220px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.navbar ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+.navbar a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    opacity:0.8;
+}
+
+
+
+.results-section{
+    width: 100%;
+    max-width: 100%;
+    margin:50px auto;
+    padding:20px;
+}
+
+.title{
+    text-align:center;
+    color:#b38b2a; /* ذهبي داكن */
+    margin-bottom:30px;
+    font-size:28px;
+}
+
+
+.ticket{
+    position:relative;
+    background:#fffdf5; /* خلفية البطاقة فاتحة */
+    border-radius:15px; /* حواف مستديرة */
+    padding:25px;
+    margin-bottom:25px;
+   
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition:0.3s ease;
+    overflow:hidden;
+}
+
+.ticket:hover{
+    transform:scale(1.02);
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+.cut{
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:#d4a107; /* ذهبي فاتح */
+    top:50%;
+    transform:translateY(-50%);
+    border-radius:60%;
+    border:2px solid #d4af37; /* ذهبي */
+}
+
+.cut.left{ left:-22px; }
+.cut.right{ right:-22px; }
+
+
+.ticket-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+
+.info{
+    flex-grow:1;
+    min-width:60%; 
+}
+
+.info h3{
+    font-size:22px;
+    margin-bottom:15px;
+    color:#b38b2a; /* ذهبي داكن */
+    padding-bottom: 5px;
+}
+
+/* --- New Timeline Styles for Visual Design (Horizontal - Card Header) --- */
+
+.trip-timeline {
+    width: 100%;
+    padding: 20px 0;
+    margin: 5px 0 20px 0; 
+    position: relative;
+    border-top: 1px solid #eee; 
+    padding-top: 15px; 
+}
+
+.timeline-path {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    height: 60px;
+}
+
+.timeline-bar {
+    position: absolute;
+    right: 50px; 
+    left: 50px; 
+    top: 0px; 
+    height: 6px;
+    background: #d4af37; 
+    border-radius: 3px;
+    opacity: 0.9;
+}
+
+.timeline-point {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100px;
+    top: 5px; 
+    display: block; 
+}
+
+.timeline-station {
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 5px; 
+}
+
+.timeline-time {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.timeline-point::before {
+    content: '';
+    position: absolute;
+    top: -5px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4a107; 
+    border: 4px solid #fffdf5; 
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #d4af37; 
+}
+
+.duration-badge {
+    position: absolute;
+    top: -15px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background: #d4af37; 
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc; 
+    padding-bottom: 10px; 
+}
+
+.info-detail-item {
+    text-align: center;
+    padding: 0 10px;
+    flex-basis: 25%; 
+    flex-grow: 1; 
+}
+
+.info-detail-item span {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.info-detail-item strong {
+    font-size: 16px;
+    color: #b38b2a;
+    font-weight: 700;
+}
+
+/* تنسيق رابط عرض المسار ليكون عنصر تفصيلي */
+.stops-link{
+    color: #d4af37; /* ذهبي */
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline; /* إضافة خط سفلي واضح */
+    padding: 0;
+    background-color: transparent;
+    transition: color 0.3s;
+    font-size: 16px;
+    white-space: nowrap; /* لمنع الكسر في السطر */
+}
+.stops-link:hover{
+    text-decoration: none;
+    color: #b38b2a; /* ذهبي داكن */
+}
+
+
+/* --- Price Display Styles --- */
+.price{
+    text-align:center;
+    margin-right:20px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100px; 
+    padding-top: 10px;
+}
+
+/* تنسيق كل زوج من السعر والدرجة */
+.price-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; 
+    padding: 5px 0;
+    border-radius: 8px;
+}
+
+.price-value {
+    display:block;
+    font-size:24px;
+    font-weight:bold;
+    color:#333;
+}
+
+.price-class {
+    display:block;
+    font-size: 14px;
+    color: #b38b2a; 
+    font-weight: 600;
+}
+
+.price span.old-style{
+    display: none; 
+}
+
+
+/* زر الحجز (الزر الرئيسي) */
+.btn-reserve{
+    padding:12px 25px; 
+    background:#d4af37; 
+    color:#fff;
+    border:none;
+    border-radius:12px; 
+    cursor:pointer;
+    font-size:18px;
+    font-weight:700;
+    transition:0.3s;
+    width:100%;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+}
+
+.btn-reserve:hover{
+    background:#b38b2a; 
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6);
+}
+
+
+/* تنسيق قائمة المحطات الجديدة */
+.stops-details{
+    display:none; 
+}
+
+/* تنسيق القطار الحالي (تم نقله إلى المودال) */
+.tracking-status {
+    background-color: #fff8e1; /* لون خلفية للتحذير/التنبيه */
+    color: #b38b2a; /* لون النص الداكن */
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+    font-weight: bold;
+    text-align: center;
+    animation: pulse 1s infinite alternate; /* إضافة نبض بسيط لجذب الانتباه */
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.8; }
+}
+
+.stops-list-wrapper h4 {
+    display: none; 
+}
+
+.stops-list {
+    display: none;
+}
+
+.stop-time{
+    font-weight:bold;
+    color:#333;
+    margin-left:5px;
+}
+
+/* ========================================================== */
+/* ** أنماط الموديل (النافذة المنبثقة) ** */
+/* ========================================================== */
+
+.modal {
+    display: none; /* مخفي افتراضياً */
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* خلفية معتمة */
+    align-items: center; /* توسيط عمودي */
+    justify-content: center; /* توسيط أفقي */
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: #fffdf5;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px; /* الحجم الافتراضي لنموذج اختيار الدرجة */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+/* توسيع الموديل الكبير الخاص بالمسار */
+.modal-content.large-modal {
+    max-width: 700px; /* لتقليل العرض قليلاً */
+    height: auto;
+    min-height: 450px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    color: #b38b2a;
+    float: right;
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #d4af37;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    color: #b38b2a;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+/* ** START: CLASS SELECTION MODAL FIX ** */
+/* أنماط خيارات الدرجات */
+.class-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.class-option {
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر على الأطراف */
+    align-items: center;
+    padding: 10px 15px; /* تقليل الحشو قليلاً */
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.class-option:hover {
+    border-color: #d4af37; /* تلوين الحدود عند المرور بالماوس */
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+    background-color: #fffefe;
+}
+
+/* حاوية النص والسعر */
+.class-info {
+    display: flex;
+    flex-direction: column; /* جعل اسم الدرجة والسعر فوق بعضهما */
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.class-name {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px; /* تصغير الخط قليلاً */
+}
+
+.class-price {
+    font-weight: 700;
+    color: #d4af37;
+    font-size: 18px; /* تصغير الخط قليلاً */
+    margin-top: 2px;
+}
+
+.select-class-btn {
+    padding: 8px 15px;
+    background-color: #b38b2a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    flex-shrink: 0; /* منع الزر من الانكماش */
+    margin-right: 10px; /* مسافة بسيطة عن النص */
+}
+
+.select-class-btn:hover {
+    background-color: #8c6d1f;
+}
+/* ** END: CLASS SELECTION MODAL FIX ** */
+
+
+/* ========================================================== */
+/* ** أنماط شريط المسار التفصيلي العمودي المدمج (Improved Vertical Timeline) ** */
+/* ========================================================== */
+
+#tripMapContainer {
+    padding: 10px;
+}
+
+/* حاوية المسار الرئيسي */
+.timeline-wrapper {
+    position: relative;
+    max-height: 450px; 
+    overflow-y: auto; /* للسماح بالتمرير داخل القائمة عند الضرورة */
+    padding-top: 18px; /* مساحة لنصف أيقونة النقطة الأولى */
+    padding-bottom: 18px; /* مساحة لنصف أيقونة النقطة الأخيرة */
+}
+
+.detailed-timeline {
+    position: relative;
+    padding: 0;
+}
+
+/* شريط التتبع العمودي الثابت (الذي يمتد عبر القائمة بالكامل) */
+.timeline-vertical-track {
+    width: 6px;
+    background: #d4af37; /* لون ثابت للشريط */
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 15px; /* موضع ثابت للشريط على اليمين */
+    z-index: 5;
+}
+
+/* أيقونة القطار المتحركة (Train Marker) */
+#train-icon {
+    position: absolute;
+    /* يتم تعيين 'top' هنا بواسطة JS ليتموضع فوق المسار */
+    top: 0; 
+    right: 15px; /* يوضع فوق الشريط مباشرة */
+    width: 35px;
+    height: 35px;
+    background: #dc3545; 
+    border-radius: 50%;
+    transform: translate(50%, -50%); /* توسيط على المحور الأفقي للشريط */
+    transition: top 1s linear; 
+    z-index: 15;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px; 
+    color: white;
+}
+
+/* شكل القطار SVG أو نصي */
+#train-icon::before {
+    content: '\1F682'; 
+    font-family: 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* قائمة المحطات التفصيلية (تحتوي على المحطات كنقاط) */
+.stops-list-vertical {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+/* تنسيق عناصر القائمة (المحطات) */
+.stops-list-vertical li {
+    position: relative;
+    /* padding-left: 20px; */
+    padding: 15px 50px 15px 10px; /* مساحة النص وتوسيطه عمودياً */
+    margin-bottom: 0; 
+    text-align: right;
+    border-right: 3px solid transparent;
+    transition: all 0.3s;
+    line-height: 1.4;
+    cursor: default;
+}
+
+/* النقطة الدائرية للمحطة (الموضع الجديد) */
+.stops-list-vertical li::before {
+    content: '';
+    position: absolute;
+    right: 10px; /* موضع النقطة لترتبط بالشريط */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    border: 3px solid #d4af37;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+/* نقاط البداية والنهاية */
+.stops-list-vertical li:first-child::before {
+    background-color: #28a745; /* أخضر للبداية */
+    border-color: #28a745;
+}
+.stops-list-vertical li:last-child::before {
+    background-color: #dc3545; /* أحمر للنهاية */
+    border-color: #dc3545;
+}
+
+
+/* تمييز المحطة الحالية */
+.stops-list-vertical li.current-stop {
+    background-color: #fff8e1; 
+    border-right-color: #b38b2a; 
+}
+
+.stops-list-vertical li.current-stop::before {
+    /* تمييز النقطة بلون ذهبي داكن عند التوقف */
+    background-color: #b38b2a; 
+    box-shadow: 0 0 0 3px #fff8e1; /* ظل خفيف على النقطة */
+}
+
+
+.stops-list-vertical li strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.stops-list-vertical li .stop-time {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.footer{
+    /* ... (تنسيقات الـ footer) ... */
+    background:#d4af37; 
+    color:#fff;
+    text-align:center;
+    padding:25px 10px;
+    margin-top:40px;
+}
+
+/* ========================================================== */
+/* ** أنماط التجاوب (Responsive) ** */
+/* ========================================================== */
+
+@media(max-width:600px){
+    /* ... (تنسيقات شاشة الجوال الأخرى) ... */
+
+    .modal-content.large-modal {
+        max-width: 100%;
+        width: calc(100% - 20px);
+        padding: 20px 10px;
+    }
+    
+    .timeline-wrapper {
+        min-height: 300px;
+    }
+    
+    .stops-list-vertical li {
+        font-size: 14px;
+        padding-right: 45px;
+    }
+
+    .stops-list-vertical li strong {
+        font-size: 14px;
+    }
+    
+    .stops-list-vertical li .stop-time {
+        font-size: 12px;
+    }
+
+    .timeline-vertical-track {
+        right: 15px; 
+    }
+
+    .stops-list-vertical li::before {
+        right: 10px;
+        width: 10px;
+        height: 10px;
+        border-width: 2px;
+    }
+    
+    #train-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+    
+    /* إصلاح عرض اختيار الدرجة في الجوال */
+    .class-option {
+        flex-direction: row; /* إبقائها في صف واحد */
+        justify-content: space-between;
+        padding: 10px;
+    }
+    
+    .class-info {
+        align-items: flex-start;
+    }
+    
+    .select-class-btn {
+        margin-right: 0;
+        width: 80px; /* عرض ثابت للزر */
+    }
+}

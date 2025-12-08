@@ -22,13 +22,11 @@ namespace Data.Models.Trips
         public long TrainID { get; set; }
         public virtual Train Train { get; set; }
 
-        // محطة الاقلاع الاولى
         [ForeignKey("DepartureStationID")]
         [Required]
         public long? DepartureStationID { get; set; }
         public virtual Station Departure_Station { get; set; }
 
-        // محطة الوصول الرئيسية للرحلة 
         [ForeignKey("ArrivalStationID")]
         [Required]
         public long? ArrivalStationID { get; set; }

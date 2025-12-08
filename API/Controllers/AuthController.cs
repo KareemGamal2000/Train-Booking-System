@@ -8,7 +8,6 @@ using System.Security.Claims;
 
 namespace API.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -21,20 +20,32 @@ namespace API.Controllers
             _authService = authService;
             _userManager = userManager;
         }
+
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterDto reg)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                
+                var result = await _authService.RegisterAsync(reg);
+                
+                if (!result.IsAuthenticated)
+                    return BadRequest(new { message = result.Message });
+
+                return Ok(result);
             }
-            var result = await _authService.RegisterAsync(reg);
-            if (!result.IsAuthenticated)
-                return BadRequest(new { message = result.Message });
-
-            return Ok(result);
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Register Error: {ex.Message}");
+                Console.WriteLine($"❌ Stack Trace: {ex.StackTrace}");
+                return StatusCode(500, new { message = $"خطأ في التسجيل: {ex.Message}" });
+            }
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginDto login)
         {
@@ -59,6 +70,21 @@ namespace API.Controllers
             return Ok(new { message = result });
         }
 
+        //VERIFY CODE
+        [HttpPost("VerifyCode")]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.VerifyCodeAsync(model);
+
+            if (result.Contains("غير") || result.Contains("منتهي"))
+                return BadRequest(new { message = result });
+
+            return Ok(new { message = result });
+        }
 
         [HttpPost("ResetPassword")]
         [AllowAnonymous]
@@ -69,14 +95,12 @@ namespace API.Controllers
 
             var result = await _authService.ResetPasswordAsync(model);
 
-            // result is a string, so check for error keywords instead of .Succeeded
             if (result.Contains("فشل") || result.Contains("غير"))
                 return BadRequest(new { message = result });
 
             return Ok(new { message = result });
         }
 
-        // inside profile
         [HttpPost("ChangePassword")]
         [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto model)
@@ -92,14 +116,12 @@ namespace API.Controllers
 
             var result = await _authService.ChangePasswordAsync(userId, model);
 
-            // result is a string, so check for error keywords instead of .IsSuccess
             if (result.Contains("فشل") || result.Contains("غير"))
                 return BadRequest(new { message = result });
 
             return Ok(new { message = result });
         }
 
-        // inside profile
         [HttpPost("ChangeEmail")]
         [Authorize]
         public async Task<IActionResult> ChangeEmail([FromBody] ChangeEmailDto model)
@@ -121,7 +143,6 @@ namespace API.Controllers
             return Ok(new { message = result });
         }
 
-        // inside profile
         [HttpPost("ConfirmEmailChange")]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmailChange([FromBody] ConfirmEmailChangeDto model)
@@ -142,7 +163,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirst("uid")?.Value
-                                 ?? User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                         ?? User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized(new { message = "المستخدم غير مصرح له" });
@@ -157,7 +178,7 @@ namespace API.Controllers
             return Ok(new
             {
                 userId = user.Id,
-                userName = user.UserName,
+                userName = $"{user.FirstName} {user.LastName}",  
                 email = user.Email,
                 firstName = user.FirstName,
                 lastName = user.LastName,

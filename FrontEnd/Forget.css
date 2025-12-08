@@ -1,0 +1,245 @@
+
+
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Inter',sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+}
+
+body {
+    background:#fff;
+    color:#222;
+    direction:rtl;
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.header {
+    width: 100%;
+    background: #d4af37;
+    border-bottom: 1px solid #b38b2a;
+}
+
+.header-container {
+    max-width:1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    width:220px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.navbar a:hover { opacity: 0.8; }
+
+.login-section {
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 20px;
+    background: linear-gradient(180deg,#ffffff 0%,#faf7ef 100%);
+    position: relative; 
+}
+
+.hero-content {
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.login-form {
+    background:#fff;
+    width:433px;
+    min-height: 360px; 
+    padding:40px 30px;
+    border-radius:15px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+    text-align:center;
+    position: relative;
+}
+
+.login-form h2 {
+    color:#b38b2a;
+    margin-bottom:12px;
+}
+
+.info-text {
+    margin-bottom:18px;
+    font-size:15px;
+    color:#444;
+}
+
+
+.login-form input {
+    width:100%;
+    padding:12px 15px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+
+.btn-gold{
+    padding:12px 25px;
+    background:#d4af37;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    width:100%;
+} 
+.btn-gold:hover{
+    background:#b38b2a;
+}
+
+
+.btn-link{
+    background:transparent;
+    color:#b38b2a;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    max-width:30%;
+    text-decoration:underline;
+}
+
+
+.error-msg {
+    min-height: 16px; 
+    font-size: 13px;
+    color: #f58402;
+    margin-bottom: 10px; 
+    max-width:100%;
+    text-align:right;
+}
+
+
+.train-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+}
+
+.train-icon {
+    position: absolute;
+    top: 16px;      
+    left: -90px;
+    width: 160px;
+    height:130px;
+    background: url('Images/Train1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: moveTrain 16s linear infinite;
+}
+
+@keyframes moveTrain {
+    0% { left: -100px; }
+    100% { left: 100%; }
+}
+
+
+.footer {
+    position: relative;
+    background: #d4af37;
+    padding: 30px 20px;
+    text-align: center;
+    color: #fff;
+    flex-shrink:0;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.footer a:hover { opacity:0.7; }
+
+
+.row-between {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.step {
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+@media (max-width: 900px) {
+    .header-container { flex-direction:column; gap:10px; }
+    .navbar ul { flex-direction: column; width:100%; text-align:center; }
+    .navbar a { width:100%; padding:10px 0; font-size:20px; }
+
+    .train-icon{
+        top: 60px;
+        width: 140px;
+        height: 120px;
+    }
+
+    .login-form {
+        width: 360px;
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .train-icon {
+        top: 30px;
+        width: 230px;
+        height: 80px;
+    }
+
+    .login-form {
+        width: 310px;
+        padding: 30px 20px;
+    }
+
+    .row-between { flex-direction: column-reverse; gap:8px; }
+}

@@ -38,12 +38,32 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> PaymobCallback([FromBody] PaymobCallbackDto callback)
         {
+            // Log the received data for debugging
+            Console.WriteLine($"📥 Received callback: {System.Text.Json.JsonSerializer.Serialize(callback)}");
+            
+            if (callback == null)
+            {
+                return BadRequest(new { message = "بيانات الـ callback فارغة" });
+            }
+            
             var result = await _paymentService.ProcessCallbackAsync(callback);
 
             if (!result)
                 return BadRequest(new { message = "فشل معالجة الاستجابة" });
 
             return Ok(new { message = "تم معالجة الدفع بنجاح" });
+        }
+
+        [HttpGet("callback")]
+        [AllowAnonymous]
+        public async Task<IActionResult> PaymobCallbackGet([FromQuery] PaymobCallbackDto callback)
+        {
+            var result = await _paymentService.ProcessCallbackAsync(callback);
+
+            if (!result)
+                return Redirect($"/FrontEnd/PaymentCallback.html?success=false&message=فشل معالجة الاستجابة");
+
+            return Redirect($"/FrontEnd/PaymentCallback.html?success=true");
         }
 
         [HttpGet("booking/{bookingId}")]

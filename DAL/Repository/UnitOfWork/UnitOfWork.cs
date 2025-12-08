@@ -35,9 +35,9 @@ namespace Data.Repository.UnitOfWork
             Train = new TrainRepo(_context);
             Trip = new TripRepo(_context);
             Booking = new BookingRepo(_context);
-            Seat = new SeatRepo(context);
             Payment = new PaymentRepo(_context);
             Ticket = new TicketRepo(_context);
+            Seat = new SeatRepo(context, Ticket);
         }
 
         public async Task<bool> SaveChangesAsync()

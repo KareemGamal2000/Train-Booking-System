@@ -20,19 +20,31 @@ namespace Domain.Profiles
                 BookingId = booking.Booking_ID,
                 BookingDate = booking.BookingDate,
                 BookingStatus = booking.BookingStatus,
-                TripID = booking.TripID,
-                UserID = booking.UserID,
                 TotalPrice = booking.TotalPrice,
+                UserID = booking.UserID,
+                TripID = booking.TripID,
                 DepartureStopID = booking.DepartureStopID,
+                DepartureStationNameAR = booking.DepartureStop?.Station?.StationNameAR ?? "غير محدد",
+                DepartureStationNameEN = booking.DepartureStop?.Station?.StationNameEN ?? "N/A",
                 ArrivalStopID = booking.ArrivalStopID,
-                Tickets = booking.Tickets?.Select(t => Domain.Profiles.TicketProfile.ToTicketReadDto(t)).ToList() ?? new List<TicketReadDto>()
+                ArrivalStationNameAR = booking.ArrivalStop?.Station?.StationNameAR ?? "غير محدد",
+                ArrivalStationNameEN = booking.ArrivalStop?.Station?.StationNameEN ?? "N/A",
+                Tickets = booking.Tickets?
+                    .Select(t => TicketProfile.ToTicketReadDto(t))
+                    .ToList() ?? new List<TicketReadDto>()
             };
         }
 
-        // ============= Booking → BookingSummaryDto =============
+      
+        public static IEnumerable<BookingReadDto> ToBookingReadDtoList(this IEnumerable<Booking> bookings)
+        {
+            return bookings?.Select(b => b.ToBookingReadDto()) ?? Enumerable.Empty<BookingReadDto>();
+        }
+
         public static BookingSummaryDto ToBookingSummaryDto(this Booking booking)
         {
-            if (booking == null) return null;
+            if (booking == null)
+                return null;
 
             return new BookingSummaryDto
             {
@@ -66,12 +78,5 @@ namespace Domain.Profiles
         }
 
 
-        // ============= IEnumerable<Booking> → IEnumerable<BookingReadDto> =============
-        public static IEnumerable<BookingReadDto> ToBookingReadDtoList(this IEnumerable<Booking> bookings)
-        {
-            if (bookings == null) return Enumerable.Empty<BookingReadDto>();
-
-            return bookings.Select(b => b.ToBookingReadDto()).ToList();
-        }
     }
 }

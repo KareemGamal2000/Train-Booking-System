@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتيجة الدفع - نظام حجز القطارات</title>
+    <link rel="stylesheet" href="PaymentCallback.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=300" alt="Train Booking Logo">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="callback-card">
+            <!-- Loading State -->
+            <div id="loadingState" class="state-container">
+                <div class="loader"></div>
+                <h2>جاري التحقق من عملية الدفع...</h2>
+                <p>برجاء الانتظار بينما نقوم بتأكيد دفعتك</p>
+            </div>
+
+            <!-- Success State -->
+            <div id="successState" class="state-container" style="display: none;">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h2>تم الدفع بنجاح!</h2>
+                <p class="success-message">تم تأكيد حجزك وسيتم إرسال تفاصيل التذكرة إلى بريدك الإلكتروني</p>
+                
+                <div class="payment-details" id="paymentDetails">
+                    <!-- سيتم ملء التفاصيل من JavaScript -->
+                </div>
+
+                <div class="action-buttons">
+                    <button id="viewBookingBtn" class="btn btn-primary">عرض حجوزاتي</button>
+                    <button id="goHomeBtn" class="btn btn-secondary">العودة للرئيسية</button>
+                </div>
+            </div>
+
+            <!-- Failure State -->
+            <div id="failureState" class="state-container" style="display: none;">
+                <div class="failure-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                </div>
+                <h2>فشلت عملية الدفع</h2>
+                <p class="failure-message" id="failureMessage">للأسف، لم تكتمل عملية الدفع. برجاء المحاولة مرة أخرى.</p>
+                
+                <div class="failure-details" id="failureDetails">
+                    <!-- سيتم ملء تفاصيل الخطأ من JavaScript -->
+                </div>
+
+                <div class="action-buttons">
+                    <button id="retryPaymentBtn" class="btn btn-primary">إعادة المحاولة</button>
+                    <button id="goHomeFailBtn" class="btn btn-secondary">العودة للرئيسية</button>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="state-container" style="display: none;">
+                <div class="failure-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </div>
+                <h2>حدث خطأ</h2>
+                <p class="error-message" id="errorMessage">حدث خطأ أثناء معالجة طلبك. برجاء المحاولة مرة أخرى لاحقاً.</p>
+                
+                <div class="action-buttons">
+                    <button id="contactSupportBtn" class="btn btn-primary">التواصل مع الدعم</button>
+                    <button id="goHomeErrorBtn" class="btn btn-secondary">العودة للرئيسية</button>
+                </div>
+            </div>
+        </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 نظام حجز القطارات. جميع الحقوق محفوظة.</p>
+            <p>تواصل معنا: info@trainbooking.com | +20 123 456 7890</p>
+        </footer>
+    </div>
+
+    <script src="PaymentCallback.js"></script>
+</body>
+</html>

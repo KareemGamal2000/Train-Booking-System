@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - قطارات مصر</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/Logo.png" alt="Train Logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Home.html">الرئيسية</a></li>
+                    <li><a href="Login.html">تسجيل الدخول </a></li>
+                    <li><a href="Reg.html">تسجيل جديد</a></li>
+                    <li><a href="Contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="login-section">
+        <div class="train-line"></div>
+        <div class="train-icon"></div>
+        <div class="hero-content">
+            <div class="login-form">
+                <h2>تسجيل دخول</h2>
+
+                <form>
+                    <input type="email" id="email" placeholder="البريد الإلكتروني">
+                    <p class="error-msg" id="email-error"></p>
+                
+                    <input type="password" id="password" placeholder="كلمة المرور">
+                    <p class="error-msg" id="password-error"></p>
+
+                    <button type="submit" class="btn-gold">تسجيل</button>
+
+                    <div class="forgot-container">
+                        <a href="Forget.html" class="forgot-link">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <!-- مكان لرسالة الخطأ العامة من الباك اند -->
+                    <div id="general-error" class="error-msg"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            <p>تابعنا على: 
+                <a href="#">فيسبوك</a> |
+                <a href="#">تويتر</a> |
+                <a href="#">انستجرام</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="Login.js"></script>
+</body>
+</html>

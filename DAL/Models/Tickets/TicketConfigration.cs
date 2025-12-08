@@ -1,13 +1,7 @@
-﻿using Data.Models.Tickets;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Data.EntityConfigrations
+namespace Data.Models.Tickets
 {
     public class TicketConfigration : IEntityTypeConfiguration<Ticket>
     {

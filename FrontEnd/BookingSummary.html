@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص الحجز - قطارات مصر</title>
+    <link rel="stylesheet" href="BookingSummary.css">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/Logo.png" alt="Train Logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Home.html">الرئيسية</a></li>
+                    <li><a href="Book.html">حجز جديد</a></li>
+                    <li><a href="Contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section class="summary-section">
+        <div class="summary-container">
+            <h2 class="page-title">ملخص الحجز</h2>
+            
+            <!-- مؤشر التحميل -->
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>جاري تحميل تفاصيل الحجز...</p>
+            </div>
+
+            <!-- رسالة الخطأ -->
+            <div id="errorMessage" class="error-box" style="display: none;">
+                <h3>حدث خطأ</h3>
+                <p id="errorText"></p>
+                <button onclick="window.location.href='Book.html'" class="btn-secondary">العودة للبحث</button>
+            </div>
+
+            <!-- محتوى ملخص الحجز -->
+            <div id="summaryContent" class="summary-content" style="display: none;">
+                
+                <!-- بطاقة معلومات الرحلة -->
+                <div class="info-card">
+                    <h3 class="card-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z"/>
+                        </svg>
+                        تفاصيل الرحلة
+                    </h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">رقم الحجز:</span>
+                            <span class="value" id="bookingReference">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">حالة الحجز:</span>
+                            <span class="value status-badge" id="bookingStatus">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">رقم القطار:</span>
+                            <span class="value" id="trainName">—</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">الدرجة:</span>
+                            <span class="value" id="className">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة معلومات المحطات -->
+                <div class="info-card">
+                    <h3 class="card-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="10" r="3"/>
+                            <path d="M12 21V13"/>
+                            <path d="M5 10H19"/>
+                        </svg>
+                        محطات الرحلة
+                    </h3>
+                    <div class="route-display">
+                        <div class="station-box departure">
+                            <div class="station-icon">🚉</div>
+                            <div class="station-details">
+                                <p class="station-label">محطة الانطلاق</p>
+                                <h4 class="station-name" id="departureStation">—</h4>
+                                <p class="station-time" id="departureTime">—</p>
+                            </div>
+                        </div>
+                        <div class="journey-line">
+                            <div class="train-icon">🚄</div>
+                            <div class="duration" id="journeyDuration">—</div>
+                        </div>
+                        <div class="station-box arrival">
+                            <div class="station-icon">🏁</div>
+                            <div class="station-details">
+                                <p class="station-label">محطة الوصول</p>
+                                <h4 class="station-name" id="arrivalStation">—</h4>
+                                <p class="station-time" id="arrivalTime">—</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة التذاكر -->
+                <div class="info-card">
+                    <h3 class="card-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                        التذاكر
+                    </h3>
+                    <div id="ticketsContainer" class="tickets-container">
+                        <!-- سيتم ملؤها ديناميكياً -->
+                    </div>
+                </div>
+
+                <!-- بطاقة الملخص المالي -->
+                <div class="info-card total-card">
+                    <div class="total-section">
+                        <div class="total-row">
+                            <span class="total-label">عدد التذاكر:</span>
+                            <span class="total-value" id="ticketCount">—</span>
+                        </div>
+                        <div class="total-row main-total">
+                            <span class="total-label">المبلغ الإجمالي:</span>
+                            <span class="total-value" id="totalPrice">— ج.م</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- أزرار الإجراءات -->
+                <div class="actions-section">
+                    <button id="payBtn" class="btn-primary" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="5" width="20" height="14" rx="2"/>
+                            <path d="M2 10H22"/>
+                        </svg>
+                        الدفع الآن
+                    </button>
+                    <button onclick="window.location.href='Book.html'" class="btn-secondary">
+                        حجز رحلة أخرى
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="footer">
+        <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+        <p>تابعنا على: 
+            <a href="#">فيسبوك</a> |
+            <a href="#">تويتر</a> |
+            <a href="#">انستجرام</a>
+        </p>
+    </footer>
+
+    <script src="BookingSummary.js"></script>
+</body>
+</html>

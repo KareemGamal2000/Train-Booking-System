@@ -1,0 +1,345 @@
+/* PaymentCallback.css - تنسيق صفحة نتيجة الدفع */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html, body {
+    overflow-x: hidden !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff;
+    color: #222;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+    background: #d4af37;
+    border-bottom: 1px solid #b38b2a;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 220px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.callback-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.state-container {
+    text-align: center;
+}
+
+/* Loading State */
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #d4af37;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success State */
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.success-icon svg {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Failure State */
+.failure-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #f44336;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: shake 0.5s ease-out;
+}
+
+.failure-icon svg {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+/* Typography */
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.success-message {
+    color: #4caf50;
+    font-weight: 500;
+}
+
+.failure-message {
+    color: #f44336;
+    font-weight: 500;
+}
+
+.error-message {
+    color: #ff9800;
+    font-weight: 500;
+}
+
+/* Payment Details */
+.payment-details,
+.failure-details {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 25px 0;
+    text-align: right;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.detail-value {
+    color: #333;
+    font-family: 'Courier New', monospace;
+}
+
+/* Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 14px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #d4af37;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #b38b2a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-secondary {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    background: #222;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 5px 0;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .callback-card {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .success-icon,
+    .failure-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .success-icon svg,
+    .failure-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .detail-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .action-buttons {
+    flex-direction: row-reverse;
+}
+
+/* Loading Animation Enhancement */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+#loadingState h2,
+#loadingState p {
+    animation: pulse 2s ease-in-out infinite;
+}

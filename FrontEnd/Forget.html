@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>استعادة كلمة المرور - قطارات مصر</title>
+    <link rel="stylesheet" href="Forget.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Images/Logo.png" alt="Train Logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="Home.html">الرئيسية</a></li>
+                    <li><a href="Login.html">تسجيل الدخول</a></li>
+                    <li><a href="Reg.html">تسجيل جديد</a></li>
+                    <li><a href="Contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="login-section">
+        <div class="train-line"></div>
+        <div class="train-icon"></div>
+
+        <div class="hero-content">
+            <div class="login-form" id="formBox">
+                <h2 id="title">استعادة كلمة المرور</h2>
+                <p class="info-text" id="info">أدخل بريدك الإلكتروني لإرسال كود الاستعادة.</p>
+
+                <form id="forget-form" novalidate>
+
+     
+                    <div id="emailStep" class="step">
+                        <input type="email" id="email" placeholder="البريد الإلكتروني">
+                        <p class="error-msg" id="email-error"></p>
+
+                        <button type="submit" class="btn-gold" id="sendCodeBtn">إرسال الكود</button>
+                    </div>
+
+                    <div id="codeStep" class="step" style="display:none;">
+                        <input type="text" id="code" placeholder="أدخل كود الاستعادة">
+                        <p class="error-msg" id="code-error"></p>
+
+                        <div class="row-between">
+                            <button type="button" class="btn-link" id="backToEmail">تعديل الإيميل</button>
+                            <button type="submit" class="btn-gold" id="verifyCodeBtn">تأكيد الكود</button>
+                        </div>
+                    </div>
+
+        
+                    <div id="resetStep" class="step" style="display:none;">
+                        <input type="password" id="passwordNew" placeholder="كلمة المرور الجديدة">
+                        <p class="error-msg" id="passwordNew-error"></p>
+
+                        <input type="password" id="passwordConfirm" placeholder="تأكيد كلمة المرور">
+                        <p class="error-msg" id="passwordConfirm-error"></p>
+
+                        <div class="row-between">
+                            <button type="button" class="btn-link" id="backToCode">رجوع</button>
+                            <button type="submit" class="btn-gold" id="savePassBtn">حفظ كلمة المرور</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            <p>تابعنا على:
+                <a href="#">فيسبوك</a> |
+                <a href="#">تويتر</a> |
+                <a href="#">انستجرام</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="Forget.js"></script>
+</body>
+</html>

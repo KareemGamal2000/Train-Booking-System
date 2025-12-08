@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قطارات مصر</title>
+    <link rel="stylesheet" href="Home.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="Images/Logo.png" alt="Train Logo">
+                </div>
+
+                <nav class="navbar">
+                    <ul id="mainNavLinks">
+                        <li><a href="Home.html">الرئيسية</a></li>
+                        <li id="loginLink"><a href="Login.html">تسجيل الدخول</a></li>
+                        <li id="registerLink"><a href="Reg.html">تسجيل جديد</a></li>
+                        <li><a href="Contact.html">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <!-- قائمة الملف الشخصي (مخفية افتراضياً) -->
+                    <div class="user-profile" id="userProfileMenu" style="display: none;">
+                        <div class="profile-toggle" onclick="toggleProfileDropdown()">
+                            <div class="profile-avatar">
+                                <span id="userInitials">U</span>
+                            </div>
+                            <span class="profile-name" id="profileUserName">مستخدم</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <strong id="dropdownUserName">اسم المستخدم</strong>
+                                    <span id="dropdownUserEmail">email@example.com</span>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="Profile.html"><span class="icon">👤</span> الملف الشخصي</a></li>
+                                <li><a href="MyBookings.html"><span class="icon">🎫</span> حجوزاتي</a></li>
+                                <li><a href="ChangePassword.html"><span class="icon">🔒</span> تغيير كلمة السر</a></li>
+                                <li><a href="ChangeEmail.html"><span class="icon">✉️</span> تغيير البريد الإلكتروني</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="logout()" class="logout-link"><span class="icon">🚪</span> تسجيل الخروج</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="train-icon2"></div>
+
+                    <h1>احجز مقعدك بسهولة عبر قطارات مصر</h1>
+                    <p>خدمة حديثة وسريعة لحجز مقاعد القطارات بكل سهولة وأمان.</p>
+                    <button class="btn-gold" onclick="location.href='Book.html'">أحجز تذكرة</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+
+            <div class="footer-content">
+                <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+                <p>تابعنا على: 
+                    <a href="#">فيسبوك</a> |
+                    <a href="#">تويتر</a> |
+                    <a href="#">انستجرام</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="Home.js"></script>
+</body>
+</html>

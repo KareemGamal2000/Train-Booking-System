@@ -73,7 +73,25 @@ namespace API.Controllers
             var trips = await _tripService.FindTripsWithTwoStationsAsync(departureStationName, arrivalStationName);
             return Ok(trips);
         }
+        [HttpGet("search/ByStationId")]
+        public async Task<IActionResult> FindTripsByStationIds(
+           [FromQuery] long departureStationId,
+           [FromQuery] long arrivalStationId)
+        {
+            if (departureStationId <= 0 || arrivalStationId <= 0)
+            {
+                return BadRequest(new
+                {
+                    message = "معرفات المحطات غير صحيحة"
+                });
+            }
 
+            var trips = await _tripService.FindTripsWithTwoStationsIdAsync(
+                departureStationId,
+                arrivalStationId);
+
+            return Ok(trips);
+        }
         // POST: api/Trip
         [HttpPost]
         public async Task<IActionResult> CreateTrip([FromBody] TripCreateDto tripDto)

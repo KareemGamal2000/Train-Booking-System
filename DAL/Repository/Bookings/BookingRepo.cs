@@ -1,4 +1,4 @@
-﻿using Data.Context;
+using Data.Context;
 using Data.Models;
 using Data.Models.Tickets;
 using Data.Repository.MainRepo;
@@ -24,6 +24,7 @@ namespace Data.Repository.Bookings
         
         public async Task<IEnumerable<Booking>> GetBookingsByUserAsync(Guid userId)
         {
+            // تحميل البيانات الأساسية مع أسماء المحطات
             string[] includes = new string[]
               {
                  "Tickets.Seat",

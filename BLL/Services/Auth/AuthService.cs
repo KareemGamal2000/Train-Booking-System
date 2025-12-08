@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Auth
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
@@ -34,6 +34,7 @@ namespace Domain.Services.Auth
             _emailService = emailService;
             _jwt = jwt.Value;
         }
+
         //REGISTER
         public async Task<AuthDto> RegisterAsync(RegisterDto newuser)
         {
@@ -66,6 +67,7 @@ namespace Domain.Services.Auth
                 Message = "User Registered Successfully"
             };
         }
+
         //LOGIN
         public async Task<AuthDto> LoginAsync(LoginDto login)
         {
@@ -90,6 +92,7 @@ namespace Domain.Services.Auth
                 Message = "Login Successfully"
             };
         }
+
         //ADD ROLE
         public async Task<string> AddRoleAsync(AddRoleDto role)
         {
@@ -108,6 +111,8 @@ namespace Domain.Services.Auth
 
             return result.Succeeded ? "Role added successfully" : "Failed to add role";
         }
+
+        //FORGOT PASSWORD
         public async Task<string> ForgotPasswordAsync(ForgotPasswordDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -128,7 +133,24 @@ namespace Domain.Services.Auth
             return "A password reset code has been sent to your email address.";
         }
 
-        //  RESET PASSWORD
+        //VERIFY CODE
+        public async Task<string> VerifyCodeAsync(VerifyCodeDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return "البريد الإلكتروني غير موجود";
+
+            // التحقق من الرمز
+            if (user.SecurityStamp != model.Code)
+                return "الكود غير صحيح";
+
+            if ((DateTime.UtcNow - user.UpdatedAt.GetValueOrDefault()).TotalMinutes > 15)
+                return "الكود منتهي الصلاحية";
+
+            return "تم التحقق من الكود بنجاح";
+        }
+
+        //RESET PASSWORD
         public async Task<string> ResetPasswordAsync(ResetPasswordDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -161,7 +183,7 @@ namespace Domain.Services.Auth
             return "تم إعادة تعيين كلمة المرور بنجاح";
         }
 
-        //  CHANGE PASSWORD 
+        //CHANGE PASSWORD 
         public async Task<string> ChangePasswordAsync(string userId, ChangePasswordDto model)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -181,7 +203,7 @@ namespace Domain.Services.Auth
             return "The password has been successfully changed.";
         }
 
-        //  CHANGE EMAIL 
+        //CHANGE EMAIL 
         public async Task<string> ChangeEmailAsync(string userId, ChangeEmailDto model)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -203,7 +225,7 @@ namespace Domain.Services.Auth
             return "A confirmation code has been sent to your new email address.";
         }
 
-        //  CONFIRM EMAIL CHANGE
+        //CONFIRM EMAIL CHANGE
         public async Task<string> ConfirmEmailChangeAsync(ConfirmEmailChangeDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.NewEmail);
@@ -249,14 +271,15 @@ namespace Domain.Services.Auth
 
             return "تم تغيير البريد الإلكتروني بنجاح";
         }
+
         //CREATE JWT TOKEN
         private async Task<JwtSecurityToken> CreateJwtToken(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub , user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email , user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id.ToString())
             };
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تغيير البريد الإلكتروني - قطارات مصر</title>
+    <link rel="stylesheet" href="ChangeEmail.css">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="Images/Logo.png" alt="Train Logo">
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="Home.html">الرئيسية</a></li>
+                        <li><a href="Book.html">حجز تذكرة</a></li>
+                        <li><a href="Contact.html">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <div class="user-profile">
+                        <div class="profile-toggle" onclick="toggleProfileDropdown()">
+                            <div class="profile-avatar">
+                                <span id="userInitials">U</span>
+                            </div>
+                            <span class="profile-name" id="profileUserName">مستخدم</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <strong id="dropdownUserName">اسم المستخدم</strong>
+                                    <span id="dropdownUserEmail">email@example.com</span>
+                                </div>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a href="Profile.html"><span class="icon">👤</span> الملف الشخصي</a></li>
+                                <li><a href="MyBookings.html"><span class="icon">🎫</span> حجوزاتي</a></li>
+                                <li><a href="ChangePassword.html"><span class="icon">🔒</span> تغيير كلمة السر</a></li>
+                                <li><a href="ChangeEmail.html"><span class="icon">✉️</span> تغيير البريد الإلكتروني</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="logout()" class="logout-link"><span class="icon">🚪</span> تسجيل الخروج</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-card">
+                    <div class="form-header">
+                        <div class="icon-circle">
+                            <span>✉️</span>
+                        </div>
+                        <h1>تغيير البريد الإلكتروني</h1>
+                        <p class="subtitle">قم بتحديث عنوان بريدك الإلكتروني</p>
+                    </div>
+
+                    <div class="current-email-display">
+                        <span class="label">البريد الإلكتروني الحالي:</span>
+                        <span class="current-email" id="currentEmail">جاري التحميل...</span>
+                    </div>
+
+                    <form id="changeEmailForm" onsubmit="handleChangeEmail(event)">
+                        <div class="alert alert-info">
+                            <strong>ℹ️ ملاحظة مهمة:</strong>
+                            <p>سيتم إرسال رمز التحقق إلى البريد الإلكتروني الجديد لتأكيد التغيير</p>
+                        </div>
+
+                        <div id="errorMessage" class="alert alert-error" style="display: none;"></div>
+                        <div id="successMessage" class="alert alert-success" style="display: none;"></div>
+
+                        <div class="form-group">
+                            <label for="newEmail">البريد الإلكتروني الجديد *</label>
+                            <input 
+                                type="email" 
+                                id="newEmail" 
+                                name="newEmail" 
+                                placeholder="example@email.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">كلمة السر للتأكيد *</label>
+                            <div class="password-input">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="أدخل كلمة السر لتأكيد التغيير"
+                                    required
+                                >
+                                <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                    <span class="eye-icon">👁️</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <span id="submitText">تغيير البريد الإلكتروني</span>
+                            <span id="submitSpinner" class="spinner" style="display: none;"></span>
+                        </button>
+
+                        <div class="form-footer">
+                            <a href="Profile.html" class="back-link">← العودة للملف الشخصي</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Verification Code Section -->
+                <div class="form-card" id="verificationSection" style="display: none; margin-top: 2rem;">
+                    <div class="form-header">
+                        <div class="icon-circle">
+                            <span>🔐</span>
+                        </div>
+                        <h2>تأكيد البريد الإلكتروني</h2>
+                        <p class="subtitle">أدخل رمز التحقق المرسل إلى بريدك الجديد</p>
+                    </div>
+
+                    <form id="verificationForm" onsubmit="handleVerification(event)">
+                        <div id="verificationError" class="alert alert-error" style="display: none;"></div>
+
+                        <div class="form-group">
+                            <label for="verificationCode">رمز التحقق *</label>
+                            <input 
+                                type="text" 
+                                id="verificationCode" 
+                                name="verificationCode" 
+                                placeholder="أدخل رمز التحقق المكون من 6 أرقام"
+                                required
+                                maxlength="6"
+                                pattern="[0-9]{6}"
+                            >
+                            <p class="help-text">تحقق من صندوق الوارد أو البريد المزعج</p>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="verifyBtn">
+                            <span id="verifyText">تأكيد التغيير</span>
+                            <span id="verifySpinner" class="spinner" style="display: none;"></span>
+                        </button>
+
+                        <div class="resend-section">
+                            <p>لم تستلم الرمز؟ <a href="#" onclick="resendCode(event)" class="resend-link">إعادة الإرسال</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 قطارات مصر. جميع الحقوق محفوظة.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="ChangeEmail.js"></script>
+</body>
+</html>

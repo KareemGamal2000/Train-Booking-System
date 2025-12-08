@@ -15,5 +15,7 @@ namespace Data.Repository.Trip
         Task<IEnumerable<Data.Models.Trips.Trip>> GetTripsByStationAsync(string stationName);
 
         Task<IEnumerable<Data.Models.Trips.Trip>> FindTripsWithTwoStationsAsync(string departureStationName, string arrivalStationName);
+
+        Task<IEnumerable<Data.Models.Trips.Trip>> FindTripsWithTwoStationIdsAsync(long departureStationId,long arrivalStationId);
     }
 }

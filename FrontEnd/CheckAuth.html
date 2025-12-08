@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فحص حالة تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        h1 {
+            color: #d4af37;
+            text-align: center;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border-left: 4px solid #f44336;
+        }
+        button {
+            background: #d4af37;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #b38b2a;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .token-preview {
+            word-break: break-all;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 فحص حالة تسجيل الدخول</h1>
+
+    <div class="card">
+        <h2>حالة الـ Token</h2>
+        <div id="tokenStatus"></div>
+        <div id="tokenPreview" class="token-preview" style="display: none;"></div>
+    </div>
+
+    <div class="card">
+        <h2>معلومات المستخدم</h2>
+        <div id="userInfo"></div>
+    </div>
+
+    <div class="card">
+        <h2>جميع البيانات المحفوظة</h2>
+        <div id="allData"></div>
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <h2>إجراءات</h2>
+        <button onclick="refreshData()">🔄 تحديث</button>
+        <button onclick="clearToken()">🗑️ حذف Token</button>
+        <button onclick="clearAll()">❌ حذف كل البيانات</button>
+        <button onclick="window.location.href='Login.html'">🔐 تسجيل الدخول</button>
+        <button onclick="window.location.href='Book.html'">🎫 البحث عن رحلة</button>
+    </div>
+
+    <script>
+        function checkTokenStatus() {
+            const tokenStatusDiv = document.getElementById('tokenStatus');
+            const tokenPreviewDiv = document.getElementById('tokenPreview');
+            const token = localStorage.getItem('authToken');
+
+            if (token && token.trim() !== '') {
+                tokenStatusDiv.innerHTML = `
+                    <div class="status success">
+                        <strong>✓ Token موجود</strong><br>
+                        الطول: ${token.length} حرف<br>
+                        <button onclick="toggleTokenPreview()" style="margin-top: 10px;">عرض Token</button>
+                    </div>
+                `;
+                tokenPreviewDiv.textContent = token;
+            } else {
+                tokenStatusDiv.innerHTML = `
+                    <div class="status error">
+                        <strong>✗ لا يوجد Token</strong><br>
+                        يجب تسجيل الدخول أولاً
+                    </div>
+                `;
+                tokenPreviewDiv.style.display = 'none';
+            }
+        }
+
+        function toggleTokenPreview() {
+            const tokenPreviewDiv = document.getElementById('tokenPreview');
+            if (tokenPreviewDiv.style.display === 'none') {
+                tokenPreviewDiv.style.display = 'block';
+            } else {
+                tokenPreviewDiv.style.display = 'none';
+            }
+        }
+
+        function checkUserInfo() {
+            const userInfoDiv = document.getElementById('userInfo');
+            const email = localStorage.getItem('userEmail');
+            const username = localStorage.getItem('username');
+
+            let html = '<ul style="list-style: none; padding: 0;">';
+            
+            if (email) {
+                html += `<li>📧 البريد الإلكتروني: <code>${email}</code></li>`;
+            }
+            if (username) {
+                html += `<li>👤 اسم المستخدم: <code>${username}</code></li>`;
+            }
+            
+            if (!email && !username) {
+                html += '<li class="status error">لا توجد معلومات مستخدم محفوظة</li>';
+            }
+            
+            html += '</ul>';
+            userInfoDiv.innerHTML = html;
+        }
+
+        function checkAllData() {
+            const allDataDiv = document.getElementById('allData');
+            const relevantKeys = [
+                'authToken',
+                'userEmail',
+                'username',
+                'selectedTripId',
+                'selectedClassId',
+                'selectedClassName',
+                'selectedClassPrice',
+                'selectedTrainName',
+                'departureStopId',
+                'arrivalStopId',
+                'searchFromStationName',
+                'searchToStationName',
+                'pendingSeatSelection'
+            ];
+
+            let html = '<ul style="list-style: none; padding: 0;">';
+            let count = 0;
+
+            relevantKeys.forEach(key => {
+                const value = localStorage.getItem(key);
+                if (value) {
+                    count++;
+                    const displayValue = key === 'authToken' 
+                        ? `${value.substring(0, 30)}... (${value.length} حرف)`
+                        : value;
+                    html += `<li>🔹 <code>${key}</code>: ${displayValue}</li>`;
+                }
+            });
+
+            if (count === 0) {
+                html += '<li class="status error">لا توجد بيانات محفوظة</li>';
+            } else {
+                html += `<li style="margin-top: 15px; color: #4caf50;">إجمالي البيانات: ${count}</li>`;
+            }
+
+            html += '</ul>';
+            allDataDiv.innerHTML = html;
+        }
+
+        function refreshData() {
+            checkTokenStatus();
+            checkUserInfo();
+            checkAllData();
+        }
+
+        function clearToken() {
+            if (confirm('هل تريد حذف الـ Token؟')) {
+                localStorage.removeItem('authToken');
+                refreshData();
+                alert('✓ تم حذف Token');
+            }
+        }
+
+        function clearAll() {
+            if (confirm('هل تريد حذف جميع البيانات المحفوظة؟')) {
+                localStorage.clear();
+                refreshData();
+                alert('✓ تم حذف جميع البيانات');
+            }
+        }
+
+        // التحديث التلقائي عند تحميل الصفحة
+        window.addEventListener('load', refreshData);
+    </script>
+</body>
+</html>

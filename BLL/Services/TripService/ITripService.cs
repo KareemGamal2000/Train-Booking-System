@@ -15,6 +15,7 @@ namespace Domain.Services.TripService
         Task<TripReadDto?> GetTripDetailsAsync(int tripId);
         Task<IEnumerable<TripReadDto>> GetTripsByStationAsync(string stationName);
         Task<IEnumerable<TripReadDto>> FindTripsWithTwoStationsAsync(string departureStationName, string arrivalStationName);
+        Task<IEnumerable<TripReadDto>> FindTripsWithTwoStationsIdAsync(long departureStationId, long arrivalStationId);
         Task<TripReadDto> CreateTripAsync(TripCreateDto tripDto);
         Task<bool> UpdateTripAsync(int tripId, TripCreateDto tripDto);
         Task<bool> DeleteTripAsync(int tripId);

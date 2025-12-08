@@ -104,12 +104,10 @@ namespace Data.Repository.Trip
 
             var tripIdsQuery = _context.Trips.AsNoTracking()
                 .Where(t => t.Stops.Any(tsDep =>
-                    (tsDep.Station.StationNameAR.ToLower().StartsWith(lowerDeparture) ||
-                     tsDep.Station.StationNameEN.ToLower().StartsWith(lowerDeparture))
+                    (tsDep.Station.StationNameAR.ToLower().StartsWith(lowerDeparture))
                     &&
                     t.Stops.Any(tsArr =>
-                        (tsArr.Station.StationNameAR.ToLower().StartsWith(lowerArrival) ||
-                         tsArr.Station.StationNameEN.ToLower().StartsWith(lowerArrival))
+                        (tsArr.Station.StationNameAR.ToLower().StartsWith(lowerArrival))
                     && tsDep.StopSequence < tsArr.StopSequence
                     )
                 ))
@@ -123,6 +121,7 @@ namespace Data.Repository.Trip
             }
             string[] includes = new string[]
                {
+                   "Train.TrainCoaches.Coach",
                    "Train.TrainCoaches.Coach.Class",
                    "Departure_Station",
                    "Arrival_Station",
@@ -145,9 +144,91 @@ namespace Data.Repository.Trip
                 }
             }
             return finalTrips;
-
         }
 
+        public async Task<IEnumerable<Data.Models.Trips.Trip>> FindTripsWithTwoStationIdsAsync(
+            long departureStationId,
+            long arrivalStationId)
+        {
+            if (departureStationId <= 0 || arrivalStationId <= 0)
+            {
+                Console.WriteLine($"⚠️ معرفات غير صحيحة: Dep={departureStationId}, Arr={arrivalStationId}");
+                return Enumerable.Empty<Data.Models.Trips.Trip>();
+            }
 
+            Console.WriteLine($"🔍 البحث عن رحلات من محطة {departureStationId} إلى محطة {arrivalStationId}");
+
+            try
+            {
+                var depExists = await _context.Stations.AnyAsync(s => s.StationID == departureStationId);
+                var arrExists = await _context.Stations.AnyAsync(s => s.StationID == arrivalStationId);
+                
+                Console.WriteLine($"📊 المحطة الأولى موجودة: {depExists}, المحطة الثانية موجودة: {arrExists}");
+
+                if (!depExists || !arrExists)
+                {
+                    Console.WriteLine("❌ إحدى المحطات غير موجودة في قاعدة البيانات!");
+                    return Enumerable.Empty<Data.Models.Trips.Trip>();
+                }
+
+                var tripIdsQuery = _dbSet
+                    .AsNoTracking()
+                    .Where(t => t.Stops.Any(tsDep =>
+                        tsDep.StationID.HasValue && 
+                        tsDep.StationID.Value == departureStationId &&
+                        t.Stops.Any(tsArr =>
+                            tsArr.StationID.HasValue &&
+                            tsArr.StationID.Value == arrivalStationId &&
+                            tsDep.StopSequence < tsArr.StopSequence
+                        )
+                    ))
+                    .Select(t => t.TripID)
+                    .Distinct();
+
+                var tripIds = await tripIdsQuery.ToListAsync();
+
+                Console.WriteLine($"📊 عدد معرفات الرحلات المطابقة: {tripIds.Count}");
+
+                if (!tripIds.Any())
+                {
+                    Console.WriteLine("⚠️ لم يتم العثور على رحلات مطابقة");
+                    return Enumerable.Empty<Data.Models.Trips.Trip>();
+                }
+
+                string[] includes = new string[]
+                {
+                    "Train.TrainCoaches.Coach",
+                    "Train.TrainCoaches.Coach.Class",
+                    "Departure_Station",
+                    "Arrival_Station",
+                    "Stops.Station",
+                    "SegmentPrices.Class",
+                    "SegmentPrices.StartStop.Station",
+                    "SegmentPrices.EndStop.Station"
+                };
+
+                var finalTrips = await GetAllAsync(
+                    filter: t => tripIds.Contains(t.TripID),
+                    include: includes
+                );
+
+                foreach (var trip in finalTrips)
+                {
+                    if (trip.Stops != null)
+                    {
+                        trip.Stops = trip.Stops.OrderBy(ts => ts.StopSequence).ToList();
+                    }
+                }
+
+                Console.WriteLine($"✅ تم العثور على {finalTrips.Count()} رحلة");
+                return finalTrips;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ خطأ في البحث: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                throw;
+            }
+        }
     }
 }

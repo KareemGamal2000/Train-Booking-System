@@ -16,5 +16,6 @@ namespace Domain.Services.BookingService
         Task<BookingSummaryDto> GetBookingSummaryAsync(Guid bookingId);
         Task<bool> ConfirmBookingAsync(Guid bookingId);
         Task<AvailableSeatsDto> GetAvailableSeatsAsync(int tripId, long classId, int departureStopId, int arrivalStopId);
+        Task<int> GenerateSeatsForCoachAsync(long coachId);
     }
 }

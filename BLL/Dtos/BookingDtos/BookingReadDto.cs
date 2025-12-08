@@ -16,7 +16,12 @@ namespace Domain.Dtos.BookingDto
         public Guid UserID { get; set; }
         public int TripID { get; set; }
         public int DepartureStopID { get; set; }
-        public int ArrivalStopID { get; set; }
-        public List<TicketReadDto> Tickets { get; set; } 
+        public int ArrivalStopID { get; set; }  
+        public string DepartureStationNameAR { get; set; }
+        public string DepartureStationNameEN { get; set; }
+        public string ArrivalStationNameAR { get; set; }
+        public string ArrivalStationNameEN { get; set; }
+ 
+        public List<TicketReadDto> Tickets { get; set; } = new List<TicketReadDto>();
     }
 }

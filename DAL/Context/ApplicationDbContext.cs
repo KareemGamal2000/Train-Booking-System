@@ -1,5 +1,4 @@
-﻿using Data.EntityConfigrations;
-using Data.Models;
+﻿using Data.Models;
 using Data.Models.Tickets;
 using Data.Models.Trips;
 using Microsoft.AspNetCore.Identity;

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>حجز مقعد - قطار</title>
+  <link rel="stylesheet" href="Seat.css" />
+</head>
+<body>
+  <header class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <div>
+        <h1>اختيار المقعد</h1>
+        <!-- سيتم تحديث هذا النص بواسطة JavaScript -->
+        <p class="sub" id="tripRouteDisplay">اختر مقعدك لرحلة محددة.</p>
+      </div>
+      <div id="userStatus" style="background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.9em;">
+        <!-- سيتم تحديثه بواسطة JavaScript -->
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="coach-info">
+      <div>
+        <strong>رقم القطار:</strong> <span id="trainNameDisplay">—</span>
+      </div>
+      <div>
+        <strong>الدرجة:</strong> <span id="classNameDisplay">—</span>
+      </div>
+      <div>
+        <strong>المقاعد:</strong> <span id="totalSeatsDisplay">—</span>
+      </div>
+    </section>
+
+    <section class="screen">مدخل القطار</section>
+
+    <section class="seats-wrapper" aria-label="خريطة المقاعد">
+  
+      <div id="seatsGrid" class="seats-grid" role="grid" aria-readonly="false"></div>
+    </section>
+
+    <aside class="controls">
+      <div class="selected-info">
+        <span>المقعد المختار:</span>
+        <strong id="selectedSeat">—</strong>
+      </div>
+
+      <button id="bookBtn" class="btn" disabled>احجز المقعد</button>
+
+      <div class="legend" role="group" aria-label="مفتاح المقاعد">
+        <span><span class="legend-dot available"></span> متاح</span>
+        <span><span class="legend-dot booked"></span> محجوز</span>
+        <span><span class="legend-dot selected"></span> مختار</span>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Modal تفاصيل الحجز -->
+  <div id="bookingConfirmModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>تأكيد تفاصيل الحجز</h2>
+        <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="success-message">
+          <div class="success-icon">✓</div>
+          <p>تم إنشاء حجزك بنجاح! يمكنك الآن المتابعة للدفع.</p>
+        </div>
+        
+        <div class="booking-details">
+          <div class="detail-section">
+            <h3>🚆 معلومات الرحلة</h3>
+            <div class="detail-row">
+              <span class="detail-label">رقم القطار:</span>
+              <span class="detail-value" id="modal-train-name">—</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">📍 من:</span>
+              <span class="detail-value" id="modal-from-station">—</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">🎯 إلى:</span>
+              <span class="detail-value" id="modal-to-station">—</span>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h3>💺 معلومات المقعد</h3>
+            <div class="detail-row">
+              <span class="detail-label">الدرجة:</span>
+              <span class="detail-value" id="modal-class-name">—</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">رقم المقعد:</span>
+              <span class="detail-value highlight" id="modal-seat-number">—</span>
+            </div>
+          </div>
+
+          <div class="detail-section price-section">
+            <div class="detail-row total-price">
+              <span class="detail-label">💳 المبلغ الإجمالي:</span>
+              <span class="detail-value price" id="modal-total-price">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <p class="payment-note">
+          💡 عند الضغط على "المتابعة للدفع" سيتم تحويلك لبوابة الدفع الآمنة
+        </p>
+        <div class="footer-buttons">
+          <button class="btn-secondary" onclick="closeBookingModal()">إغلاق</button>
+          <button class="btn-primary" id="confirmBookingBtn" onclick="confirmAndProceedToPayment()">
+            المتابعة للدفع 💳
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="Seat.js"></script>
+</body>
+</html>

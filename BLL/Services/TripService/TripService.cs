@@ -58,6 +58,11 @@ namespace Domain.Services.TripService
             var trips = await _unitOfWork.Trip.FindTripsWithTwoStationsAsync(departureStationName, arrivalStationName);
             return trips.Select(t => t.ToTripReadDto(departureStationName, arrivalStationName)).ToList();
         }
+        public async Task<IEnumerable<TripReadDto>> FindTripsWithTwoStationsIdAsync(long departureStationId, long arrivalStationId)
+        {
+            var trips = await _unitOfWork.Trip.FindTripsWithTwoStationIdsAsync(departureStationId, arrivalStationId);
+            return trips.Select(t => t.ToTripReadDto(departureStationId.ToString(), arrivalStationId.ToString())).ToList();
+        }
 
         public async Task<TripReadDto> CreateTripAsync(TripCreateDto tripDto)
         {

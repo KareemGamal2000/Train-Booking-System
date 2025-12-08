@@ -36,6 +36,7 @@ namespace Domain.Profiles
                 DistanceFromStartKM = stop.DistanceFromStartKM
             };
         }
+
         public static TripSegmentPriceDto ToTripSegmentPriceDto(this TripSegmentPrice price)
         {
             if (price == null) return null;
@@ -50,152 +51,175 @@ namespace Domain.Profiles
             };
         }
 
+        // ✅ الـ overload الأساسي - محسّن
         public static TripReadDto ToTripReadDto(this Trip trip)
         {
-            if (trip == null)
-            {
-                return null;
-            }
+            if (trip == null) return null;
 
+            // ✅ تحسين: حساب availableClasses مرة واحدة فقط
             var availableClasses = trip.SegmentPrices?
-                .Where(sp => sp.Class != null)
-                .Select(sp => new TripClassDto
+                .Where(sp => sp.Class != null && !string.IsNullOrEmpty(sp.Class.ClassNameAR))
+                .GroupBy(sp => sp.Class.Class_ID)
+                .Select(g => new TripClassDto
                 {
-                    ClassID = sp.Class.Class_ID,
-                    ClassNameAR = sp.Class.ClassNameAR
+                    ClassID = g.Key,
+                    ClassNameAR = g.First().Class.ClassNameAR
                 })
-                .Where(c => !string.IsNullOrEmpty(c.ClassNameAR))
-                .GroupBy(c => c.ClassID)
-                .Select(g => g.First())
                 .ToList() ?? new List<TripClassDto>();
+
+            // ✅ تحسين: تحويل Stops مرة واحدة وترتيبها
+            var stops = trip.Stops?
+                .OrderBy(s => s.StopSequence)
+                .Select(s => s.ToTripStopDto())
+                .ToList() ?? new List<TripStopDto>();
+
+            // ✅ تحسين: تحويل SegmentPrices مرة واحدة
+            var segmentPrices = trip.SegmentPrices?
+                .Select(p => p.ToTripSegmentPriceDto())
+                .ToList() ?? new List<TripSegmentPriceDto>();
 
             return new TripReadDto
             {
                 Trip_ID = trip.TripID,
-
                 TrainID = trip.TrainID,
                 TrainName = trip.Train?.TrainName ?? "غير محدد",
-                AvailableClasses = availableClasses ?? new List<TripClassDto>(),
+                AvailableClasses = availableClasses,
                 DepartureStationID = trip.DepartureStationID.GetValueOrDefault(),
                 DepartureStationNameAR = trip.Departure_Station?.StationNameAR ?? "N/A",
                 ArrivalStationID = trip.ArrivalStationID.GetValueOrDefault(),
                 ArrivalStationNameAR = trip.Arrival_Station?.StationNameAR ?? "N/A",
-
-                // ربط محطات التوقف
-                Stops = trip.Stops?.Select(s => s.ToTripStopDto()).OrderBy(s => s.StopSequence).ToList() ?? new List<TripStopDto>(),
-
-                // ربط الأسعار (يتطلب Include لـ SegmentPrices)
-                SegmentPrices = trip.SegmentPrices?.Select(p => p.ToTripSegmentPriceDto()).ToList() ?? new List<TripSegmentPriceDto>()
+                Stops = stops,
+                SegmentPrices = segmentPrices
             };
         }
+
         public static TripReadDto ToTripReadDto(this Trip trip, string departureStationName, string arrivalStationName)
         {
-            if (trip == null)
-            {
-                return null;
-            }
+            if (trip == null) return null;
 
-            // 1. حساب الدرجات المتاحة
-            var availableClasses = trip.SegmentPrices?
-                .Where(sp => sp.Class != null)
-                .Select(sp => new TripClassDto
+            var lowerDeparture = departureStationName?.ToLower() ?? "";
+            var lowerArrival = arrivalStationName?.ToLower() ?? "";
+
+            var orderedStops = trip.Stops?.OrderBy(ts => ts.StopSequence).ToList() ?? new List<TripStop>();
+
+            TripStop startStopEntity = null;
+            TripStop endStopEntity = null;
+
+            foreach (var stop in orderedStops)
+            {
+                var stationNameAR = stop.Station?.StationNameAR?.ToLower() ?? "";
+                var stationNameEN = stop.Station?.StationNameEN?.ToLower() ?? "";
+
+                if (startStopEntity == null && 
+                    (stationNameAR.StartsWith(lowerDeparture) || stationNameEN.StartsWith(lowerDeparture)))
                 {
-                    ClassID = sp.Class.Class_ID,
-                    ClassNameAR = sp.Class.ClassNameAR
-                })
-                .Where(c => !string.IsNullOrEmpty(c.ClassNameAR))
-                .GroupBy(c => c.ClassID)
-                .Select(g => g.First())
-                .ToList() ?? new List<TripClassDto>();
-
-            var lowerDeparture = departureStationName?.ToLower();
-            var lowerArrival = arrivalStationName?.ToLower();
-
-            var startStopEntity = trip.Stops
-                .OrderBy(ts => ts.StopSequence)
-                .FirstOrDefault(ts =>
-                    (ts.Station?.StationNameAR.ToLower().StartsWith(lowerDeparture) ?? false) ||
-                    (ts.Station?.StationNameEN.ToLower().StartsWith(lowerDeparture) ?? false)
-                );
-
-            var endStopEntity = trip.Stops
-                .OrderByDescending(ts => ts.StopSequence) 
-                .FirstOrDefault(ts =>
-                    (ts.Station?.StationNameAR.ToLower().StartsWith(lowerArrival) ?? false) ||
-                    (ts.Station?.StationNameEN.ToLower().StartsWith(lowerArrival) ?? false)
-                );
-
-            // التأكد من أن محطة المغادرة تأتي قبل الوصول (شرط أساسي لرحلة صحيحة)
-            if (startStopEntity != null && endStopEntity != null && startStopEntity.StopSequence > endStopEntity.StopSequence)
-            {
-                // إذا كان التسلسل خطأ، نجعل النهاية "آخر" تطابق بعد البداية
-                endStopEntity = trip.Stops
-                    .OrderBy(ts => ts.StopSequence)
-                    .LastOrDefault(ts =>
-                        ((ts.Station?.StationNameAR.ToLower().StartsWith(lowerArrival) ?? false) ||
-                         (ts.Station?.StationNameEN.ToLower().StartsWith(lowerArrival) ?? false)) &&
-                         ts.StopSequence > startStopEntity.StopSequence // يجب أن يكون التسلسل بعد المغادرة
-                    );
+                    startStopEntity = stop;
+                }
+                if (startStopEntity != null && endStopEntity == null &&
+                    (stationNameAR.StartsWith(lowerArrival) || stationNameEN.StartsWith(lowerArrival)))
+                {
+                    endStopEntity = stop;
+                    break;
+                }
             }
-
-
-            // استخدام تسلسل التوقف (StopSequence) لضمان الفلترة
-            int? startSequence = startStopEntity?.StopSequence;
-            int? endSequence = endStopEntity?.StopSequence;
-
 
             var filteredStops = new List<TripStopDto>();
-
-            if (startSequence.HasValue && endSequence.HasValue && startSequence.Value <= endSequence.Value)
-            {
-                filteredStops = trip.Stops?
-                    .Where(ts => ts.StopSequence >= startSequence.Value && ts.StopSequence <= endSequence.Value)
-                    .Select(s => s.ToTripStopDto())
-                    .OrderBy(s => s.StopSequence)
-                    .ToList() ?? new List<TripStopDto>();
-            }
-            else
-            {
-                filteredStops = new List<TripStopDto>();
-            }
-
             var filteredSegmentPrices = new List<TripSegmentPriceDto>();
 
-            var departureStopId = startStopEntity?.TripStopID;
-            var arrivalStopId = endStopEntity?.TripStopID;
-
-
-            if (departureStopId.HasValue && arrivalStopId.HasValue)
+            if (startStopEntity != null && endStopEntity != null && 
+                startStopEntity.StopSequence <= endStopEntity.StopSequence)
             {
+                filteredStops = orderedStops
+                    .Where(ts => ts.StopSequence >= startStopEntity.StopSequence && 
+                                 ts.StopSequence <= endStopEntity.StopSequence)
+                    .Select(s => s.ToTripStopDto())
+                    .ToList();
+
+                var departureStopId = startStopEntity.TripStopID;
+                var arrivalStopId = endStopEntity.TripStopID;
+
                 filteredSegmentPrices = trip.SegmentPrices?
-                   .Where(p => p.StartStopID == departureStopId.Value && p.EndStopID == arrivalStopId.Value)
-                   .Select(p => p.ToTripSegmentPriceDto())
-                   .ToList() ?? new List<TripSegmentPriceDto>();
+                    .Where(p => p.StartStopID == departureStopId && p.EndStopID == arrivalStopId)
+                    .Select(p => p.ToTripSegmentPriceDto())
+                    .ToList() ?? new List<TripSegmentPriceDto>();
             }
-            else
-            {
-                filteredSegmentPrices = new List<TripSegmentPriceDto>();
-            }
-
+            var availableClasses = trip.SegmentPrices?
+                .Where(sp => sp.Class != null && !string.IsNullOrEmpty(sp.Class.ClassNameAR))
+                .GroupBy(sp => sp.Class.Class_ID)
+                .Select(g => new TripClassDto
+                {
+                    ClassID = g.Key,
+                    ClassNameAR = g.First().Class.ClassNameAR
+                })
+                .ToList() ?? new List<TripClassDto>();
 
             return new TripReadDto
             {
                 Trip_ID = trip.TripID,
-
                 TrainID = trip.TrainID,
                 TrainName = trip.Train?.TrainName ?? "غير محدد",
-                AvailableClasses = availableClasses ?? new List<TripClassDto>(),
-
-                // نستخدم هنا بيانات المحطة الفعلية التي وجدناها (إذا كانت موجودة) أو الأسماء المدخلة
+                AvailableClasses = availableClasses,
                 DepartureStationID = startStopEntity?.StationID ?? trip.DepartureStationID.GetValueOrDefault(),
                 DepartureStationNameAR = startStopEntity?.Station?.StationNameAR ?? departureStationName,
                 ArrivalStationID = endStopEntity?.StationID ?? trip.ArrivalStationID.GetValueOrDefault(),
                 ArrivalStationNameAR = endStopEntity?.Station?.StationNameAR ?? arrivalStationName,
-
-                // ربط محطات التوقف: نستخدم القائمة المفلترة فقط
                 Stops = filteredStops,
+                SegmentPrices = filteredSegmentPrices
+            };
+        }
 
-                // ربط الأسعار: نستخدم القائمة المفلترة فقط
+        public static TripReadDto ToTripReadDtoByIds(this Trip trip, long departureStationId, long arrivalStationId)
+        {
+            if (trip == null) return null;
+
+            var stopsDict = trip.Stops?
+                .OrderBy(ts => ts.StopSequence)
+                .ToDictionary(s => s.StationID ?? 0, s => s) 
+                ?? new Dictionary<long, TripStop>();
+
+            TripStop startStopEntity = stopsDict.GetValueOrDefault(departureStationId);
+            TripStop endStopEntity = stopsDict.GetValueOrDefault(arrivalStationId);
+
+            var filteredStops = new List<TripStopDto>();
+            var filteredSegmentPrices = new List<TripSegmentPriceDto>();
+
+            if (startStopEntity != null && endStopEntity != null && 
+                startStopEntity.StopSequence <= endStopEntity.StopSequence)
+            {
+                filteredStops = stopsDict.Values
+                    .Where(ts => ts.StopSequence >= startStopEntity.StopSequence && 
+                                 ts.StopSequence <= endStopEntity.StopSequence)
+                    .Select(s => s.ToTripStopDto())
+                    .ToList();
+
+                filteredSegmentPrices = trip.SegmentPrices?
+                    .Where(p => p.StartStopID == startStopEntity.TripStopID && 
+                                p.EndStopID == endStopEntity.TripStopID)
+                    .Select(p => p.ToTripSegmentPriceDto())
+                    .ToList() ?? new List<TripSegmentPriceDto>();
+            }
+
+            var availableClasses = trip.SegmentPrices?
+                .Where(sp => sp.Class != null && !string.IsNullOrEmpty(sp.Class.ClassNameAR))
+                .GroupBy(sp => sp.Class.Class_ID)
+                .Select(g => new TripClassDto
+                {
+                    ClassID = g.Key,
+                    ClassNameAR = g.First().Class.ClassNameAR
+                })
+                .ToList() ?? new List<TripClassDto>();
+
+            return new TripReadDto
+            {
+                Trip_ID = trip.TripID,
+                TrainID = trip.TrainID,
+                TrainName = trip.Train?.TrainName ?? "غير محدد",
+                AvailableClasses = availableClasses,
+                DepartureStationID = startStopEntity?.StationID ?? departureStationId,
+                DepartureStationNameAR = startStopEntity?.Station?.StationNameAR ?? "N/A",
+                ArrivalStationID = endStopEntity?.StationID ?? arrivalStationId,
+                ArrivalStationNameAR = endStopEntity?.Station?.StationNameAR ?? "N/A",
+                Stops = filteredStops,
                 SegmentPrices = filteredSegmentPrices
             };
         }
