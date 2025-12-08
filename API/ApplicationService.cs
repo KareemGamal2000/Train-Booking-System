@@ -1,19 +1,25 @@
-﻿using Domain.Interfaces;
-using Domain.Mapping;
-using Domain.Services;
-using Domain.Services.Auth;
-using Domain.Third_Party.Token;
-using Data.Context;
-using Data.Entities;
+﻿using Data.Context;
+using Data.Models;
 using Data.Repository.Coach;
 using Data.Repository.Station;
 using Data.Repository.Train;
+using Data.Repository.Trip;
+using Data.Repository.UnitOfWork;
+using Domain.Services;
+using Domain.Services.Auth;
+using Domain.Services.Auth.Email;
+using Domain.Services.StationService;
+using Domain.Services.TrainService;
+using Domain.Services.TripService;
+using Domain.Services.Payment;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Domain.Services.BookingService;
+using Domain.Helpers;
 
 namespace API
 {
@@ -22,7 +28,10 @@ namespace API
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    config.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions.CommandTimeout(120) // زيادة وقت تنفيذ الاستعلامات إلى 120 ثانية
+                ));
             services.AddIdentity<User, IdentityRole<Guid>>(options =>
             {
                 options.Password.RequireNonAlphanumeric = false;
@@ -58,15 +67,21 @@ namespace API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWT:Key"]!))
                 };
             });
-
-            services.AddScoped<IAuthService, AuthService>();
+            services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<ITrainService, TrainService>();
             services.AddScoped<ITrainRepo, TrainRepo>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICoachRepo, CoachRepo>();
             services.AddScoped<IStationRepo, StationRepo>();
-            services.AddScoped<ITrainService, TrainService>();
-            services.AddScoped<ICoachService, CoachService>();
+            services.AddScoped<ITripService, TripService>();
+            services.AddScoped<ITripRepo, TripRepo>();
             services.AddScoped<IStationService, StationService>();
-            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.Configure<PaymobSettings>(config.GetSection("PaymobSettings"));
+            services.AddHttpClient<IPaymentService, PaymentService>();
 
 
 
