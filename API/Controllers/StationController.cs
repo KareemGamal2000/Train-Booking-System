@@ -1,12 +1,13 @@
-﻿using Domain.Dtos;
-using Domain.Interfaces;
+﻿using Domain.Dtos.StationDtos;
+using Domain.Services.StationService;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class StationController : ControllerBase
     {
         private readonly IStationService _stationService;
@@ -16,48 +17,87 @@ namespace API.Controllers
             _stationService = stationService;
         }
 
+        // GET: api/Station
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllStations()
         {
-            var stations = await _stationService.GetAllAsync();
+            var stations = await _stationService.GetAllStationAsync();
             return Ok(stations);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        // GET: api/Station/name?stationname=القاهرة
+        [HttpGet("name")]
+        public async Task<IActionResult> GetStationByName([FromQuery] string stationname)
         {
-            var station = await _stationService.GetByIdAsync(id);
+            var station = await _stationService.GetStationBynameAsync(stationname);
             if (station == null)
-                return NotFound("Station not found");
-
+            {
+                return NotFound($"لم يتم العثور على محطة بالاسم {stationname}");
+            }
             return Ok(station);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] StationDto dto)
+        // GET: api/Station/1
+        [HttpGet("{stationId}")]
+        public async Task<IActionResult> GetStationById(long stationId)
+        {
+            var station = await _stationService.GetStationByIdAsync(stationId);
+            if (station == null)
+            {
+                return NotFound($"لم يتم العثور على محطة برقم {stationId}");
+            }
+            return Ok(station);
+        }
+
+        // POST: api/Station
+        [HttpPost("Create/")]
+        public async Task<IActionResult> CreateStation([FromBody] StationCreateDto stationDto)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
-            var result = await _stationService.AddStationAsync(dto);
-            return Ok(result);
+            try
+            {
+                var createdStation = await _stationService.CreateStationAsync(stationDto);
+                return CreatedAtAction(nameof(GetStationById), new { stationId = createdStation.StationID }, createdStation);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] StationDto dto)
+        // PUT: api/Station/Update/{stationname}
+        [HttpPut("Update/{stationname}")]
+        public async Task<IActionResult> UpdateStation(string stationname, [FromBody] StationUpdateDto stationDto)
         {
-            if (id != dto.Station_ID)
-                return BadRequest("Invalid station ID");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            var result = await _stationService.UpdateStationAsync(dto);
-            return Ok(result);
+            var success = await _stationService.UpdateStationAsync(stationname, stationDto);
+            if (!success)
+            {
+                return NotFound($"لم يتم العثور على محطة باسم {stationname} للتحديث.");
+            }
+
+            return Ok(new { message = $"تم تحديث المحطة '{stationname}' بنجاح." });
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        // DELETE: api/Station/1
+        [HttpDelete("Delete/{stationId}")]
+        public async Task<IActionResult> DeleteStation(long stationId)
         {
-            var result = await _stationService.DeleteStationAsync(id);
-            return Ok(result);
+            var success = await _stationService.DeleteStationAsync(stationId);
+            if (!success)
+            {
+                return NotFound($"لم يتم العثور على محطة برقم {stationId} للحذف.");
+            }
+
+            return Ok(new { message = $"تم حذف المحطة بنجاح" });
         }
     }
 }
